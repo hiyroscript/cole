@@ -1,9 +1,12 @@
+import { validSource } from "../core/madon/sources";
 import {
   emptyContext,
   type Conversation,
   type Preferences,
 } from "../core/types";
 export const defaults: Preferences = {
+  model: "zulvyn",
+  webSources: false,
   theme: "light",
   thinking: "auto",
   name: "",
@@ -14,6 +17,8 @@ export function preferences(): Preferences {
     const p = JSON.parse(localStorage.getItem("varek.preferences.v1") ?? "{}");
     return {
       ...defaults,
+      model: p.model === "madon" ? "madon" : "zulvyn",
+      webSources: p.webSources === true,
       theme: ["light", "dark", "system"].includes(p.theme) ? p.theme : "light",
       thinking: ["auto", "on", "off"].includes(p.thinking)
         ? p.thinking
@@ -69,6 +74,14 @@ export function validConversation(c: unknown): c is Conversation {
         typeof m.id === "string" &&
         ["user", "assistant"].includes(m.role) &&
         typeof m.text === "string" &&
+        (m.model === undefined || ["zulvyn", "madon"].includes(m.model)) &&
+        (m.modelVersion === undefined || typeof m.modelVersion === "string") &&
+        (m.stopped === undefined || typeof m.stopped === "boolean") &&
+        (m.failure === undefined || typeof m.failure === "string") &&
+        (m.sources === undefined ||
+          (Array.isArray(m.sources) &&
+            m.sources.length <= 2 &&
+            m.sources.every(validSource))) &&
         (m.analysis === undefined || strings(m.analysis)) &&
         (m.followups === undefined || strings(m.followups)) &&
         (m.contextBefore === undefined || validContext(m.contextBefore)) &&

@@ -26,7 +26,7 @@ Add commands to the centralized registry and executor in `commands.ts`. Specify 
 
 ## Models and streaming
 
-`models.ts` is the registry. Only available models have a usable engine; Madon has no engine. A future model should implement the response/context contract and declare capabilities rather than duplicating chat UI.
+`models.ts` is the typed registry and shared execution contract. Zulvyn adapts the original engine; Madon delegates to a lazy WebLLM worker transport with a single observable lifecycle. Commands execute locally before inference. See [Madon architecture and release gate](MADON.md). Never substitute presentation streaming for model tokens, or instantiate a worker from a React effect.
 
 `stream.ts` iterates Unicode code points in bounded chunks, listens to AbortSignal, and skips animation for reduced motion. Persist final or cancelled content, not every animation frame. Preserve the context before a user turn so regeneration can repeat a contextual request correctly.
 

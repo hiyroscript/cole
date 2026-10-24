@@ -38,13 +38,15 @@ export const commands = [
   description,
   extension: ["tab", "tabs", "page", "reader"].includes(name),
   args:
-    name === "think"
-      ? ["auto", "on", "off"]
-      : name === "theme"
-        ? ["light", "dark", "system"]
-        : name === "tabs"
-          ? ["pin", "unpin"]
-          : [],
+    name === "model"
+      ? ["zulvyn", "madon", "status", "unload"]
+      : name === "think"
+        ? ["auto", "on", "off"]
+        : name === "theme"
+          ? ["light", "dark", "system"]
+          : name === "tabs"
+            ? ["pin", "unpin"]
+            : [],
   permission: ["tab", "tabs", "page", "reader"].includes(name)
     ? "Explicit activeTab action"
     : "None",
@@ -71,7 +73,7 @@ export async function executeCommand(
     return result(
       `Unknown command /${name}. Use /help for the allowlisted commands.`,
     );
-  if (cmd.args.length && !cmd.args.includes(arg))
+  if (cmd.args.length && !cmd.args.includes(arg) && !(name === "model" && !arg))
     return result(`Use /${name} ${cmd.args.join(" | ")}.`);
   if (!cmd.args.length && arg)
     return result(`/${name} does not accept arguments.`);
@@ -107,7 +109,12 @@ export async function executeCommand(
     );
   if (name === "model")
     return result(
-      "**Zulvyn** — available. Local browser and device intelligence.\n\n**Madon** — coming soon; not selectable.",
+      arg === "zulvyn" || arg === "madon"
+        ? `Selected ${arg}. Madon requires explicit setup before generation.`
+        : arg === "unload"
+          ? "Unloading Madon from memory; cached assets are retained."
+          : "**Zulvyn** — local knowledge and diagnostics.\n\n**Madon** — local Qwen3 AI on compatible website devices. Use /model madon to open setup.",
+      { effect: { type: "model", value: arg || "status" } },
     );
   if (name === "shortcuts")
     return result(

@@ -1,12 +1,12 @@
 # Varek
 
-Varek is a browser-local diagnostic and knowledge assistant. **Zulvyn is a deterministic engine, not a large language model.** It combines authored explanations, indexed intent matching, conversation context, and actual browser APIs. No account, backend, inference API, or API key is required. Madon is visibly marked Coming Soon and cannot be activated.
+Varek is a browser-local diagnostic and knowledge assistant. **Zulvyn is a deterministic engine, not a large language model.** It combines authored explanations, indexed intent matching, conversation context, and actual browser APIs. No account, backend, hosted inference API, or API key is required. Madon is now an opt-in local Qwen3/WebLLM website preview with explicit setup, real token streaming, and optional Wikimedia retrieval. Real GPU inference remains unverified in this environment; see [Madon setup and validation](docs/MADON.md).
 
 The supplied Varek image is used unchanged as the application logo, with resized copies for favicons, PWA icons, and extension icons. The UI uses Porcelain/Fig design tokens, light by default, with dark and system themes.
 
 ## Release scope and coverage
 
-This is a working initial implementation of the `max` specification, **not a claim that all of its release-scale content goals have been completed**. Run `npm run validate:knowledge` for the exact machine-checked report in [`docs/coverage.json`](docs/coverage.json).
+Zulvyn retains the original authored content release. The current `max` file specifies the Madon upgrade; [its implementation and remaining hardware validation](docs/MADON.md) are documented separately. Run `npm run validate:knowledge` for the exact machine-checked report in [`docs/coverage.json`](docs/coverage.json).
 
 - **205** independently authored knowledge records, across 13 categories.
 - **831** distinct authored expressions; no generated synonym permutations counted.
@@ -59,13 +59,13 @@ For browser tests, set `CHROMIUM_PATH` to your installed Chromium executable. Th
 
 Enter sends; Shift+Enter inserts a newline. The composer grows with text, supports IME composition, and exposes a keyboard-navigable slash menu. Escape dismisses menus and dialogs. Alt+N starts a chat, Alt+K focuses the composer, Alt+B toggles the sidebar, and Alt+F searches history. Native modal dialogs and the mobile navigation drawer manage focus.
 
-Thinking Auto selects branching diagnosis for relevant problems; On adds analysis where relevant; Off skips optional diagnostic workflows. Analysis summaries identify actual matching, rules, and missing measurements. Streaming is presentation of an already-composed local answer. Stop preserves partial output; retry restores the context before the original request.
+For Zulvyn, Thinking Auto selects branching diagnosis for relevant problems; On adds analysis where relevant; Off skips optional diagnostic workflows. Analysis summaries identify actual matching, rules, and missing measurements. Zulvyn streaming presents an already-composed local answer. Madon streams generated output from WebLLM and maps thinking preferences to Qwen3’s native runtime control. Stop preserves partial output; retry restores the context before the original request.
 
 ### Commands
 
 Use `/help` for descriptions and argument requirements.
 
-- General: `/help`, `/about`, `/model`, `/think auto|on|off`, `/theme light|dark|system`, `/clear`, `/new`, `/export`, `/shortcuts`.
+- General: `/help`, `/about`, `/model [zulvyn|madon|status|unload]`, `/think auto|on|off`, `/theme light|dark|system`, `/clear`, `/new`, `/export`, `/shortcuts`.
 - Observations: `/browser`, `/device`, `/system`, `/screen`, `/language`, `/timezone`, `/permissions`, `/features`, `/storage`, `/network`.
 - Advice and diagnosis: `/privacy`, `/diagnose`, `/performance`, `/compatibility`, `/security`, `/cache`, `/cookies`.
 - Extension: `/tab`, `/tabs pin|unpin`, `/page`, `/reader`. `/extensions` provides permission guidance; it does not enumerate installed extensions.
@@ -74,7 +74,7 @@ Commands that change preferences return typed effects. Destructive actions requi
 
 ## Privacy and data
 
-GitHub Pages serves static assets and receives normal HTTP asset requests. Conversation processing runs in the browser. Varek has no analytics, tracking pixels, remote inference calls, or automatic page inspection. Markdown cannot inject HTML, execute JavaScript URLs, or load remote images.
+GitHub Pages serves static assets and receives normal HTTP asset requests. Conversation processing runs in the browser. Varek has no analytics, tracking pixels, remote inference calls, or automatic page inspection. Madon setup downloads model assets from Hugging Face and the WebLLM library host. Optional web lookup sends minimized search terms to Wikimedia; it is off by default. Markdown cannot inject HTML, execute JavaScript URLs, or load remote images.
 
 Conversations are stored in IndexedDB database `varek`, schema version 1. Preferences and optional user-provided device notes are stored in `varek.preferences.v1` in local storage. Data is validated on load. Browser storage can be unavailable or evicted; errors are surfaced instead of claiming persistence succeeded. Varek does not encrypt local storage or exports.
 
@@ -82,7 +82,7 @@ Settings provide current/all-chat exports, individual/all-chat deletion, prefere
 
 ## Offline and updates
 
-The build generates a content-versioned service worker caching the app shell, local knowledge bundle, logo, and icons under `/varek/`. Only Varek-owned cache names are removed during updates. Cached same-origin assets are matched independently of development server `Vary: Origin` headers. A new worker waits until the user chooses the update control; active responses disable that control.
+The build generates a content-versioned service worker caching the app shell, local knowledge bundle, logo, and icons under `/varek/`. Only Varek-owned shell cache names are removed during updates. WebLLM model data is separate. Lazy inference code is cached only after it is requested; model weights are never shell-precached. Cached same-origin assets are matched independently of development server `Vary: Origin` headers. A new worker waits until the user chooses the update control; active responses disable that control.
 
 A first-ever offline visit cannot work. Cleared/evicted storage or failed service-worker installation can remove offline availability. Install using the browser's Install or Add to Home Screen control where supported. There is no assumption that all browsers offer an install prompt.
 
@@ -104,7 +104,7 @@ Vite uses the `/varek/` project base. The application uses local state rather th
 4. Click Varek's toolbar icon on the webpage you want to inspect, then choose **Open side panel**.
 5. Deliberately run `/tab`, `/page`, or `/reader` and confirm the local read. If you switch to another origin, click the toolbar icon again to grant temporary access there.
 
-The package contains all executable code. It requests `activeTab`, `scripting`, and `sidePanel`, with **no blanket host permissions**, history permission, or remote executable code. Restricted browser pages and missing permission produce an explicit limitation. `/reader` returns an excerpt of up to 12,000 visible characters, not a semantic summary. Page content is untrusted and is never executed as instructions.
+The extension supports Zulvyn; Madon is explicitly website-only until a compliant packaged inference runtime is verified. The package contains all executable code. It requests `activeTab`, `scripting`, and `sidePanel`, with **no blanket host permissions**, history permission, or remote executable code. Restricted browser pages and missing permission produce an explicit limitation. `/reader` returns an excerpt of up to 12,000 visible characters, not a semantic summary. Page content is untrusted and is never executed as instructions.
 
 Firefox extension compatibility and store publication have not been implemented. Side-panel availability varies among Chromium-derived browsers. The full conversation tab is available as a fallback, but inspection should be performed from the side panel alongside the target page.
 

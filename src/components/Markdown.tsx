@@ -1,5 +1,11 @@
 import ReactMarkdown from "react-markdown";
-export function Markdown({ text }: { text: string }) {
+export function Markdown({
+  text,
+  allowLinks = true,
+}: {
+  text: string;
+  allowLinks?: boolean;
+}) {
   return (
     <ReactMarkdown
       skipHtml
@@ -14,7 +20,7 @@ export function Markdown({ text }: { text: string }) {
           } catch {
             /* reject malformed links */
           }
-          return safe ? (
+          return safe && allowLinks ? (
             <a href={href} target="_blank" rel="noopener noreferrer">
               {children}
             </a>

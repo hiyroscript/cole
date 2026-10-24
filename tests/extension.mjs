@@ -1,6 +1,13 @@
 import assert from "node:assert/strict";
 import { chromium } from "@playwright/test";
-import { cp, readFile, writeFile, mkdtemp, rm } from "node:fs/promises";
+import {
+  cp,
+  readFile,
+  writeFile,
+  mkdtemp,
+  rm,
+  readdir,
+} from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { createServer } from "node:http";
@@ -26,7 +33,11 @@ async function launch(extensionPath) {
     (await context.waitForEvent("serviceworker"));
   return { context, id: worker.url().split("/")[2] };
 }
-let checks = 3;
+assert.equal(
+  (await readdir(path + "/assets")).some((f) => /^(worker|transport)-/.test(f)),
+  false,
+);
+let checks = 4;
 const { context, id } = await launch(path);
 try {
   const panel = await context.newPage();
@@ -42,6 +53,19 @@ try {
       exact: false,
     })
     .waitFor();
+  checks++;
+  await panel.getByRole("button", { name: "Zulvyn", exact: true }).click();
+  await panel.getByRole("button", { name: /Madon/ }).click();
+  await panel.getByText("Madon is website-only.", { exact: false }).waitFor();
+  assert.equal(
+    await panel
+      .getByRole("button", { name: "Download and initialize" })
+      .isDisabled(),
+    true,
+  );
+  await panel
+    .getByRole("button", { name: "Switch to Zulvyn", exact: true })
+    .click();
   checks++;
   const invalid = await panel.evaluate(() =>
     chrome.runtime.sendMessage({

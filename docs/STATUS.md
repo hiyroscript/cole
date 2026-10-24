@@ -1,5 +1,11 @@
 # Implementation status
 
+## Madon upgrade (2026-10-24)
+
+Implemented opt-in WebLLM 0.2.86/Qwen3-1.7B worker inference, setup/progress/recovery, real streaming transport, bounded role history, stop/retry, native thinking control and hidden-output parsing, trusted diagnostic routing, optional Wikimedia retrieval, source metadata, persistence, cache management and lazy loading. Zulvyn and the MV3 security boundary are preserved. Madon is a **website preview, not a fully hardware-validated release**.
+
+The production browser exposed WebGPU but no adapter. Actual model initialization, generation, thinking quality, cache reuse and offline inference remain unverified. Full details, use instructions, exact configuration, verification results and the opt-in real smoke script are in [MADON.md](MADON.md).
+
 ## Implemented
 
 Responsive React/TypeScript chat, supplied logo and favicon/PWA/extension icons, light/dark/system appearance, local IndexedDB conversations and context, search/rename/pin/delete/export, preference and device-note controls, safe Markdown, progressive cancellable responses, regeneration with prior context, reduced-motion support, keyboard shortcuts, focus-managed dialogs/mobile navigation, Zulvyn/Madon model registry, allowlisted slash commands, classified browser diagnostics, data copying/export, troubleshooting branches, cached offline app, update detection, and separate bundled Manifest V3 popup/side-panel builds.
@@ -8,7 +14,7 @@ The core engine is shared between website and extension. Page metadata/text insp
 
 ## Content targets not completed
 
-The current validator reports **205 records and 831 expressions**, compared with the `max` goals of **700 and 2,500**. There are **26 flows and 103 reachable branch paths**, meeting the 100-flow-or-path target through paths. Do not describe this content release as the full requested scale.
+The current validator reports **205 records and 831 expressions**, compared with the original authored-content goals of **700 and 2,500**. There are **26 flows and 103 reachable branch paths**, meeting the 100-flow-or-path target through paths. Do not describe this content release as the full requested scale.
 
 The test suite contains hundreds of individual expression/rule checks, plus realistic multi-turn cases. It does **not** contain hundreds of separately authored, independent multi-turn conversations. Broader natural-language generalization and more platform-specific instruction variants remain work for subsequent content releases.
 
@@ -26,13 +32,13 @@ English only; no robust multilingual classifier. Entity extraction and negation 
 
 ## Verification boundaries
 
-Automated web tests run in Chromium at desktop and mobile emulated viewports, including dark theme and cached offline reload. They do not constitute physical-device Safari/Firefox testing or a full assistive-technology audit. Install prompts and actual mobile keyboards vary by browser and should receive device testing before calling this a fully certified production release.
+Automated web tests run in Chromium at desktop and mobile emulated viewports, including dark theme and cached Zulvyn offline reload. They do not constitute physical-device Safari/Firefox testing or a full assistive-technology audit. Install prompts and actual mobile keyboards vary by browser and should receive device testing before calling this a fully certified production release.
 
 The extension test loads the production package and verifies local chat, popup rendering, rejected invalid messages, and denied ungranted page access. A temporary local-fixture permission tests extraction and pinning. Actual toolbar activeTab grant/side-panel user gestures still merit manual release testing in each supported Chromium browser.
 
 GitHub Pages requires repository Settings → Pages → Source: GitHub Actions. A committed deployment workflow is not proof of a successful deployment; consult the Actions run and Pages status.
 
-## Verified on 2026-10-24
+## Original Zulvyn baseline (before Madon upgrade, 2026-10-24)
 
 - Strict TypeScript check: passed (including extension source).
 - Knowledge validation: 205 records, 831 expressions, 103 reachable paths; zero duplicates, missing fields, or authored-expression ranking failures.

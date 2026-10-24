@@ -1,4 +1,4 @@
-import { copyFile, rm } from "node:fs/promises";
+import { copyFile, rm, readdir } from "node:fs/promises";
 import { build } from "esbuild";
 for (const file of ["manifest.json", "popup.html", "popup.js", "popup.css"])
   await copyFile("extension/" + file, "dist-extension/" + file);
@@ -11,3 +11,9 @@ await build({
 });
 await rm("dist-extension/manifest.webmanifest", { force: true });
 console.log("Unpacked Chromium extension: dist-extension/");
+
+// Vite may emit a worker asset before tree shaking the website-only runtime.
+// Never ship the unused inference executable in the MV3 package.
+for (const file of await readdir("dist-extension/assets"))
+  if (/^(worker|transport|engine)-.*\.js$/.test(file))
+    await rm("dist-extension/assets/" + file);
