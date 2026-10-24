@@ -1,732 +1,1185 @@
-VAREK — MADON LOCAL AI MODEL IMPLEMENTATION
+VAREK — GAMMA 2.0: COMPLETE REBRAND AND INTELLIGENCE UPGRADE
 
-ROLE AND MISSION
+YOUR ROLE
 
-You are a senior TypeScript engineer, machine-learning integration specialist, WebGPU developer, and browser-extension architect.
+You are a senior TypeScript engineer, conversational systems architect, browser-platform specialist, search engineer, and user-experience designer.
 
-Your task is to upgrade the existing Varek application by making Madon a fully functional, locally running large language model.
+Your task is to implement a major upgrade to the existing Varek application.
 
-This is a major functional upgrade to an existing application, not a request to rebuild Varek from scratch.
+This upgrade has two equally important objectives:
 
-Repository: hiyroscript/varek
-Branch: main
-Website: https://hiyroscript.github.io/varek/
-Existing assistant: Zulvyn
-Model to activate: Madon
-Inference technology: WebLLM
-Underlying model: Qwen3-1.7B
-Quantized model ID: Qwen3-1.7B-q4f16_1-MLC
+1. Completely rename the existing Zulvyn assistant to Gamma throughout Varek.
+2. Substantially upgrade Gamma into a sophisticated, lightweight, privacy-first, hybrid local intelligence engine.
 
-The core objective is to turn Madon from a disabled placeholder into a genuine AI assistant capable of generating natural, contextual responses locally using the user’s hardware.
+Do not merely rename text and modify a handful of responses.
 
-Implement this using free, open-source technology.
+This must be a genuine architectural, functional, and quality upgrade.
 
-No paid AI APIs, subscription services, hosted inference servers, or user accounts should be necessary.
+Project information
 
-CRITICAL INSTRUCTIONS
+* Repository: hiyroscript/varek
+* Branch: main
+* Product: Varek
+* Existing assistant name: Zulvyn
+* New assistant name: Gamma
+* Version designation: Gamma 2.0
+* Second assistant: Madon
+* Hosting: GitHub Pages
+* Production path: /varek/
+* Backend requirement: None
+* Required paid services: None
 
-1. Inspect the current repository before making changes.
-2. Preserve existing working features.
-3. Do not recreate the entire application.
-4. Do not discard the Zulvyn knowledge engine.
-5. Do not introduce a backend.
-6. Do not replace Madon with another prewritten-answer system.
-7. Do not fake LLM responses.
-8. Do not fake model downloads, reasoning, inference, or streaming.
-9. Do not silently send conversations to external inference services.
-10. Implement, build, test, and verify the actual application.
+Gamma must become significantly more capable while remaining fast, accessible, and usable without a large model download.
 
-Use the existing codebase as the foundation for every change.
+Madon must remain a separate local generative LLM. Do not merge Gamma and Madon into one model.
 
 ⸻
 
-1. CURRENT REPOSITORY ARCHITECTURE
+1. CRITICAL PROJECT REQUIREMENTS
 
-The existing application already contains:
+Before making changes:
 
-* React 19.
-* TypeScript.
-* Vite.
-* A working responsive chat interface.
-* The Porcelain/Fig visual design.
-* A local deterministic Zulvyn engine.
-* A knowledge base.
-* Contextual matching.
-* Slash commands.
-* Device diagnostics.
-* Conversation storage through IndexedDB.
-* A model selector.
-* Thinking preferences.
-* A simulated progressive response renderer.
-* A Progressive Web App.
-* A Chromium Manifest V3 extension.
-* Automated browser and unit tests.
-* GitHub Pages deployment configuration.
+* Inspect the entire current repository.
+* Read the existing source files and tests.
+* Understand the current model registry.
+* Understand message submission and streaming.
+* Understand conversation persistence.
+* Understand the browser-extension architecture.
+* Understand Madon’s WebLLM integration.
+* Understand the current knowledge schema and validation tools.
+* Understand the existing GitHub Pages deployment workflow.
 
-Relevant existing files include:
+This is an upgrade to an already functioning application.
 
-src/app/App.tsx
-Main chat interface, message submission, model selector, response presentation, settings, and conversation controls.
+Do not rebuild Varek from scratch.
+
+Do not replace the existing interface with a generic template.
+
+Do not delete the current knowledge base.
+
+Do not break existing conversation history.
+
+Do not compromise browser-extension permissions.
+
+Do not introduce a paid API.
+
+Do not force users to download Madon’s LLM.
+
+Do not silently make Gamma dependent on Madon.
+
+Implement the features described below as real functionality, not visual placeholders.
+
+2. CURRENT CODEBASE
+
+The repository currently includes these relevant files.
+
+Core
 
 src/core/models.ts
-Model definitions. Zulvyn is currently available and Madon is a coming-soon placeholder.
-
-src/core/engine.ts
-The deterministic Zulvyn engine.
+Typed assistant registry and model execution adapters.
 
 src/core/types.ts
-Shared engine, conversation, message, response, and preference types.
+Conversation, message, preference, context, response, and evidence types.
 
-src/core/stream.ts
-The existing simulated text-streaming renderer.
+src/core/engine.ts
+Existing Zulvyn response engine.
+
+src/core/matcher.ts
+Existing keyword, synonym, typo-tolerance, and phrase-ranking system.
+
+src/core/flows.ts
+Existing troubleshooting flows.
 
 src/core/commands.ts
-Slash-command parsing and execution.
+Trusted slash-command registry and execution.
+
+src/core/stream.ts
+Progressive presentation of deterministic responses.
+
+Knowledge
+
+src/data/knowledge.ts
+Authored knowledge records.
+
+src/data/extended.ts
+Additional technical knowledge.
+
+scripts/validate-knowledge.ts
+Knowledge validation.
+
+docs/coverage.json
+Knowledge coverage report.
+
+Application
+
+src/app/App.tsx
+Chat, model selection, composer, settings, streaming, and conversation presentation.
 
 src/lib/storage.ts
-Local preferences and IndexedDB conversation persistence.
+Local conversation persistence and preferences.
 
 src/lib/diagnostics.ts
-Browser and device observations.
+Browser/device information.
 
 src/lib/extension.ts
-Extension capability handling and messaging.
+Extension integration and message validation.
 
-extension/background.ts
-Chromium extension background logic.
+src/styles/app.css
+Varek’s existing token-based design system.
+
+Madon
+
+src/core/madon/
+Existing WebLLM model integration, including model runtime, prompts, retrieval, streaming, and capabilities.
+
+Madon currently uses Qwen3-1.7B through WebLLM.
+
+Preserve this integration.
+
+Extension
 
 extension/manifest.json
-Manifest V3 configuration.
 
-vite.config.ts
-Website and extension build configuration.
+extension/background.ts
 
-scripts/service-worker.mjs
-PWA offline caching.
+extension/popup.html
 
-scripts/extension.mjs
-Browser-extension packaging.
+extension/popup.js
 
-.github/workflows/deploy.yml
-Continuous integration and deployment.
+extension/popup.css
 
-Existing tests are located in tests/.
+Tests
 
-Read these files and understand their interactions before modifying anything.
+tests/engine.test.ts
 
-The repository documentation currently describes Zulvyn as deterministic and Madon as unavailable.
+tests/madon.test.ts
 
-After implementation, update those descriptions accurately.
+tests/storage.test.ts
 
-2. PRODUCT MODEL LINEUP
+tests/extension.mjs
 
-Varek must support two distinct assistant engines.
+tests/browser/app.spec.ts
 
-Zulvyn — Local Assistant
+tests/browser/madon.spec.ts
 
-Zulvyn remains available.
+Documentation
 
-It uses:
+README.md
 
-* Authored knowledge.
-* Intent matching.
-* Structured diagnostics.
-* Browser information.
-* Troubleshooting flows.
-* Deterministic responses.
-* Slash commands.
+docs/STATUS.md
 
-It must not download an LLM.
+docs/DEVELOPING.md
 
-Zulvyn should remain fast, lightweight, and functional on devices that cannot run WebGPU inference.
+docs/MADON.md
 
-Do not degrade, remove, or silently replace Zulvyn.
+The current repository documentation reports 205 authored knowledge records, 831 expressions, and 26 troubleshooting flows.
 
-Madon — Local Language Model
+These are the pre-upgrade baselines, not the desired final scope.
 
-Madon becomes available.
+3. COMPLETE ZULVYN → GAMMA RENAME
 
-Madon is powered by a real Qwen3-1.7B language model running locally through WebLLM.
+This rename must be comprehensive.
 
-Madon should support:
+User-facing identity
 
-* Natural language conversations.
-* Open-ended questions.
-* General explanations.
-* Technical assistance.
-* Programming questions.
-* Browser troubleshooting.
-* Follow-up conversations.
-* Text generation.
-* Summarization.
-* Comparisons.
-* Multi-step problem solving.
-* Context-aware answers.
-* Real token streaming.
-* Optional thinking mode.
-* Optional free web retrieval.
-* Browser diagnostics through existing trusted Varek tools.
+Replace every active user-facing reference to the old assistant name with Gamma.
 
-Madon should feel more flexible and capable than Zulvyn.
+This includes:
 
-However, do not claim that a 1.7B model is equivalent to a frontier-scale cloud LLM.
+* Model selector.
+* Active model display.
+* Chat message attribution.
+* Composer placeholders.
+* Accessibility labels.
+* Welcome screen descriptions.
+* Settings descriptions.
+* Help dialogs.
+* About section.
+* Slash-command output.
+* Status messages.
+* Error messages.
+* Notifications.
+* Tooltips.
+* Browser extension popup.
+* Browser extension description.
+* Model documentation.
+* Product knowledge articles.
+* Offline notices.
+* PWA-related assistant descriptions.
+* Tests and snapshots.
+* Technical documentation.
 
-Default selection
+Use the capitalization Gamma consistently.
 
-Keep Zulvyn as the initial default model.
+Do not rename Varek itself.
 
-Madon should be available for users to select voluntarily.
+Do not rename Madon.
 
-Do not automatically download gigabytes of model assets when users first open Varek.
+Internal model identifier
 
-When a user selects Madon for the first time, guide them through a clear, permission-based download and initialization process.
+Change the active model ID from:
 
-Persist the selected model so it is restored on future visits.
+zulvyn
 
-If the selected model cannot load, present an understandable recovery option rather than silently replacing Madon with Zulvyn.
+to:
 
-3. UNDERLYING MODEL SELECTION
+gamma
 
-Use the following model:
+The available model IDs should be:
 
-Qwen3-1.7B, quantized with q4f16_1.
+gamma
 
-WebLLM model identifier:
+madon
 
-Qwen3-1.7B-q4f16_1-MLC
+Update the typed model registry.
 
-Official quantized model repository:
+Update default model selection.
 
-https://huggingface.co/mlc-ai/Qwen3-1.7B-q4f16_1-MLC
+Update model preferences.
 
-Original model:
+Update command routing.
 
-https://huggingface.co/Qwen/Qwen3-1.7B
+Update message attribution.
 
-WebLLM:
+Update engine selection.
 
-https://github.com/mlc-ai/web-llm
+Update extension-specific model selection.
 
-Why this model
+Update all UI conditions and tests that depend on the old ID.
 
-Qwen3-1.7B provides:
+The default assistant should be Gamma.
 
-* Actual generative language modeling.
-* Local inference.
-* A practical quantized size.
-* Stronger conversational flexibility than scripted responses.
-* Multi-turn instruction following.
-* Thinking and non-thinking behavior.
-* An Apache-2.0 model license.
-* Existing WebLLM catalog support.
+File organization
 
-The WebLLM model configuration currently estimates approximately 2,037 MB of required WebGPU memory with a 4,096-token runtime context configuration.
+Rename or reorganize Gamma-specific engine files where doing so improves maintainability.
 
-Actual system requirements may be higher.
+Suggested destination:
 
-Version compatibility
+src/core/gamma/
 
-Inspect the current WebLLM release and its built-in model catalog.
+Possible modules:
 
-Use a version whose runtime, Qwen3 compiled model library, and model metadata are compatible.
+* engine.ts
+* matcher.ts
+* retrieval.ts
+* intent.ts
+* entities.ts
+* context.ts
+* knowledge.ts
+* reasoning.ts
+* diagnostics.ts
+* flows.ts
+* composer.ts
+* semantic.ts
+* commands.ts
+* types.ts
 
-Pin the verified dependency version.
+This structure is flexible.
 
-Do not assume the latest version is automatically the most stable.
+Do not create redundant wrapper modules simply to satisfy a filename list.
 
-Check relevant WebLLM regression reports, particularly GPU-device failures or issues involving longer prompts.
+Keep shared tools independent of specific model identity where possible.
 
-Verify that the selected model ID actually exists in the installed package configuration.
+Preserve Madon’s existing directory structure and API contracts.
 
-Do not rely on a nonexistent model alias.
+Legacy data compatibility
 
-Avoid hardcoding unverified WASM library URLs.
+This is non-negotiable.
 
-Do not compile a new model unnecessarily when a compatible prebuilt WebLLM model is available.
+Existing users may have stored conversations and preferences containing the model ID zulvyn.
 
-Record the exact tested package version and model configuration in the documentation.
+Do not break those users.
 
-4. LOCAL INFERENCE ENGINE
+Implement a compatibility migration.
 
-Implement a real Madon inference adapter using WebLLM.
+When loading legacy data:
 
-Add the package through npm.
+* Normalize the old model identifier to gamma.
+* Preserve all messages.
+* Preserve timestamps.
+* Preserve conversation IDs.
+* Preserve chat titles.
+* Preserve pinned state.
+* Preserve diagnostic evidence.
+* Preserve prior response context where valid.
+* Preserve user settings.
+* Preserve Madon conversations unchanged.
 
-Prefer the official WebLLM worker-based inference interface.
+Do not invalidate an entire conversation merely because it uses the old model identifier.
 
-Heavy model initialization and text generation must not block the React main thread.
+The current storage uses the varek IndexedDB database and varek.preferences.v1 local-storage key.
 
-New architecture
+Do not rename these storage namespaces without a necessary, tested migration.
 
-Create a dedicated Madon engine module.
+Prefer compatible normalization when sufficient.
 
-Suggested files:
+If a schema upgrade is needed, make the migration atomic, versioned, and tested.
 
-src/core/madon/engine.ts
+Never rewrite user-authored freeform message content simply because it contains the old assistant name.
 
-src/core/madon/worker.ts
+Existing conversations should be attributed to Gamma in the updated interface.
 
-src/core/madon/runtime.ts
+Legacy slash commands
 
-src/core/madon/capabilities.ts
+The public command becomes:
 
-src/core/madon/model-config.ts
+/model gamma
 
-src/core/madon/prompt.ts
+Existing users who enter the old command may be supported through a temporary internal compatibility alias.
 
-src/core/madon/generation.ts
+If supported, the alias must select Gamma and return Gamma-branded output.
 
-src/core/madon/stream-parser.ts
+Do not advertise the obsolete command in the normal help menu.
 
-src/core/madon/context.ts
+Search and audit
 
-src/core/madon/errors.ts
+Perform a repository-wide search for case-sensitive and case-insensitive instances of the old assistant name.
 
-src/core/madon/types.ts
+Inspect:
 
-src/core/madon/retrieval.ts
+* TypeScript.
+* JSX.
+* JSON.
+* HTML.
+* Tests.
+* Documentation.
+* Extension configuration.
+* Help text.
+* Product knowledge.
+* Build scripts.
+* Static files where text is present.
 
-src/core/madon/sources.ts
+Historical specifications or migration documentation may require limited references to the former identifier for accurate history and backward compatibility.
 
-You may adjust this structure after examining the existing code.
+Do not blindly replace unrelated technical terms or modify immutable user content.
 
-Keep inference implementation details separate from React components.
+Create an automated check that prevents accidental reintroduction of the old user-facing brand.
 
-Unified engine interface
+4. GAMMA’S NEW PRODUCT POSITION
 
-The existing src/core/models.ts points directly to Zulvyn’s respond() function.
+Gamma should be Varek’s primary lightweight assistant.
 
-Refactor this into a typed model registry and a common execution interface.
+Display:
 
-The interface should support:
-
-* Model identity.
-* Model capabilities.
-* Availability state.
-* Initialization.
-* Generation.
-* Token-stream callbacks or asynchronous token iteration.
-* Cancellation.
-* Progress events.
-* Recoverable errors.
-* Context management.
-* Resource cleanup.
-
-Zulvyn may continue returning precomposed responses internally.
-
-Madon must return genuinely generated output progressively.
-
-Create an adapter for Zulvyn rather than rewriting the existing deterministic engine.
-
-Never force both engines into an artificial implementation that damages either one.
-
-5. MODEL DOWNLOAD AND INITIALIZATION
-
-This is an essential part of the user experience.
-
-When Madon is selected for the first time, display a minimalist setup interface.
-
-Suggested heading:
-
-Set up Madon
+Gamma
 
 Description:
 
-“Madon runs directly on your device. Download its language model once to start using local AI.”
+“Fast, private browser and device intelligence.”
 
-Show:
+Madon remains:
 
-* The underlying model name.
-* An estimated download size based on actual model artifacts.
-* An explanation of local processing.
-* A warning that performance depends on device capabilities.
-* Available storage information when supported.
-* A clear Download and initialize button.
+Madon
 
-Do not claim an exact download size unless it has been measured or verified.
+Description:
 
-Initialization states
+“Advanced local AI.”
 
-Implement a complete state machine:
+Gamma must not be presented as the same kind of model as Madon.
 
-1. Not initialized.
-2. Checking compatibility.
-3. Unsupported.
-4. Ready to download.
-5. Downloading.
-6. Loading model.
-7. Ready.
-8. Generating.
-9. Cancelling.
-10. Recoverable error.
-11. Insufficient memory.
-12. Model cache unavailable.
+Gamma’s intelligence will use a hybrid architecture combining:
 
-Display meaningful progress.
+1. Deterministic intent recognition.
+2. High-quality authored knowledge.
+3. Lexical information retrieval.
+4. Optional semantic embeddings.
+5. Contextual conversational state.
+6. Structured troubleshooting.
+7. Trusted browser and device tools.
+8. Optional public web retrieval.
+9. Evidence-aware response composition.
+10. Honest uncertainty handling.
 
-Use actual WebLLM initialization progress events where available.
+The goal is to make Gamma understand supported technical requests much better, produce more contextual responses, and solve practical browser problems.
 
-Never simulate download percentages.
+Gamma should remain usable on modest hardware.
 
-If the runtime cannot determine exact progress, show an indeterminate progress indicator with an honest explanation.
+5. GAMMA INTELLIGENCE ENGINE V2
 
-Caching
+Replace the current simple matching pipeline with a layered request-processing architecture.
 
-Cache downloaded model assets using the mechanisms supported by WebLLM.
+Suggested execution pipeline:
 
-After successful caching, subsequent initialization should reuse locally stored assets when available.
+1. Receive the user’s message.
+2. Detect trusted slash commands.
+3. Normalize natural-language text.
+4. Extract technical entities.
+5. Detect negation and constraints.
+6. Resolve conversation references.
+7. Classify the primary intent.
+8. Identify possible secondary intents.
+9. Retrieve relevant knowledge.
+10. Optionally perform semantic similarity ranking.
+11. Evaluate confidence and ambiguity.
+12. Determine required diagnostic tools.
+13. Execute permitted observations.
+14. Evaluate applicable reasoning rules.
+15. Select appropriate response content.
+16. Compose a contextual answer.
+17. Attach evidence and source metadata.
+18. Present the response progressively.
+19. Update conversation state.
+20. Persist completed or cancelled results.
 
-Do not guarantee permanent caching.
+Every layer should be independently testable.
 
-Browser storage can be evicted or cleared.
+Do not create one giant respond() function containing hundreds of unrelated conditions.
 
-Avoid placing gigabyte-scale model assets in Varek’s existing service-worker application-shell precache.
+Processing contracts
 
-Keep the PWA shell cache and model artifact cache logically separate.
+Use typed request and response structures.
 
-Do not silently redownload deleted or evicted model assets.
+A request should carry:
 
-Provide an explicit retry mechanism when required.
+* Raw input.
+* Normalized input.
+* Current conversation context.
+* Prior messages where relevant.
+* Selected model.
+* Thinking preference.
+* Device notes.
+* Browser capabilities.
+* Abort signal.
+* Tool permissions.
 
-Settings
+An internal result should support:
 
-Add a Madon model-management section displaying:
+* Matched intent.
+* Extracted entities.
+* Confidence.
+* Candidate knowledge records.
+* Diagnostic observations.
+* Chosen troubleshooting workflow.
+* Suggested next action.
+* Response content.
+* Citations.
+* Error information.
+* Updated context.
 
-* Selected underlying model.
-* Download/installation state.
-* Estimated or observed storage use.
-* Whether WebGPU is available.
-* Whether the model is initialized.
-* A button to unload the model from memory.
-* A button to remove cached model assets, where safely supported.
-* A button to download or reinstall the model.
+Separate execution logic from UI presentation.
 
-Do not delete unrelated browser caches.
+6. MASSIVELY IMPROVE LANGUAGE UNDERSTANDING
 
-6. WEBGPU COMPATIBILITY
+The current matcher uses a relatively small synonym dictionary and token-overlap scoring.
 
-Implement robust capability detection.
+Replace it with a stronger hybrid retrieval system.
+
+Lexical matching
+
+Implement a more sophisticated lexical ranking approach using techniques such as:
+
+* BM25 or an equivalent weighted retrieval function.
+* Exact phrase boosting.
+* Synonym expansion.
+* Weighted technical entities.
+* Phrase proximity.
+* N-gram matching.
+* Typo tolerance.
+* Negation handling.
+* Field-specific scoring.
+* Intent-specific confidence thresholds.
+
+Do not use the same scoring behavior for every type of question.
+
+Exact requests about dangerous or destructive actions should not be loosely matched to unrelated safe commands.
+
+Technical entity recognition
+
+Recognize entities such as:
+
+* Browsers.
+* Operating systems.
+* Browser engines.
+* Versions.
+* Screen resolutions.
+* HTTP status codes.
+* Browser error codes.
+* Networking concepts.
+* Storage technologies.
+* Permission types.
+* File formats.
+* Hardware terms.
+* Web APIs.
+
+Examples:
+
+“Chrome”
+
+“Chromium”
+
+“Firefox”
+
+“Safari”
+
+“Windows 11”
+
+“macOS”
+
+“ERR_CERT_AUTHORITY_INVALID”
+
+“HTTP 403”
+
+“DNS_PROBE_FINISHED_NXDOMAIN”
+
+“WebGPU”
+
+“IndexedDB”
+
+Entities should influence both intent ranking and response composition.
+
+Negation
+
+Handle meaningful negation.
+
+Examples:
+
+“My browser isn’t slow, it just crashes.”
+
+“My internet works, but one website doesn’t.”
+
+“The issue isn’t with Wi-Fi.”
+
+“Chrome works but Firefox doesn’t.”
+
+Do not recommend troubleshooting the explicitly excluded symptom.
+
+Multi-intent requests
+
+Support reasonable combinations.
+
+Examples:
+
+“Tell me my browser and screen resolution.”
+
+“Check my device and explain whether WebGPU is supported.”
+
+“What’s the difference between cache and cookies?”
+
+“Compare Firefox and Chrome for privacy.”
+
+Separate compatible requests into relevant actions.
+
+Avoid answering only the first keyword.
+
+Confidence calibration
+
+A matching score is not automatically a probability.
+
+Calibrate decision thresholds against a separate labeled evaluation dataset.
+
+Distinguish:
+
+* High-confidence match.
+* Moderate-confidence match.
+* Ambiguous match.
+* Unsupported request.
+
+When uncertain, ask a targeted question.
+
+Do not present a fabricated confidence percentage.
+
+7. OPTIONAL LOCAL SEMANTIC INTELLIGENCE
+
+This is one of Gamma’s biggest upgrades.
+
+Add an optional local semantic retrieval engine.
+
+Use a compact sentence-embedding model that can match meaning rather than only matching words.
+
+Preferred candidate:
+
+Xenova/all-MiniLM-L6-v2
+
+Use the official Transformers.js library.
+
+The model supports feature extraction and produces sentence embeddings.
+
+Use a verified quantized ONNX artifact and compatible pinned Transformers.js version.
+
+Important distinction
+
+The embedding model is not a generative LLM.
+
+It does not write answers.
+
+It produces vectors that help Gamma identify which existing knowledge or troubleshooting content best matches the user’s request.
+
+Response composition remains controlled by Gamma’s local reasoning and knowledge engine.
+
+Semantic enhancement behavior
+
+Semantic enhancement must be optional.
+
+Gamma should work immediately using its built-in deterministic engine.
+
+Do not automatically download the embedding model.
+
+Add an unobtrusive preference:
+
+Enhanced understanding
+
+Description:
+
+“Improve question matching with a small local language-understanding model.”
+
+When enabled:
+
+* Display the actual model download requirement.
+* Ask for permission before downloading.
+* Report real initialization progress.
+* Cache model assets where supported.
+* Reuse the cache when possible.
+* Provide an option to remove model assets.
+* Handle offline or storage failures gracefully.
+
+If semantic enhancement is unavailable, use lexical retrieval.
+
+Do not make WebGPU mandatory.
+
+Prefer a tested WASM/CPU execution path so the optional enhancement can work on more devices.
+
+Hybrid ranking
+
+Combine:
+
+* Lexical relevance.
+* Semantic similarity.
+* Entity relevance.
+* Intent constraints.
+* Conversation context.
+* Knowledge quality.
+* Tool capability compatibility.
+
+Tune the combination using a labeled validation dataset.
+
+Do not blindly average unrelated scores.
+
+Semantic similarity must not override exact safety constraints or explicit negation.
+
+Performance
+
+Do not recompute every knowledge embedding for every request.
+
+Implement a versioned precomputed embedding index when feasible.
+
+Validate:
+
+* Embedding model revision.
+* Vector dimensionality.
+* Normalization.
+* Knowledge record IDs.
+* Index version.
+* Compatibility with the runtime.
+
+Load the semantic runtime only after the user enables it.
+
+Keep model weights out of the main GitHub repository.
+
+Do not add the model weights to the PWA application-shell precache.
+
+Use a worker for expensive inference or indexing.
+
+Ensure initialization happens only once per engine lifecycle.
+
+Evaluation
+
+Create a test dataset containing:
+
+* Natural paraphrases.
+* Typos.
+* Abbreviations.
+* Entity substitutions.
+* Negation.
+* Multi-topic requests.
+* Ambiguous questions.
+* Unsupported questions.
+
+Compare:
+
+* Existing matcher.
+* New lexical matcher.
+* Hybrid semantic matcher.
+
+Measure Recall@3, top-1 intent accuracy, false-positive rates, and latency.
+
+Only ship semantic weighting as the preferred enhanced mode if it improves measured relevance without causing unacceptable regressions.
+
+8. SIGNIFICANT KNOWLEDGE BASE EXPANSION
+
+Gamma’s authored knowledge must expand considerably.
+
+The current baseline is:
+
+* 205 records.
+* 831 expressions.
+* 13 categories.
+
+Target the following for the upgraded release:
+
+* At least 700 useful, independently authored knowledge records.
+* At least 2,500 distinct realistic expression patterns.
+* At least 75 distinct troubleshooting workflows.
+* At least 250 meaningful troubleshooting branch paths.
+* At least 300 independently authored multi-turn evaluation scenarios.
+
+These targets are subject to quality validation.
+
+Do not inflate counts through duplicated or paraphrased filler.
+
+Every knowledge record should answer a meaningful question or address a distinct technical scenario.
+
+Expand existing categories
+
+Improve coverage of:
+
+Browser diagnostics
+
+* Browser families.
+* Browser versions.
+* Browser rendering engines.
+* Browser security settings.
+* Privacy settings.
+* Experimental browser APIs.
+* Feature compatibility.
+* Browser flags and their risks.
+* Website permissions.
+
+Windows
+
+* Browser performance.
+* Task Manager guidance.
+* Memory and storage checks.
+* Display settings.
+* Network diagnostics.
+* Windows security.
+* Update issues.
+* Hardware acceleration.
+
+macOS
+
+* Browser performance.
+* Activity Monitor guidance.
+* Safari settings.
+* System Settings.
+* Network information.
+* Storage usage.
+* Browser permissions.
+* Apple Silicon considerations.
+
+Linux
+
+* Browser compatibility.
+* Package-managed browsers.
+* GPU acceleration considerations.
+* Permissions.
+* Sandboxing.
+* Network troubleshooting.
+* Common display issues.
+
+Android and iOS
+
+* Mobile browser limitations.
+* Permission management.
+* Browser storage.
+* Mobile performance.
+* Battery-related guidance.
+* Background restrictions.
+* PWA installation.
+* Browser extension availability.
+
+Security
+
+* Phishing.
+* Malicious websites.
+* Suspicious downloads.
+* Browser warnings.
+* Permission abuse.
+* Password security.
+* Passkeys.
+* Multi-factor authentication.
+* Extension security.
+* Privacy and tracking.
+* Certificate errors.
+
+Networking
+
+* DNS.
+* DHCP.
+* HTTP errors.
+* HTTPS.
+* VPN basics.
+* Proxy configuration.
+* Captive portals.
+* Wi-Fi troubleshooting.
+* Browser offline states.
+* Site-specific connectivity failures.
+
+Web technology
+
+* JavaScript.
+* WebGPU.
+* WebAssembly.
+* IndexedDB.
+* Cache Storage.
+* Service workers.
+* PWA installation.
+* CSP.
+* CORS.
+* Browser extensions.
+* Performance APIs.
+* Website loading stages.
+
+Device information
+
+* RAM and VRAM.
+* CPU and GPU basics.
+* Screen resolution.
+* Scaling.
+* Refresh rates.
+* Storage.
+* Operating systems.
+* Device compatibility.
+* Available browser signals.
+
+Varek product knowledge
+
+Include accurate information about:
+
+* Varek.
+* Gamma.
+* Madon.
+* Local processing.
+* Model downloads.
+* Browser diagnostics.
+* Supported permissions.
+* Slash commands.
+* Offline support.
+* Privacy controls.
+* Conversation storage.
+* Limitations.
+
+All former Zulvyn product descriptions should be updated to Gamma.
+
+Content quality
+
+Use authoritative references where appropriate.
+
+Avoid outdated instructions.
+
+For version-sensitive browser settings, attach platform/version applicability metadata.
+
+Do not invent references.
+
+Provide clear, actionable instructions and sensible follow-up prompts.
+
+Maintain a review date for technical guidance.
+
+9. STRUCTURED KNOWLEDGE SCHEMA
+
+Expand the existing Knowledge type.
+
+Preserve compatibility with existing authored records.
+
+A richer record may contain:
+
+* Stable ID.
+* Category.
+* Subcategory.
+* Title.
+* Supported intents.
+* Alternative phrasings.
+* Keywords.
+* Entities.
+* Browser applicability.
+* OS applicability.
+* Required capabilities.
+* Preconditions.
+* Exceptions.
+* Negation constraints.
+* Summary answer.
+* Detailed answer.
+* Troubleshooting steps.
+* Follow-up questions.
+* Related topics.
+* Source references.
+* Source review date.
+* Risk classification.
+* Confidence requirements.
+
+Avoid a brittle schema that requires redundant metadata in every record.
+
+Create sensible defaults and schema validation.
+
+Build-time validation
+
+Expand the existing knowledge validator.
 
 Check:
 
-* Secure execution context.
-* WebGPU API availability.
-* GPU adapter availability.
-* Required GPU features.
-* Supported resource limits.
-* Model runtime requirements.
-* Known loading failures.
+* Duplicate IDs.
+* Duplicate expressions.
+* Duplicate answer content.
+* Missing fields.
+* Broken references.
+* Invalid URLs.
+* Unreachable knowledge entries.
+* Unsupported platform claims.
+* Invalid troubleshooting links.
+* Conflicting exact-intent mappings.
+* Missing safety notes where applicable.
+* Low-quality repetitive filler.
 
-Do not assume WebGPU support means the model will run successfully.
+Generate a coverage report containing accurate counts and quality metrics.
 
-A browser may support WebGPU while the hardware lacks sufficient memory.
+Do not claim targets were achieved unless the validator verifies them.
 
-Do not infer available VRAM solely from the device-memory API.
+10. CONVERSATION CONTEXT 2.0
 
-Attempt real runtime initialization and handle failures gracefully.
+The current engine expires context after a fixed number of turns or elapsed time.
 
-Unsupported hardware behavior
+Replace the simplistic subject tracking with structured conversational state.
 
-If Madon cannot run, provide a clear message such as:
+Gamma should understand follow-up references such as:
 
-“Madon couldn’t initialize on this device. It requires a compatible browser and sufficient graphics memory. You can continue using Zulvyn.”
+“Is it safe?”
 
-Offer:
+“What about Firefox?”
 
-* Retry.
-* View technical details.
-* Switch to Zulvyn.
+“How do I fix that?”
 
-Do not render a broken or blank chat interface.
+“Give me the instructions.”
 
-Do not automatically switch engines without informing the user.
+“Can you explain the second option?”
 
-Do not attempt an unreliable CPU-only fallback by default.
+“That didn’t work.”
 
-A smaller internal variant may be considered only after being independently tested and documented. Do not silently represent a different underlying model as the originally selected model.
+“Try something else.”
 
-7. REAL TOKEN STREAMING
+“Can you compare them?”
 
-Madon must use genuine generated-token streaming.
+Context state
 
-Do not pass its complete answer into the existing simulated stream() utility.
+Track:
 
-Refactor the chat pipeline to distinguish:
+* Current topic.
+* Current user goal.
+* Referenced browser.
+* Referenced device.
+* Operating system.
+* Prior intent.
+* Last recommended action.
+* Previous troubleshooting steps.
+* User-reported outcomes.
+* Outstanding clarification.
+* Requested response depth.
+* Previously supplied facts.
+* Current diagnostic workflow.
 
-Zulvyn: Precomposed deterministic response with optional presentation streaming.
+Store only relevant context.
 
-Madon: Real inference stream generated by the language model.
+Do not indefinitely accumulate every message.
 
-Use WebLLM’s streaming completion interface.
+Corrections
 
-Update the visible assistant message incrementally as tokens or text deltas arrive.
-
-Streaming behavior
-
-* Display generated content as it arrives.
-* Batch UI updates where useful to avoid excessive React renders.
-* Preserve UTF-8 and Unicode correctness.
-* Render Markdown safely.
-* Avoid flickering incomplete code blocks.
-* Support Stop generation.
-* Support Retry.
-* Support browser tab switching.
-* Respect reduced-motion preferences.
-* Handle generation errors after partial output.
-
-Do not fabricate text while waiting for the model.
-
-Cancellation
-
-The existing Varek interface uses an AbortController.
-
-Integrate cancellation with WebLLM’s supported generation interruption mechanism.
-
-Stopping must attempt to stop the underlying inference, not simply hide newly generated tokens.
-
-After cancellation:
-
-* Preserve generated text.
-* Mark the response as stopped.
-* Release active generation state.
-* Allow another message.
-* Avoid orphaned worker tasks.
-
-Prevent an older generation from updating a newly selected conversation.
-
-Use generation IDs or an equivalent concurrency mechanism.
-
-8. MULTI-TURN CONVERSATIONS
-
-Madon must understand conversation history.
+Support user corrections.
 
 Example:
 
-User: “What’s the difference between RAM and storage?”
+User: “I’m using Chrome.”
 
-Madon explains.
+Later:
 
-User: “Which one matters more for gaming?”
+“Actually, it’s Brave.”
 
-Madon should understand what “which one” refers to.
+Gamma must update the relevant conversational information without confusing the user’s statement with verified browser detection.
 
-User: “What about browsing?”
+Follow-up resolution
 
-Madon should continue the same discussion.
+Do not assume every short question refers to the preceding message.
 
-Conversation construction
+Use topic relevance, temporal context, and explicit references.
 
-Build actual role-based prompts containing:
+Ask for clarification if the reference is ambiguous.
 
-* A system instruction.
-* Recent user messages.
-* Recent assistant messages.
-* Relevant device facts when requested.
-* Relevant retrieved sources when enabled.
-* Explicit instructions regarding uncertainty.
+Conversation cleanup
 
-Do not serialize the entire Varek database into every prompt.
+Clear temporary context when the user starts a new chat or explicitly resets the current diagnostic session.
 
-Context management
+Respect local conversation deletion.
 
-Respect the chosen runtime’s actual context window.
+Never claim memory of deleted information.
 
-The default WebLLM Qwen3-1.7B configuration uses a smaller context window than the original model’s maximum theoretical context.
+11. GAMMA REASONING ENGINE 2.0
 
-Do not confuse the model’s advertised architectural context length with the loaded WebLLM configuration.
+Implement a structured, explainable diagnostic reasoning system.
 
-Implement:
+This should be a major upgrade over the current basic flow logic.
 
-* Token-budget management.
-* Bounded recent-message history.
-* Truncation of older turns.
-* Explicit context-reset behavior.
-* Optional compact conversation summaries if justified and tested.
+Reasoning stages
 
-Never claim the model can remember messages that were excluded from the supplied context.
+For relevant requests:
 
-Conversation storage
+1. Identify the symptom.
+2. Determine the platform.
+3. Gather permitted observations.
+4. Identify plausible causes.
+5. Separate observed facts from hypotheses.
+6. Prioritize relevant causes.
+7. Select low-risk checks.
+8. Ask a focused diagnostic question.
+9. Interpret the user’s answer.
+10. Update the working hypothesis.
+11. Recommend the next action.
+12. Confirm whether the action helped.
+13. Continue or escalate appropriately.
 
-Preserve existing IndexedDB conversations.
+Do not fabricate hidden neural reasoning.
 
-Add sufficient metadata to record:
+Gamma’s structured reasoning should operate through explicit rules and validated knowledge.
 
-* Selected model.
-* Model version when relevant.
-* Whether a response used web sources.
-* Whether a response was stopped.
-* Generation failure metadata when useful.
+Thinking mode
 
-Maintain backward compatibility with existing saved conversations.
-
-Existing users must not lose their history.
-
-Validate imported and persisted data.
-
-Do not require an unnecessary database reset.
-
-9. THINKING MODE
-
-The existing Varek UI supports:
+Preserve:
 
 * Auto.
 * On.
 * Off.
 
-Preserve these settings.
+Auto
 
-Implement meaningful Qwen3 thinking behavior for Madon.
-
-Off
-
-Use the model’s supported non-thinking behavior.
-
-Prefer short generation latency and direct responses.
+Use multi-step reasoning when a question requires investigation.
 
 On
 
-Enable Qwen3’s supported thinking behavior where the WebLLM runtime and conversation template allow it.
+Prefer deeper structured diagnostic evaluation and more comprehensive explanation.
 
-Auto
+Off
 
-Determine whether to use thinking behavior based on the request.
+Prefer direct answers and avoid unnecessary optional checks.
 
-Examples that may benefit:
+Critical safety and correctness checks must remain enabled in every mode.
 
-* Multi-step troubleshooting.
-* Complex comparisons.
-* Programming problems.
-* Reasoning-heavy questions.
-* Technical diagnosis.
-* Requests involving multiple constraints.
+Analysis summary
 
-Simple greetings and routine answers should normally use non-thinking behavior.
+Provide an optional concise explanation:
 
-Correct model integration
+* What Gamma checked.
+* What was observed.
+* What is still unknown.
+* Why the next step was chosen.
 
-Qwen3 supports thinking and non-thinking behavior through its native prompt conventions.
+Do not fake thought processes or CPU activity.
 
-Inspect the selected WebLLM conversation template.
+12. REBUILD TROUBLESHOOTING WORKFLOWS
 
-Use the model’s supported /think and /no_think controls only when they correctly activate the expected behavior in the deployed runtime.
+The current yes/no flows should evolve into a reusable diagnostic graph system.
 
-Do not assume the existing Varek /think slash command can be passed directly to the language model.
+Do not simply add more two-step scripts.
 
-Keep Varek command parsing separate from internal model prompting.
+Diagnostic nodes
 
-Test that On and Off actually produce the intended runtime behavior.
+Support node types such as:
 
-Thinking output
+* Question.
+* Observation.
+* Tool execution.
+* Recommendation.
+* User confirmation.
+* Conditional branch.
+* Escalation.
+* Completion.
 
-Some Qwen3 configurations can generate internal thinking text separated by special markers.
+A node should have a stable identifier rather than relying solely on a numeric step index.
 
-Do not expose raw internal reasoning markers, hidden thought tokens, or incomplete internal analysis directly in the chat.
+Branching logic
 
-Parse the stream correctly so the user-facing answer contains only the final response.
+Support more than yes/no.
 
-The UI may display truthful status indicators such as:
+For example, a browser performance flow may ask:
 
-“Analyzing the request”
+“Where are you noticing the slowdown?”
 
-“Reviewing browser information”
+Possible answers:
 
-“Preparing an answer”
+* One website.
+* Every website.
+* When several tabs are open.
+* During video playback.
+* I’m not sure.
 
-Do not fabricate analysis stages.
+Each answer should lead to a relevant diagnostic branch.
 
-If useful, display a concise explanation of verified facts and diagnostic checks, but do not present hidden model reasoning as a transcript.
+Flow state
 
-10. MADON SYSTEM PROMPT
+Track:
 
-Give Madon a consistent system instruction.
+* Active workflow.
+* Current node.
+* Answer history.
+* Evidence gathered.
+* Steps already attempted.
+* Outcome.
+* Escalation state.
 
-Its identity is Madon, an assistant within Varek.
+Do not restart the diagnostic from the beginning after every follow-up.
 
-It should be:
+Safety
 
-* Clear.
-* Calm.
-* Intelligent.
-* Concise by default.
-* Technically precise.
-* Helpful.
-* Context-aware.
-* Honest about uncertainty.
+Use reversible troubleshooting steps first.
 
-Avoid exaggerated enthusiasm.
+Never automatically:
 
-Do not constantly introduce itself.
+* Delete user data.
+* Reset the browser.
+* Disable security protections.
+* Modify sensitive settings.
+* Close tabs containing unsaved work.
+* Access private page contents.
 
-Do not claim to be Claude, ChatGPT, GPT, or another branded assistant.
+Require explicit confirmation and appropriate permissions for any implemented action with consequences.
 
-Do not pretend to have performed real actions that were not executed.
+Migration
 
-Product identity
+The existing conversation validator accepts a bounded numeric flow-step shape.
 
-Madon should understand:
+If introducing graph-node identifiers, implement a compatible storage migration or adapter.
 
-* It operates inside Varek.
-* It is powered by an open-weight local language model.
-* Its inference runs locally when initialized.
-* It can use only browser and extension capabilities explicitly provided to it.
-* It does not automatically know the user’s exact device hardware or files.
-* Its general knowledge may be outdated.
-* Its answers may contain errors.
+Old saved conversations must continue loading.
 
-Include model attribution in About or Settings.
+Invalid legacy flow states should fail safely without discarding the entire conversation.
 
-Do not unnecessarily prepend model attribution to every response.
+13. EXPAND REAL BROWSER DIAGNOSTICS
 
-11. INTEGRATE EXISTING BROWSER DIAGNOSTICS
+Gamma should become especially useful for browser and device questions.
 
-Madon must be able to use Varek’s existing diagnostic functionality.
+Reuse the existing trusted diagnostics layer and expand it only with APIs genuinely available in the current environment.
 
-This is an important advantage over a generic local chatbot.
+Supported observations
 
-Do not ask the LLM to guess browser information.
+Where available:
 
-Trusted diagnostic tools
+* Browser family.
+* Browser version hints.
+* Operating system hints.
+* Viewport dimensions.
+* Screen dimensions.
+* Device pixel ratio.
+* Display preferences.
+* Reduced-motion preferences.
+* Language preferences.
+* Time zone.
+* Hardware concurrency.
+* Approximate device memory.
+* Storage usage and quota estimates.
+* Online/offline hint.
+* Pointer and touch capabilities.
+* Browser feature support.
+* WebGPU capability checks.
+* Selected permission states.
 
-Reuse existing functions from:
+Evidence classification
 
-src/lib/diagnostics.ts
-
-and existing command handlers where suitable.
-
-Support user questions such as:
-
-* “What browser am I using?”
-* “What’s my screen resolution?”
-* “Does my browser support WebGPU?”
-* “Why is this browser slow?”
-* “Can my device run Madon?”
-* “What information can you see?”
-* “How much browser storage is available?”
-* “Do I have hardware acceleration?”
-* “What operating system am I using?”
-
-Tool orchestration
-
-Implement a deterministic tool router.
-
-It should identify when verified browser information is useful.
-
-For appropriate requests:
-
-1. Select the required diagnostic operation.
-2. Execute the existing trusted function.
-3. Obtain structured results.
-4. Preserve evidence classification.
-5. Supply relevant facts to Madon’s prompt.
-6. Generate a natural-language explanation.
-
-Never give the model permission to execute arbitrary JavaScript.
-
-The LLM is not allowed to invent tool names, invoke arbitrary functions, or bypass the command registry.
-
-Evidence
-
-Keep the distinction between:
+Preserve:
 
 * Observed.
 * Estimated.
@@ -734,891 +1187,1060 @@ Keep the distinction between:
 * Unavailable.
 * Requires permission.
 
-For example, if only a rounded memory estimate is available, Madon must not describe it as exact physical RAM.
+Do not describe an estimate as an exact hardware measurement.
 
-For inaccessible information, explain the limitation.
+Diagnostic snapshot
 
-Never invent CPU usage, temperatures, process lists, or browser history.
+Implement a structured diagnostic snapshot that can be reused by Gamma’s commands and reasoning engine.
 
-12. PRESERVE SLASH COMMANDS
+A snapshot should include:
 
-All existing Zulvyn commands must continue to work.
+* Timestamp.
+* Environment.
+* Available fields.
+* Evidence classification.
+* Missing fields.
+* API errors.
+* Relevant warnings.
 
-Madon should support the same compatible local commands.
+Only create snapshots when needed.
+
+Do not continuously fingerprint users or collect unnecessary signals.
+
+Browser health report
+
+Create a useful /health command.
+
+It should analyze actual available browser capabilities and observations.
+
+The report should distinguish:
+
+* Confirmed limitations.
+* Supported features.
+* Potential concerns.
+* Suggested manual checks.
+
+Do not invent a universal browser-health percentage.
+
+Do not claim to know system resource usage that a website cannot inspect.
+
+Capability reporting
+
+Improve /features and /compatibility.
+
+Support specific checks.
 
 Examples:
 
-/help
+“Does my browser support WebGPU?”
 
-/browser
+“Can I install this as a PWA?”
 
-/device
+“Is IndexedDB available?”
 
-/screen
+“Can my browser query storage usage?”
 
-/privacy
+Where applicable, perform a real feature test rather than identifying support solely from the browser’s name.
 
-/performance
+14. FREE WEB RETRIEVAL FOR GAMMA
 
-/storage
+Gamma should gain an optional web-information capability independent of Madon’s language model.
 
-/network
+Reuse Varek’s existing Wikimedia retrieval infrastructure where appropriate.
 
-/think on
+Do not unnecessarily duplicate networking code.
 
-/think off
+Requirements
 
-/think auto
+* No paid search API.
+* No hosted inference server.
+* No private API key.
+* No arbitrary CORS-bypass proxy.
+* No unrestricted webpage scraping.
+* No silent transmission of conversation history.
 
-/theme dark
+Web modes
 
-/model
+Gamma should work fully offline for its bundled knowledge and browser diagnostics.
 
-/clear
+Optional web retrieval should be separately enabled.
 
-/new
+If the user activates it, Gamma may retrieve relevant public information from supported providers.
 
-/export
+Use the current Varek web-sources privacy control where sensible, but ensure each model’s behavior is explained accurately.
 
-Execution architecture
+Gamma’s web responses
 
-Commands must be interpreted before the request reaches the LLM.
+Because Gamma is not a generative LLM, it must not invent freeform web summaries.
 
-A slash command should execute through the trusted Varek command layer.
+Instead, use:
 
-Do not ask Madon to simulate command execution.
+* Retrieved article titles.
+* Relevant extracts.
+* Source attribution.
+* Controlled response templates.
+* Deterministic fact selection.
+* Explicit uncertainty statements.
 
-For example:
+Example:
 
-/browser
+User: “Look up WebGPU.”
 
-must show actual available browser information.
+Gamma retrieves relevant reference material.
 
-It should not produce a guessed browser report.
+Gamma returns a concise description, relevant technical context, and source links.
 
-New model commands
+If the extract does not support a requested detail, Gamma should not guess.
 
-Extend /model to support:
+Source trust
 
-/model zulvyn
+Validate provider responses.
 
-/model madon
+Constrain URL schemes to HTTPS.
 
-/model status
+Use source IDs tied to actual retrieved records.
 
-/model unload
+Do not generate fake citations.
 
-A command requesting Madon should initiate or expose the required model setup flow.
+Do not follow instructions embedded in retrieved page content.
 
-Do not automatically start a large download without consent.
+Never treat source text as an executable command.
 
-Commands should produce descriptive validation errors.
-
-13. FREE WEB-INFORMATION RETRIEVAL
-
-Implement an optional web retrieval system for Madon.
-
-This is not unrestricted internet browsing.
-
-It must work within GitHub Pages’ static hosting constraints.
-
-No paid search API or mandatory API key is allowed.
-
-First supported source
-
-Use Wikimedia/MediaWiki’s public APIs for selected factual lookups.
-
-For anonymous browser requests, use the documented CORS mechanism.
-
-The API can support relevant search and article retrieval through allowlisted endpoints.
-
-Validate request parameters and response schemas.
-
-Do not use JSONP or arbitrary cross-origin proxies.
-
-Additional source
-
-Consider Stack Exchange’s public API for technical questions only after verifying actual browser access and free quota behavior.
-
-If it is unreliable, omit it rather than pretending the source works.
-
-Local knowledge
-
-Continue to use Varek’s authored knowledge as an optional retrieval source for technical guidance.
-
-This provides useful context without making additional external requests.
-
-Web controls
-
-Add an optional control:
-
-Use web sources
-
-Default it to Off until the user explicitly enables it.
-
-When enabled, Madon may retrieve supported public sources when relevant.
-
-Provide an explanation:
-
-“Web retrieval sends search terms to the selected information provider. Model inference still runs on your device.”
-
-Allow users to disable it at any time.
-
-Do not send entire conversation histories to third-party search APIs.
-
-Minimize transmitted query information.
-
-Retrieval pipeline
-
-1. Detect whether the request benefits from external information.
-2. Generate a small, relevant search query.
-3. Choose a supported provider.
-4. Retrieve public information.
-5. Validate the response.
-6. Limit content length.
-7. Extract relevant passages.
-8. Create source records with original URLs.
-9. Supply those records to the local model.
-10. Generate an answer grounded in the retrieved material.
-11. Display real source links.
-
-Citations
-
-If Madon uses a web source, provide accessible citations.
-
-Each citation must link to an actual retrieved source.
-
-Do not let Madon invent citations.
-
-Prefer citations controlled by structured retrieval metadata rather than trusting generated URLs in model output.
-
-If no source was retrieved, do not display made-up references.
-
-Retrieval failures
+Failure behavior
 
 Handle:
 
-* Offline access.
-* CORS restrictions.
-* API quotas.
+* Offline mode.
 * Empty results.
-* Invalid responses.
-* Timeouts.
-* Rate limiting.
-* Unavailable providers.
+* Network failure.
+* Timeout.
+* CORS restrictions.
+* Rate limits.
+* Unsupported questions.
 
-If the search fails, Madon may answer from local knowledge, but it must not claim to have checked the web.
+When retrieval fails, Gamma should say that live information was unavailable.
 
-For current information, explicitly state that live verification was unavailable.
+It may offer an offline explanation when one is supported.
 
-Never describe this limited retrieval system as unrestricted live internet access.
+15. COMMAND SYSTEM UPGRADE
 
-14. OPTIONAL EXTENSION PAGE CONTEXT
+Keep all existing useful slash commands working.
 
-Varek already includes a Chromium extension with permissioned page-inspection capabilities.
+Update branding in /about, /help, and /model.
 
-Madon should eventually be able to use this information to explain or summarize the current page.
+Add more structured command capabilities.
 
-Preserve the existing security boundaries.
+Suggested additions:
 
-Page actions
+/gamma
+Show Gamma’s engine information and operating mode.
 
-Support user-initiated tasks such as:
+/health
+Generate an evidence-aware browser health report.
 
-“Explain this page.”
+/diagnose
+Begin an interactive diagnostic workflow.
 
-“Summarize the current article.”
+/diagnose status
+Show the current diagnostic state.
 
-“What’s this website about?”
+/diagnose restart
+Restart the current workflow.
 
-“What does this error mean?”
+/diagnose stop
+Exit the workflow.
 
-“Explain the technical details of this page.”
+/explain
+Explain the most recent recommendation.
 
-Only access page content when the user explicitly authorizes the relevant action and the extension has permission.
+/sources
+Display actual sources used in the last response.
 
-Reuse existing extraction mechanisms where practical.
+/context
+Show a privacy-safe summary of current conversational context.
 
-Context extraction
+/context clear
+Clear temporary conversational context.
 
-The extension may provide:
+/enhance status
+Report optional semantic enhancement status.
 
-* Page title.
-* URL.
-* Domain.
-* Limited visible text.
-* Selected document metadata.
-* Relevant structural information.
+/enhance on
+Open semantic setup with consent.
 
-Do not automatically inspect browsing activity in the background.
+/enhance off
+Disable optional semantic matching.
 
-Do not silently access tabs or page content.
+/web status
+Report the web retrieval preference.
 
-Prompt-injection protection
+/web on
+Enable optional web retrieval with appropriate privacy explanation.
 
-Treat webpage text as untrusted source material.
+/web off
+Disable web retrieval.
 
-Page content must never override:
+/compare
+Support structured comparison of recognized browser or technology topics.
 
-* Varek’s system instructions.
-* User permissions.
-* Tool restrictions.
-* Privacy controls.
-* Extension security policy.
+Command parsing
 
-Explicitly separate source text from instructions.
+Use a centralized typed registry.
 
-A webpage containing malicious instructions must not gain authority over the assistant.
+Each command should define:
 
-15. CHROMIUM EXTENSION COMPATIBILITY
+* Name.
+* Description.
+* Arguments.
+* Validation.
+* Permissions.
+* Supported environments.
+* Execution handler.
+* Error behavior.
+* Result type.
 
-The website is the primary target for Madon’s first complete release.
+Do not execute arbitrary JavaScript or shell commands.
 
-Preserve the existing Chromium extension.
+Do not give the semantic model or external sources direct access to privileged operations.
 
-Share the inference adapter where technically appropriate.
+Extension commands
 
-However, Manifest V3 extensions have additional restrictions.
+Preserve:
 
-Important constraints
+* /tab
+* /tabs
+* /page
+* /reader
 
-The extension must not load remotely hosted executable JavaScript or WebAssembly in violation of Manifest V3 policies.
+Keep existing permissions and explicit user-action requirements.
 
-Model weights can be treated as external data only when the resulting architecture complies with the applicable extension platform and store requirements.
+Do not silently expand extension permissions.
 
-Any WebAssembly runtime required for extension inference must be packaged and loaded in a supported, compliant manner.
+16. EXTENSION INTELLIGENCE UPGRADE
 
-Review the extension’s existing content security policy before integrating inference.
+Gamma should remain the fully supported assistant inside the existing Chromium extension.
 
-Do not introduce unsafe-eval or broadly disable extension security.
+Madon may remain website-only until its extension runtime is properly tested.
 
-Implementation priority
+Extension experience
 
-First make Madon fully functional on the GitHub Pages website.
+Improve Gamma’s ability to help with the user’s current page.
 
-Then integrate it into the extension only after confirming that the runtime can operate securely and reliably in the extension environment.
+Use only explicitly authorized information.
 
-If extension inference is not supported by the completed implementation, preserve Zulvyn in the extension and clearly identify Madon’s extension limitation.
+Potential tasks include:
 
-Do not mark a model as functioning in the extension unless an actual WebGPU generation test passes there.
+* Explain page metadata.
+* Identify page language.
+* Analyze heading structure.
+* Identify missing image alternative text.
+* Explain common accessibility concerns.
+* Explain selected browser or network error text.
+* Provide extractive reading assistance.
+* Help troubleshoot a user-described page issue.
 
-Do not compromise the existing extension to force feature parity.
+Page context
 
-16. UI AND VISUAL DESIGN
+Keep page data structured.
 
-Preserve Varek’s existing minimalist appearance.
+Never interpret webpage text as higher-priority instructions.
 
-The color identity remains:
+Use size limits on extracted content.
 
-* Porcelain: #F9F7F3
-* Fig: #695365
-* Ink: #282529
-* Surface: #FFFFFF
-* Soft surface: #F1EDEF
-* Secondary text: #776F73
-* Border: #E8E2E3
+Do not automatically inspect every visited website.
 
-Keep the existing logo, favicon, typography, spacing philosophy, and overall interface.
+Security
 
-Do not redesign the app into a generic AI dashboard.
+Keep the existing Manifest V3 permissions minimal.
 
-Updated model selector
+Preserve origin checks on extension messages.
 
-Replace the disabled Madon option with a functional entry.
+Do not add blanket host permissions.
 
-Suggested display:
+Do not load remotely hosted executable code into the extension.
 
-Zulvyn
-Fast local assistance.
+Optional semantic inference in the extension must be separately evaluated for packaging, CSP, and runtime compatibility.
 
-Madon
-Advanced local AI.
+Gamma’s ordinary deterministic functionality must remain usable if semantic enhancement is unavailable in the extension.
 
-If Madon needs initial setup, show:
+17. RESPONSE COMPOSITION 2.0
 
-“Download required”
+Gamma’s responses should feel much more natural without claiming to be a generative LLM.
 
-If loaded, show a subtle ready state.
+Use structured content composition rather than returning the exact same paragraph every time.
 
-If unsupported, explain why.
+Response generation should account for:
 
-Active model identity
+* User intent.
+* Current browser.
+* Current platform.
+* Actual diagnostic observations.
+* User-provided facts.
+* Current conversation.
+* Previous troubleshooting attempts.
+* Requested answer depth.
+* Available sources.
+* Confidence and uncertainty.
 
-The top-bar model name should reflect the actual selected engine.
+Response depths
 
-Replace any hardcoded “Zulvyn” labels that should be dynamic.
+Support:
 
-Update:
+* Brief.
+* Standard.
+* Detailed.
+* Step-by-step.
 
-* Model button.
-* Composer accessibility label.
-* Assistant message attribution where needed.
-* Model selection modal.
-* Model settings.
-* Loading indicators.
+Response structure
 
-Do not change the global application brand from Varek.
+Use appropriate combinations of:
 
-Model initialization
+* Direct answer.
+* Contextual explanation.
+* Observations.
+* Recommended actions.
+* Warnings.
+* Follow-up question.
+* Sources.
 
-Use a compact, elegant modal or panel.
+Do not use the same sequence for every reply.
 
-Avoid:
+Natural conversational variation
 
-* Large gradients.
-* Artificial loading animations.
-* Promotional illustrations.
-* Unnecessary technical jargon.
-* Oversized cards.
+Author multiple high-quality answer variants where useful.
 
-Use the same visual language as the rest of Varek.
+Do not randomly shuffle sentence fragments into unnatural wording.
 
-Generating state
+Avoid overusing:
 
-While Madon is generating:
+“Certainly.”
 
-* Display actual streamed output.
-* Offer Stop.
-* Prevent duplicate submissions.
-* Keep scrolling smooth.
-* Maintain a responsive interface.
-* Show a subtle activity indicator.
+“Great question.”
 
-No fake typing effect should be applied to Madon.
+“Absolutely.”
 
-17. FAILURE RECOVERY
+“I’d be happy to help.”
 
-Real local inference can fail.
+Gamma should be direct and technically competent.
 
-Plan for it explicitly.
+Response quality
 
-Handle:
+For supported requests, Gamma should answer the actual question rather than merely describe its general capabilities.
 
-* No WebGPU.
-* Adapter initialization failure.
-* Unsupported GPU features.
-* Model-download interruption.
-* Browser storage eviction.
-* Insufficient available GPU memory.
-* GPU-device loss.
-* Browser tab reload.
-* Worker termination.
-* Invalid model assets.
-* Corrupted cache entries.
-* Runtime incompatibility.
-* Context window exceeded.
-* Generation cancellation.
-* Failed web retrieval.
+For unsupported requests, acknowledge the limitation.
 
-A failure must not erase the conversation.
+Do not return an irrelevant technical article just because a keyword overlaps.
 
-Do not automatically discard completed messages.
+If a broad generative task exceeds Gamma’s capabilities, it may offer to switch to Madon.
 
-Provide a concise and useful recovery action.
+The user must explicitly choose to switch.
 
-Where safe:
+Never silently route Gamma messages through Madon’s LLM.
 
-* Retry initialization.
-* Unload and reload the engine.
-* Reuse a valid cached model.
-* Clear only Madon’s model cache.
-* Switch to Zulvyn with user approval.
+18. REALISTIC INTERACTIONS
 
-Avoid aggressive automatic retry loops.
+The following examples describe expected behavior, not fixed transcripts to hardcode.
 
-Implement bounded retries with clear error reporting.
+Example A — Browser diagnostics
 
-18. PRIVACY REQUIREMENTS
+User: “My browser is being really slow lately.”
 
-Madon must be genuinely local.
+Gamma identifies a performance troubleshooting intent.
 
-During inference:
+It checks relevant browser information available without new permissions.
 
-* Do not transmit user prompts to an AI provider.
-* Do not upload chat history.
-* Do not upload device information.
-* Do not introduce telemetry.
-* Do not introduce tracking.
-* Do not require user accounts.
-* Do not require subscription credentials.
+Gamma asks:
 
-Model artifacts may be downloaded from their verified hosting source.
+“Does the slowdown affect one website or most websites?”
 
-Make that distinction clear.
+User: “Mostly YouTube.”
 
-Optional web retrieval necessarily sends a relevant search query to the selected information provider.
+Gamma narrows the issue to video playback or website-specific performance.
 
-Display this distinction to the user.
+User: “Only when I watch videos.”
 
-Do not claim the entire application makes zero network requests.
+Gamma recommends relevant checks and explains which observations are verified.
 
-Do not claim that model caching is permanent.
+User: “That didn’t help.”
 
-Keep all user conversation data locally, consistent with the existing storage system.
+Gamma remembers which step was attempted and advances to another appropriate diagnostic action.
 
-19. GITHUB PAGES DEPLOYMENT
+Example B — Contextual follow-up
 
-Varek must remain deployable as a static website.
+User: “What’s my browser?”
 
-The existing Vite base path is:
+Gamma provides the detected browser family with the appropriate evidence classification.
 
-/varek/
+User: “Is it private?”
 
-Preserve it.
+Gamma interprets “it” in relation to the previous browser.
 
-The website must work at:
+User: “Compare it with Firefox.”
 
-https://hiyroscript.github.io/varek/
+Gamma gives an appropriate comparison without requiring the original subject to be repeated.
 
-Do not introduce:
+Example C — Device limitations
 
-* Express servers.
-* Python backends.
-* Server-side inference.
-* Private proxy servers.
-* Paid cloud functions.
-* Environment-dependent API secrets.
-* Runtime endpoints that GitHub Pages cannot host.
+User: “How much RAM is my laptop using right now?”
 
-Model assets
+Gamma explains that a normal website cannot directly read system-wide RAM usage.
 
-Do not commit gigabyte-scale model weights to the Varek repository.
+It provides a relevant platform-specific method to inspect memory use manually.
 
-Download model weights on demand from the verified model host.
+It does not fabricate a value.
 
-The production build should include only the necessary application code, worker code, and runtime assets appropriate for the environment.
+Example D — Multiple questions
 
-Verify cross-origin loading and browser security requirements.
+User: “Tell me my screen resolution and whether my browser supports WebGPU.”
 
-Worker builds
+Gamma performs both supported checks.
 
-Configure Vite to bundle the Madon worker correctly.
+It returns separate observations in a clean, readable response.
 
-Use module workers where appropriate.
+Example E — Semantic matching
 
-Ensure worker assets resolve under GitHub Pages’ /varek/ base path.
+User: “Every time I have a bunch of pages open, everything becomes choppy.”
 
-Test the production build, not only the development server.
+Gamma should recognize that this may be a browser performance or tab-memory issue even without the words “browser lag.”
 
-Offline support
+If confidence remains low, ask a useful clarification.
 
-Preserve existing Zulvyn offline functionality.
+Example F — Incorrect premise
 
-Madon should work offline once all required model assets have been successfully cached and can be loaded without network access.
+User: “Why is my browser definitely infected?”
 
-A first-time offline visitor cannot initialize an uncached model.
+Gamma should not confirm an infection without evidence.
 
-Do not claim offline Madon support until a real cached-model offline test succeeds.
+It should ask about the observed symptoms and suggest appropriate security checks.
 
-20. SERVICE WORKER AND CACHE MANAGEMENT
+Example G — Web retrieval
 
-Inspect scripts/service-worker.mjs.
+User: “Search Wikipedia for WebAssembly.”
 
-The existing service worker caches the application shell and built application assets.
+If web retrieval is enabled, Gamma should fetch a supported public source and provide an accurately attributed explanation.
 
-Do not add model weight downloads to that precache list.
+If retrieval is disabled, Gamma should explain the available offline knowledge and offer the web option.
 
-Maintain separate cache ownership between:
+19. USER INTERFACE
 
-* Varek application assets.
-* WebLLM model assets.
-* Optional external information retrieval.
+Preserve Varek’s existing minimalist interface.
 
-Do not use blanket browser-cache deletion.
+Do not redesign the product into a generic AI website.
 
-Do not delete WebLLM caches when publishing an ordinary Varek interface update unless necessary for compatibility.
+Retain:
 
-Handle updates where a model-runtime upgrade requires refreshed compiled artifacts.
+* Porcelain background.
+* Fig accent.
+* Ink typography.
+* Clean white surfaces.
+* Subtle borders.
+* Existing Varek branding.
+* Existing favicon.
+* Responsive sidebar.
+* Chat-centered layout.
+* Current conversation composer.
+* Light and dark themes.
 
-Avoid unnecessarily redownloading model weights when compatible cached assets are available.
+Model selector
 
-Document cache ownership and cleanup.
+Show:
 
-21. PERFORMANCE
-
-The current application is lightweight.
-
-Preserve that experience for Zulvyn users.
-
-Do not eagerly import the entire Madon inference runtime into the initial Zulvyn application bundle if it can be lazy-loaded.
-
-Use dynamic imports and code splitting.
-
-Initialize Madon only after it is explicitly selected and the necessary setup is approved.
-
-Keep the main thread responsive.
-
-Use Web Workers.
-
-Avoid duplicate model instances.
-
-Avoid initializing Madon multiple times because of React Strict Mode or component rerenders.
-
-Use a single controlled engine lifecycle.
-
-Release resources when the user unloads the model.
-
-Avoid accidentally loading separate model instances for multiple conversations.
-
-Reduce unnecessary React rendering during token streaming.
-
-Document measured performance rather than inventing benchmark numbers.
-
-22. TESTING
-
-Expand the existing Vitest and Playwright test suites.
-
-Do not remove working tests.
-
-Update tests that currently assert Madon is unavailable.
-
-Replace that expectation with tests validating the new model selection and setup process.
-
-Unit tests
-
-Add tests for:
-
-* Model registry.
-* Model selection.
-* Preference persistence.
-* Backward compatibility.
-* Inference state transitions.
-* Capability detection.
-* Initialization failure.
-* Download cancellation.
-* Worker messaging.
-* Generation cancellation.
-* Stream parsing.
-* Thinking-mode selection.
-* Context-window management.
-* Prompt construction.
-* Tool result injection.
-* Tool permission enforcement.
-* Retrieval validation.
-* Citation mapping.
-* Source URL safety.
-* Extension compatibility behavior.
-
-Use mocked inference transports for deterministic automated tests.
-
-Do not require downloading a multi-gigabyte model on every CI run.
-
-Browser tests
-
-Test:
-
-* Switching from Zulvyn to Madon.
-* Seeing the model setup interface.
-* Rejecting or cancelling a download.
-* Initializing a mocked model.
-* Sending a Madon message.
-* Receiving streamed chunks.
-* Stopping generation.
-* Sending a follow-up.
-* Reloading the application.
-* Restoring model preference.
-* Handling an unavailable cache.
-* Falling back to Zulvyn through explicit user action.
-* Keeping Zulvyn’s original functionality.
-* Mobile layout.
-* Dark theme.
-* Accessibility.
-* GitHub Pages base-path behavior.
-
-Real inference validation
-
-Mocks are insufficient to prove that Madon works.
-
-Perform a separate real WebGPU smoke test in a supported browser.
-
-Verify that the model:
-
-1. Downloads successfully.
-2. Initializes successfully.
-3. Generates actual text.
-4. Responds to a follow-up message.
-5. Stops generation.
-6. Can generate again after cancellation.
-7. Reuses cached model data after reload.
-8. Correctly handles a browser with no available WebGPU support.
-
-Test both thinking and non-thinking behavior.
-
-Where possible, test a real browser tab reload during initialization.
-
-If the execution environment lacks WebGPU or cannot download the model, state that explicitly. Do not claim that mocked results prove real inference works.
-
-23. EXAMPLE USER EXPERIENCE
-
-The completed Varek application should support this experience.
-
-Selecting Madon
-
-The user opens Varek.
-
-They click the model selector.
-
-They see:
-
-Zulvyn
+Gamma
 Fast local intelligence.
 
 Madon
 Advanced local AI.
 
-The user clicks Madon.
+Gamma is selected by default.
 
-If the model has not been downloaded, a setup dialog appears.
+Gamma-specific settings
 
-The user initiates the download.
+Add a restrained section for:
 
-Actual initialization progress appears.
+* Enhanced understanding.
+* Semantic model installation state.
+* Local knowledge version.
+* Web retrieval preference.
+* Browser capability information.
+* Clear temporary context.
+* Clear semantic model cache.
+* Data and privacy explanation.
 
-When initialization succeeds, the interface displays Madon as ready.
+Avoid cluttering the main chat interface with technical controls.
 
-The user can now chat with a genuine local LLM.
+Status presentation
 
-Example conversation
+When meaningful operations occur, show accurate short statuses such as:
 
-User: What’s the difference between RAM and VRAM?
+“Checking browser capabilities”
 
-Madon: Explains the distinction using actual generated language.
+“Reviewing possible causes”
 
-User: Which one does your model use?
+“Finding relevant guidance”
 
-Madon: Explains WebGPU inference, model weights, graphics memory, and relevant limitations.
+“Searching public sources”
 
-User: Can you check whether my browser supports it?
+Do not show a fake neural reasoning animation.
 
-Madon invokes Varek’s trusted feature-detection layer.
+Streaming
 
-The assistant explains the actual observed result.
+Gamma may retain progressive display of a composed response.
 
-User: What happens if I run out of memory?
+Unlike Madon, its output is not generated token by token by a large language model.
 
-Madon explains the potential failure behavior in the context of the previous messages.
+Keep presentation responsive and cancellable.
 
-Web example
+Do not deliberately slow down short answers.
 
-The user enables web retrieval.
+Preserve the user’s reduced-motion preference.
 
-User: Look up what WebGPU is.
+20. PRIVACY AND SECURITY
 
-Madon retrieves relevant information from an allowed source, provides a contextual explanation, and shows real citations.
+Gamma must remain privacy-first.
 
-If retrieval fails, Madon does not invent a successful search.
+Default behavior:
 
-Offline example
+* No account.
+* No API key.
+* No paid inference.
+* No mandatory model download.
+* No tracking.
+* No analytics.
+* No cloud conversation storage.
+* No automatic page inspection.
+* No background browsing-history collection.
 
-The user returns after successfully caching the model.
+Semantic model downloads require user action.
 
-If the necessary assets remain available, Madon can initialize without requesting the model weights again.
+Web retrieval requires user-controlled permission.
 
-If required assets were evicted, the application explains the problem and offers reinstallation when connectivity returns.
+Browser diagnostics should use available APIs without requesting unnecessary sensitive permissions.
 
-24. IMPLEMENTATION PHASES
+Trusted execution boundary
 
-Work through the following phases.
+Keep strict boundaries between:
 
-Phase 1 — Audit
+* User input.
+* Gamma’s deterministic engine.
+* Semantic retrieval.
+* External source text.
+* Browser APIs.
+* Extension privileges.
 
-Read the existing project.
+Neither semantic model output nor untrusted webpage content may execute commands.
 
-Identify all hardcoded Zulvyn assumptions.
+Validate all tool requests.
 
-Trace:
+Sanitize rendered content.
 
-* Message submission.
-* Current model identity.
-* Model selector.
-* Storage.
-* Engine invocation.
-* Streaming.
-* Thinking preferences.
-* Slash commands.
-* Extension integration.
+Preserve Markdown safety.
 
-Write a short internal implementation plan.
+Avoid arbitrary HTML injection.
 
-Phase 2 — Model infrastructure
+Maintain existing extension sender validation.
 
-Create the unified model interface.
+21. PERFORMANCE ENGINEERING
 
-Add Madon’s real WebLLM engine.
+Gamma should remain noticeably lightweight.
 
-Implement the inference worker and runtime lifecycle.
+Requirements:
 
-Maintain Zulvyn compatibility.
+* Fast initial page load.
+* No mandatory AI model initialization.
+* Efficient lexical retrieval.
+* Precomputed indexes.
+* Lazy-loaded optional semantic runtime.
+* Worker-based expensive processing.
+* Minimal unnecessary React rerenders.
+* Safe cancellation.
+* Compact persistent state.
+* Efficient conversation restoration.
 
-Phase 3 — Model selection and initialization
+Measure performance on desktop and mobile-class environments.
 
-Activate Madon in the model registry.
+Track locally during tests:
 
-Add model preferences.
+* Initial bundle size.
+* Gamma engine initialization time.
+* Lexical retrieval latency.
+* Semantic retrieval latency.
+* Response composition latency.
+* Knowledge-index size.
+* Optional model download size.
+* Memory behavior.
 
-Implement compatibility detection.
+Do not invent benchmark results.
 
-Build setup and progress UI.
+Establish measurable budgets from the baseline and report regressions.
 
-Implement model caching and error states.
+Ensure adding Gamma’s optional enhancement does not load the heavyweight Madon runtime into the initial application bundle.
 
-Phase 4 — Real chat generation
+22. AUTOMATED TESTING
 
-Connect Madon to the existing chat interface.
+This upgrade must be comprehensively tested.
 
-Implement true token streaming.
+Keep existing tests unless a documented behavior genuinely changes.
 
-Add cancellation, regeneration, and context management.
+Rename tests
 
-Phase 5 — Reasoning and diagnostics
+Verify:
 
-Connect thinking preferences to supported Qwen3 behavior.
+* Gamma appears in every active model selector.
+* Gamma is the default model.
+* Gamma appears in accessibility labels.
+* Gamma appears in the extension.
+* Gamma appears in help and product information.
+* The old assistant brand is absent from normal user-facing UI.
+* Existing preferences migrate.
+* Existing message metadata migrates.
+* Existing conversations remain readable.
+* Existing exports can be imported where supported.
+* Madon remains selectable.
 
-Integrate browser diagnostics.
+Matcher tests
 
-Reuse trusted slash commands.
+Test:
 
-Protect the tool-execution boundary.
+* Exact matches.
+* Paraphrases.
+* Synonyms.
+* Typographical errors.
+* Abbreviations.
+* Negation.
+* Multi-intent questions.
+* Ambiguous questions.
+* Unsupported questions.
+* Correct technical entity extraction.
+* Incorrect-premise handling.
 
-Phase 6 — Web retrieval
+Semantic tests
 
-Add optional public-source retrieval.
+Test:
 
-Implement permissions, validation, grounding, and citation handling.
+* Model setup.
+* User consent.
+* Download failure.
+* Cache reuse.
+* Matching accuracy.
+* Semantic ranking integration.
+* Disabled state.
+* Worker cancellation.
+* Offline behavior after caching.
+* Fallback to lexical matching.
 
-Make retrieval failures explicit.
+Conversation tests
 
-Phase 7 — Extension support
+Create realistic multi-turn tests.
 
-Evaluate packaged inference compatibility with Manifest V3.
+Test:
 
-Integrate where compliant and tested.
+* Pronoun resolution.
+* Topic continuation.
+* Topic switching.
+* Corrections.
+* Follow-up instructions.
+* Explanations of previous recommendations.
+* Failed troubleshooting steps.
+* Diagnostic workflow resumption.
+* Conversation reset.
 
-Preserve Zulvyn in unsupported extension environments.
+Diagnostics tests
 
-Phase 8 — Quality assurance
+Test real and mocked browser capabilities.
 
-Test the production build.
+Ensure unavailable fields are never fabricated.
 
-Check responsive behavior.
+Test permission failures.
 
-Validate offline functionality.
+Test unsupported browsers.
 
-Run all existing regression tests.
+Test normal website and extension environments separately.
 
-Add real inference smoke tests where hardware allows.
+Web tests
 
-Phase 9 — Documentation and deployment
+Test:
 
-Update the README.
+* Web permission off.
+* Web permission on.
+* Valid retrieval.
+* Invalid response.
+* Source attribution.
+* Request timeout.
+* Offline behavior.
+* No result.
+* URL sanitization.
+* Prompt-injection-like source text.
 
-Update implementation-status documentation.
+Regression tests
 
-Document Madon requirements.
+Run existing:
 
-Explain model attribution and licensing.
+* Vitest.
+* Playwright desktop.
+* Playwright mobile.
+* Chromium extension tests.
+* Madon tests.
+* Knowledge validation.
+* TypeScript checking.
+* Production website build.
+* Production extension build.
 
-Update tests and GitHub Actions as necessary.
+Do not change Madon’s actual inference behavior merely to make Gamma tests pass.
 
-Prepare a clean deployment.
+23. BUILD AND DEPLOYMENT
 
-25. DEFINITION OF DONE
+Keep the application hosted on GitHub Pages.
 
-Madon is considered genuinely available only when all of the following are true:
+Preserve the existing Vite base path:
 
-* Madon can be selected in the UI.
-* The application performs real WebGPU compatibility checks.
-* Users can initiate model downloading.
-* The selected Qwen3 model initializes on supported hardware.
-* Actual generated text appears in chat.
-* Responses stream from real inference.
-* Generation can be interrupted.
-* Users can have multi-turn conversations.
-* Model preferences persist.
-* Cached assets can be reused where supported.
-* Thinking settings are connected to actual model behavior.
-* Real browser diagnostics can inform Madon’s responses.
-* Existing commands remain functional.
-* Optional web retrieval works with tested free sources.
-* Sources are attributed accurately.
-* Zulvyn continues working normally.
-* Unsupported hardware receives a clear explanation.
-* Browser-extension behavior remains secure.
-* The website still builds for GitHub Pages.
-* Automated tests pass.
-* No paid API or inference server is required.
-* No fabricated model status or fake inference remains.
+/varek/
 
-Do not mark Madon as fully available just because its name has become clickable.
+Preserve the existing GitHub Actions deployment workflow where possible.
 
-A real model must successfully initialize and generate text.
+The website must continue working at:
 
-26. FINAL VERIFICATION AND REPORT
+https://hiyroscript.github.io/varek/
 
-After implementation, provide a concise technical report showing:
+Do not introduce a required backend.
 
-Implementation
+Do not add paid services.
 
-* Components changed.
-* New inference modules.
-* Dependencies added.
-* Model configuration used.
-* Model initialization behavior.
-* User experience changes.
+Do not commit large model binaries.
+
+Keep extension assets separately bundled.
+
+Verify service-worker caching.
+
+Preserve offline Gamma functionality even when the optional semantic model has not been downloaded.
+
+Ensure normal application updates do not unnecessarily erase optional model caches.
+
+Do not claim deployment succeeded until the relevant workflow actually completes.
+
+24. DOCUMENTATION
+
+Update all current documentation to reflect Gamma.
+
+Update:
+
+* README.md
+* docs/STATUS.md
+* docs/DEVELOPING.md
+* docs/MADON.md
+* Knowledge coverage documentation.
+* Extension documentation.
+* User-facing help.
+
+Add a new document:
+
+docs/GAMMA.md
+
+This document should explain:
+
+* Gamma’s architecture.
+* Its differences from Madon.
+* Matching and confidence handling.
+* Knowledge retrieval.
+* Optional semantic enhancement.
+* Diagnostics.
+* Reasoning flows.
+* Local context.
+* Web retrieval.
+* Performance limits.
+* Privacy.
+* Cache behavior.
+* How to add knowledge.
+* How to add intents.
+* How to add troubleshooting flows.
+* How to add commands.
+* Known limitations.
+
+Add a migration section documenting the model rename and legacy storage compatibility.
+
+Ensure the former name only remains where technically necessary for migrations, compatibility, or accurate historical context.
+
+25. IMPLEMENTATION PHASES
+
+Follow this order.
+
+Phase 1 — Repository audit
+
+Inspect the entire application.
+
+Map all references to the old model identity.
+
+Map model selection, storage, commands, engine calls, and extension integration.
+
+Identify existing functionality and test baselines.
+
+Phase 2 — Complete rename
+
+Rename Zulvyn to Gamma throughout the active application.
+
+Update model IDs.
+
+Update the user interface.
+
+Update commands.
+
+Update extension branding.
+
+Implement compatible data migration.
+
+Verify old conversations still load.
+
+Run regression tests.
+
+Phase 3 — Engine architecture
+
+Refactor Gamma into a modular intelligence pipeline.
+
+Separate lexical retrieval, intent recognition, context, reasoning, tools, and response composition.
+
+Preserve existing functionality.
+
+Phase 4 — Language understanding
+
+Implement improved lexical ranking.
+
+Add entity extraction.
+
+Add negation handling.
+
+Add multi-intent processing.
+
+Improve confidence handling.
+
+Create labeled evaluation cases.
+
+Phase 5 — Semantic enhancement
+
+Implement the optional Transformers.js feature-extraction runtime.
+
+Add explicit model download consent.
+
+Implement cache management.
+
+Create semantic indexes.
+
+Integrate calibrated hybrid retrieval.
+
+Measure accuracy and performance.
+
+Phase 6 — Knowledge expansion
+
+Expand the authored knowledge base systematically.
+
+Improve source quality.
+
+Add more platform-specific information.
+
+Update the coverage validator.
+
+Verify targets without padding.
+
+Phase 7 — Reasoning and troubleshooting
+
+Implement diagnostic graphs.
+
+Add richer branch types.
+
+Track prior troubleshooting attempts.
+
+Add explainable analysis summaries.
+
+Migrate existing flow state safely.
+
+Phase 8 — Diagnostics and tools
+
+Improve real browser observations.
+
+Add structured health reporting.
+
+Expand safe local commands.
+
+Improve Gamma’s ability to interpret available evidence.
+
+Phase 9 — Web information
+
+Reuse and extend the current free retrieval infrastructure.
+
+Implement controlled, attributed Gamma responses.
+
+Preserve user privacy.
+
+Phase 10 — Extension
+
+Update all branding.
+
+Integrate improved Gamma engine behavior.
+
+Test page-context permissions.
+
+Evaluate semantic enhancement separately for Manifest V3 compatibility.
+
+Phase 11 — Final verification
+
+Run all tests.
+
+Measure performance.
+
+Verify storage migration.
+
+Test offline behavior.
+
+Build both targets.
+
+Update documentation.
+
+Prepare for GitHub Pages deployment.
+
+26. ACCEPTANCE CRITERIA
+
+Gamma 2.0 is complete when:
+
+Rebrand
+
+* Gamma fully replaces Zulvyn in active product branding.
+* Gamma is the default model.
+* Madon remains intact.
+* Historical conversations remain accessible.
+* Preferences migrate correctly.
+* User messages are not destructively rewritten.
+* Commands and extensions use the correct branding.
+
+Intelligence
+
+* Gamma uses an improved modular inference and retrieval pipeline.
+* Paraphrase recognition improves measurably.
+* Technical entities influence answer selection.
+* Negation is handled correctly.
+* Multi-intent requests work within documented scope.
+* Conversation follow-ups work.
+* Ambiguous requests are clarified.
+* Unsupported questions fail honestly.
+
+Knowledge
+
+* The authored knowledge base is substantially expanded.
+* Duplicate and low-quality filler is rejected.
+* Coverage counts are generated automatically.
+* Technical references are maintained.
+* Platform applicability is handled properly.
+
+Reasoning
+
+* Multi-step troubleshooting works.
+* Diagnostic branches respond to user observations.
+* Gamma remembers previously attempted steps.
+* Recommendations are evidence-aware.
+* No fabricated hardware measurements appear.
+
+Semantic enhancement
+
+* The optional embedding runtime works on tested supported environments.
+* Users control model downloading.
+* Embeddings improve retrieval rather than generate fake answers.
+* Lexical fallback always remains available.
+* Cache and failure handling are implemented.
+
+Tools and web
+
+* Real browser commands continue to function.
+* /health provides meaningful evidence-based output.
+* Optional web retrieval uses real permitted sources.
+* Citations are valid.
+* Sources cannot execute commands.
+* Extension security boundaries remain intact.
+
+Quality
+
+* GitHub Pages build succeeds.
+* Extension build succeeds.
+* TypeScript checking succeeds.
+* Existing and new tests pass.
+* Madon’s functionality is not regressed.
+* No paid backend or API is required.
+* The Varek design remains clean, minimal, and professional.
+
+27. FINAL DELIVERY REPORT
+
+At completion, provide:
+
+Rebrand results
+
+* Files modified.
+* Legacy compatibility behavior.
+* Confirmation that Gamma is the default model.
+* Confirmation that Madon was preserved.
+
+Intelligence upgrades
+
+* New retrieval architecture.
+* Semantic model implementation.
+* Context improvements.
+* Reasoning enhancements.
+* New commands.
+* New browser diagnostic capabilities.
+
+Coverage
+
+* Authored knowledge record count.
+* Expression count.
+* Unique troubleshooting flow count.
+* Meaningful branch count.
+* Independently authored multi-turn test count.
+
+Quality measurements
+
+* Intent accuracy.
+* Recall@3.
+* False-positive rate.
+* Retrieval latency.
+* Bundle size.
+* Optional semantic download requirements.
+
+Only report measurements that were actually taken.
 
 Verification
 
-* TypeScript results.
-* Unit test results.
-* Browser test results.
-* Production build results.
-* Real WebGPU smoke-test status.
-* Extension test results.
-* GitHub Pages deployment readiness.
-
-Performance
-
-* Measured model download size, if available.
-* Reported WebGPU memory requirement.
-* Measured initialization time, if tested.
-* Measured generation speed, if tested.
-* Browser and device used for benchmarking.
-
-Do not invent performance results.
+* TypeScript result.
+* Vitest result.
+* Playwright result.
+* Extension test result.
+* Knowledge validation result.
+* Website build result.
+* Extension build result.
+* Deployment status.
 
 Limitations
 
-* Unsupported browsers.
-* Resource constraints.
-* Offline limitations.
-* Model reliability limitations.
-* Web retrieval restrictions.
-* Extension-specific limitations.
+Explicitly identify incomplete functionality, unavailable tests, unsupported browsers, and anything blocked by the environment.
 
-Documentation
-
-Include exact instructions for installing and using Madon.
-
-Document how users can remove downloaded model data.
-
-Attribute Qwen3 and WebLLM appropriately.
+Do not claim real semantic inference has been verified if only mocks were tested.
 
 FINAL DIRECTIVE
 
-Build Madon as a real, free, local AI model integrated into the existing Varek application.
+This is not a cosmetic update.
 
-Zulvyn remains the lightweight deterministic assistant.
+Turn the existing Zulvyn engine into Gamma 2.0: a significantly more intelligent, capable, accurate, and context-aware local browser assistant.
 
-Madon becomes the advanced generative assistant.
+Gamma should remain lightweight and immediately usable.
 
-The result should feel like a natural evolution of Varek, not a different application.
+Its optional semantic system should significantly improve its ability to recognize differently worded questions.
 
-Preserve the existing minimalist interface, branding, favicon, chat history, commands, diagnostics, security controls, and deployment architecture.
+Its expanded knowledge system should make it useful across a much broader range of browser and device topics.
 
-Make Madon genuinely functional.
+Its troubleshooting engine should work through multi-step problems rather than simply repeating articles.
 
-Use real local inference, real streaming, meaningful contextual conversations, permissioned browser diagnostics, and optional free web retrieval.
+Its diagnostics should use real browser information.
 
-Do not merely describe the implementation or add visual placeholders.
+Its responses should feel polished, natural, contextual, and technically trustworthy.
 
-Implement the actual upgrade and verify what works.
+Its web information should be accurate, permissioned, and attributed.
+
+Madon remains Varek’s separate generative LLM.
+
+Preserve the existing Varek visual design, privacy principles, extension permissions, storage, and GitHub Pages hosting.
+
+Implement and test the complete rebrand and functional upgrade. Do not stop after planning or changing labels.
