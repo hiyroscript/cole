@@ -30,7 +30,7 @@ Automated web tests run in Chromium at desktop and mobile emulated viewports, in
 
 The extension test loads the production package and verifies local chat, popup rendering, rejected invalid messages, and denied ungranted page access. A temporary local-fixture permission tests extraction and pinning. Actual toolbar activeTab grant/side-panel user gestures still merit manual release testing in each supported Chromium browser.
 
-GitHub Pages requires repository Settings → Pages → Source: GitHub Actions. A committed deployment workflow is not proof of a successful deployment; consult the Actions run and Pages status.
+GitHub Pages requires GitHub Actions as its publishing source. The deployment job switches an existing Pages site to that source using its scoped Pages token; a missing Pages site must first be enabled in repository Settings → Pages. A committed workflow is not proof of successful deployment; consult the Actions run and Pages status.
 
 ## Verified on 2026-10-24
 
