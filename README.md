@@ -90,7 +90,7 @@ A first-ever offline visit cannot work. Cleared/evicted storage or failed servic
 
 The workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) checks types, validates knowledge, runs unit tests, builds both targets, runs desktop/mobile/offline and extension checks, uploads the extension artifact, and deploys the web build on pushes to `main`.
 
-In repository **Settings → Pages → Build and deployment → Source**, select **GitHub Actions**. The deployment job switches an existing Pages site to GitHub Actions using its scoped Pages token. If Pages has never been enabled, enable it here first; the workflow does not create a missing Pages site. The expected URL after a successful deployment is:
+In repository **Settings → Pages → Build and deployment → Source**, select **GitHub Actions**. If Pages has not been enabled, this is a required repository setting; a workflow file alone does not enable hosting. The expected URL after a successful deployment is:
 
 https://hiyroscript.github.io/varek/
 
