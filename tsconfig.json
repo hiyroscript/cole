@@ -10,7 +10,7 @@
     "noEmit": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "types": ["vite/client", "chrome", "node"]
+    "types": ["vite/client", "chrome", "node", "@webgpu/types"]
   },
   "include": ["src", "tests", "scripts/*.ts", "*.ts", "extension/**/*.ts"]
 }

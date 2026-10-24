@@ -13,9 +13,11 @@
     "build:extension": "vite build --mode extension && node scripts/extension.mjs",
     "preview": "vite preview --host 0.0.0.0",
     "test:extension": "node tests/extension.mjs",
-    "format": "prettier --write src extension scripts tests *.ts *.json index.html .github/workflows/*.yml docs/*.md README.md"
+    "format": "prettier --write src extension scripts tests *.ts *.json index.html .github/workflows/*.yml docs/*.md README.md",
+    "test:madon:real": "node scripts/smoke-madon.mjs"
   },
   "dependencies": {
+    "@mlc-ai/web-llm": "0.2.86",
     "lucide-react": "^0.468.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
@@ -28,6 +30,7 @@
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.0.0",
+    "@webgpu/types": "0.1.69",
     "esbuild": "^0.28.2",
     "fake-indexeddb": "^6.0.0",
     "prettier": "^3.9.10",

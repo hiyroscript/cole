@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type KeyboardEvent,
+} from "react";
 import {
   ArrowUp,
   ArrowRight,
@@ -31,8 +37,11 @@ import {
   type Preferences,
   type Evidence,
 } from "../core/types";
-import { activeModel } from "../core/models";
-import { stream } from "../core/stream";
+import { activeModel, models, type ModelId } from "../core/models";
+import { madon } from "../core/madon/runtime";
+import { MODEL_VERSION } from "../core/madon/model-config";
+import { MadonSetup } from "../components/MadonSetup";
+import { parseCommand } from "../core/commands";
 import { commands } from "../core/commands";
 import { diagnose } from "../lib/diagnostics";
 import {
@@ -134,6 +143,14 @@ export default function App() {
     prefsRef = useRef(prefs);
   chatRef.current = chats;
   prefsRef.current = prefs;
+  const model = activeModel(prefs.model);
+  const modelState = useSyncExternalStore(madon.subscribe, madon.getSnapshot);
+  function selectModel(id: ModelId) {
+    if (busy) return;
+    if (id === "zulvyn") madon.unload();
+    setPrefs((p) => ({ ...p, model: id }));
+    setModal(id === "madon" ? "models" : null);
+  }
   const current = chats.find((c) => c.id === active);
   const matches = commands.filter((c) =>
     c.name.startsWith(input.slice(1).split(" ")[0]),
@@ -312,6 +329,16 @@ export default function App() {
   }
   async function send(value = input, retry = false) {
     if (!value.trim() || busy || !ready) return;
+    const selected = activeModel(prefsRef.current.model);
+    if (
+      selected.id === "madon" &&
+      !parseCommand(value) &&
+      !value.trim().startsWith("/") &&
+      modelState.state !== "ready"
+    ) {
+      setModal("models");
+      return;
+    }
     const id = current?.id ?? crypto.randomUUID();
     let base = current ?? {
       id,
@@ -339,6 +366,8 @@ export default function App() {
         id: crypto.randomUUID(),
         role: "assistant",
         text: "",
+        model: selected.id,
+        modelVersion: selected.id === "madon" ? MODEL_VERSION : undefined,
       };
     let chat: Conversation = {
       ...base,
@@ -355,17 +384,18 @@ export default function App() {
     follow.current = true;
     persist(chat);
     try {
-      const response = await activeModel().engine(value, base.context, {
+      const response = await selected.generate(value, base.context, {
         thinking: prefsRef.current.thinking,
         facts: diagnose,
         device: prefsRef.current.device,
         extension: isExtension() ? extensionAction : undefined,
         stage: setStage,
-      });
-      if (run !== task.current) return;
-      const complete = await stream(
-        response.text,
-        (text) => {
+        history: base.messages,
+        webSources: prefsRef.current.webSources,
+        signal,
+        reduced: matchMedia("(prefers-reduced-motion: reduce)").matches,
+        onText: (text) => {
+          if (run !== task.current || signal.aborted) return;
           chat = {
             ...chat,
             messages: chat.messages.map((m) =>
@@ -374,9 +404,9 @@ export default function App() {
           };
           setChats((prev) => prev.map((c) => (c.id === id ? chat : c)));
         },
-        signal,
-        matchMedia("(prefers-reduced-motion: reduce)").matches,
-      );
+      });
+      if (run !== task.current) return;
+      const complete = !signal.aborted;
       const { effect, ...content } = response;
       chat = {
         ...chat,
@@ -385,6 +415,7 @@ export default function App() {
           m.id === assistant.id
             ? {
                 ...m,
+                sources: complete ? content.sources : undefined,
                 evidence: complete ? content.evidence : undefined,
                 analysis: complete ? content.analysis : undefined,
                 followups: complete ? content.followups : undefined,
@@ -396,9 +427,19 @@ export default function App() {
       };
       persist(chat);
       setAnnouncement(
-        complete ? "Zulvyn’s response is ready." : "Response stopped.",
+        complete
+          ? `${selected.name}’s response is ready.`
+          : "Response stopped.",
       );
       if (complete && effect) {
+        if (effect.type === "model") {
+          if (effect.value === "unload") madon.unload();
+          else if (effect.value === "zulvyn" || effect.value === "madon") {
+            if (effect.value === "zulvyn") madon.unload();
+            setPrefs((p) => ({ ...p, model: effect.value as ModelId }));
+            if (effect.value === "madon") setModal("models");
+          } else setModal("models");
+        }
         if (effect.type === "theme")
           setPrefs((p) => ({
             ...p,
@@ -424,7 +465,17 @@ export default function App() {
           m.id === assistant.id
             ? {
                 ...m,
-                text: `I couldn’t complete that operation. ${e instanceof Error ? e.message : "Please try again."}`,
+                stopped: signal.aborted,
+                failure: signal.aborted
+                  ? undefined
+                  : e instanceof Error
+                    ? e.message
+                    : "Please try again.",
+                text:
+                  m.text ||
+                  (signal.aborted
+                    ? "Response stopped."
+                    : "The operation could not be completed. See the error below and retry."),
               }
             : m,
         ),
@@ -617,8 +668,12 @@ export default function App() {
                 <PanelLeft size={19} />
               </button>
             )}
-            <button className="model-top" onClick={() => setModal("models")}>
-              Zulvyn <ChevronDown size={14} />
+            <button
+              className="model-top"
+              disabled={busy}
+              onClick={() => setModal("models")}
+            >
+              {model.name} <ChevronDown size={14} />
             </button>
             <span className="top-subtitle">Local intelligence</span>
           </div>
@@ -670,7 +725,7 @@ export default function App() {
               <p className="welcome-description">
                 Your browser, your device, a little more understood.
                 <br />
-                Ask Zulvyn. Everything is processed locally.
+                Ask {model.name}. Inference stays on your device.
               </p>
               <div className="suggestions">
                 {suggestions.map(({ icon: Icon, text, label }) => (
@@ -700,7 +755,8 @@ export default function App() {
                   <div className="message-label">
                     {m.role === "assistant" ? (
                       <>
-                        <img src={logo} alt="" /> Zulvyn
+                        <img src={logo} alt="" />{" "}
+                        {activeModel(m.model ?? "zulvyn").name}
                       </>
                     ) : (
                       prefs.name || "You"
@@ -709,12 +765,38 @@ export default function App() {
                   </div>
                   {m.text ? (
                     <div className="prose">
-                      <Markdown text={m.text} />
+                      <Markdown
+                        text={m.text}
+                        allowLinks={m.model !== "madon"}
+                      />
                     </div>
                   ) : (
                     <div className="working">
                       {stage || "Preparing response"}
                       <span>…</span>
+                    </div>
+                  )}
+                  {m.failure && (
+                    <p role="alert" className="generation-error">
+                      {m.failure}
+                    </p>
+                  )}
+                  {!!m.sources?.length && (
+                    <div className="sources">
+                      <strong>Retrieved sources</strong>
+                      <ul>
+                        {m.sources.map((source) => (
+                          <li key={source.url}>
+                            <a
+                              href={source.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {source.title}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   )}
                   {m.evidence && m.evidence.length > 0 && (
@@ -726,8 +808,12 @@ export default function App() {
                     </details>
                   )}
                   {m.analysis && (
-                    <details className="analysis">
-                      <summary>Analysis summary</summary>
+                    <details className="analysis" open={m.model === "madon"}>
+                      <summary>
+                        {m.model === "madon"
+                          ? "Context & source notes"
+                          : "Analysis summary"}
+                      </summary>
                       <ul>
                         {m.analysis.map((s) => (
                           <li key={s}>{s}</li>
@@ -779,6 +865,27 @@ export default function App() {
           )}
         </div>
         <div className="composer-area">
+          {model.id === "madon" && modelState.state !== "ready" && !busy && (
+            <button className="model-status" onClick={() => setModal("models")}>
+              Madon · {modelState.state} · Open setup
+            </button>
+          )}
+          {model.id === "madon" && (
+            <label className="web-sources">
+              <input
+                type="checkbox"
+                checked={prefs.webSources}
+                disabled={busy}
+                onChange={(e) =>
+                  setPrefs((p) => ({ ...p, webSources: e.target.checked }))
+                }
+              />{" "}
+              Use web sources{" "}
+              <small>
+                Search terms go to Wikimedia. Inference stays local.
+              </small>
+            </label>
+          )}
           <div className="composer-box">
             {menu && (
               <div
@@ -808,12 +915,16 @@ export default function App() {
               </div>
             )}
             <label className="sr-only" htmlFor="composer">
-              Message Zulvyn
+              Message {model.name}
             </label>
             <textarea
               id="composer"
               ref={composer}
-              placeholder="Ask about your browser or device…"
+              placeholder={
+                model.id === "madon"
+                  ? "Ask Madon…"
+                  : "Ask about your browser or device…"
+              }
               value={input}
               maxLength={20000}
               disabled={!ready || busy}
@@ -902,33 +1013,41 @@ export default function App() {
       )}
       {modal === "models" && (
         <Dialog title="Your intelligence" close={() => setModal(null)}>
-          <div className="model-option">
-            <img src={logo} alt="" />
-            <div>
-              <h3>
-                Zulvyn <span>Available</span>
-              </h3>
-              <p>Local browser and device intelligence.</p>
-            </div>
-            <Check size={18} />
-          </div>
-          <button
-            className="model-option future"
-            onClick={() =>
-              notify("Madon is not available yet. Zulvyn remains active.")
-            }
-          >
-            <span className="model-letter">M</span>
-            <div>
-              <h3>
-                Madon <span>Coming soon</span>
-              </h3>
-              <p>Advanced intelligence. Not available yet.</p>
-            </div>
-          </button>
+          {models.map((item) => (
+            <button
+              key={item.id}
+              className="model-option"
+              disabled={busy}
+              onClick={() => selectModel(item.id)}
+            >
+              <span className="model-letter">{item.name[0]}</span>
+              <div>
+                <h3>
+                  {item.name}{" "}
+                  <span>
+                    {item.id === "madon"
+                      ? isExtension()
+                        ? "Website only"
+                        : modelState.state === "ready"
+                          ? "Ready"
+                          : "Setup required · Preview"
+                      : "Available"}
+                  </span>
+                </h3>
+                <p>{item.description}</p>
+              </div>
+              {model.id === item.id && <Check size={18} />}
+            </button>
+          ))}
+          {model.id === "madon" && (
+            <MadonSetup
+              busy={busy}
+              switchToZulvyn={() => selectModel("zulvyn")}
+            />
+          )}
           <p className="fine-print">
-            Zulvyn combines authored knowledge, local matching, and browser
-            diagnostics. It is not a large language model.
+            Zulvyn uses authored knowledge and browser diagnostics. Madon
+            generates answers with a local language model.
           </p>
         </Dialog>
       )}
@@ -969,6 +1088,10 @@ export default function App() {
       )}
       {modal === "settings" && (
         <Dialog title="Make it your space" close={() => setModal(null)}>
+          <MadonSetup
+            busy={busy}
+            switchToZulvyn={() => selectModel("zulvyn")}
+          />
           <section className="settings-section">
             <h3>Preferences</h3>
             <label>
@@ -1059,13 +1182,16 @@ export default function App() {
                 Delete all conversations
               </button>
               <button
+                disabled={busy}
                 onClick={() => {
                   if (
                     confirm(
                       "Reset all preferences, including your name and device notes?",
                     )
-                  )
+                  ) {
+                    madon.unload();
                     setPrefs({ ...defaults });
+                  }
                 }}
               >
                 Reset preferences
@@ -1076,10 +1202,12 @@ export default function App() {
                 onClick={async () => {
                   if (
                     confirm(
-                      "Delete every Varek conversation and preference, and remove this app’s offline cache?",
+                      "Delete every Varek conversation and preference, and remove this app’s offline cache and Madon model data?",
                     )
                   )
                     try {
+                      if (!(await madon.remove()))
+                        throw new Error("Model cache could not be cleared");
                       await clearConversations();
                       localStorage.removeItem("varek.preferences.v1");
                       if ("caches" in window)
@@ -1096,7 +1224,10 @@ export default function App() {
                             await reg.unregister();
                       setChats([]);
                       setActive(undefined);
-                      setPrefs({ ...defaults });
+                      {
+                        madon.unload();
+                        setPrefs({ ...defaults });
+                      }
                       notify(
                         "Varek data cleared. Reload online to restore offline caching.",
                       );

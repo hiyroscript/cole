@@ -1054,3 +1054,54 @@ dialog a {
   width: 24px;
   height: 24px;
 }
+
+.madon-setup {
+  border-top: 1px solid var(--border);
+  margin-top: 18px;
+  padding-top: 16px;
+}
+.madon-setup p {
+  line-height: 1.6;
+}
+.madon-setup dl {
+  font-size: 12px;
+  display: grid;
+  grid-template-columns: minmax(85px, 1fr) 2fr;
+  gap: 8px;
+}
+.madon-setup dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.madon-setup progress {
+  width: 100%;
+  accent-color: #695365;
+}
+.madon-setup details p,
+.generation-error {
+  overflow-wrap: anywhere;
+}
+.web-sources {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+.web-sources small {
+  color: var(--secondary);
+}
+.model-status {
+  font-size: 12px;
+  margin-bottom: 10px;
+  text-decoration: underline;
+}
+.sources {
+  font-size: 13px;
+  margin-top: 16px;
+}
+button.model-option {
+  width: 100%;
+  text-align: left;
+}

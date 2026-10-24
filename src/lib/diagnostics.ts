@@ -130,10 +130,13 @@ export async function diagnose(): Promise<Evidence[]> {
       add("Permissions", name, undefined);
     }
   }
+  add("Browser", "WebGPU API", !!n.gpu);
+  add("Device", "Available graphics memory", undefined);
   return facts;
 }
 export function features() {
   return {
+    WebGPU: !!navigator.gpu,
     IndexedDB: typeof indexedDB !== "undefined",
     "Service worker": "serviceWorker" in navigator,
     "Storage estimate": !!navigator.storage?.estimate,

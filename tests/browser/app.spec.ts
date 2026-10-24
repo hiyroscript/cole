@@ -65,15 +65,34 @@ test("slash keyboard navigation and dark theme", async ({ page }) => {
     fullPage: true,
   });
 });
-test("Madon cannot become active", async ({ page }) => {
+test("Madon selection requires explicit setup and persists without downloading", async ({
+  page,
+}) => {
+  const downloads: string[] = [];
+  page.on("request", (request) => {
+    if (/huggingface|raw.githubusercontent/.test(request.url()))
+      downloads.push(request.url());
+  });
   await page.getByRole("button", { name: "Zulvyn", exact: true }).click();
   await page.getByRole("button", { name: /Madon/ }).click();
   await expect(
-    page.getByRole("status").filter({ hasText: "Madon is not available yet" }),
+    page.getByRole("heading", { name: "Set up Madon" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Download and initialize" }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Close dialog" }).click();
+  await page.reload();
   await expect(
-    page.getByRole("button", { name: "Zulvyn", exact: true }),
+    page.getByRole("textbox", { name: "Message Madon" }),
+  ).toBeEnabled();
+  expect(downloads).toEqual([]);
+  await page.getByRole("button", { name: "Madon", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Switch to Zulvyn", exact: true })
+    .click();
+  await expect(
+    page.getByRole("textbox", { name: "Message Zulvyn" }),
   ).toBeVisible();
 });
 test("safe untrusted input and no horizontal overflow", async ({ page }) => {

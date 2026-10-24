@@ -1,3 +1,5 @@
+import type { ModelId } from "./models";
+import type { Source } from "./madon/sources";
 export type Depth = "brief" | "standard" | "detailed" | "steps";
 export type Thinking = "auto" | "on" | "off";
 export type Evidence = {
@@ -40,17 +42,22 @@ export type Knowledge = {
   confidence?: number;
 };
 export type Response = {
+  sources?: Source[];
   text: string;
   context: Context;
   evidence?: Evidence[];
   analysis?: string[];
   followups?: string[];
   effect?: {
-    type: "theme" | "think" | "new" | "clear" | "export";
+    type: "theme" | "think" | "new" | "clear" | "export" | "model";
     value?: string;
   };
 };
 export type Message = {
+  model?: ModelId;
+  modelVersion?: string;
+  sources?: Source[];
+  failure?: string;
   id: string;
   role: "user" | "assistant";
   text: string;
@@ -69,6 +76,8 @@ export type Conversation = {
   context: Context;
 };
 export type Preferences = {
+  model: ModelId;
+  webSources: boolean;
   theme: "light" | "dark" | "system";
   thinking: Thinking;
   name: string;
