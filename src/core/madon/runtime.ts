@@ -62,10 +62,10 @@ export class MadonRuntime {
       technical,
       detail:
         state === "insufficient-memory"
-          ? "Madon ran out of graphics memory. Close other GPU-heavy tabs and retry, or switch to Zulvyn."
+          ? "Madon ran out of graphics memory. Close other GPU-heavy tabs and retry, or switch to Gamma."
           : state === "cache-unavailable"
             ? "Model storage is unavailable or full. Free site storage, then explicitly retry setup."
-            : "Madon could not complete this operation. Retry initialization or switch to Zulvyn. Your conversation is preserved.",
+            : "Madon could not complete this operation. Retry initialization or switch to Gamma. Your conversation is preserved.",
     });
   }
   async check() {

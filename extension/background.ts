@@ -47,13 +47,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           reader
             ? { text: document.body?.innerText.slice(0, 12000) ?? "" }
             : {
-                title: document.title,
-                url: location.href,
-                language: document.documentElement.lang,
+                title: document.title.slice(0, 300),
+                url: location.href.slice(0, 2000),
+                language: document.documentElement.lang.slice(0, 80),
                 description:
                   document
                     .querySelector('meta[name="description"]')
-                    ?.getAttribute("content") ?? "Not provided",
+                    ?.getAttribute("content")
+                    ?.slice(0, 1000) ?? "Not provided",
                 headings: document.querySelectorAll("h1,h2,h3,h4,h5,h6").length,
                 images: document.images.length,
                 imagesWithoutAlt:
@@ -72,6 +73,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         sendResponse({
           text:
             "Observed page metadata and counts. Counts do not establish accessibility compliance or page quality.\n\n" +
+            (result && "imagesWithoutAlt" in result && result.imagesWithoutAlt
+              ? "Some images lack an alt attribute. Review their purpose; informative images need useful alternatives. Decorative images may use an empty alt.\n\n"
+              : "") +
+            (result && "language" in result && !result.language
+              ? "The document has no declared language; assistive technology may select the wrong pronunciation.\n\n"
+              : "") +
             JSON.stringify(result, null, 2),
         });
     } catch (e) {

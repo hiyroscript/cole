@@ -15,5 +15,8 @@ console.log("Unpacked Chromium extension: dist-extension/");
 // Vite may emit a worker asset before tree shaking the website-only runtime.
 // Never ship the unused inference executable in the MV3 package.
 for (const file of await readdir("dist-extension/assets"))
-  if (/^(worker|transport|engine)-.*\.js$/.test(file))
+  if (
+    file.endsWith(".wasm") ||
+    /^(worker|transport|engine|semantic-worker|ort)-.*\.js$/.test(file)
+  )
     await rm("dist-extension/assets/" + file);

@@ -32,7 +32,7 @@ try {
       "Run with --download to authorize roughly 1 GB of model assets and real inference.";
     process.exitCode = 2;
   } else {
-    await page.getByRole("button", { name: "Zulvyn", exact: true }).click();
+    await page.getByRole("button", { name: "Gamma", exact: true }).click();
     await page.getByRole("button", { name: /Madon/ }).click();
     const start = Date.now();
     await page.getByRole("button", { name: "Download and initialize" }).click();

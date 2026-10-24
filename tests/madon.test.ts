@@ -28,7 +28,7 @@ it("uses the actual catalog model and its 4096-token runtime", () => {
   expect(model.overrides?.context_window_size).toBe(4096);
   expect(model.vram_required_MB).toBe(2036.66);
   expect(model.model_lib).toContain("Qwen3-1.7B-q4f16_1");
-  expect(models.map((m) => m.id)).toEqual(["zulvyn", "madon"]);
+  expect(models.map((m) => m.id)).toEqual(["gamma", "madon"]);
 });
 it.each([1, 2, 3, 7, 11, 100])(
   "hides thought markers and content with chunk size %i",
@@ -154,7 +154,7 @@ it("restores validated preferences and existing conversations without migration"
   vi.stubGlobal("localStorage", {
     getItem: () => JSON.stringify({ model: "remote", webSources: "true" }),
   });
-  expect(preferences().model).toBe("zulvyn");
+  expect(preferences().model).toBe("gamma");
   expect(preferences().webSources).toBe(false);
   const old = {
     id: "old",

@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { knowledge } from "../src/data/knowledge";
 import { rank, normalize, distance } from "../src/core/matcher";
-import { respond, freshContext } from "../src/core/engine";
+import { respond, freshContext } from "../src/core/gamma/engine";
 import { emptyContext, type Evidence } from "../src/core/types";
 import { commands, executeCommand, parseCommand } from "../src/core/commands";
 import { identify, platform } from "../src/lib/diagnostics";
@@ -128,12 +128,12 @@ describe("Independent language cases", () => {
   });
   it("branches on observations", async () => {
     const a = await respond("Why is my browser slow?", emptyContext(), options);
-    expect(a.context.flow?.step).toBe(0);
+    expect(a.context.diagnosis?.node).toBe("scope");
     const b = await respond("Yes", a.context, options);
     expect(b.text).toContain("Focus on that site");
     const c = await respond("No", b.context, options);
     expect(c.text).toContain("browser support");
-    expect(c.context.flow).toBeUndefined();
+    expect(c.context.diagnosis?.node).toBe("confirm");
   });
   it("off skips optional workflow", async () => {
     const r = await respond("Why is my browser slow?", emptyContext(), {

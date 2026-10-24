@@ -43,7 +43,7 @@ try {
   const panel = await context.newPage();
   await panel.goto(`chrome-extension://${id}/index.html`);
   await panel
-    .getByRole("textbox", { name: "Message Zulvyn" })
+    .getByRole("textbox", { name: "Message Gamma" })
     .fill("What is Varek?");
   await panel
     .getByRole("button", { name: "Send message", exact: true })
@@ -54,7 +54,7 @@ try {
     })
     .waitFor();
   checks++;
-  await panel.getByRole("button", { name: "Zulvyn", exact: true }).click();
+  await panel.getByRole("button", { name: "Gamma", exact: true }).click();
   await panel.getByRole("button", { name: /Madon/ }).click();
   await panel.getByText("Madon is website-only.", { exact: false }).waitFor();
   assert.equal(
@@ -64,7 +64,7 @@ try {
     true,
   );
   await panel
-    .getByRole("button", { name: "Switch to Zulvyn", exact: true })
+    .getByRole("button", { name: "Switch to Gamma", exact: true })
     .click();
   checks++;
   const invalid = await panel.evaluate(() =>

@@ -136,13 +136,13 @@ export async function diagnose(): Promise<Evidence[]> {
 }
 export function features() {
   return {
-    WebGPU: !!navigator.gpu,
+    WebGPU: !!globalThis.navigator?.gpu,
     IndexedDB: typeof indexedDB !== "undefined",
-    "Service worker": "serviceWorker" in navigator,
-    "Storage estimate": !!navigator.storage?.estimate,
-    "Clipboard write": !!navigator.clipboard?.writeText,
-    "Permission queries": !!navigator.permissions?.query,
-    "Secure context": isSecureContext,
+    "Service worker": !!globalThis.navigator && "serviceWorker" in navigator,
+    "Storage estimate": !!globalThis.navigator?.storage?.estimate,
+    "Clipboard write": !!globalThis.navigator?.clipboard?.writeText,
+    "Permission queries": !!globalThis.navigator?.permissions?.query,
+    "Secure context": globalThis.isSecureContext === true,
     WebAssembly: typeof WebAssembly !== "undefined",
   };
 }

@@ -1,16 +1,26 @@
-import { knowledge } from "../data/knowledge";
-import { normalize, rank } from "./matcher";
+import { retrieveCandidates } from "./hybrid";
+import { freshContext, resolveReference } from "./context";
+export { freshContext } from "./context";
+import { begin, advance, workflow } from "./workflows";
+import { diagnosticGroups } from "./diagnostics";
+import { webResponse } from "./web";
+import { understand } from "./language";
+import { features } from "../../lib/diagnostics";
+import { knowledge } from "../../data/knowledge";
+import { normalize, rank } from "./retrieval";
 import {
-  emptyContext,
   type Context,
   type Response,
   type Evidence,
   type Thinking,
-} from "./types";
-import { executeCommand, parseCommand } from "./commands";
-import { flows, flowReply } from "./flows";
+} from "../types";
+import { executeCommand, parseCommand } from "../commands";
+import { flows, flowReply } from "../flows";
 export type EngineOptions = {
   thinking: Thinking;
+  webSources?: boolean;
+  enhanced?: boolean;
+  signal?: AbortSignal;
   facts: () => Promise<Evidence[]>;
   extension?: (name: string, arg: string) => Promise<string>;
   device?: string;
@@ -18,11 +28,6 @@ export type EngineOptions = {
 };
 const get = (id: string) => knowledge.find((k) => k.id === id);
 const browserNames = /\b(chrome|firefox|safari|edge|brave|opera)\b/i;
-export function freshContext(previous: Context, now = Date.now()): Context {
-  return now - previous.updated > 30 * 60_000 || previous.turns >= 24
-    ? emptyContext()
-    : { ...previous, attempted: [...previous.attempted] };
-}
 function compose(id: string, c: Context) {
   const k = get(id)!;
   const prefix =
@@ -54,13 +59,20 @@ export async function respond(
   previous: Context,
   options: EngineOptions,
 ): Promise<Response> {
+  options.signal?.throwIfAborted();
   const c = freshContext(previous);
+  input = resolveReference(input, c);
   if (c.intent && !get(c.intent)) c.intent = undefined;
   if (c.flow && !flows.some((f) => f.id === c.flow?.id)) c.flow = undefined;
   if (c.pending) c.pending = c.pending.filter((id) => !!get(id));
   c.updated = Date.now();
   c.turns++;
-  const n = normalize(input);
+  let n = normalize(input);
+  const statedPlatform = understand(input).entities.find(
+    (e) => e.kind === "platform",
+  );
+  if (statedPlatform && /\b(using|on|running|actually)\b/.test(n))
+    c.platform = statedPlatform.value;
   const answer = (text: string, rest: Partial<Response> = {}): Response => ({
     text,
     context: c,
@@ -70,6 +82,7 @@ export async function respond(
   const cmd = parseCommand(input);
   if (cmd) {
     const needsFacts = [
+      "health",
       "browser",
       "device",
       "system",
@@ -88,23 +101,40 @@ export async function respond(
       c,
       needsFacts ? await options.facts() : [],
       options.extension,
+      { webSources: options.webSources, enhanced: options.enhanced },
     );
   }
-  if (/^\//.test(n))
+  if (/^\//.test(input.trim()))
     return answer(
       "Use /help for supported commands. Arbitrary scripts and shell commands cannot be executed.",
     );
-  if (/^(hi|hello|hey|good morning|good evening)[!. ]*$/.test(n))
-    return answer("Hello. What would you like to understand or troubleshoot?", {
-      followups: ["What browser am I using?", "Why is my browser slow?"],
-    });
-  if (/^(thanks|thank you|thankyou|cheers)[!. ]*$/.test(n))
+  const web = await webResponse(
+    input,
+    c,
+    options.webSources === true,
+    options.signal ?? new AbortController().signal,
+  );
+  if (web) return web;
+  if (/\b(chrome|firefox|safari|edge|brave) works but/.test(n)) {
+    c.browser = n.match(/but (chrome|firefox|safari|edge|brave)/)?.[1];
+    c.diagnosis = undefined;
+    c.lastAction = undefined;
+    if (/chrome/.test(n) && /firefox/.test(n))
+      c.topic = "compare chrome firefox";
     return answer(
-      "You’re welcome. You can continue with a follow-up whenever you need.",
+      `For ${c.browser ?? "the affected browser"}, does it fail to launch, crash, or fail to load one website? The working browser is a useful comparison.`,
     );
-  if (/^(bye|goodbye|see you)[!. ]*$/.test(n))
+  }
+  if (/definitely infected|certainly infected/.test(n))
     return answer(
-      "Goodbye. Your saved conversations stay in this browser unless you delete them.",
+      "I cannot confirm an infection from that statement. What have you observed: unexpected redirects, permission prompts, downloads, or a security warning? Do not install software advertised by a warning page.",
+    );
+  if (
+    /\b(ram|memory)\b/.test(n) &&
+    /using right now|current usage|being used|utilization/.test(n)
+  )
+    return answer(
+      "A website cannot read system-wide RAM usage. On Windows use Task Manager → Performance → Memory; on macOS use Activity Monitor → Memory; on Linux use your system monitor. Browser memory estimates are not current usage.",
     );
   if (
     /\b(actually|correction|im using|i use|i am using)\b/.test(n) &&
@@ -112,6 +142,8 @@ export async function respond(
   ) {
     c.browser = n.match(browserNames)![1];
     c.flow = undefined;
+    c.diagnosis = undefined;
+    c.lastAction = undefined;
     return answer(
       `I’ll use ${c.browser} as your stated browser for this conversation. That is user-provided information, separate from automatic detection.`,
       {
@@ -127,6 +159,105 @@ export async function respond(
       },
     );
   }
+  if (/^(?:can you )?explain (?:the )?(first|second|third) option/.test(n)) {
+    const ordinal = /first/.test(n) ? 0 : /second/.test(n) ? 1 : 2;
+    const graph = c.diagnosis && workflow(c.diagnosis.id);
+    const node =
+      graph && graph.nodes.find((node) => node.id === c.diagnosis?.node);
+    const branch =
+      node?.kind === "question" ? node.branches[ordinal] : undefined;
+    const target =
+      branch && graph?.nodes.find((node) => node.id === branch.next);
+    return answer(
+      target && branch
+        ? `“${branch.label}” would lead to this check: ${target.text}\n\nNo option has been selected yet.`
+        : "Which options do you mean? Name the option or start a diagnostic question so I can explain the relevant check.",
+    );
+  }
+  if (/^(can you )?compare them$/.test(n)) {
+    if (
+      c.topic === "compare chrome firefox" ||
+      c.topic === "compare cache cookies"
+    )
+      n = c.topic;
+    else
+      return answer(
+        "Which two browsers or features would you like to compare?",
+      );
+  }
+  if (
+    !understand(input).excluded.length &&
+    !/^(what|why|how|explain|compare|check|quick|tell|can you|give me)/.test(n)
+  ) {
+    const continuation = advance(n, c);
+    if (continuation)
+      return {
+        ...continuation,
+        analysis:
+          options.thinking === "off" ? undefined : continuation.analysis,
+      };
+  }
+  if (
+    /^(explain|why).*(second|last|recommend|option|check)/.test(n) &&
+    c.lastAction
+  )
+    return answer(
+      `The most recent recommendation was: ${c.lastAction}\n\nIt is a reversible comparison intended to narrow possible causes, not proof of a diagnosis.`,
+    );
+  if (/compare|difference between/.test(n)) {
+    if (/cache/.test(n) && /cookies/.test(n)) {
+      c.topic = "compare cache cookies";
+      return answer(
+        "Cache stores reusable resources such as images and scripts. Cookies store small values sent with matching requests, often for sign-in or preferences. Clearing cache can force downloads; clearing cookies can sign you out. Neither action should be used as a universal fix.",
+      );
+    }
+    if (/firefox/.test(n) && /chrome/.test(n)) {
+      c.intent = "compare";
+      c.topic = "compare chrome firefox";
+      return answer(compose("compare", c));
+    }
+  }
+  const groups = diagnosticGroups(n);
+  const featureRequest =
+    /support|available|can.*(?:install|query|use)|check/.test(n) &&
+    /webgpu|indexeddb|pwa|storage.*usage/.test(n);
+  if (featureRequest || (groups.length > 1 && /and|also/.test(n))) {
+    options.stage?.("Checking browser capabilities");
+    const facts = await options.facts();
+    const evidence = facts.filter((f) => groups.includes(f.group));
+    const support = features();
+    const selected = Object.entries(support).filter(
+      ([key]) =>
+        n.includes(key.toLowerCase()) ||
+        (/pwa/.test(n) && key === "Service worker") ||
+        (/storage/.test(n) && key === "Storage estimate"),
+    );
+    return answer(
+      (groups.length
+        ? "Available browser observations are attached.\n\n"
+        : "") +
+        selected
+          .map(
+            ([key, value]) =>
+              `${key}: ${value ? "API exposed" : "unavailable"}.`,
+          )
+          .join("\n") +
+        "\n\nAPI presence is not a successful operation or an installation guarantee.",
+      { evidence },
+    );
+  }
+  if (/^(hi|hello|hey|good morning|good evening)[!. ]*$/.test(n))
+    return answer("Hello. What would you like to understand or troubleshoot?", {
+      followups: ["What browser am I using?", "Why is my browser slow?"],
+    });
+  if (/^(thanks|thank you|thankyou|cheers)[!. ]*$/.test(n))
+    return answer(
+      "You’re welcome. You can continue with a follow-up whenever you need.",
+    );
+  if (/^(bye|goodbye|see you)[!. ]*$/.test(n))
+    return answer(
+      "Goodbye. Your saved conversations stay in this browser unless you delete them.",
+    );
   if (
     /^(yes|yeah|yep|no|nope|not yet|it worked|still broken|didnt help|done)[.! ]*$/.test(
       n,
@@ -162,7 +293,9 @@ export async function respond(
   }
   const depth = /shorter|brief|summarize that/.test(n)
     ? "brief"
-    : /give me the steps|step by step|what should i try first/.test(n)
+    : /give me (?:the )?(?:steps|instructions)|step by step|what should i try first|how do i fix (?:that|it)/.test(
+          n,
+        )
       ? "steps"
       : /more detail|explain that more|what does that mean/.test(n)
         ? "detailed"
@@ -199,15 +332,12 @@ export async function respond(
   }
   if (
     /\b(not slow|isnt slow|not crashing|isnt crashing)\b/.test(n) &&
-    !/[;,]|\bbut\b/.test(n)
+    !/[;,]|\bbut\b/.test(input)
   )
     return answer(
       "Understood. What is happening instead? Describe the symptom you want to troubleshoot.",
     );
-  const clean = input.replace(
-    /\b(?:not slow|isnt slow|not crashing|isnt crashing)\b/gi,
-    "",
-  );
+  const clean = understand(input).positive;
   const multi = clean.split(/\s+(?:and|also)\s+|;\s*/i).filter(Boolean);
   if (multi.length === 2) {
     const matches = multi.map((part) => rank(part)[0]);
@@ -232,16 +362,43 @@ export async function respond(
       );
     }
   }
-  let candidates = rank(clean);
+  let candidates = await retrieveCandidates(
+    input,
+    options.enhanced === true,
+    options.signal,
+  );
   if (
     /\bam i (?:on|using) (chrome|firefox|safari|edge|brave)\b/.test(n) ||
     /^(whats my browser|what browser do i have)$/.test(n)
   )
-    candidates = [{ record: get("browser")!, score: 1 }];
-  if (/^(is it secure|is that browser good)$/.test(n) && c.intent)
-    candidates = [{ record: get("secure")!, score: 1 }];
+    candidates = [
+      { record: get("browser")!, score: 1, lexical: 1, coverage: 1 },
+    ];
+  if (
+    /^is it safe$/.test(n) &&
+    c.intent &&
+    ![
+      "browser",
+      "chrome",
+      "firefox",
+      "safari",
+      "edge",
+      "brave",
+      "secure",
+    ].includes(c.intent)
+  )
+    return answer(
+      "Which action or feature do you mean? Safety depends on the specific action and what data it changes; I cannot certify it from an ambiguous reference.",
+    );
+  if (
+    /^(is it safe|is it secure|is that browser good)$/.test(n) &&
+    (c.intent || c.browser)
+  )
+    candidates = [
+      { record: get("secure")!, score: 1, lexical: 1, coverage: 1 },
+    ];
   if (/^(how do i make it faster|make it faster)$/.test(n) && c.intent)
-    candidates = [{ record: get("slow")!, score: 1 }];
+    candidates = [{ record: get("slow")!, score: 1, lexical: 1, coverage: 1 }];
   if (/start a new diagnosis/.test(n))
     return executeCommand("diagnose", "", c, []);
   if (!candidates.length || candidates[0].score < 0.63)
@@ -264,8 +421,26 @@ export async function respond(
       { followups: candidates.slice(0, 2).map((x) => x.record.title) },
     );
   }
+  const platform = c.platform
+    ?.replace(/windows.*/, "Windows")
+    .replace(/macos/, "macOS")
+    .replace(/ubuntu|linux/, "Linux")
+    .replace(/android/, "Android")
+    .replace(/ipados|ios/, "iOS");
+  if (
+    platform &&
+    top.record.platforms?.length &&
+    !top.record.platforms.includes(platform)
+  )
+    return answer(
+      `These instructions apply to ${top.record.platforms.join(" or ")}. You stated ${platform}. Are you asking about a different device?`,
+      { followups: ["/context clear"] },
+    );
+  c.topic = top.record.title;
+  c.goal = input.slice(0, 200);
   c.intent = top.record.id;
   c.flow = undefined;
+  c.diagnosis = undefined;
   const thorough =
     options.thinking === "on" ||
     (options.thinking === "auto" &&
@@ -276,7 +451,7 @@ export async function respond(
         "Privacy",
         "Network",
       ].includes(top.record.category) ||
-        flows.some((f) => f.id === top.record.id)));
+        !!workflow(top.record.id)));
   const analysis = thorough
     ? [
         `Matched “${top.record.title}” using the local knowledge index.`,
@@ -306,18 +481,19 @@ export async function respond(
     if (top.record.id === "browser") {
       const family =
         all.find((f) => f.label === "Browser family")?.value ?? "Unknown";
+      c.detectedBrowser = family;
       const requested = n.match(browserNames)?.[1];
       text = requested
         ? `The browser identifies as ${family}. ${family.toLowerCase() === requested ? "That is consistent with " + requested + "." : "That does not confirm " + requested + "."} Browser identification can be reduced or spoofed.`
         : `This browser identifies as **${family}**. Identification is an estimate from browser-provided signals, not a verified installation inventory.`;
     }
   }
-  const flow = thorough ? flows.find((f) => f.id === top.record.id) : undefined;
-  if (flow) {
-    c.flow = { id: flow.id, step: 0 };
-    text += "\n\n" + flow.question;
+  const flow = thorough ? workflow(top.record.id) : undefined;
+  const guided = flow ? begin(flow.id, c) : undefined;
+  if (guided) {
+    text += "\n\n" + guided.text;
     analysis?.push(
-      "Selected a branching check; waiting for your observation before recommending the next step.",
+      "Selected a diagnostic graph; waiting for your observation.",
     );
   }
   if (options.device && thorough) {
@@ -327,6 +503,6 @@ export async function respond(
   return answer(text, {
     evidence,
     analysis,
-    followups: flow ? ["Yes", "No", "Quick check"] : top.record.followups,
+    followups: guided ? guided.followups : top.record.followups,
   });
 }

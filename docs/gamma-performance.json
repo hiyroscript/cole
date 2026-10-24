@@ -1,0 +1,50 @@
+{
+  "environment": "Headless Chromium, Linux container, local production preview, fresh browser context for each of five samples, reduced motion; no network throttling or physical mobile measurement",
+  "baseline": {
+    "javascriptBytes": 499750,
+    "gzipBytes": 160640
+  },
+  "current": {
+    "javascriptBytes": 814491,
+    "gzipBytes": 261667
+  },
+  "changePercent": 62.97968984492246,
+  "budgets": {
+    "initialJavascriptBytes": 650000,
+    "initialGzipBytes": 210000
+  },
+  "budgetExceeded": true,
+  "median": {
+    "readyMs": 586.6999999992549,
+    "responseVisibleMs": 79.59999999776483,
+    "jsHeapUsedBytes": 9383856
+  },
+  "samples": [
+    {
+      "readyMs": 788.3999999985099,
+      "responseVisibleMs": 100.60000000149012,
+      "jsHeapUsedBytes": 9307372
+    },
+    {
+      "readyMs": 619.5999999977648,
+      "responseVisibleMs": 77.19999999925494,
+      "jsHeapUsedBytes": 9555584
+    },
+    {
+      "readyMs": 462.6000000014901,
+      "responseVisibleMs": 84.70000000298023,
+      "jsHeapUsedBytes": 9383856
+    },
+    {
+      "readyMs": 586.6999999992549,
+      "responseVisibleMs": 79.59999999776483,
+      "jsHeapUsedBytes": 9458816
+    },
+    {
+      "readyMs": 539.3000000007451,
+      "responseVisibleMs": 73.10000000149012,
+      "jsHeapUsedBytes": 9295992
+    }
+  ],
+  "note": "The initial 650 kB / 210 kB gzip budget is exceeded after expansion from 205 to 700 records and 75 workflows. This is a documented payload regression. Optional inference runtimes and weights remain excluded from initial requests. Browser timing has no measured pre-upgrade counterpart; do not infer a startup speedup. CDP JS heap is not total process or peak inference memory."
+}

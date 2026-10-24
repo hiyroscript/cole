@@ -101,7 +101,7 @@ async function mockRuntime(page: Page, fail = false, slowSetup = false) {
 }
 async function select(page: Page) {
   await page.goto("./");
-  await page.getByRole("button", { name: "Zulvyn", exact: true }).click();
+  await page.getByRole("button", { name: "Gamma", exact: true }).click();
   await page.getByRole("button", { name: /Madon/ }).click();
   await page.getByRole("button", { name: "Download and initialize" }).click();
 }
@@ -207,7 +207,7 @@ test("mocked download cancellation terminates worker and never marks ready", asy
     ),
   ).toContain("terminated");
 });
-test("mocked cache failure has recovery and explicit Zulvyn selection", async ({
+test("mocked cache failure has recovery and explicit Gamma selection", async ({
   page,
 }) => {
   await mockRuntime(page, true);
@@ -216,10 +216,10 @@ test("mocked cache failure has recovery and explicit Zulvyn selection", async ({
     page.getByText("Model storage is unavailable or full.", { exact: false }),
   ).toBeVisible();
   await page
-    .getByRole("button", { name: "Switch to Zulvyn", exact: true })
+    .getByRole("button", { name: "Switch to Gamma", exact: true })
     .click();
   await expect(
-    page.getByRole("textbox", { name: "Message Zulvyn" }),
+    page.getByRole("textbox", { name: "Message Gamma" }),
   ).toBeEnabled();
 });
 test("unsupported WebGPU does not instantiate a worker or download", async ({
@@ -229,7 +229,7 @@ test("unsupported WebGPU does not instantiate a worker or download", async ({
     Object.defineProperty(navigator, "gpu", { value: undefined }),
   );
   await page.goto("./");
-  await page.getByRole("button", { name: "Zulvyn", exact: true }).click();
+  await page.getByRole("button", { name: "Gamma", exact: true }).click();
   await page.getByRole("button", { name: /Madon/ }).click();
   await expect(
     page.getByText("WebGPU is unavailable.", { exact: false }),

@@ -23,6 +23,17 @@ export type Context = {
   turns: number;
   flow?: { id: string; step: number };
   pending?: string[];
+  topic?: string;
+  goal?: string;
+  lastAction?: string;
+  detectedBrowser?: string;
+  sources?: Source[];
+  diagnosis?: {
+    id: string;
+    node: string;
+    history: { node: string; answer: string }[];
+    outcome?: "resolved" | "escalated";
+  };
   attempted: string[];
 };
 export type Knowledge = {
@@ -37,6 +48,13 @@ export type Knowledge = {
   related: string[];
   reference: string;
   reviewed: string;
+  subcategory?: string;
+  entities?: string[];
+  browsers?: string[];
+  platforms?: string[];
+  risk?: "low" | "data-loss" | "security";
+  safety?: string;
+  exceptions?: string[];
   conditions?: string[];
   capabilities?: string[];
   confidence?: number;
@@ -49,7 +67,15 @@ export type Response = {
   analysis?: string[];
   followups?: string[];
   effect?: {
-    type: "theme" | "think" | "new" | "clear" | "export" | "model";
+    type:
+      | "theme"
+      | "think"
+      | "new"
+      | "clear"
+      | "export"
+      | "model"
+      | "web"
+      | "enhance";
     value?: string;
   };
 };
@@ -78,6 +104,7 @@ export type Conversation = {
 export type Preferences = {
   model: ModelId;
   webSources: boolean;
+  enhanced: boolean;
   theme: "light" | "dark" | "system";
   thinking: Thinking;
   name: string;

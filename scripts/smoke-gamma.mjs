@@ -1,0 +1,171 @@
+import { chromium } from "@playwright/test";
+import { readdir, writeFile } from "node:fs/promises";
+import { knowledge } from "../src/data/knowledge.ts";
+import { retrievalCases } from "../tests/gamma-cases.ts";
+import { rerank } from "../src/core/gamma/rerank.ts";
+import { confidence, rank } from "../src/core/gamma/retrieval.ts";
+const browser = await chromium.launch({
+  executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium",
+  headless: true,
+  args: ["--no-sandbox"],
+  ...(process.env.HTTPS_PROXY
+    ? {
+        proxy: {
+          server: process.env.HTTPS_PROXY,
+          bypass: "127.0.0.1,localhost",
+        },
+      }
+    : {}),
+});
+try {
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  page.setDefaultTimeout(30000);
+  await page.goto(
+    process.env.VAREK_PREVIEW_URL || "http://127.0.0.1:4173/varek/",
+  );
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready;
+  });
+  await page.reload();
+  await page.getByRole("button", { name: "Settings", exact: true }).click();
+  page.on("dialog", (d) => d.accept());
+  const start = Date.now();
+  await page
+    .getByRole("button", {
+      name: "Enable and download enhancement",
+      exact: true,
+    })
+    .click();
+  await page
+    .getByText("Local semantic matching is ready (experimental).", {
+      exact: true,
+    })
+    .waitFor({ timeout: 240000 });
+  const setupMs = Date.now() - start;
+  console.log("Real WASM setup and indexing passed", setupMs, "ms");
+  await page.reload();
+  await context.setOffline(true);
+  await page.getByRole("button", { name: "Settings", exact: true }).click();
+  await page
+    .getByRole("button", {
+      name: "Initialize enhanced understanding",
+      exact: true,
+    })
+    .click();
+  await page
+    .getByText("Local semantic matching is ready (experimental).", {
+      exact: true,
+    })
+    .waitFor({ timeout: 60000 });
+  console.log("Offline cache reuse passed");
+  const file = (await readdir("dist/assets")).find(
+    (f) => f.startsWith("semantic-worker-") && f.endsWith(".js"),
+  );
+  const scores = await page.evaluate(
+    async ({ file, records, queries }) => {
+      const worker = new Worker(`/varek/assets/${file}`, { type: "module" });
+      try {
+        await new Promise((resolve, reject) => {
+          worker.onmessage = ({ data }) => {
+            if (data.type === "ready") resolve();
+            if (data.type === "error") reject(new Error(data.detail));
+          };
+          worker.onerror = reject;
+          worker.postMessage({ type: "init", records });
+        });
+        const results = [];
+        for (let id = 0; id < queries.length; id++) {
+          const started = performance.now();
+          const result = await new Promise((resolve, reject) => {
+            worker.onmessage = ({ data }) => {
+              if (data.type === "result" && data.id === id)
+                resolve(data.scores);
+              if (data.type === "error") reject(new Error(data.detail));
+            };
+            worker.postMessage({ type: "query", id, text: queries[id] });
+          });
+          results.push({ scores: result, ms: performance.now() - started });
+        }
+        return results;
+      } finally {
+        worker.terminate();
+      }
+    },
+    {
+      file,
+      records: knowledge.map((k) => ({
+        id: k.id,
+        text: [k.title, ...k.phrases].join(". "),
+      })),
+      queries: retrievalCases.map((c) => c.query),
+    },
+  );
+  const supported = retrievalCases.filter((c) => c.expected).length;
+  let top1 = 0,
+    recall = 0;
+  for (let i = 0; i < scores.length; i++) {
+    const expected = retrievalCases[i].expected;
+    if (expected) {
+      if (scores[i].scores[0]?.id === expected) top1++;
+      if (scores[i].scores.slice(0, 3).some((s) => s.id === expected)) recall++;
+    }
+  }
+  const hybridResults = retrievalCases.map((c, i) => {
+    const candidates = rerank(c.query, rank(c.query), scores[i].scores);
+    const accepted = ["high", "moderate"].includes(confidence(candidates));
+    return {
+      query: c.query,
+      expected: c.expected,
+      actual: candidates[0]?.record.id,
+      accepted,
+      recalled: candidates
+        .slice(0, 3)
+        .some((candidate) => candidate.record.id === c.expected),
+    };
+  });
+  const hybrid = {
+    intentAccuracy:
+      hybridResults.filter(
+        (r) => r.expected && r.accepted && r.actual === r.expected,
+      ).length / supported,
+    recallAt3:
+      hybridResults.filter((r) => r.expected && r.recalled).length / supported,
+    falsePositiveRate:
+      hybridResults.filter((r) => !r.expected && r.accepted).length /
+      (retrievalCases.length - supported),
+    misses: hybridResults.filter((r) =>
+      r.expected ? !r.accepted || r.actual !== r.expected : r.accepted,
+    ),
+  };
+  const latencies = scores.map((s) => s.ms).sort((a, b) => a - b);
+  const report = {
+    environment:
+      "Headless Chromium, Linux container, single-thread WASM CPU; not physical mobile hardware",
+    model: "Xenova/all-MiniLM-L6-v2",
+    revision: "751bff37182d3f1213fa05d7196b954e230abad9",
+    setupMs,
+    offlineCacheReuse: true,
+    records: knowledge.length,
+    queries: scores.length,
+    hybrid,
+    semanticOnlyTop1: top1 / supported,
+    semanticOnlyRecallAt3: recall / supported,
+    queryMedianMs: latencies[Math.floor(latencies.length / 2)],
+    queryP95Ms: latencies[Math.floor(latencies.length * 0.95)],
+    note: "Raw semantic neighbors are not acceptance decisions. Hybrid reranking remains conservative and experimental; this small development set does not certify general relevance.",
+  };
+  await writeFile(
+    "docs/gamma-semantic-measurements.json",
+    JSON.stringify(report, null, 2) + "\n",
+  );
+  console.log(report);
+  await page
+    .getByRole("button", { name: "Remove enhancement data", exact: true })
+    .click();
+  if (await page.evaluate(() => caches.has("gamma-semantic-v1")))
+    throw new Error("Semantic cache remains after removal");
+  console.log("Selective cache removal passed");
+} finally {
+  await browser.close();
+}
