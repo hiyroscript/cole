@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Varek · Zulvyn",
+  "version": "0.1.0",
+  "description": "Local browser intelligence with deliberate, permissioned page inspection.",
+  "minimum_chrome_version": "116",
+  "permissions": ["activeTab", "scripting", "sidePanel"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Open Varek",
+    "default_icon": {
+      "16": "icon-16.png",
+      "32": "icon-32.png",
+      "128": "icon-128.png"
+    }
+  },
+  "icons": { "16": "icon-16.png", "32": "icon-32.png", "128": "icon-128.png" },
+  "side_panel": { "default_path": "index.html" },
+  "background": { "service_worker": "background.js", "type": "module" },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'"
+  }
+}

@@ -1,0 +1,50 @@
+body {
+  width: 290px;
+  margin: 0;
+  padding: 24px;
+  background: #f9f7f3;
+  color: #282529;
+  font: 13px/1.7 system-ui;
+}
+header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 21px;
+}
+img {
+  width: 36px;
+  border-radius: 6px;
+}
+h1 {
+  font:
+    26px/1.2 Georgia,
+    serif;
+  margin-top: 28px;
+}
+p,
+small {
+  color: #776f73;
+}
+button {
+  display: block;
+  background: #695365;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 12px;
+  width: 100%;
+  margin: 10px 0;
+  cursor: pointer;
+}
+button + button {
+  background: #f1edef;
+  color: #695365;
+}
+button:focus-visible {
+  outline: 2px solid #695365;
+  outline-offset: 3px;
+}
+small {
+  font-size: 10px;
+}

@@ -1,0 +1,11 @@
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+export default defineConfig(({ mode }) => ({
+  plugins: [react()],
+  base: mode === "extension" ? "./" : "/varek/",
+  build: {
+    outDir: mode === "extension" ? "dist-extension" : "dist",
+    sourcemap: false,
+  },
+  define: { __EXTENSION__: JSON.stringify(mode === "extension") },
+}));

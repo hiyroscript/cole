@@ -1,0 +1,28 @@
+{
+  "records": 205,
+  "uniqueExpressions": 831,
+  "indexTokens": 866,
+  "categories": [
+    "Browser",
+    "Performance",
+    "Device",
+    "Privacy",
+    "Security",
+    "Network",
+    "Storage",
+    "Tabs",
+    "Troubleshooting",
+    "Accessibility",
+    "Literacy",
+    "Web",
+    "Product"
+  ],
+  "troubleshootingFlows": 26,
+  "branchPaths": 103,
+  "errors": [],
+  "targets": {
+    "records": 700,
+    "expressions": 2500,
+    "flowsOrPaths": 100
+  }
+}
