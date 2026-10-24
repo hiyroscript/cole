@@ -1,1067 +1,732 @@
-VAREK — Complete Web Application Development Specification
+VAREK — MADON LOCAL AI MODEL IMPLEMENTATION
 
-YOUR ROLE
+ROLE AND MISSION
 
-You are a senior full-stack engineer, frontend designer, browser-extension developer, conversational systems architect, and product engineer.
+You are a senior TypeScript engineer, machine-learning integration specialist, WebGPU developer, and browser-extension architect.
 
-Your task is to build a complete, working, production-quality application called Varek in the existing GitHub repository.
+Your task is to upgrade the existing Varek application by making Madon a fully functional, locally running large language model.
+
+This is a major functional upgrade to an existing application, not a request to rebuild Varek from scratch.
 
 Repository: hiyroscript/varek
 Branch: main
-Web hosting: GitHub Pages
-Application name: Varek
-Primary assistant/model: Zulvyn
-Future model: Madon (Coming Soon)
+Website: https://hiyroscript.github.io/varek/
+Existing assistant: Zulvyn
+Model to activate: Madon
+Inference technology: WebLLM
+Underlying model: Qwen3-1.7B
+Quantized model ID: Qwen3-1.7B-q4f16_1-MLC
 
-The repository is effectively empty. It currently contains only a file named max with a newline. You may establish a clean project architecture from scratch.
+The core objective is to turn Madon from a disabled placeholder into a genuine AI assistant capable of generating natural, contextual responses locally using the user’s hardware.
 
-Do not merely write an implementation plan, produce mockups, or create a partially working demonstration. Implement the actual application, run the build and tests, fix errors, and prepare the result for deployment.
+Implement this using free, open-source technology.
 
-Treat every requirement below as part of the product specification.
+No paid AI APIs, subscription services, hosted inference servers, or user accounts should be necessary.
+
+CRITICAL INSTRUCTIONS
+
+1. Inspect the current repository before making changes.
+2. Preserve existing working features.
+3. Do not recreate the entire application.
+4. Do not discard the Zulvyn knowledge engine.
+5. Do not introduce a backend.
+6. Do not replace Madon with another prewritten-answer system.
+7. Do not fake LLM responses.
+8. Do not fake model downloads, reasoning, inference, or streaming.
+9. Do not silently send conversations to external inference services.
+10. Implement, build, test, and verify the actual application.
+
+Use the existing codebase as the foundation for every change.
 
 ⸻
 
-1. PRODUCT VISION
+1. CURRENT REPOSITORY ARCHITECTURE
 
-Varek is a privacy-first, browser-native, local AI-style assistant focused on helping users understand, troubleshoot, and interact with their browser and device.
+The existing application already contains:
 
-The application should feel like a mature conversational AI product, with fluid responses, contextual follow-up questions, a thinking mode, commands, personalized answers, and polished interactions.
-
-However, Zulvyn is not an actual large language model.
-
-For version 1, Zulvyn must be powered by:
-
-* A large, hand-authored knowledge base.
-* Deterministic natural-language understanding.
-* Intent classification and fuzzy matching.
-* Context-aware response composition.
-* Real browser and device diagnostics.
-* Troubleshooting decision trees.
-* Locally executable commands.
-* Conditional reasoning and multi-stage analysis.
-* Dynamic response variation.
-* An incremental, streaming-style output interface.
-* Local conversation memory and user preferences.
-
-The goal is not to trick people about whether a real LLM exists. Make the assistant feel natural and highly capable while accurately describing the technology and its limitations.
-
-Position Zulvyn as a local diagnostic and knowledge assistant.
-
-Do not falsely claim that a remote AI model generated its responses.
-
-Everything should operate locally in the user’s browser after the application assets have been loaded, except where a feature explicitly requires access to browser-extension APIs.
-
-No paid API, API key, hosted inference service, account, or application backend should be necessary.
-
-2. NON-NEGOTIABLE PRODUCT QUALITY
-
-The application should feel like a carefully designed, independently developed software product.
-
-Avoid the recognizable appearance of generic AI-generated websites.
-
-Specifically avoid:
-
-* Oversized gradients and glowing purple backgrounds.
-* Excessive glassmorphism.
-* Generic robot or brain illustrations.
-* Giant landing-page hero sections inside the application.
-* Huge rounded cards everywhere.
-* Unnecessary badges, floating decorations, and marketing copy.
-* Fake analytics, fake capabilities, and fake diagnostic results.
-* Long loading animations that don’t represent actual work.
-* Inconsistent spacing and arbitrary animations.
-
-Instead, prioritize:
-
-* Excellent typography.
-* Deliberate whitespace.
-* Quiet surfaces.
-* Subtle borders.
-* Minimal icons.
-* A restrained color system.
-* Well-proportioned components.
-* Natural transitions.
-* Carefully designed empty states.
-* Clean navigation.
-* Strong keyboard accessibility.
-* Responsive layouts.
-* Thoughtful microinteractions.
-
-Everything must have a functional reason to exist.
-
-3. BRAND IDENTITY AND COLOR SYSTEM
-
-Use the following brand palette.
-
-Light theme
-
-* Main background: #F9F7F3 — Porcelain
-* Primary accent: #695365 — Fig
-* Primary text: #282529 — Ink
-* Surface: #FFFFFF
-* Soft accent surface: #F1EDEF
-* Secondary text: #776F73
-* Border: #E8E2E3
-
-Dark theme
-
-Develop a matching dark version using these starting values:
-
-* Background: #181619
-* Surface: #242025
-* Primary text: #F5F1F2
-* Muted text: #B8ADB5
-* Accent: #BDA4B8
-* Border: #393239
-
-Refine the dark palette as necessary to maintain contrast and visual harmony.
-
-The primary interface should default to light mode unless the user explicitly chooses another theme or enables following their operating system preference.
-
-The Fig accent should function as Varek’s recognizable brand color.
-
-Use it selectively for:
-
-* The application symbol.
-* Primary buttons.
-* Selected navigation items.
-* Active model indicators.
-* Focus states.
-* Important interactive controls.
-
-Do not saturate the interface with accent color.
-
-The product should feel sophisticated and editorial, with visual restraint similar to premium productivity tools.
-
-Do not copy Claude’s exact layout, logo, or visual identity.
-
-Typography
-
-Use a professional sans-serif font for the interface, with a restrained optional editorial serif treatment for one or two prominent headings.
-
-Typography should feel exceptionally polished.
-
-Use a consistent typographic scale, comfortable line heights, and restrained font weights.
-
-Do not use excessively bold headings, decorative gradients on text, or oversized marketing typography in the actual chat interface.
-
-Branding
-
-Create a simple original Varek symbol, preferably a geometric or typographic monogram derived from the letter V.
-
-Use consistent branding in:
-
-* Browser favicon.
-* PWA icon.
-* Chat interface.
-* Loading screen.
-* Extension toolbar icon.
-* Extension side panel.
-* Settings.
-* Browser tab title.
-
-Avoid generic sparkle branding for the main logo.
-
-4. TECHNICAL ARCHITECTURE
-
-Use a modern, maintainable architecture that can be built and deployed entirely through GitHub Actions.
-
-Preferred technologies:
-
-* React.
-* TypeScript with strict type checking.
+* React 19.
+* TypeScript.
 * Vite.
-* Tailwind CSS, using a consistent design-token system.
-* Lucide icons.
-* IndexedDB for persistent conversations and larger datasets.
-* Local storage for simple preferences.
-* Web Workers for expensive parsing, indexing, or matching when necessary.
-* Vitest for unit tests.
-* Playwright for browser-level tests.
-* A PWA service worker for offline availability.
-* Manifest V3 for the Chromium browser extension.
+* A working responsive chat interface.
+* The Porcelain/Fig visual design.
+* A local deterministic Zulvyn engine.
+* A knowledge base.
+* Contextual matching.
+* Slash commands.
+* Device diagnostics.
+* Conversation storage through IndexedDB.
+* A model selector.
+* Thinking preferences.
+* A simulated progressive response renderer.
+* A Progressive Web App.
+* A Chromium Manifest V3 extension.
+* Automated browser and unit tests.
+* GitHub Pages deployment configuration.
 
-Avoid adding unnecessary libraries.
+Relevant existing files include:
 
-Structure the project so the conversational engine and knowledge base can be reused by both the website and extension.
+src/app/App.tsx
+Main chat interface, message submission, model selector, response presentation, settings, and conversation controls.
 
-Suggested architecture:
+src/core/models.ts
+Model definitions. Zulvyn is currently available and Madon is a coming-soon placeholder.
 
-* src/app/ — application shell and routing
-* src/components/ — reusable interface components
-* src/features/chat/ — chat interface and conversation state
-* src/features/models/ — model selector and metadata
-* src/features/commands/ — slash command interface
-* src/features/diagnostics/ — browser and device diagnostics
-* src/features/settings/ — application preferences
-* src/core/engine/ — conversational engine
-* src/core/intents/ — intent definitions and matching
-* src/core/context/ — conversation context management
-* src/core/reasoning/ — structured diagnostic reasoning
-* src/core/response/ — response composition and streaming
-* src/core/knowledge/ — knowledge base schemas and loaders
-* src/data/knowledge/ — authored answers and troubleshooting content
-* src/data/language/ — synonyms, expressions, and phrase patterns
-* src/lib/storage/ — persistence
-* src/lib/capabilities/ — feature detection
-* src/lib/security/ — sanitization and permissions
-* src/styles/ — visual tokens and application styling
-* extension/ — Manifest V3 extension source
-* public/ — static assets and PWA assets
-* tests/ — automated tests
-* .github/workflows/ — continuous integration and deployment
+src/core/engine.ts
+The deterministic Zulvyn engine.
 
-You may refine this structure if a better architecture is warranted.
+src/core/types.ts
+Shared engine, conversation, message, response, and preference types.
 
-Do not duplicate the response engine for the extension.
+src/core/stream.ts
+The existing simulated text-streaming renderer.
 
-Keep the core conversational logic independent of React so it can be tested and reused.
+src/core/commands.ts
+Slash-command parsing and execution.
 
-5. APPLICATION INTERFACE
+src/lib/storage.ts
+Local preferences and IndexedDB conversation persistence.
 
-Varek should open directly into the conversational application.
+src/lib/diagnostics.ts
+Browser and device observations.
 
-Do not force users through a marketing website, signup screen, onboarding wizard, or account creation process.
+src/lib/extension.ts
+Extension capability handling and messaging.
 
-Desktop layout
+extension/background.ts
+Chromium extension background logic.
 
-Create a minimal application with:
+extension/manifest.json
+Manifest V3 configuration.
 
-Left sidebar
+vite.config.ts
+Website and extension build configuration.
 
-* Varek logo and name.
-* New chat.
-* Search conversations.
-* Previous conversations.
-* Pinned conversations.
-* Settings access.
-* A subtle sidebar collapse control.
+scripts/service-worker.mjs
+PWA offline caching.
 
-The sidebar should be narrow and unobtrusive.
+scripts/extension.mjs
+Browser-extension packaging.
 
-Allow users to rename, pin, delete, and search conversations.
+.github/workflows/deploy.yml
+Continuous integration and deployment.
 
-Main chat area
+Existing tests are located in tests/.
 
-When no conversation is active, show an elegant welcome state:
+Read these files and understand their interactions before modifying anything.
 
-“Where should we begin?”
+The repository documentation currently describes Zulvyn as deterministic and Madon as unavailable.
 
-Underneath, show a small collection of relevant suggestions, such as:
+After implementation, update those descriptions accurately.
 
-* What browser am I using?
-* Check my device information.
-* Why is my browser slow?
-* How can I improve my privacy?
+2. PRODUCT MODEL LINEUP
 
-Do not use enormous suggestion cards.
+Varek must support two distinct assistant engines.
 
-The central chat area should be readable, comfortably constrained in width, and beautifully spaced.
+Zulvyn — Local Assistant
 
-Message composer
+Zulvyn remains available.
 
-The composer should include:
+It uses:
 
-* Multiline text input.
-* Send button.
-* Slash command suggestions.
-* Model selector.
-* Thinking mode control.
-* Keyboard shortcuts.
-* A functional Stop generation action while responding.
+* Authored knowledge.
+* Intent matching.
+* Structured diagnostics.
+* Browser information.
+* Troubleshooting flows.
+* Deterministic responses.
+* Slash commands.
 
-Enter sends the message. Shift+Enter adds a newline.
+It must not download an LLM.
 
-Support pasting longer text and multiline questions.
+Zulvyn should remain fast, lightweight, and functional on devices that cannot run WebGPU inference.
 
-The composer should expand naturally without consuming the entire viewport.
+Do not degrade, remove, or silently replace Zulvyn.
 
-Mobile layout
+Madon — Local Language Model
 
-Provide a fully responsive mobile interface.
+Madon becomes available.
 
-The sidebar should become an accessible navigation drawer.
+Madon is powered by a real Qwen3-1.7B language model running locally through WebLLM.
 
-The composer must remain usable when the mobile keyboard is open.
+Madon should support:
 
-Avoid horizontal scrolling, clipped text, unusable hover-only controls, and cramped tap targets.
+* Natural language conversations.
+* Open-ended questions.
+* General explanations.
+* Technical assistance.
+* Programming questions.
+* Browser troubleshooting.
+* Follow-up conversations.
+* Text generation.
+* Summarization.
+* Comparisons.
+* Multi-step problem solving.
+* Context-aware answers.
+* Real token streaming.
+* Optional thinking mode.
+* Optional free web retrieval.
+* Browser diagnostics through existing trusted Varek tools.
 
-Message design
+Madon should feel more flexible and capable than Zulvyn.
 
-Assistant responses should support:
+However, do not claim that a 1.7B model is equivalent to a frontier-scale cloud LLM.
 
-* Regular paragraphs.
-* Clear headings.
-* Bulleted and numbered instructions.
-* Inline code.
-* Code blocks.
-* Diagnostic result rows.
-* Copyable values.
-* Contextual follow-up suggestions.
-* Tool or command result displays.
-* Explicit capability and permission warnings.
+Default selection
 
-Allow message copying and regeneration.
+Keep Zulvyn as the initial default model.
 
-Give users a way to inspect available diagnostic evidence when relevant.
+Madon should be available for users to select voluntarily.
 
-Do not overload responses with decorative formatting.
+Do not automatically download gigabytes of model assets when users first open Varek.
 
-6. MODEL SYSTEM
+When a user selects Madon for the first time, guide them through a clear, permission-based download and initialization process.
 
-Varek has two model identities.
+Persist the selected model so it is restored on future visits.
 
-Zulvyn
+If the selected model cannot load, present an understandable recovery option rather than silently replacing Madon with Zulvyn.
 
-Status: Available.
+3. UNDERLYING MODEL SELECTION
 
-Zulvyn is the default and only usable model.
+Use the following model:
 
-Display it simply as:
+Qwen3-1.7B, quantized with q4f16_1.
 
-Zulvyn
+WebLLM model identifier:
+
+Qwen3-1.7B-q4f16_1-MLC
+
+Official quantized model repository:
+
+https://huggingface.co/mlc-ai/Qwen3-1.7B-q4f16_1-MLC
+
+Original model:
+
+https://huggingface.co/Qwen/Qwen3-1.7B
+
+WebLLM:
+
+https://github.com/mlc-ai/web-llm
+
+Why this model
+
+Qwen3-1.7B provides:
+
+* Actual generative language modeling.
+* Local inference.
+* A practical quantized size.
+* Stronger conversational flexibility than scripted responses.
+* Multi-turn instruction following.
+* Thinking and non-thinking behavior.
+* An Apache-2.0 model license.
+* Existing WebLLM catalog support.
+
+The WebLLM model configuration currently estimates approximately 2,037 MB of required WebGPU memory with a 4,096-token runtime context configuration.
+
+Actual system requirements may be higher.
+
+Version compatibility
+
+Inspect the current WebLLM release and its built-in model catalog.
+
+Use a version whose runtime, Qwen3 compiled model library, and model metadata are compatible.
+
+Pin the verified dependency version.
+
+Do not assume the latest version is automatically the most stable.
+
+Check relevant WebLLM regression reports, particularly GPU-device failures or issues involving longer prompts.
+
+Verify that the selected model ID actually exists in the installed package configuration.
+
+Do not rely on a nonexistent model alias.
+
+Avoid hardcoding unverified WASM library URLs.
+
+Do not compile a new model unnecessarily when a compatible prebuilt WebLLM model is available.
+
+Record the exact tested package version and model configuration in the documentation.
+
+4. LOCAL INFERENCE ENGINE
+
+Implement a real Madon inference adapter using WebLLM.
+
+Add the package through npm.
+
+Prefer the official WebLLM worker-based inference interface.
+
+Heavy model initialization and text generation must not block the React main thread.
+
+New architecture
+
+Create a dedicated Madon engine module.
+
+Suggested files:
+
+src/core/madon/engine.ts
+
+src/core/madon/worker.ts
+
+src/core/madon/runtime.ts
+
+src/core/madon/capabilities.ts
+
+src/core/madon/model-config.ts
+
+src/core/madon/prompt.ts
+
+src/core/madon/generation.ts
+
+src/core/madon/stream-parser.ts
+
+src/core/madon/context.ts
+
+src/core/madon/errors.ts
+
+src/core/madon/types.ts
+
+src/core/madon/retrieval.ts
+
+src/core/madon/sources.ts
+
+You may adjust this structure after examining the existing code.
+
+Keep inference implementation details separate from React components.
+
+Unified engine interface
+
+The existing src/core/models.ts points directly to Zulvyn’s respond() function.
+
+Refactor this into a typed model registry and a common execution interface.
+
+The interface should support:
+
+* Model identity.
+* Model capabilities.
+* Availability state.
+* Initialization.
+* Generation.
+* Token-stream callbacks or asynchronous token iteration.
+* Cancellation.
+* Progress events.
+* Recoverable errors.
+* Context management.
+* Resource cleanup.
+
+Zulvyn may continue returning precomposed responses internally.
+
+Madon must return genuinely generated output progressively.
+
+Create an adapter for Zulvyn rather than rewriting the existing deterministic engine.
+
+Never force both engines into an artificial implementation that damages either one.
+
+5. MODEL DOWNLOAD AND INITIALIZATION
+
+This is an essential part of the user experience.
+
+When Madon is selected for the first time, display a minimalist setup interface.
+
+Suggested heading:
+
+Set up Madon
 
 Description:
 
-“Local browser and device intelligence.”
+“Madon runs directly on your device. Download its language model once to start using local AI.”
 
-Zulvyn must power all conversational and command functionality.
+Show:
 
-Madon
+* The underlying model name.
+* An estimated download size based on actual model artifacts.
+* An explanation of local processing.
+* A warning that performance depends on device capabilities.
+* Available storage information when supported.
+* A clear Download and initialize button.
 
-Status: Coming Soon.
+Do not claim an exact download size unless it has been measured or verified.
 
-Display it in the model selector as a future option.
+Initialization states
 
-Suggested description:
+Implement a complete state machine:
 
-“Advanced intelligence. Coming soon.”
+1. Not initialized.
+2. Checking compatibility.
+3. Unsupported.
+4. Ready to download.
+5. Downloading.
+6. Loading model.
+7. Ready.
+8. Generating.
+9. Cancelling.
+10. Recoverable error.
+11. Insufficient memory.
+12. Model cache unavailable.
 
-Madon must not generate responses, change the active model, or pretend to be available.
+Display meaningful progress.
 
-A user who attempts to select it should receive an understated explanation that it is not yet available.
+Use actual WebLLM initialization progress events where available.
 
-Build the model registry so future models can have different engines, capabilities, metadata, and settings without rewriting the application.
+Never simulate download percentages.
 
-Never pretend that a second model has already been implemented.
+If the runtime cannot determine exact progress, show an indeterminate progress indicator with an honest explanation.
 
-7. BUILD A REAL CONVERSATIONAL ENGINE
+Caching
 
-This is one of the most important requirements.
+Cache downloaded model assets using the mechanisms supported by WebLLM.
 
-Zulvyn cannot behave like a simplistic chatbot using a handful of if statements.
+After successful caching, subsequent initialization should reuse locally stored assets when available.
 
-Create a layered, deterministic natural-language understanding system.
+Do not guarantee permanent caching.
 
-Message processing pipeline
+Browser storage can be evicted or cleared.
 
-Each user message should pass through these stages:
+Avoid placing gigabyte-scale model assets in Varek’s existing service-worker application-shell precache.
 
-1. Normalize input without destroying meaningful technical details.
-2. Detect whether the input is a command.
-3. Identify the message’s language and relevant entities where supported.
-4. Detect question type and user intent.
-5. Extract browser, operating system, hardware, and troubleshooting references.
-6. Identify possible negation, comparisons, and constraints.
-7. Retrieve recent conversation context.
-8. Determine whether the user is referring to a previous subject.
-9. Retrieve relevant knowledge entries.
-10. Evaluate available live browser/device data.
-11. Rank plausible interpretations.
-12. Resolve the best-supported intent.
-13. Determine whether clarification is needed.
-14. Compose a context-specific response.
-15. Present the response incrementally.
-16. Update conversation context and persistent history.
+Keep the PWA shell cache and model artifact cache logically separate.
 
-The engine must be fully local.
+Do not silently redownload deleted or evicted model assets.
 
-Intent recognition
+Provide an explicit retry mechanism when required.
 
-Implement a combination of:
+Settings
 
-* Phrase dictionaries.
-* Synonym expansion.
-* Weighted token matching.
-* Token normalization.
-* Typo tolerance.
-* Fuzzy matching.
-* N-gram matching.
-* Technical entity extraction.
-* Question pattern recognition.
-* Contextual intent resolution.
-* Confidence scoring.
-* Multiple-intent detection.
+Add a Madon model-management section displaying:
 
-Do not require exact wording.
+* Selected underlying model.
+* Download/installation state.
+* Estimated or observed storage use.
+* Whether WebGPU is available.
+* Whether the model is initialized.
+* A button to unload the model from memory.
+* A button to remove cached model assets, where safely supported.
+* A button to download or reinstall the model.
 
-For example, the following should resolve to the same general question:
+Do not delete unrelated browser caches.
 
-“What browser am I using?”
+6. WEBGPU COMPATIBILITY
 
-“Which browser is this?”
+Implement robust capability detection.
 
-“Can you detect my browser?”
+Check:
 
-“Am I on Chrome?”
+* Secure execution context.
+* WebGPU API availability.
+* GPU adapter availability.
+* Required GPU features.
+* Supported resource limits.
+* Model runtime requirements.
+* Known loading failures.
 
-“What’s my browser?”
+Do not assume WebGPU support means the model will run successfully.
 
-“What browser is running?”
+A browser may support WebGPU while the hardware lacks sufficient memory.
 
-“What am I browsing with?”
+Do not infer available VRAM solely from the device-memory API.
 
-“Can you tell what browser I have?”
+Attempt real runtime initialization and handle failures gracefully.
 
-However, a question like “Am I on Chrome?” requires a yes/no response based on the actual detection result, not simply a generic browser-information paragraph.
+Unsupported hardware behavior
 
-Implement intent-specific response composition.
+If Madon cannot run, provide a clear message such as:
 
-Handling ambiguity
+“Madon couldn’t initialize on this device. It requires a compatible browser and sufficient graphics memory. You can continue using Zulvyn.”
 
-If two or more intents are similarly plausible, ask a brief clarifying question.
+Offer:
 
-Never confidently answer an unrelated question merely because one keyword matched.
+* Retry.
+* View technical details.
+* Switch to Zulvyn.
 
-If the engine cannot adequately understand a request, acknowledge the limitation naturally and suggest nearby capabilities.
-
-Do not fabricate an answer.
-
-8. LARGE-SCALE KNOWLEDGE BASE
-
-This is an essential requirement, not an optional enhancement.
-
-I want Zulvyn to respond convincingly to a very wide range of differently worded browser and device questions.
-
-Create a substantial authored response library, not a tiny demonstration dataset.
-
-Content targets
-
-Aim for an initial full release containing at least:
-
-* 700 meaningful, individually authored knowledge or answer records.
-* 2,500 or more recognizable user expression patterns, aliases, and phrasings.
-* 100 or more structured troubleshooting flows or rule paths.
-* Hundreds of contextual answer compositions based on detected facts.
-* Hundreds of realistic conversation tests.
-
-These are coverage targets, not permission to create repetitive filler.
-
-Entries must contain genuinely useful information. Do not simply copy the same paragraph with minor synonym substitutions to inflate counts.
-
-If implementation is staged, build the functional engine first, then expand the authored content systematically. Report actual validated coverage rather than claiming targets have been reached prematurely.
-
-Knowledge categories
-
-Include extensive coverage of:
-
-Browser identification
-
-* Detecting browser family.
-* Browser version when available.
-* Chromium-based browsers.
-* Firefox.
-* Safari.
-* Edge.
-* Brave and other browsers when reliably identifiable.
-* Browser engines.
-* User-agent information.
-* Desktop versus mobile browser differences.
-* Browser compatibility.
-
-Device information
-
-* Operating system detection.
-* Platform information.
-* Mobile versus desktop classification.
-* Screen dimensions.
-* Browser viewport.
-* Device pixel ratio.
-* Logical processor information.
-* Approximate device memory where available.
-* Touch capabilities.
-* Keyboard and pointer capabilities.
-* Browser language.
-* Locale.
-* Time zone.
-* Color scheme preference.
-* Reduced-motion preference.
-
-Performance
-
-* Slow browsers.
-* High CPU usage.
-* Excessive memory usage.
-* Slow page loading.
-* Frozen tabs.
-* Unresponsive websites.
-* Browser crashes.
-* Background tabs.
-* Heavy extensions.
-* Hardware acceleration.
-* Cache-related performance issues.
-* Performance optimization.
-
-Privacy and security
-
-* Browser fingerprinting.
-* Tracking.
-* Cookies.
-* Third-party cookies.
-* Site permissions.
-* Location permissions.
-* Microphone permissions.
-* Camera permissions.
-* Notification permissions.
-* HTTPS.
-* Password managers.
-* Private browsing.
-* Safe browsing practices.
-* Phishing awareness.
-* Malicious extensions.
-* Data storage and privacy settings.
-
-Internet and networking
-
-* Connectivity problems.
-* Online/offline state.
-* DNS.
-* Wi-Fi troubleshooting.
-* Latency.
-* Connection quality.
-* VPN basics.
-* Proxies.
-* Browser network errors.
-* SSL errors.
-* Certificate warnings.
-* Common HTTP errors.
-* Network caching.
-* Service workers.
-* Website connection failures.
-
-Browser storage
-
-* Cookies.
-* Local storage.
-* Session storage.
-* IndexedDB.
-* Cache Storage.
-* Browser storage estimates.
-* Persistent storage.
-* Storage quotas.
-* Site data deletion.
-* Offline storage.
-* Storage permissions.
-
-Tabs and browsing
-
-* Tab management.
-* Restoring closed tabs.
-* Finding lost tabs.
-* Pinning tabs.
-* Grouping tabs.
-* Tab memory management.
-* Keyboard shortcuts.
-* Download management.
-* Browser history.
-* Bookmarks.
-* Autofill.
-* Search engines.
-* Page zoom.
-* Reading mode.
-
-Browser troubleshooting
-
-* Websites not opening.
-* Broken page layouts.
-* JavaScript errors.
-* Login failures.
-* Repeated logout.
-* Website permissions.
-* Broken video playback.
-* Missing audio.
-* Clipboard problems.
-* Pop-up blocking.
-* Download failures.
-* Blank pages.
-* Browser update problems.
-* Extension conflicts.
-
-Device troubleshooting
-
-Cover general guidance for Windows, macOS, Linux, Android, iOS, and iPadOS.
-
-Include:
-
-* Battery performance.
-* Storage problems.
-* Memory pressure.
-* Overheating.
-* Slow startup.
-* Background application usage.
-* Software updates.
-* Display configuration.
-* Input devices.
-* Network configuration.
-* Common system settings.
-
-Do not pretend a website can directly inspect operating-system internals.
-
-When necessary, provide instructions for the user to retrieve the needed information.
-
-Web technology
-
-Include practical explanations of:
-
-* HTML.
-* CSS.
-* JavaScript.
-* DOM.
-* WebAssembly.
-* Web APIs.
-* Browser engines.
-* HTTP and HTTPS.
-* DNS.
-* CORS.
-* CSP.
-* Local storage.
-* Service workers.
-* PWAs.
-* Extensions.
-* Rendering.
-* Browser caching.
-* Frontend performance.
-
-General computer literacy
-
-Include answers about:
-
-* RAM versus storage.
-* CPU versus GPU.
-* Bits and bytes.
-* Display resolution.
-* Refresh rates.
-* File formats.
-* Operating systems.
-* Browser updates.
-* Security updates.
-* Backups.
-* Data privacy.
-* Common technical terminology.
-
-Varek product knowledge
-
-Include:
-
-* What Varek is.
-* What Zulvyn is.
-* How local processing works.
-* Why no account is required.
-* What information the app can read.
-* What the app cannot access.
-* How to use commands.
-* How to export data.
-* How to delete saved conversations.
-* How to install the PWA.
-* How to install the browser extension.
-* What Madon is.
-* What Thinking mode does.
-
-Natural conversation
-
-Include appropriate coverage for:
-
-* Greetings.
-* Thanks.
-* Goodbye.
-* Requests for help.
-* Clarifications.
-* Corrections.
-* Follow-up questions.
-* Short affirmative and negative replies.
-* Requests for shorter explanations.
-* Requests for more detail.
-* Requests for step-by-step instructions.
-* Requests to repeat an explanation.
-* Requests to compare alternatives.
-
-Keep the tone professional, clear, concise, and approachable.
-
-Do not make Zulvyn excessively enthusiastic, repetitive, or robotic.
-
-Structured knowledge records
-
-Knowledge should be authored as structured, typed records.
-
-Each record should be capable of storing:
-
-* Unique ID.
-* Category.
-* Primary intent.
-* Alternative phrasings.
-* Keywords.
-* Relevant technical entities.
-* Conditions.
-* Supported browser environments.
-* Required capabilities.
-* Confidence requirements.
-* Answer variants.
-* Response structure.
-* Diagnostic actions.
-* Possible follow-up prompts.
-* Related knowledge entries.
-* Source or reference metadata.
-* Last-reviewed metadata where appropriate.
-
-Prefer independently testable records rather than hardcoded responses scattered across UI components.
-
-For factual technical guidance, distinguish stable explanations from version-sensitive instructions. Include maintainable references to authoritative documentation for changing browser behavior.
-
-Response variety
-
-Allow several professionally written ways to express the same answer.
-
-Variation should depend on context, clarity, requested depth, and conversation history.
-
-Avoid obvious random phrase substitutions that make answers awkward.
-
-A response should be genuinely relevant, not merely unpredictable.
-
-9. CONTEXTUAL CONVERSATION MEMORY
-
-Zulvyn should remember the subject of the active conversation.
+Do not render a broken or blank chat interface.
+
+Do not automatically switch engines without informing the user.
+
+Do not attempt an unreliable CPU-only fallback by default.
+
+A smaller internal variant may be considered only after being independently tested and documented. Do not silently represent a different underlying model as the originally selected model.
+
+7. REAL TOKEN STREAMING
+
+Madon must use genuine generated-token streaming.
+
+Do not pass its complete answer into the existing simulated stream() utility.
+
+Refactor the chat pipeline to distinguish:
+
+Zulvyn: Precomposed deterministic response with optional presentation streaming.
+
+Madon: Real inference stream generated by the language model.
+
+Use WebLLM’s streaming completion interface.
+
+Update the visible assistant message incrementally as tokens or text deltas arrive.
+
+Streaming behavior
+
+* Display generated content as it arrives.
+* Batch UI updates where useful to avoid excessive React renders.
+* Preserve UTF-8 and Unicode correctness.
+* Render Markdown safely.
+* Avoid flickering incomplete code blocks.
+* Support Stop generation.
+* Support Retry.
+* Support browser tab switching.
+* Respect reduced-motion preferences.
+* Handle generation errors after partial output.
+
+Do not fabricate text while waiting for the model.
+
+Cancellation
+
+The existing Varek interface uses an AbortController.
+
+Integrate cancellation with WebLLM’s supported generation interruption mechanism.
+
+Stopping must attempt to stop the underlying inference, not simply hide newly generated tokens.
+
+After cancellation:
+
+* Preserve generated text.
+* Mark the response as stopped.
+* Release active generation state.
+* Allow another message.
+* Avoid orphaned worker tasks.
+
+Prevent an older generation from updating a newly selected conversation.
+
+Use generation IDs or an equivalent concurrency mechanism.
+
+8. MULTI-TURN CONVERSATIONS
+
+Madon must understand conversation history.
 
 Example:
 
-User: “What browser am I using?”
+User: “What’s the difference between RAM and storage?”
 
-Zulvyn: Identifies the browser using available evidence.
+Madon explains.
 
-User: “Is it secure?”
+User: “Which one matters more for gaming?”
 
-Zulvyn: Explains the relevant browser security considerations.
+Madon should understand what “which one” refers to.
 
-User: “How do I make it faster?”
+User: “What about browsing?”
 
-Zulvyn: Provides performance suggestions for that browser.
+Madon should continue the same discussion.
 
-User: “Give me the steps.”
+Conversation construction
 
-Zulvyn: Expands the previous suggestions into instructions.
+Build actual role-based prompts containing:
 
-Build local short-term conversational context with:
+* A system instruction.
+* Recent user messages.
+* Recent assistant messages.
+* Relevant device facts when requested.
+* Relevant retrieved sources when enabled.
+* Explicit instructions regarding uncertainty.
 
-* Current subject.
-* Current browser or platform.
-* Previous intent.
-* Detected entities.
-* User-provided facts.
-* Outstanding clarification questions.
-* Current troubleshooting workflow.
-* Previously attempted solutions.
-* Requested answer depth.
+Do not serialize the entire Varek database into every prompt.
 
-Maintain a bounded context window so unrelated old messages do not incorrectly influence new responses.
+Context management
 
-Allow users to correct assumptions.
+Respect the chosen runtime’s actual context window.
 
-Store conversation history locally and restore it on return.
+The default WebLLM Qwen3-1.7B configuration uses a smaller context window than the original model’s maximum theoretical context.
 
-Do not claim that Zulvyn remembers information that has been deleted or is no longer available.
+Do not confuse the model’s advertised architectural context length with the loaded WebLLM configuration.
 
-10. THINKING MODE
+Implement:
 
-Implement a meaningful thinking system.
+* Token-budget management.
+* Bounded recent-message history.
+* Truncation of older turns.
+* Explicit context-reset behavior.
+* Optional compact conversation summaries if justified and tested.
 
-This does not require an actual neural model.
+Never claim the model can remember messages that were excluded from the supplied context.
 
-Thinking should select a more thorough deterministic diagnostic process when the user’s request requires multiple steps or involves uncertainty.
+Conversation storage
 
-Modes
+Preserve existing IndexedDB conversations.
 
-Support:
+Add sufficient metadata to record:
 
-* Auto — default.
+* Selected model.
+* Model version when relevant.
+* Whether a response used web sources.
+* Whether a response was stopped.
+* Generation failure metadata when useful.
+
+Maintain backward compatibility with existing saved conversations.
+
+Existing users must not lose their history.
+
+Validate imported and persisted data.
+
+Do not require an unnecessary database reset.
+
+9. THINKING MODE
+
+The existing Varek UI supports:
+
+* Auto.
 * On.
 * Off.
 
-Auto
+Preserve these settings.
 
-Automatically enable structured analysis for:
-
-* Troubleshooting questions.
-* Questions involving multiple device facts.
-* Browser compatibility comparisons.
-* Security or privacy recommendations.
-* Complex follow-up questions.
-* Ambiguous technical issues.
-* Multi-step diagnostics.
-
-Do not unnecessarily enter Thinking mode for greetings, basic factual commands, or trivial requests.
-
-On
-
-Use the full available diagnostic reasoning pipeline whenever relevant.
+Implement meaningful Qwen3 thinking behavior for Madon.
 
 Off
 
-Prefer direct, concise responses and avoid optional multi-stage diagnosis.
+Use the model’s supported non-thinking behavior.
 
-Always perform essential correctness and safety checks regardless of mode.
+Prefer short generation latency and direct responses.
 
-Thinking interface
+On
 
-When meaningful work is being performed, display short, truthful stage descriptions such as:
+Enable Qwen3’s supported thinking behavior where the WebLLM runtime and conversation template allow it.
 
-“Checking available browser information”
+Auto
 
-“Comparing possible causes”
+Determine whether to use thinking behavior based on the request.
 
-“Reviewing relevant fixes”
+Examples that may benefit:
 
-“Preparing recommendations”
+* Multi-step troubleshooting.
+* Complex comparisons.
+* Programming problems.
+* Reasoning-heavy questions.
+* Technical diagnosis.
+* Requests involving multiple constraints.
 
-These stages must correspond to operations the system actually performs.
+Simple greetings and routine answers should normally use non-thinking behavior.
 
-Do not fabricate private reasoning or imply that a neural network is secretly solving the problem.
+Correct model integration
 
-Optionally provide an expandable Analysis summary containing:
+Qwen3 supports thinking and non-thinking behavior through its native prompt conventions.
 
-* Observed facts.
-* Relevant assumptions.
-* Diagnostic checks performed.
-* Possible causes.
-* Why a recommendation was selected.
-* Missing information.
+Inspect the selected WebLLM conversation template.
 
-The analysis summary should be understandable and useful.
+Use the model’s supported /think and /no_think controls only when they correctly activate the expected behavior in the deployed runtime.
 
-Avoid fake chain-of-thought content.
+Do not assume the existing Varek /think slash command can be passed directly to the language model.
 
-Reasoning rules
+Keep Varek command parsing separate from internal model prompting.
 
-The engine should:
+Test that On and Off actually produce the intended runtime behavior.
 
-1. Gather available facts.
-2. Identify possible causes.
-3. Check which explanations fit the evidence.
-4. Exclude unsupported conclusions.
-5. Prioritize low-risk troubleshooting steps.
-6. Produce a structured recommendation.
-7. Ask follow-up questions when essential evidence is missing.
+Thinking output
 
-An example is a user reporting a slow browser.
+Some Qwen3 configurations can generate internal thinking text separated by special markers.
 
-Zulvyn should evaluate available information, explain common causes, distinguish confirmed observations from possibilities, and recommend relevant next steps.
+Do not expose raw internal reasoning markers, hidden thought tokens, or incomplete internal analysis directly in the chat.
 
-It must not claim to have measured CPU temperature, physical RAM usage, or running system processes when it has not.
+Parse the stream correctly so the user-facing answer contains only the final response.
 
-11. STREAMING RESPONSES
+The UI may display truthful status indicators such as:
 
-Zulvyn must answer progressively instead of displaying a complete message instantly.
+“Analyzing the request”
 
-Implement a polished streaming-style presentation system.
+“Reviewing browser information”
 
-Requirements:
+“Preparing an answer”
 
-* Render text in readable, progressive chunks.
-* Support varying response lengths.
-* Preserve Markdown formatting.
-* Provide a subtle active-response indicator.
-* Allow the user to stop the response.
-* Allow response regeneration.
-* Avoid breaking Unicode characters.
-* Handle code blocks correctly.
-* Automatically follow new output unless the user manually scrolls away.
-* Respect reduced-motion settings.
-* Avoid overwhelming screen readers with every new character.
+Do not fabricate analysis stages.
 
-The effect should feel natural, controlled, and responsive.
+If useful, display a concise explanation of verified facts and diagnostic checks, but do not present hidden model reasoning as a transcript.
 
-Do not always stream at exactly the same speed.
+10. MADON SYSTEM PROMPT
 
-Avoid deliberately delaying long answers merely to imitate a remote LLM.
+Give Madon a consistent system instruction.
 
-Most importantly, run the actual matching, diagnostics, and response composition before or during the presentation process.
+Its identity is Madon, an assistant within Varek.
 
-The streaming renderer is a presentation layer, not the source of the answer.
+It should be:
 
-Expose cancellation cleanly using a cancellable response task.
+* Clear.
+* Calm.
+* Intelligent.
+* Concise by default.
+* Technically precise.
+* Helpful.
+* Context-aware.
+* Honest about uncertainty.
 
-If the user stops generation, preserve the visible partial answer and provide a clear indication that the response was stopped.
+Avoid exaggerated enthusiasm.
 
-12. SLASH COMMAND SYSTEM
+Do not constantly introduce itself.
 
-Create a first-class command interface.
+Do not claim to be Claude, ChatGPT, GPT, or another branded assistant.
 
-Typing / at the beginning of the composer must open a searchable command menu.
+Do not pretend to have performed real actions that were not executed.
 
-The menu should support:
+Product identity
 
-* Keyboard navigation.
-* Command descriptions.
-* Autocomplete.
-* Command arguments.
-* Helpful errors.
-* Contextual availability.
-* Permission requirements.
-* Extension-only command labels.
+Madon should understand:
 
-Implement at least the following commands.
+* It operates inside Varek.
+* It is powered by an open-weight local language model.
+* Its inference runs locally when initialized.
+* It can use only browser and extension capabilities explicitly provided to it.
+* It does not automatically know the user’s exact device hardware or files.
+* Its general knowledge may be outdated.
+* Its answers may contain errors.
 
-General
+Include model attribution in About or Settings.
 
-/help — Show available commands.
+Do not unnecessarily prepend model attribution to every response.
 
-/about — Explain Varek and Zulvyn.
+11. INTEGRATE EXISTING BROWSER DIAGNOSTICS
 
-/model — Show available models.
+Madon must be able to use Varek’s existing diagnostic functionality.
 
-/think auto — Enable automatic thinking.
+This is an important advantage over a generic local chatbot.
 
-/think on — Prefer full analysis.
+Do not ask the LLM to guess browser information.
 
-/think off — Prefer quick answers.
+Trusted diagnostic tools
 
-/theme light — Activate light theme.
+Reuse existing functions from:
 
-/theme dark — Activate dark theme.
+src/lib/diagnostics.ts
 
-/theme system — Follow system appearance.
+and existing command handlers where suitable.
 
-/clear — Clear the active conversation after confirmation.
+Support user questions such as:
 
-/new — Create a new conversation.
+* “What browser am I using?”
+* “What’s my screen resolution?”
+* “Does my browser support WebGPU?”
+* “Why is this browser slow?”
+* “Can my device run Madon?”
+* “What information can you see?”
+* “How much browser storage is available?”
+* “Do I have hardware acceleration?”
+* “What operating system am I using?”
 
-/export — Export the current conversation as a local file.
+Tool orchestration
 
-/shortcuts — Show keyboard shortcuts.
+Implement a deterministic tool router.
 
-Browser information
+It should identify when verified browser information is useful.
 
-/browser — Display detected browser details.
+For appropriate requests:
 
-/device — Display available device information.
+1. Select the required diagnostic operation.
+2. Execute the existing trusted function.
+3. Obtain structured results.
+4. Preserve evidence classification.
+5. Supply relevant facts to Madon’s prompt.
+6. Generate a natural-language explanation.
 
-/system — Explain detected platform and system capabilities.
+Never give the model permission to execute arbitrary JavaScript.
 
-/screen — Show screen and viewport information.
+The LLM is not allowed to invent tool names, invoke arbitrary functions, or bypass the command registry.
 
-/language — Show browser language preferences.
+Evidence
 
-/timezone — Display detected time zone.
-
-/permissions — Explain observable permission states.
-
-/features — List supported browser capabilities.
-
-/storage — Display available browser storage information.
-
-/privacy — Explain privacy-relevant browser information.
-
-/network — Display supported connectivity and network information.
-
-Diagnostics
-
-/diagnose — Open an interactive troubleshooting workflow.
-
-/performance — Show available performance-related observations and advice.
-
-/compatibility — Check relevant web-platform feature support.
-
-/security — Provide browser security recommendations.
-
-/cache — Explain caching and safe cache troubleshooting steps.
-
-/cookies — Explain cookie behavior and how to manage it.
-
-Extension-enhanced commands
-
-/tab — Show information about the selected tab, where permission allows.
-
-/tabs — Provide tab-management features when extension APIs are available.
-
-/page — Inspect permitted page metadata and basic information.
-
-/reader — Provide reading-oriented tools for permitted page content.
-
-/extensions — Explain or inspect extension-related information only to the extent the browser APIs and permissions allow.
-
-Clearly identify unavailable extension commands in web-only mode.
-
-Do not produce fabricated results when an API is unavailable.
-
-Commands must perform meaningful work and return accurate output.
-
-Command architecture
-
-Use a centralized command registry.
-
-Each command should define:
-
-* Name.
-* Aliases.
-* Description.
-* Arguments.
-* Validation.
-* Permission requirements.
-* Availability.
-* Execution handler.
-* Result schema.
-* Error behavior.
-
-Do not implement commands as unstructured special cases inside the chat component.
-
-13. REAL DEVICE AND BROWSER INFORMATION
-
-Varek’s main differentiator is its ability to use information from the current browser environment.
-
-Implement a dedicated capability and diagnostics layer.
-
-Detectable information
-
-Where supported, collect:
-
-* Browser family.
-* Browser version or version hints.
-* Operating system or platform hints.
-* Device category.
-* Browser language.
-* Locale.
-* Time zone.
-* Screen resolution.
-* Viewport dimensions.
-* Device pixel ratio.
-* Color depth.
-* Touch support.
-* Pointer capabilities.
-* Hardware concurrency.
-* Approximate device memory.
-* Online/offline state.
-* Limited network quality hints.
-* Color scheme preference.
-* Reduced-motion preference.
-* Storage quota estimates.
-* Supported browser APIs.
-* Selected permission states when queryable.
-
-Use standards-based APIs where possible.
-
-Use feature detection, not assumptions.
-
-User-agent Client Hints may be unavailable or restricted.
-
-Device memory values may be rounded or unavailable.
-
-Hardware concurrency is not a guaranteed measurement of physical CPU cores.
-
-Online status does not guarantee that the internet is reachable.
-
-Do not use invasive fingerprinting or covert identification methods.
-
-Evidence classification
-
-Every diagnostic field should indicate one of:
+Keep the distinction between:
 
 * Observed.
 * Estimated.
@@ -1069,741 +734,891 @@ Every diagnostic field should indicate one of:
 * Unavailable.
 * Requires permission.
 
-Only present values as confirmed when they are genuinely established.
+For example, if only a rounded memory estimate is available, Madon must not describe it as exact physical RAM.
 
-For example:
+For inaccessible information, explain the limitation.
 
-“Your browser reports approximately 8 GB of device memory.”
+Never invent CPU usage, temperatures, process lists, or browser history.
 
-Do not say:
+12. PRESERVE SLASH COMMANDS
 
-“Your computer has exactly 8 GB of RAM.”
+All existing Zulvyn commands must continue to work.
 
-Unsupported information
-
-A normal website cannot freely inspect:
-
-* Installed native applications.
-* All device files.
-* Exact CPU or GPU utilization.
-* Running system processes.
-* Exact physical memory usage.
-* Hardware temperatures.
-* Battery health.
-* Complete browsing history.
-* Arbitrary browser settings.
-* Other applications’ private data.
-
-Do not implement fake values for these fields.
-
-If the user asks for inaccessible information, explain what cannot be read and how they can check it manually.
-
-Where safe, ask the user to provide relevant information so Zulvyn can continue troubleshooting.
-
-Diagnostics dashboard
-
-Provide a minimal, optional diagnostic view.
-
-It should feel like a refined utility panel, not a colorful analytics dashboard.
-
-Group information by:
-
-* Browser.
-* Device.
-* Display.
-* Network.
-* Storage.
-* Permissions.
-* Capabilities.
-
-Allow users to copy individual results or export a diagnostic report.
-
-Provide a privacy-safe preview of data before export.
-
-Do not automatically upload the report anywhere.
-
-14. BROWSER EXTENSION
-
-Varek must also be available as a browser extension.
-
-Build the first extension release for Chromium-based browsers using Manifest V3.
-
-Use the same core engine and visual design as the website.
-
-Extension experience
-
-Implement:
-
-* Toolbar icon.
-* Compact popup.
-* Persistent side panel where supported.
-* Browser information access.
-* Contextual tab information.
-* Relevant commands.
-* Local conversation history.
-* A compact version of the Zulvyn chat interface.
-
-The side panel should be the primary extended experience.
-
-When installed, users should be able to open Varek alongside their current browser tab.
-
-Contextual page capabilities
-
-With an explicit user action and appropriate permission, support:
-
-* Current page title.
-* Current page URL.
-* Domain.
-* Basic document metadata.
-* Basic page structure statistics.
-* Relevant technical attributes.
-* Limited troubleshooting observations.
-* Permissioned extraction of page text for simple local analysis.
-
-Do not assume the extension can understand arbitrary page content like an actual LLM.
-
-If providing page summaries, use clearly defined extractive techniques and disclose their limitations.
-
-Avoid unsupported claims about the page’s meaning.
-
-Do not read sensitive page contents without deliberate user action.
-
-Permissions
-
-Use the minimum permissions necessary.
-
-Possible permissions include:
-
-* storage
-* sidePanel
-* activeTab
-* scripting
-
-Introduce additional permissions only for concrete implemented features.
-
-Avoid blanket access to all websites.
-
-Prefer temporary activeTab access or optional site permissions.
-
-Do not automatically inspect every website the user visits.
-
-Web-to-extension integration
-
-The website should work independently without the extension.
-
-If a supported Chrome extension is installed, the website may offer additional capabilities through a secure, explicit bridge.
-
-Use established extension messaging mechanisms.
-
-For any externally connectable bridge:
-
-* Restrict allowed website origins.
-* Validate message types and payloads.
-* Reject unauthorized senders.
-* Require user consent for sensitive operations.
-* Never treat a web page request as unrestricted permission to access browser data.
-
-Do not assume the extension is installed.
-
-Do not require the extension for basic Zulvyn functionality.
-
-Extension packaging
-
-The extension must contain its own bundled executable code.
-
-Do not load remotely hosted executable JavaScript from GitHub Pages.
-
-Create a separate build artifact suitable for loading as an unpacked extension.
-
-Keep the website and extension builds separate while sharing common source modules.
-
-Document installation and local development.
-
-Support Firefox only after implementing and testing a compatible API adapter; do not promise unimplemented compatibility.
-
-15. LOCAL STORAGE AND PRIVACY
-
-Privacy should be a core feature of Varek.
-
-The application should function without accounts.
-
-Store locally:
-
-* Conversations.
-* User preferences.
-* Selected model.
-* Thinking preference.
-* Theme.
-* Saved user-provided device information.
-* Relevant conversational context.
-
-Use IndexedDB for conversations and structured history.
-
-Use a versioned storage schema with migrations.
-
-Provide:
-
-* Export conversations.
-* Delete individual conversations.
-* Clear all conversations.
-* Reset preferences.
-* Clear stored device information.
-* Clear all Varek data.
-
-All destructive actions should use appropriate confirmation.
-
-Do not collect analytics by default.
-
-Do not use tracking pixels or third-party session monitoring.
-
-Avoid unnecessary external network requests.
-
-Make a clear distinction between downloading the hosted website assets and sending conversation content to a server.
-
-Explain that GitHub Pages hosts the static files but the conversational engine executes in the browser.
-
-Do not claim end-to-end encryption or guarantees that are not implemented.
-
-Do not secretly transmit messages, page content, diagnostic reports, or browser data.
-
-16. PWA AND OFFLINE SUPPORT
-
-Varek should be installable as a Progressive Web App on supported browsers.
-
-Implement:
-
-* Web app manifest.
-* Appropriate application icons.
-* Service worker.
-* Offline application shell.
-* Cached static assets.
-* Cached local knowledge data.
-* Reliable update detection.
-* Safe cache versioning.
-* Install guidance where supported.
-
-After the application has been installed or successfully cached, its core conversation engine should remain usable offline.
-
-A cold first visit with no cached assets cannot be assumed to work offline.
-
-Do not make local diagnostics dependent on a hosted API.
-
-Ensure offline storage and service-worker behavior respect the GitHub Pages project base path.
-
-Provide a subtle indication when the application is offline, if relevant.
-
-17. GITHUB PAGES DEPLOYMENT
-
-Deploy the website from the hiyroscript/varek repository.
-
-The expected project-site URL is:
-
-https://hiyroscript.github.io/varek/
-
-Configure Vite appropriately for the /varek/ base path.
-
-Avoid broken asset URLs caused by absolute root paths.
-
-Use routing that works on GitHub Pages without requiring a server-side rewrite configuration.
-
-Create a GitHub Actions deployment workflow under:
-
-.github/workflows/deploy.yml
-
-The workflow should:
-
-1. Check out the repository.
-2. Set up Node.js.
-3. Install dependencies reproducibly.
-4. Run TypeScript checks.
-5. Run automated tests.
-6. Build the website.
-7. Publish the built static site to GitHub Pages.
-
-Provide documentation for enabling GitHub Pages with GitHub Actions as the publishing source.
-
-Make deployment reproducible.
-
-Do not depend on local, uncommitted build artifacts.
-
-Do not put secrets or private credentials in frontend source files.
-
-The extension should have a separate build command and downloadable artifact.
-
-18. INTERACTION DETAILS
-
-The application should feel responsive and deliberately crafted.
-
-Implement the following behaviors carefully.
-
-Chat composer
-
-* Automatic height adjustment.
-* Visible focus state.
-* Escape to close the command menu.
-* Arrow-key command navigation.
-* Enter to send.
-* Shift+Enter for newline.
-* Disabled or clearly managed input states during operations.
-* Stop generation control.
-
-Conversation management
-
-* New conversations.
-* Automatic conversation titles derived from the first meaningful message.
-* Rename.
-* Delete.
-* Pin.
-* Search.
-* Persistent history.
-* Correct ordering by recent activity.
-
-Do not use fake AI-generated titles. Use a deterministic title-generation strategy.
-
-Assistant responses
-
-* Streaming-style appearance.
-* Copy button.
-* Retry button.
-* Optional analysis summary.
-* Relevant follow-up suggestions.
-* Accurate command results.
-* Error handling.
-* Clean Markdown rendering.
-
-Model selector
-
-Show:
-
-* Zulvyn — Available.
-* Madon — Coming Soon.
-
-Do not add fake models.
-
-Keyboard shortcuts
-
-Implement a sensible shortcut system.
-
-For example:
-
-* New chat.
-* Focus composer.
-* Toggle sidebar.
-* Open command menu.
-* Search conversations.
-* Close dialogs.
-
-Avoid overriding important native browser shortcuts.
-
-Accessibility
-
-Implement:
-
-* Semantic HTML.
-* Proper input labels.
-* Keyboard accessibility.
-* Visible focus indicators.
-* Accessible dialog behavior.
-* Adequate color contrast.
-* Reduced-motion support.
-* Screen reader announcements.
-* Accessible streamed response behavior.
-
-Test both light and dark themes.
-
-19. RESPONSE QUALITY AND WRITING STYLE
-
-Zulvyn’s personality must feel consistent.
-
-It should be:
-
-* Calm.
-* Intelligent.
-* Precise.
-* Helpful.
-* Professional.
-* Concise by default.
-* Detailed when necessary.
-* Honest about uncertainty.
-
-Avoid repetitive expressions such as:
-
-“Certainly!”
-
-“Great question!”
-
-“Absolutely!”
-
-“I’d be happy to help!”
-
-Do not introduce every answer with unnecessary enthusiasm.
-
-Avoid making every response use the same template.
-
-Prefer direct answers followed by useful explanation.
-
-Example interaction:
-
-User: Why is my browser lagging?
-
-Zulvyn: There are a few common reasons for browser lag: heavy tabs, extensions, limited available memory, and graphics acceleration issues.
-
-I can check some information exposed by your browser, but I can’t directly measure system-wide CPU or RAM usage.
-
-Would you like to start with a quick browser check or troubleshoot a specific website?
-
-User: Quick check.
-
-Zulvyn: Checks available browser capabilities and reports actual observations, limitations, and suggested next steps.
-
-User: What should I try first?
-
-Zulvyn: Recommends the most appropriate next step based on the current troubleshooting context.
-
-This should work as a real multi-turn interaction, not as a hardcoded transcript.
-
-Handling unsupported questions
-
-Zulvyn should support a useful range of natural conversation, but must not pretend to understand every possible question.
-
-If the user asks an unrelated or unrecognized question, avoid generic technical answers that don’t address it.
-
-Instead, respond naturally:
-
-“I don’t have a reliable answer to that yet. I can help with browser settings, device information, performance, privacy, and troubleshooting.”
-
-Where appropriate, offer a more specific interpretation or clarifying question.
-
-20. DIAGNOSTIC DECISION TREES
-
-Build an actual rules-based troubleshooting system.
-
-Each troubleshooting flow should have:
-
-* Initial symptom.
-* Relevant platform.
-* Known environmental conditions.
-* Possible causes.
-* Diagnostic questions.
-* Recommended checks.
-* Low-risk remediation steps.
-* User confirmation.
-* Follow-up branching.
-* Escalation guidance.
-* Exit conditions.
-
-For example:
-
-Problem: Website doesn’t load.
-
-Evaluate, as appropriate:
-
-* Whether the browser reports connectivity.
-* Whether one website or many are affected.
-* Whether a browser error message is available.
-* Whether the issue happens across browsers.
-* Whether extensions may be involved.
-* Whether DNS or certificate problems are plausible.
-* Whether the problem is likely website-specific.
-
-Ask targeted questions rather than displaying a generic troubleshooting article.
-
-Prefer safe, reversible checks first.
-
-Do not recommend disabling security protections as a routine first step.
-
-Do not claim to have tested a network connection or external website unless a real test was performed.
-
-21. RESPONSE COMPOSITION ENGINE
-
-The final response should be assembled from meaningful structured information.
-
-Use:
-
-* Matched intent.
-* Available environment facts.
-* Knowledge-base content.
-* Platform-specific instructions.
-* Relevant troubleshooting outcomes.
-* User preferences.
-* Conversation context.
-* Evidence confidence.
-* Required permission notices.
-
-Support multiple response depths:
-
-* Brief.
-* Standard.
-* Detailed.
-* Step-by-step.
-
-The user should be able to request more detail without starting over.
+Madon should support the same compatible local commands.
 
 Examples:
 
-“Explain that more.”
+/help
 
-“Make it shorter.”
+/browser
 
-“Give me the steps.”
+/device
 
-“How about Firefox?”
+/screen
 
-“What does that mean?”
+/privacy
 
-“Can you compare those?”
+/performance
 
-The assistant should resolve these requests based on the active conversation.
+/storage
 
-Make the response engine extensible so more knowledge modules and diagnostic tools can be added later.
+/network
 
-22. SECURITY REQUIREMENTS
+/think on
 
-Treat all user and webpage content as untrusted input.
+/think off
 
-Requirements:
+/think auto
 
-* Do not execute user-entered JavaScript.
-* Do not execute arbitrary commands from chat input.
-* Do not use eval or equivalent dynamic execution.
-* Parse slash commands through an allowlisted registry.
-* Sanitize or safely render Markdown.
-* Do not inject untrusted HTML.
-* Validate stored data.
-* Validate extension messages.
-* Validate any URL before opening it.
-* Restrict privileged actions by capability and permission.
-* Avoid introducing unnecessary external dependencies.
-* Respect browser security boundaries.
-* Prevent accidental disclosure of sensitive diagnostic data.
+/theme dark
 
-For extension features, explicitly handle restricted pages where content scripts cannot operate.
+/model
 
-Users should never believe that a command can modify protected settings unless that action is genuinely implemented and permissioned.
+/clear
 
-23. PERFORMANCE REQUIREMENTS
+/new
 
-The application must remain fast despite its large knowledge base.
+/export
 
-Do not load and linearly scan every full answer on every keystroke.
+Execution architecture
 
-Build searchable indexes and lightweight intent metadata.
+Commands must be interpreted before the request reaches the LLM.
 
-Consider:
+A slash command should execute through the trusted Varek command layer.
 
-* Category indexing.
-* Token-to-intent inverted indexes.
-* Lazy loading larger knowledge categories.
-* Memoized normalization.
-* Indexed search structures.
-* Worker-based matching for heavier operations.
-* Efficient chat virtualization when necessary.
-* Debounced conversation search.
-* Minimal unnecessary React renders.
+Do not ask Madon to simulate command execution.
 
-Keep common requests responsive on ordinary devices.
+For example:
 
-Streaming must not block the main UI thread.
+/browser
 
-Avoid creating hundreds of timers or inefficient rendering loops.
+must show actual available browser information.
 
-Use dynamic imports where appropriate.
+It should not produce a guessed browser report.
 
-24. TESTING REQUIREMENTS
+New model commands
 
-Write real automated tests.
+Extend /model to support:
 
-Test at least:
+/model zulvyn
 
-* Intent matching.
-* Paraphrase recognition.
-* Typo tolerance.
-* Negation handling.
-* Multiple-intent handling.
-* Contextual follow-ups.
-* Ambiguous queries.
-* Unsupported questions.
-* Command parsing.
-* Command permissions.
-* Context expiration.
-* Device capability detection.
-* Unavailable browser APIs.
-* Thinking mode selection.
-* Response composition.
-* Streaming cancellation.
-* Markdown safety.
-* Local storage persistence.
-* Conversation deletion.
-* Knowledge indexing.
-* Browser-extension messaging security.
+/model madon
 
-Create realistic conversational test sequences rather than testing only isolated keywords.
+/model status
 
-Include cases such as:
+/model unload
 
-“What browser am I using?”
+A command requesting Madon should initiate or expose the required model setup flow.
 
-“Is that browser good?”
+Do not automatically start a large download without consent.
 
-“What about privacy?”
+Commands should produce descriptive validation errors.
 
-“Make that shorter.”
+13. FREE WEB-INFORMATION RETRIEVAL
 
-“Can I check my RAM?”
+Implement an optional web retrieval system for Madon.
 
-“Why is my laptop hot?”
+This is not unrestricted internet browsing.
 
-“My browser keeps crashing.”
+It must work within GitHub Pages’ static hosting constraints.
 
-“Does this work offline?”
+No paid search API or mandatory API key is allowed.
 
-“Can you inspect my other apps?”
+First supported source
 
-“How do I clear my cache?”
+Use Wikimedia/MediaWiki’s public APIs for selected factual lookups.
 
-“Compare Chrome and Firefox.”
+For anonymous browser requests, use the documented CORS mechanism.
 
-“Actually, I’m using Safari.”
+The API can support relevant search and article retrieval through allowlisted endpoints.
 
-“Run /browser.”
+Validate request parameters and response schemas.
 
-“Switch to Madon.”
+Do not use JSONP or arbitrary cross-origin proxies.
 
-Check that unsupported capabilities produce honest limitations rather than invented data.
+Additional source
 
-Test mobile and desktop layouts.
+Consider Stack Exchange’s public API for technical questions only after verifying actual browser access and free quota behavior.
 
-Test the GitHub Pages production build using the /varek/ base path.
+If it is unreliable, omit it rather than pretending the source works.
 
-Test offline behavior after caching.
+Local knowledge
 
-Test browser-extension behavior separately.
+Continue to use Varek’s authored knowledge as an optional retrieval source for technical guidance.
 
-25. DELIVERABLES
+This provides useful context without making additional external requests.
 
-Build and include:
+Web controls
 
-1. The complete responsive Varek web application.
-2. Functional Zulvyn conversational engine.
-3. Extensive authored knowledge library.
-4. Deterministic context-awareness system.
-5. Real browser/device diagnostics.
-6. Thinking and structured-analysis system.
-7. Progressive response renderer.
-8. Slash command engine.
-9. Persistent conversations and preferences.
-10. Functional model selector.
-11. Madon Coming Soon state.
-12. Light and dark themes.
-13. PWA manifest and offline assets.
-14. Manifest V3 browser-extension implementation.
-15. Extension side panel and popup.
-16. Secure optional extension bridge.
-17. Automated tests.
-18. GitHub Pages deployment workflow.
-19. Comprehensive README.
-20. A developer guide explaining how to add new knowledge, intents, commands, and future models.
+Add an optional control:
 
-Document exactly which functionality is available in:
+Use web sources
 
-* Web-only mode.
-* Installed PWA mode.
-* Browser-extension mode.
+Default it to Off until the user explicitly enables it.
 
-Do not describe a feature as available unless it is implemented.
+When enabled, Madon may retrieve supported public sources when relevant.
 
-26. IMPLEMENTATION ORDER
+Provide an explanation:
 
-Work in the following sequence.
+“Web retrieval sends search terms to the selected information provider. Model inference still runs on your device.”
 
-Phase 1 — Foundation
+Allow users to disable it at any time.
 
-Create the project, build configuration, design tokens, application shell, routing, persistence layer, and responsive chat interface.
+Do not send entire conversation histories to third-party search APIs.
 
-Phase 2 — Core Intelligence
+Minimize transmitted query information.
 
-Implement intent processing, contextual memory, response ranking, structured knowledge records, response composition, and the first working Zulvyn conversations.
+Retrieval pipeline
 
-Phase 3 — Real Diagnostics
+1. Detect whether the request benefits from external information.
+2. Generate a small, relevant search query.
+3. Choose a supported provider.
+4. Retrieve public information.
+5. Validate the response.
+6. Limit content length.
+7. Extract relevant passages.
+8. Create source records with original URLs.
+9. Supply those records to the local model.
+10. Generate an answer grounded in the retrieved material.
+11. Display real source links.
 
-Implement browser capability detection, device reporting, evidence classification, diagnostic workflows, and supported local commands.
+Citations
 
-Phase 4 — Knowledge Expansion
+If Madon uses a web source, provide accessible citations.
 
-Expand the actual authored answer library systematically across the required categories. Build validation scripts that report unique records, expression coverage, missing fields, duplicated content, and failing knowledge tests.
+Each citation must link to an actual retrieved source.
 
-Phase 5 — Thinking and Streaming
+Do not let Madon invent citations.
 
-Implement contextual analysis selection, truthful analysis summaries, progressive output, regeneration, cancellation, and follow-up resolution.
+Prefer citations controlled by structured retrieval metadata rather than trusting generated URLs in model output.
 
-Phase 6 — Extension
+If no source was retrieved, do not display made-up references.
 
-Implement the Manifest V3 package, popup, side panel, permissions, tab-context features, and safe integration with the shared Zulvyn engine.
+Retrieval failures
 
-Phase 7 — Final Product Quality
+Handle:
 
-Complete mobile refinements, accessibility, PWA support, offline operation, automated tests, build optimization, and deployment.
+* Offline access.
+* CORS restrictions.
+* API quotas.
+* Empty results.
+* Invalid responses.
+* Timeouts.
+* Rate limiting.
+* Unavailable providers.
 
-Do not leave the application in a broken or unbuildable state between phases.
+If the search fails, Madon may answer from local knowledge, but it must not claim to have checked the web.
 
-27. ACCEPTANCE CRITERIA
+For current information, explicitly state that live verification was unavailable.
 
-The implementation is complete when:
+Never describe this limited retrieval system as unrestricted live internet access.
 
-* The website builds successfully.
-* GitHub Pages deployment is configured correctly.
-* The Varek interface looks like a polished, premium web application.
-* Zulvyn responds naturally to a broad range of supported questions.
-* Queries with different wording resolve to appropriate intents.
-* Answers use actual browser and device information when available.
-* Responses distinguish observations from assumptions.
-* Conversation follow-ups work.
-* Thinking mode meaningfully changes diagnostic processing.
-* Streaming responses can be stopped.
-* Slash commands actually execute their documented behaviors.
-* Conversation history persists locally.
-* PWA offline functionality works after initial caching.
-* The browser extension builds and its implemented features function.
-* The Madon option is clearly marked Coming Soon.
-* The application works on mobile and desktop.
-* No API key or backend is necessary.
-* Knowledge coverage is validated and reported.
-* All tests pass.
-* No fake metrics, invented device details, or placeholder functionality remain in the release.
+14. OPTIONAL EXTENSION PAGE CONTEXT
 
-FINAL INSTRUCTION
+Varek already includes a Chromium extension with permissioned page-inspection capabilities.
 
-I want Varek to feel like a real, carefully engineered software product—not a rough demo, generic AI website, or collection of canned chatbot replies.
+Madon should eventually be able to use this information to explain or summarize the current page.
 
-Invest particular effort in the intelligence engine, knowledge coverage, conversational continuity, and visual polish.
+Preserve the existing security boundaries.
 
-The central experience must feel natural:
+Page actions
 
-A user opens Varek, asks Zulvyn something about their browser or device, and receives a clear, relevant, context-aware answer using actual available information and a substantial offline knowledge base.
+Support user-initiated tasks such as:
 
-A user can ask follow-up questions without repeating everything.
+“Explain this page.”
 
-A user can execute meaningful slash commands.
+“Summarize the current article.”
 
-A user can install Varek as a PWA or browser extension and use its supported local capabilities.
+“What’s this website about?”
 
-Do not substitute a traditional API-based LLM for the specified deterministic engine.
+“What does this error mean?”
 
-Do not misrepresent a simulated response as actual model inference.
+“Explain the technical details of this page.”
 
-Do not stop after generating an attractive interface. The functional engine and extensive authored content are the heart of the project.
+Only access page content when the user explicitly authorizes the relevant action and the extension has permission.
 
-Implement the complete system, verify it, and document what is truly working.
+Reuse existing extraction mechanisms where practical.
 
-At completion, provide:
+Context extraction
 
-* A summary of implemented functionality.
-* Files and architecture created.
-* The exact number of validated knowledge records and phrase patterns.
-* Test results.
-* Build results.
-* GitHub Pages deployment status or remaining setup steps.
-* Browser-extension installation instructions.
-* Any incomplete requirements, explicitly identified.
+The extension may provide:
 
-Prioritize real working functionality, maintainable architecture, broad knowledge coverage, clean design, and truthful technical behavior over superficial features.
+* Page title.
+* URL.
+* Domain.
+* Limited visible text.
+* Selected document metadata.
+* Relevant structural information.
+
+Do not automatically inspect browsing activity in the background.
+
+Do not silently access tabs or page content.
+
+Prompt-injection protection
+
+Treat webpage text as untrusted source material.
+
+Page content must never override:
+
+* Varek’s system instructions.
+* User permissions.
+* Tool restrictions.
+* Privacy controls.
+* Extension security policy.
+
+Explicitly separate source text from instructions.
+
+A webpage containing malicious instructions must not gain authority over the assistant.
+
+15. CHROMIUM EXTENSION COMPATIBILITY
+
+The website is the primary target for Madon’s first complete release.
+
+Preserve the existing Chromium extension.
+
+Share the inference adapter where technically appropriate.
+
+However, Manifest V3 extensions have additional restrictions.
+
+Important constraints
+
+The extension must not load remotely hosted executable JavaScript or WebAssembly in violation of Manifest V3 policies.
+
+Model weights can be treated as external data only when the resulting architecture complies with the applicable extension platform and store requirements.
+
+Any WebAssembly runtime required for extension inference must be packaged and loaded in a supported, compliant manner.
+
+Review the extension’s existing content security policy before integrating inference.
+
+Do not introduce unsafe-eval or broadly disable extension security.
+
+Implementation priority
+
+First make Madon fully functional on the GitHub Pages website.
+
+Then integrate it into the extension only after confirming that the runtime can operate securely and reliably in the extension environment.
+
+If extension inference is not supported by the completed implementation, preserve Zulvyn in the extension and clearly identify Madon’s extension limitation.
+
+Do not mark a model as functioning in the extension unless an actual WebGPU generation test passes there.
+
+Do not compromise the existing extension to force feature parity.
+
+16. UI AND VISUAL DESIGN
+
+Preserve Varek’s existing minimalist appearance.
+
+The color identity remains:
+
+* Porcelain: #F9F7F3
+* Fig: #695365
+* Ink: #282529
+* Surface: #FFFFFF
+* Soft surface: #F1EDEF
+* Secondary text: #776F73
+* Border: #E8E2E3
+
+Keep the existing logo, favicon, typography, spacing philosophy, and overall interface.
+
+Do not redesign the app into a generic AI dashboard.
+
+Updated model selector
+
+Replace the disabled Madon option with a functional entry.
+
+Suggested display:
+
+Zulvyn
+Fast local assistance.
+
+Madon
+Advanced local AI.
+
+If Madon needs initial setup, show:
+
+“Download required”
+
+If loaded, show a subtle ready state.
+
+If unsupported, explain why.
+
+Active model identity
+
+The top-bar model name should reflect the actual selected engine.
+
+Replace any hardcoded “Zulvyn” labels that should be dynamic.
+
+Update:
+
+* Model button.
+* Composer accessibility label.
+* Assistant message attribution where needed.
+* Model selection modal.
+* Model settings.
+* Loading indicators.
+
+Do not change the global application brand from Varek.
+
+Model initialization
+
+Use a compact, elegant modal or panel.
+
+Avoid:
+
+* Large gradients.
+* Artificial loading animations.
+* Promotional illustrations.
+* Unnecessary technical jargon.
+* Oversized cards.
+
+Use the same visual language as the rest of Varek.
+
+Generating state
+
+While Madon is generating:
+
+* Display actual streamed output.
+* Offer Stop.
+* Prevent duplicate submissions.
+* Keep scrolling smooth.
+* Maintain a responsive interface.
+* Show a subtle activity indicator.
+
+No fake typing effect should be applied to Madon.
+
+17. FAILURE RECOVERY
+
+Real local inference can fail.
+
+Plan for it explicitly.
+
+Handle:
+
+* No WebGPU.
+* Adapter initialization failure.
+* Unsupported GPU features.
+* Model-download interruption.
+* Browser storage eviction.
+* Insufficient available GPU memory.
+* GPU-device loss.
+* Browser tab reload.
+* Worker termination.
+* Invalid model assets.
+* Corrupted cache entries.
+* Runtime incompatibility.
+* Context window exceeded.
+* Generation cancellation.
+* Failed web retrieval.
+
+A failure must not erase the conversation.
+
+Do not automatically discard completed messages.
+
+Provide a concise and useful recovery action.
+
+Where safe:
+
+* Retry initialization.
+* Unload and reload the engine.
+* Reuse a valid cached model.
+* Clear only Madon’s model cache.
+* Switch to Zulvyn with user approval.
+
+Avoid aggressive automatic retry loops.
+
+Implement bounded retries with clear error reporting.
+
+18. PRIVACY REQUIREMENTS
+
+Madon must be genuinely local.
+
+During inference:
+
+* Do not transmit user prompts to an AI provider.
+* Do not upload chat history.
+* Do not upload device information.
+* Do not introduce telemetry.
+* Do not introduce tracking.
+* Do not require user accounts.
+* Do not require subscription credentials.
+
+Model artifacts may be downloaded from their verified hosting source.
+
+Make that distinction clear.
+
+Optional web retrieval necessarily sends a relevant search query to the selected information provider.
+
+Display this distinction to the user.
+
+Do not claim the entire application makes zero network requests.
+
+Do not claim that model caching is permanent.
+
+Keep all user conversation data locally, consistent with the existing storage system.
+
+19. GITHUB PAGES DEPLOYMENT
+
+Varek must remain deployable as a static website.
+
+The existing Vite base path is:
+
+/varek/
+
+Preserve it.
+
+The website must work at:
+
+https://hiyroscript.github.io/varek/
+
+Do not introduce:
+
+* Express servers.
+* Python backends.
+* Server-side inference.
+* Private proxy servers.
+* Paid cloud functions.
+* Environment-dependent API secrets.
+* Runtime endpoints that GitHub Pages cannot host.
+
+Model assets
+
+Do not commit gigabyte-scale model weights to the Varek repository.
+
+Download model weights on demand from the verified model host.
+
+The production build should include only the necessary application code, worker code, and runtime assets appropriate for the environment.
+
+Verify cross-origin loading and browser security requirements.
+
+Worker builds
+
+Configure Vite to bundle the Madon worker correctly.
+
+Use module workers where appropriate.
+
+Ensure worker assets resolve under GitHub Pages’ /varek/ base path.
+
+Test the production build, not only the development server.
+
+Offline support
+
+Preserve existing Zulvyn offline functionality.
+
+Madon should work offline once all required model assets have been successfully cached and can be loaded without network access.
+
+A first-time offline visitor cannot initialize an uncached model.
+
+Do not claim offline Madon support until a real cached-model offline test succeeds.
+
+20. SERVICE WORKER AND CACHE MANAGEMENT
+
+Inspect scripts/service-worker.mjs.
+
+The existing service worker caches the application shell and built application assets.
+
+Do not add model weight downloads to that precache list.
+
+Maintain separate cache ownership between:
+
+* Varek application assets.
+* WebLLM model assets.
+* Optional external information retrieval.
+
+Do not use blanket browser-cache deletion.
+
+Do not delete WebLLM caches when publishing an ordinary Varek interface update unless necessary for compatibility.
+
+Handle updates where a model-runtime upgrade requires refreshed compiled artifacts.
+
+Avoid unnecessarily redownloading model weights when compatible cached assets are available.
+
+Document cache ownership and cleanup.
+
+21. PERFORMANCE
+
+The current application is lightweight.
+
+Preserve that experience for Zulvyn users.
+
+Do not eagerly import the entire Madon inference runtime into the initial Zulvyn application bundle if it can be lazy-loaded.
+
+Use dynamic imports and code splitting.
+
+Initialize Madon only after it is explicitly selected and the necessary setup is approved.
+
+Keep the main thread responsive.
+
+Use Web Workers.
+
+Avoid duplicate model instances.
+
+Avoid initializing Madon multiple times because of React Strict Mode or component rerenders.
+
+Use a single controlled engine lifecycle.
+
+Release resources when the user unloads the model.
+
+Avoid accidentally loading separate model instances for multiple conversations.
+
+Reduce unnecessary React rendering during token streaming.
+
+Document measured performance rather than inventing benchmark numbers.
+
+22. TESTING
+
+Expand the existing Vitest and Playwright test suites.
+
+Do not remove working tests.
+
+Update tests that currently assert Madon is unavailable.
+
+Replace that expectation with tests validating the new model selection and setup process.
+
+Unit tests
+
+Add tests for:
+
+* Model registry.
+* Model selection.
+* Preference persistence.
+* Backward compatibility.
+* Inference state transitions.
+* Capability detection.
+* Initialization failure.
+* Download cancellation.
+* Worker messaging.
+* Generation cancellation.
+* Stream parsing.
+* Thinking-mode selection.
+* Context-window management.
+* Prompt construction.
+* Tool result injection.
+* Tool permission enforcement.
+* Retrieval validation.
+* Citation mapping.
+* Source URL safety.
+* Extension compatibility behavior.
+
+Use mocked inference transports for deterministic automated tests.
+
+Do not require downloading a multi-gigabyte model on every CI run.
+
+Browser tests
+
+Test:
+
+* Switching from Zulvyn to Madon.
+* Seeing the model setup interface.
+* Rejecting or cancelling a download.
+* Initializing a mocked model.
+* Sending a Madon message.
+* Receiving streamed chunks.
+* Stopping generation.
+* Sending a follow-up.
+* Reloading the application.
+* Restoring model preference.
+* Handling an unavailable cache.
+* Falling back to Zulvyn through explicit user action.
+* Keeping Zulvyn’s original functionality.
+* Mobile layout.
+* Dark theme.
+* Accessibility.
+* GitHub Pages base-path behavior.
+
+Real inference validation
+
+Mocks are insufficient to prove that Madon works.
+
+Perform a separate real WebGPU smoke test in a supported browser.
+
+Verify that the model:
+
+1. Downloads successfully.
+2. Initializes successfully.
+3. Generates actual text.
+4. Responds to a follow-up message.
+5. Stops generation.
+6. Can generate again after cancellation.
+7. Reuses cached model data after reload.
+8. Correctly handles a browser with no available WebGPU support.
+
+Test both thinking and non-thinking behavior.
+
+Where possible, test a real browser tab reload during initialization.
+
+If the execution environment lacks WebGPU or cannot download the model, state that explicitly. Do not claim that mocked results prove real inference works.
+
+23. EXAMPLE USER EXPERIENCE
+
+The completed Varek application should support this experience.
+
+Selecting Madon
+
+The user opens Varek.
+
+They click the model selector.
+
+They see:
+
+Zulvyn
+Fast local intelligence.
+
+Madon
+Advanced local AI.
+
+The user clicks Madon.
+
+If the model has not been downloaded, a setup dialog appears.
+
+The user initiates the download.
+
+Actual initialization progress appears.
+
+When initialization succeeds, the interface displays Madon as ready.
+
+The user can now chat with a genuine local LLM.
+
+Example conversation
+
+User: What’s the difference between RAM and VRAM?
+
+Madon: Explains the distinction using actual generated language.
+
+User: Which one does your model use?
+
+Madon: Explains WebGPU inference, model weights, graphics memory, and relevant limitations.
+
+User: Can you check whether my browser supports it?
+
+Madon invokes Varek’s trusted feature-detection layer.
+
+The assistant explains the actual observed result.
+
+User: What happens if I run out of memory?
+
+Madon explains the potential failure behavior in the context of the previous messages.
+
+Web example
+
+The user enables web retrieval.
+
+User: Look up what WebGPU is.
+
+Madon retrieves relevant information from an allowed source, provides a contextual explanation, and shows real citations.
+
+If retrieval fails, Madon does not invent a successful search.
+
+Offline example
+
+The user returns after successfully caching the model.
+
+If the necessary assets remain available, Madon can initialize without requesting the model weights again.
+
+If required assets were evicted, the application explains the problem and offers reinstallation when connectivity returns.
+
+24. IMPLEMENTATION PHASES
+
+Work through the following phases.
+
+Phase 1 — Audit
+
+Read the existing project.
+
+Identify all hardcoded Zulvyn assumptions.
+
+Trace:
+
+* Message submission.
+* Current model identity.
+* Model selector.
+* Storage.
+* Engine invocation.
+* Streaming.
+* Thinking preferences.
+* Slash commands.
+* Extension integration.
+
+Write a short internal implementation plan.
+
+Phase 2 — Model infrastructure
+
+Create the unified model interface.
+
+Add Madon’s real WebLLM engine.
+
+Implement the inference worker and runtime lifecycle.
+
+Maintain Zulvyn compatibility.
+
+Phase 3 — Model selection and initialization
+
+Activate Madon in the model registry.
+
+Add model preferences.
+
+Implement compatibility detection.
+
+Build setup and progress UI.
+
+Implement model caching and error states.
+
+Phase 4 — Real chat generation
+
+Connect Madon to the existing chat interface.
+
+Implement true token streaming.
+
+Add cancellation, regeneration, and context management.
+
+Phase 5 — Reasoning and diagnostics
+
+Connect thinking preferences to supported Qwen3 behavior.
+
+Integrate browser diagnostics.
+
+Reuse trusted slash commands.
+
+Protect the tool-execution boundary.
+
+Phase 6 — Web retrieval
+
+Add optional public-source retrieval.
+
+Implement permissions, validation, grounding, and citation handling.
+
+Make retrieval failures explicit.
+
+Phase 7 — Extension support
+
+Evaluate packaged inference compatibility with Manifest V3.
+
+Integrate where compliant and tested.
+
+Preserve Zulvyn in unsupported extension environments.
+
+Phase 8 — Quality assurance
+
+Test the production build.
+
+Check responsive behavior.
+
+Validate offline functionality.
+
+Run all existing regression tests.
+
+Add real inference smoke tests where hardware allows.
+
+Phase 9 — Documentation and deployment
+
+Update the README.
+
+Update implementation-status documentation.
+
+Document Madon requirements.
+
+Explain model attribution and licensing.
+
+Update tests and GitHub Actions as necessary.
+
+Prepare a clean deployment.
+
+25. DEFINITION OF DONE
+
+Madon is considered genuinely available only when all of the following are true:
+
+* Madon can be selected in the UI.
+* The application performs real WebGPU compatibility checks.
+* Users can initiate model downloading.
+* The selected Qwen3 model initializes on supported hardware.
+* Actual generated text appears in chat.
+* Responses stream from real inference.
+* Generation can be interrupted.
+* Users can have multi-turn conversations.
+* Model preferences persist.
+* Cached assets can be reused where supported.
+* Thinking settings are connected to actual model behavior.
+* Real browser diagnostics can inform Madon’s responses.
+* Existing commands remain functional.
+* Optional web retrieval works with tested free sources.
+* Sources are attributed accurately.
+* Zulvyn continues working normally.
+* Unsupported hardware receives a clear explanation.
+* Browser-extension behavior remains secure.
+* The website still builds for GitHub Pages.
+* Automated tests pass.
+* No paid API or inference server is required.
+* No fabricated model status or fake inference remains.
+
+Do not mark Madon as fully available just because its name has become clickable.
+
+A real model must successfully initialize and generate text.
+
+26. FINAL VERIFICATION AND REPORT
+
+After implementation, provide a concise technical report showing:
+
+Implementation
+
+* Components changed.
+* New inference modules.
+* Dependencies added.
+* Model configuration used.
+* Model initialization behavior.
+* User experience changes.
+
+Verification
+
+* TypeScript results.
+* Unit test results.
+* Browser test results.
+* Production build results.
+* Real WebGPU smoke-test status.
+* Extension test results.
+* GitHub Pages deployment readiness.
+
+Performance
+
+* Measured model download size, if available.
+* Reported WebGPU memory requirement.
+* Measured initialization time, if tested.
+* Measured generation speed, if tested.
+* Browser and device used for benchmarking.
+
+Do not invent performance results.
+
+Limitations
+
+* Unsupported browsers.
+* Resource constraints.
+* Offline limitations.
+* Model reliability limitations.
+* Web retrieval restrictions.
+* Extension-specific limitations.
+
+Documentation
+
+Include exact instructions for installing and using Madon.
+
+Document how users can remove downloaded model data.
+
+Attribute Qwen3 and WebLLM appropriately.
+
+FINAL DIRECTIVE
+
+Build Madon as a real, free, local AI model integrated into the existing Varek application.
+
+Zulvyn remains the lightweight deterministic assistant.
+
+Madon becomes the advanced generative assistant.
+
+The result should feel like a natural evolution of Varek, not a different application.
+
+Preserve the existing minimalist interface, branding, favicon, chat history, commands, diagnostics, security controls, and deployment architecture.
+
+Make Madon genuinely functional.
+
+Use real local inference, real streaming, meaningful contextual conversations, permissioned browser diagnostics, and optional free web retrieval.
+
+Do not merely describe the implementation or add visual placeholders.
+
+Implement the actual upgrade and verify what works.
