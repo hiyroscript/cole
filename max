@@ -1,1 +1,1809 @@
+VAREK — Complete Web Application Development Specification
 
+YOUR ROLE
+
+You are a senior full-stack engineer, frontend designer, browser-extension developer, conversational systems architect, and product engineer.
+
+Your task is to build a complete, working, production-quality application called Varek in the existing GitHub repository.
+
+Repository: hiyroscript/varek
+Branch: main
+Web hosting: GitHub Pages
+Application name: Varek
+Primary assistant/model: Zulvyn
+Future model: Madon (Coming Soon)
+
+The repository is effectively empty. It currently contains only a file named max with a newline. You may establish a clean project architecture from scratch.
+
+Do not merely write an implementation plan, produce mockups, or create a partially working demonstration. Implement the actual application, run the build and tests, fix errors, and prepare the result for deployment.
+
+Treat every requirement below as part of the product specification.
+
+⸻
+
+1. PRODUCT VISION
+
+Varek is a privacy-first, browser-native, local AI-style assistant focused on helping users understand, troubleshoot, and interact with their browser and device.
+
+The application should feel like a mature conversational AI product, with fluid responses, contextual follow-up questions, a thinking mode, commands, personalized answers, and polished interactions.
+
+However, Zulvyn is not an actual large language model.
+
+For version 1, Zulvyn must be powered by:
+
+* A large, hand-authored knowledge base.
+* Deterministic natural-language understanding.
+* Intent classification and fuzzy matching.
+* Context-aware response composition.
+* Real browser and device diagnostics.
+* Troubleshooting decision trees.
+* Locally executable commands.
+* Conditional reasoning and multi-stage analysis.
+* Dynamic response variation.
+* An incremental, streaming-style output interface.
+* Local conversation memory and user preferences.
+
+The goal is not to trick people about whether a real LLM exists. Make the assistant feel natural and highly capable while accurately describing the technology and its limitations.
+
+Position Zulvyn as a local diagnostic and knowledge assistant.
+
+Do not falsely claim that a remote AI model generated its responses.
+
+Everything should operate locally in the user’s browser after the application assets have been loaded, except where a feature explicitly requires access to browser-extension APIs.
+
+No paid API, API key, hosted inference service, account, or application backend should be necessary.
+
+2. NON-NEGOTIABLE PRODUCT QUALITY
+
+The application should feel like a carefully designed, independently developed software product.
+
+Avoid the recognizable appearance of generic AI-generated websites.
+
+Specifically avoid:
+
+* Oversized gradients and glowing purple backgrounds.
+* Excessive glassmorphism.
+* Generic robot or brain illustrations.
+* Giant landing-page hero sections inside the application.
+* Huge rounded cards everywhere.
+* Unnecessary badges, floating decorations, and marketing copy.
+* Fake analytics, fake capabilities, and fake diagnostic results.
+* Long loading animations that don’t represent actual work.
+* Inconsistent spacing and arbitrary animations.
+
+Instead, prioritize:
+
+* Excellent typography.
+* Deliberate whitespace.
+* Quiet surfaces.
+* Subtle borders.
+* Minimal icons.
+* A restrained color system.
+* Well-proportioned components.
+* Natural transitions.
+* Carefully designed empty states.
+* Clean navigation.
+* Strong keyboard accessibility.
+* Responsive layouts.
+* Thoughtful microinteractions.
+
+Everything must have a functional reason to exist.
+
+3. BRAND IDENTITY AND COLOR SYSTEM
+
+Use the following brand palette.
+
+Light theme
+
+* Main background: #F9F7F3 — Porcelain
+* Primary accent: #695365 — Fig
+* Primary text: #282529 — Ink
+* Surface: #FFFFFF
+* Soft accent surface: #F1EDEF
+* Secondary text: #776F73
+* Border: #E8E2E3
+
+Dark theme
+
+Develop a matching dark version using these starting values:
+
+* Background: #181619
+* Surface: #242025
+* Primary text: #F5F1F2
+* Muted text: #B8ADB5
+* Accent: #BDA4B8
+* Border: #393239
+
+Refine the dark palette as necessary to maintain contrast and visual harmony.
+
+The primary interface should default to light mode unless the user explicitly chooses another theme or enables following their operating system preference.
+
+The Fig accent should function as Varek’s recognizable brand color.
+
+Use it selectively for:
+
+* The application symbol.
+* Primary buttons.
+* Selected navigation items.
+* Active model indicators.
+* Focus states.
+* Important interactive controls.
+
+Do not saturate the interface with accent color.
+
+The product should feel sophisticated and editorial, with visual restraint similar to premium productivity tools.
+
+Do not copy Claude’s exact layout, logo, or visual identity.
+
+Typography
+
+Use a professional sans-serif font for the interface, with a restrained optional editorial serif treatment for one or two prominent headings.
+
+Typography should feel exceptionally polished.
+
+Use a consistent typographic scale, comfortable line heights, and restrained font weights.
+
+Do not use excessively bold headings, decorative gradients on text, or oversized marketing typography in the actual chat interface.
+
+Branding
+
+Create a simple original Varek symbol, preferably a geometric or typographic monogram derived from the letter V.
+
+Use consistent branding in:
+
+* Browser favicon.
+* PWA icon.
+* Chat interface.
+* Loading screen.
+* Extension toolbar icon.
+* Extension side panel.
+* Settings.
+* Browser tab title.
+
+Avoid generic sparkle branding for the main logo.
+
+4. TECHNICAL ARCHITECTURE
+
+Use a modern, maintainable architecture that can be built and deployed entirely through GitHub Actions.
+
+Preferred technologies:
+
+* React.
+* TypeScript with strict type checking.
+* Vite.
+* Tailwind CSS, using a consistent design-token system.
+* Lucide icons.
+* IndexedDB for persistent conversations and larger datasets.
+* Local storage for simple preferences.
+* Web Workers for expensive parsing, indexing, or matching when necessary.
+* Vitest for unit tests.
+* Playwright for browser-level tests.
+* A PWA service worker for offline availability.
+* Manifest V3 for the Chromium browser extension.
+
+Avoid adding unnecessary libraries.
+
+Structure the project so the conversational engine and knowledge base can be reused by both the website and extension.
+
+Suggested architecture:
+
+* src/app/ — application shell and routing
+* src/components/ — reusable interface components
+* src/features/chat/ — chat interface and conversation state
+* src/features/models/ — model selector and metadata
+* src/features/commands/ — slash command interface
+* src/features/diagnostics/ — browser and device diagnostics
+* src/features/settings/ — application preferences
+* src/core/engine/ — conversational engine
+* src/core/intents/ — intent definitions and matching
+* src/core/context/ — conversation context management
+* src/core/reasoning/ — structured diagnostic reasoning
+* src/core/response/ — response composition and streaming
+* src/core/knowledge/ — knowledge base schemas and loaders
+* src/data/knowledge/ — authored answers and troubleshooting content
+* src/data/language/ — synonyms, expressions, and phrase patterns
+* src/lib/storage/ — persistence
+* src/lib/capabilities/ — feature detection
+* src/lib/security/ — sanitization and permissions
+* src/styles/ — visual tokens and application styling
+* extension/ — Manifest V3 extension source
+* public/ — static assets and PWA assets
+* tests/ — automated tests
+* .github/workflows/ — continuous integration and deployment
+
+You may refine this structure if a better architecture is warranted.
+
+Do not duplicate the response engine for the extension.
+
+Keep the core conversational logic independent of React so it can be tested and reused.
+
+5. APPLICATION INTERFACE
+
+Varek should open directly into the conversational application.
+
+Do not force users through a marketing website, signup screen, onboarding wizard, or account creation process.
+
+Desktop layout
+
+Create a minimal application with:
+
+Left sidebar
+
+* Varek logo and name.
+* New chat.
+* Search conversations.
+* Previous conversations.
+* Pinned conversations.
+* Settings access.
+* A subtle sidebar collapse control.
+
+The sidebar should be narrow and unobtrusive.
+
+Allow users to rename, pin, delete, and search conversations.
+
+Main chat area
+
+When no conversation is active, show an elegant welcome state:
+
+“Where should we begin?”
+
+Underneath, show a small collection of relevant suggestions, such as:
+
+* What browser am I using?
+* Check my device information.
+* Why is my browser slow?
+* How can I improve my privacy?
+
+Do not use enormous suggestion cards.
+
+The central chat area should be readable, comfortably constrained in width, and beautifully spaced.
+
+Message composer
+
+The composer should include:
+
+* Multiline text input.
+* Send button.
+* Slash command suggestions.
+* Model selector.
+* Thinking mode control.
+* Keyboard shortcuts.
+* A functional Stop generation action while responding.
+
+Enter sends the message. Shift+Enter adds a newline.
+
+Support pasting longer text and multiline questions.
+
+The composer should expand naturally without consuming the entire viewport.
+
+Mobile layout
+
+Provide a fully responsive mobile interface.
+
+The sidebar should become an accessible navigation drawer.
+
+The composer must remain usable when the mobile keyboard is open.
+
+Avoid horizontal scrolling, clipped text, unusable hover-only controls, and cramped tap targets.
+
+Message design
+
+Assistant responses should support:
+
+* Regular paragraphs.
+* Clear headings.
+* Bulleted and numbered instructions.
+* Inline code.
+* Code blocks.
+* Diagnostic result rows.
+* Copyable values.
+* Contextual follow-up suggestions.
+* Tool or command result displays.
+* Explicit capability and permission warnings.
+
+Allow message copying and regeneration.
+
+Give users a way to inspect available diagnostic evidence when relevant.
+
+Do not overload responses with decorative formatting.
+
+6. MODEL SYSTEM
+
+Varek has two model identities.
+
+Zulvyn
+
+Status: Available.
+
+Zulvyn is the default and only usable model.
+
+Display it simply as:
+
+Zulvyn
+
+Description:
+
+“Local browser and device intelligence.”
+
+Zulvyn must power all conversational and command functionality.
+
+Madon
+
+Status: Coming Soon.
+
+Display it in the model selector as a future option.
+
+Suggested description:
+
+“Advanced intelligence. Coming soon.”
+
+Madon must not generate responses, change the active model, or pretend to be available.
+
+A user who attempts to select it should receive an understated explanation that it is not yet available.
+
+Build the model registry so future models can have different engines, capabilities, metadata, and settings without rewriting the application.
+
+Never pretend that a second model has already been implemented.
+
+7. BUILD A REAL CONVERSATIONAL ENGINE
+
+This is one of the most important requirements.
+
+Zulvyn cannot behave like a simplistic chatbot using a handful of if statements.
+
+Create a layered, deterministic natural-language understanding system.
+
+Message processing pipeline
+
+Each user message should pass through these stages:
+
+1. Normalize input without destroying meaningful technical details.
+2. Detect whether the input is a command.
+3. Identify the message’s language and relevant entities where supported.
+4. Detect question type and user intent.
+5. Extract browser, operating system, hardware, and troubleshooting references.
+6. Identify possible negation, comparisons, and constraints.
+7. Retrieve recent conversation context.
+8. Determine whether the user is referring to a previous subject.
+9. Retrieve relevant knowledge entries.
+10. Evaluate available live browser/device data.
+11. Rank plausible interpretations.
+12. Resolve the best-supported intent.
+13. Determine whether clarification is needed.
+14. Compose a context-specific response.
+15. Present the response incrementally.
+16. Update conversation context and persistent history.
+
+The engine must be fully local.
+
+Intent recognition
+
+Implement a combination of:
+
+* Phrase dictionaries.
+* Synonym expansion.
+* Weighted token matching.
+* Token normalization.
+* Typo tolerance.
+* Fuzzy matching.
+* N-gram matching.
+* Technical entity extraction.
+* Question pattern recognition.
+* Contextual intent resolution.
+* Confidence scoring.
+* Multiple-intent detection.
+
+Do not require exact wording.
+
+For example, the following should resolve to the same general question:
+
+“What browser am I using?”
+
+“Which browser is this?”
+
+“Can you detect my browser?”
+
+“Am I on Chrome?”
+
+“What’s my browser?”
+
+“What browser is running?”
+
+“What am I browsing with?”
+
+“Can you tell what browser I have?”
+
+However, a question like “Am I on Chrome?” requires a yes/no response based on the actual detection result, not simply a generic browser-information paragraph.
+
+Implement intent-specific response composition.
+
+Handling ambiguity
+
+If two or more intents are similarly plausible, ask a brief clarifying question.
+
+Never confidently answer an unrelated question merely because one keyword matched.
+
+If the engine cannot adequately understand a request, acknowledge the limitation naturally and suggest nearby capabilities.
+
+Do not fabricate an answer.
+
+8. LARGE-SCALE KNOWLEDGE BASE
+
+This is an essential requirement, not an optional enhancement.
+
+I want Zulvyn to respond convincingly to a very wide range of differently worded browser and device questions.
+
+Create a substantial authored response library, not a tiny demonstration dataset.
+
+Content targets
+
+Aim for an initial full release containing at least:
+
+* 700 meaningful, individually authored knowledge or answer records.
+* 2,500 or more recognizable user expression patterns, aliases, and phrasings.
+* 100 or more structured troubleshooting flows or rule paths.
+* Hundreds of contextual answer compositions based on detected facts.
+* Hundreds of realistic conversation tests.
+
+These are coverage targets, not permission to create repetitive filler.
+
+Entries must contain genuinely useful information. Do not simply copy the same paragraph with minor synonym substitutions to inflate counts.
+
+If implementation is staged, build the functional engine first, then expand the authored content systematically. Report actual validated coverage rather than claiming targets have been reached prematurely.
+
+Knowledge categories
+
+Include extensive coverage of:
+
+Browser identification
+
+* Detecting browser family.
+* Browser version when available.
+* Chromium-based browsers.
+* Firefox.
+* Safari.
+* Edge.
+* Brave and other browsers when reliably identifiable.
+* Browser engines.
+* User-agent information.
+* Desktop versus mobile browser differences.
+* Browser compatibility.
+
+Device information
+
+* Operating system detection.
+* Platform information.
+* Mobile versus desktop classification.
+* Screen dimensions.
+* Browser viewport.
+* Device pixel ratio.
+* Logical processor information.
+* Approximate device memory where available.
+* Touch capabilities.
+* Keyboard and pointer capabilities.
+* Browser language.
+* Locale.
+* Time zone.
+* Color scheme preference.
+* Reduced-motion preference.
+
+Performance
+
+* Slow browsers.
+* High CPU usage.
+* Excessive memory usage.
+* Slow page loading.
+* Frozen tabs.
+* Unresponsive websites.
+* Browser crashes.
+* Background tabs.
+* Heavy extensions.
+* Hardware acceleration.
+* Cache-related performance issues.
+* Performance optimization.
+
+Privacy and security
+
+* Browser fingerprinting.
+* Tracking.
+* Cookies.
+* Third-party cookies.
+* Site permissions.
+* Location permissions.
+* Microphone permissions.
+* Camera permissions.
+* Notification permissions.
+* HTTPS.
+* Password managers.
+* Private browsing.
+* Safe browsing practices.
+* Phishing awareness.
+* Malicious extensions.
+* Data storage and privacy settings.
+
+Internet and networking
+
+* Connectivity problems.
+* Online/offline state.
+* DNS.
+* Wi-Fi troubleshooting.
+* Latency.
+* Connection quality.
+* VPN basics.
+* Proxies.
+* Browser network errors.
+* SSL errors.
+* Certificate warnings.
+* Common HTTP errors.
+* Network caching.
+* Service workers.
+* Website connection failures.
+
+Browser storage
+
+* Cookies.
+* Local storage.
+* Session storage.
+* IndexedDB.
+* Cache Storage.
+* Browser storage estimates.
+* Persistent storage.
+* Storage quotas.
+* Site data deletion.
+* Offline storage.
+* Storage permissions.
+
+Tabs and browsing
+
+* Tab management.
+* Restoring closed tabs.
+* Finding lost tabs.
+* Pinning tabs.
+* Grouping tabs.
+* Tab memory management.
+* Keyboard shortcuts.
+* Download management.
+* Browser history.
+* Bookmarks.
+* Autofill.
+* Search engines.
+* Page zoom.
+* Reading mode.
+
+Browser troubleshooting
+
+* Websites not opening.
+* Broken page layouts.
+* JavaScript errors.
+* Login failures.
+* Repeated logout.
+* Website permissions.
+* Broken video playback.
+* Missing audio.
+* Clipboard problems.
+* Pop-up blocking.
+* Download failures.
+* Blank pages.
+* Browser update problems.
+* Extension conflicts.
+
+Device troubleshooting
+
+Cover general guidance for Windows, macOS, Linux, Android, iOS, and iPadOS.
+
+Include:
+
+* Battery performance.
+* Storage problems.
+* Memory pressure.
+* Overheating.
+* Slow startup.
+* Background application usage.
+* Software updates.
+* Display configuration.
+* Input devices.
+* Network configuration.
+* Common system settings.
+
+Do not pretend a website can directly inspect operating-system internals.
+
+When necessary, provide instructions for the user to retrieve the needed information.
+
+Web technology
+
+Include practical explanations of:
+
+* HTML.
+* CSS.
+* JavaScript.
+* DOM.
+* WebAssembly.
+* Web APIs.
+* Browser engines.
+* HTTP and HTTPS.
+* DNS.
+* CORS.
+* CSP.
+* Local storage.
+* Service workers.
+* PWAs.
+* Extensions.
+* Rendering.
+* Browser caching.
+* Frontend performance.
+
+General computer literacy
+
+Include answers about:
+
+* RAM versus storage.
+* CPU versus GPU.
+* Bits and bytes.
+* Display resolution.
+* Refresh rates.
+* File formats.
+* Operating systems.
+* Browser updates.
+* Security updates.
+* Backups.
+* Data privacy.
+* Common technical terminology.
+
+Varek product knowledge
+
+Include:
+
+* What Varek is.
+* What Zulvyn is.
+* How local processing works.
+* Why no account is required.
+* What information the app can read.
+* What the app cannot access.
+* How to use commands.
+* How to export data.
+* How to delete saved conversations.
+* How to install the PWA.
+* How to install the browser extension.
+* What Madon is.
+* What Thinking mode does.
+
+Natural conversation
+
+Include appropriate coverage for:
+
+* Greetings.
+* Thanks.
+* Goodbye.
+* Requests for help.
+* Clarifications.
+* Corrections.
+* Follow-up questions.
+* Short affirmative and negative replies.
+* Requests for shorter explanations.
+* Requests for more detail.
+* Requests for step-by-step instructions.
+* Requests to repeat an explanation.
+* Requests to compare alternatives.
+
+Keep the tone professional, clear, concise, and approachable.
+
+Do not make Zulvyn excessively enthusiastic, repetitive, or robotic.
+
+Structured knowledge records
+
+Knowledge should be authored as structured, typed records.
+
+Each record should be capable of storing:
+
+* Unique ID.
+* Category.
+* Primary intent.
+* Alternative phrasings.
+* Keywords.
+* Relevant technical entities.
+* Conditions.
+* Supported browser environments.
+* Required capabilities.
+* Confidence requirements.
+* Answer variants.
+* Response structure.
+* Diagnostic actions.
+* Possible follow-up prompts.
+* Related knowledge entries.
+* Source or reference metadata.
+* Last-reviewed metadata where appropriate.
+
+Prefer independently testable records rather than hardcoded responses scattered across UI components.
+
+For factual technical guidance, distinguish stable explanations from version-sensitive instructions. Include maintainable references to authoritative documentation for changing browser behavior.
+
+Response variety
+
+Allow several professionally written ways to express the same answer.
+
+Variation should depend on context, clarity, requested depth, and conversation history.
+
+Avoid obvious random phrase substitutions that make answers awkward.
+
+A response should be genuinely relevant, not merely unpredictable.
+
+9. CONTEXTUAL CONVERSATION MEMORY
+
+Zulvyn should remember the subject of the active conversation.
+
+Example:
+
+User: “What browser am I using?”
+
+Zulvyn: Identifies the browser using available evidence.
+
+User: “Is it secure?”
+
+Zulvyn: Explains the relevant browser security considerations.
+
+User: “How do I make it faster?”
+
+Zulvyn: Provides performance suggestions for that browser.
+
+User: “Give me the steps.”
+
+Zulvyn: Expands the previous suggestions into instructions.
+
+Build local short-term conversational context with:
+
+* Current subject.
+* Current browser or platform.
+* Previous intent.
+* Detected entities.
+* User-provided facts.
+* Outstanding clarification questions.
+* Current troubleshooting workflow.
+* Previously attempted solutions.
+* Requested answer depth.
+
+Maintain a bounded context window so unrelated old messages do not incorrectly influence new responses.
+
+Allow users to correct assumptions.
+
+Store conversation history locally and restore it on return.
+
+Do not claim that Zulvyn remembers information that has been deleted or is no longer available.
+
+10. THINKING MODE
+
+Implement a meaningful thinking system.
+
+This does not require an actual neural model.
+
+Thinking should select a more thorough deterministic diagnostic process when the user’s request requires multiple steps or involves uncertainty.
+
+Modes
+
+Support:
+
+* Auto — default.
+* On.
+* Off.
+
+Auto
+
+Automatically enable structured analysis for:
+
+* Troubleshooting questions.
+* Questions involving multiple device facts.
+* Browser compatibility comparisons.
+* Security or privacy recommendations.
+* Complex follow-up questions.
+* Ambiguous technical issues.
+* Multi-step diagnostics.
+
+Do not unnecessarily enter Thinking mode for greetings, basic factual commands, or trivial requests.
+
+On
+
+Use the full available diagnostic reasoning pipeline whenever relevant.
+
+Off
+
+Prefer direct, concise responses and avoid optional multi-stage diagnosis.
+
+Always perform essential correctness and safety checks regardless of mode.
+
+Thinking interface
+
+When meaningful work is being performed, display short, truthful stage descriptions such as:
+
+“Checking available browser information”
+
+“Comparing possible causes”
+
+“Reviewing relevant fixes”
+
+“Preparing recommendations”
+
+These stages must correspond to operations the system actually performs.
+
+Do not fabricate private reasoning or imply that a neural network is secretly solving the problem.
+
+Optionally provide an expandable Analysis summary containing:
+
+* Observed facts.
+* Relevant assumptions.
+* Diagnostic checks performed.
+* Possible causes.
+* Why a recommendation was selected.
+* Missing information.
+
+The analysis summary should be understandable and useful.
+
+Avoid fake chain-of-thought content.
+
+Reasoning rules
+
+The engine should:
+
+1. Gather available facts.
+2. Identify possible causes.
+3. Check which explanations fit the evidence.
+4. Exclude unsupported conclusions.
+5. Prioritize low-risk troubleshooting steps.
+6. Produce a structured recommendation.
+7. Ask follow-up questions when essential evidence is missing.
+
+An example is a user reporting a slow browser.
+
+Zulvyn should evaluate available information, explain common causes, distinguish confirmed observations from possibilities, and recommend relevant next steps.
+
+It must not claim to have measured CPU temperature, physical RAM usage, or running system processes when it has not.
+
+11. STREAMING RESPONSES
+
+Zulvyn must answer progressively instead of displaying a complete message instantly.
+
+Implement a polished streaming-style presentation system.
+
+Requirements:
+
+* Render text in readable, progressive chunks.
+* Support varying response lengths.
+* Preserve Markdown formatting.
+* Provide a subtle active-response indicator.
+* Allow the user to stop the response.
+* Allow response regeneration.
+* Avoid breaking Unicode characters.
+* Handle code blocks correctly.
+* Automatically follow new output unless the user manually scrolls away.
+* Respect reduced-motion settings.
+* Avoid overwhelming screen readers with every new character.
+
+The effect should feel natural, controlled, and responsive.
+
+Do not always stream at exactly the same speed.
+
+Avoid deliberately delaying long answers merely to imitate a remote LLM.
+
+Most importantly, run the actual matching, diagnostics, and response composition before or during the presentation process.
+
+The streaming renderer is a presentation layer, not the source of the answer.
+
+Expose cancellation cleanly using a cancellable response task.
+
+If the user stops generation, preserve the visible partial answer and provide a clear indication that the response was stopped.
+
+12. SLASH COMMAND SYSTEM
+
+Create a first-class command interface.
+
+Typing / at the beginning of the composer must open a searchable command menu.
+
+The menu should support:
+
+* Keyboard navigation.
+* Command descriptions.
+* Autocomplete.
+* Command arguments.
+* Helpful errors.
+* Contextual availability.
+* Permission requirements.
+* Extension-only command labels.
+
+Implement at least the following commands.
+
+General
+
+/help — Show available commands.
+
+/about — Explain Varek and Zulvyn.
+
+/model — Show available models.
+
+/think auto — Enable automatic thinking.
+
+/think on — Prefer full analysis.
+
+/think off — Prefer quick answers.
+
+/theme light — Activate light theme.
+
+/theme dark — Activate dark theme.
+
+/theme system — Follow system appearance.
+
+/clear — Clear the active conversation after confirmation.
+
+/new — Create a new conversation.
+
+/export — Export the current conversation as a local file.
+
+/shortcuts — Show keyboard shortcuts.
+
+Browser information
+
+/browser — Display detected browser details.
+
+/device — Display available device information.
+
+/system — Explain detected platform and system capabilities.
+
+/screen — Show screen and viewport information.
+
+/language — Show browser language preferences.
+
+/timezone — Display detected time zone.
+
+/permissions — Explain observable permission states.
+
+/features — List supported browser capabilities.
+
+/storage — Display available browser storage information.
+
+/privacy — Explain privacy-relevant browser information.
+
+/network — Display supported connectivity and network information.
+
+Diagnostics
+
+/diagnose — Open an interactive troubleshooting workflow.
+
+/performance — Show available performance-related observations and advice.
+
+/compatibility — Check relevant web-platform feature support.
+
+/security — Provide browser security recommendations.
+
+/cache — Explain caching and safe cache troubleshooting steps.
+
+/cookies — Explain cookie behavior and how to manage it.
+
+Extension-enhanced commands
+
+/tab — Show information about the selected tab, where permission allows.
+
+/tabs — Provide tab-management features when extension APIs are available.
+
+/page — Inspect permitted page metadata and basic information.
+
+/reader — Provide reading-oriented tools for permitted page content.
+
+/extensions — Explain or inspect extension-related information only to the extent the browser APIs and permissions allow.
+
+Clearly identify unavailable extension commands in web-only mode.
+
+Do not produce fabricated results when an API is unavailable.
+
+Commands must perform meaningful work and return accurate output.
+
+Command architecture
+
+Use a centralized command registry.
+
+Each command should define:
+
+* Name.
+* Aliases.
+* Description.
+* Arguments.
+* Validation.
+* Permission requirements.
+* Availability.
+* Execution handler.
+* Result schema.
+* Error behavior.
+
+Do not implement commands as unstructured special cases inside the chat component.
+
+13. REAL DEVICE AND BROWSER INFORMATION
+
+Varek’s main differentiator is its ability to use information from the current browser environment.
+
+Implement a dedicated capability and diagnostics layer.
+
+Detectable information
+
+Where supported, collect:
+
+* Browser family.
+* Browser version or version hints.
+* Operating system or platform hints.
+* Device category.
+* Browser language.
+* Locale.
+* Time zone.
+* Screen resolution.
+* Viewport dimensions.
+* Device pixel ratio.
+* Color depth.
+* Touch support.
+* Pointer capabilities.
+* Hardware concurrency.
+* Approximate device memory.
+* Online/offline state.
+* Limited network quality hints.
+* Color scheme preference.
+* Reduced-motion preference.
+* Storage quota estimates.
+* Supported browser APIs.
+* Selected permission states when queryable.
+
+Use standards-based APIs where possible.
+
+Use feature detection, not assumptions.
+
+User-agent Client Hints may be unavailable or restricted.
+
+Device memory values may be rounded or unavailable.
+
+Hardware concurrency is not a guaranteed measurement of physical CPU cores.
+
+Online status does not guarantee that the internet is reachable.
+
+Do not use invasive fingerprinting or covert identification methods.
+
+Evidence classification
+
+Every diagnostic field should indicate one of:
+
+* Observed.
+* Estimated.
+* User-provided.
+* Unavailable.
+* Requires permission.
+
+Only present values as confirmed when they are genuinely established.
+
+For example:
+
+“Your browser reports approximately 8 GB of device memory.”
+
+Do not say:
+
+“Your computer has exactly 8 GB of RAM.”
+
+Unsupported information
+
+A normal website cannot freely inspect:
+
+* Installed native applications.
+* All device files.
+* Exact CPU or GPU utilization.
+* Running system processes.
+* Exact physical memory usage.
+* Hardware temperatures.
+* Battery health.
+* Complete browsing history.
+* Arbitrary browser settings.
+* Other applications’ private data.
+
+Do not implement fake values for these fields.
+
+If the user asks for inaccessible information, explain what cannot be read and how they can check it manually.
+
+Where safe, ask the user to provide relevant information so Zulvyn can continue troubleshooting.
+
+Diagnostics dashboard
+
+Provide a minimal, optional diagnostic view.
+
+It should feel like a refined utility panel, not a colorful analytics dashboard.
+
+Group information by:
+
+* Browser.
+* Device.
+* Display.
+* Network.
+* Storage.
+* Permissions.
+* Capabilities.
+
+Allow users to copy individual results or export a diagnostic report.
+
+Provide a privacy-safe preview of data before export.
+
+Do not automatically upload the report anywhere.
+
+14. BROWSER EXTENSION
+
+Varek must also be available as a browser extension.
+
+Build the first extension release for Chromium-based browsers using Manifest V3.
+
+Use the same core engine and visual design as the website.
+
+Extension experience
+
+Implement:
+
+* Toolbar icon.
+* Compact popup.
+* Persistent side panel where supported.
+* Browser information access.
+* Contextual tab information.
+* Relevant commands.
+* Local conversation history.
+* A compact version of the Zulvyn chat interface.
+
+The side panel should be the primary extended experience.
+
+When installed, users should be able to open Varek alongside their current browser tab.
+
+Contextual page capabilities
+
+With an explicit user action and appropriate permission, support:
+
+* Current page title.
+* Current page URL.
+* Domain.
+* Basic document metadata.
+* Basic page structure statistics.
+* Relevant technical attributes.
+* Limited troubleshooting observations.
+* Permissioned extraction of page text for simple local analysis.
+
+Do not assume the extension can understand arbitrary page content like an actual LLM.
+
+If providing page summaries, use clearly defined extractive techniques and disclose their limitations.
+
+Avoid unsupported claims about the page’s meaning.
+
+Do not read sensitive page contents without deliberate user action.
+
+Permissions
+
+Use the minimum permissions necessary.
+
+Possible permissions include:
+
+* storage
+* sidePanel
+* activeTab
+* scripting
+
+Introduce additional permissions only for concrete implemented features.
+
+Avoid blanket access to all websites.
+
+Prefer temporary activeTab access or optional site permissions.
+
+Do not automatically inspect every website the user visits.
+
+Web-to-extension integration
+
+The website should work independently without the extension.
+
+If a supported Chrome extension is installed, the website may offer additional capabilities through a secure, explicit bridge.
+
+Use established extension messaging mechanisms.
+
+For any externally connectable bridge:
+
+* Restrict allowed website origins.
+* Validate message types and payloads.
+* Reject unauthorized senders.
+* Require user consent for sensitive operations.
+* Never treat a web page request as unrestricted permission to access browser data.
+
+Do not assume the extension is installed.
+
+Do not require the extension for basic Zulvyn functionality.
+
+Extension packaging
+
+The extension must contain its own bundled executable code.
+
+Do not load remotely hosted executable JavaScript from GitHub Pages.
+
+Create a separate build artifact suitable for loading as an unpacked extension.
+
+Keep the website and extension builds separate while sharing common source modules.
+
+Document installation and local development.
+
+Support Firefox only after implementing and testing a compatible API adapter; do not promise unimplemented compatibility.
+
+15. LOCAL STORAGE AND PRIVACY
+
+Privacy should be a core feature of Varek.
+
+The application should function without accounts.
+
+Store locally:
+
+* Conversations.
+* User preferences.
+* Selected model.
+* Thinking preference.
+* Theme.
+* Saved user-provided device information.
+* Relevant conversational context.
+
+Use IndexedDB for conversations and structured history.
+
+Use a versioned storage schema with migrations.
+
+Provide:
+
+* Export conversations.
+* Delete individual conversations.
+* Clear all conversations.
+* Reset preferences.
+* Clear stored device information.
+* Clear all Varek data.
+
+All destructive actions should use appropriate confirmation.
+
+Do not collect analytics by default.
+
+Do not use tracking pixels or third-party session monitoring.
+
+Avoid unnecessary external network requests.
+
+Make a clear distinction between downloading the hosted website assets and sending conversation content to a server.
+
+Explain that GitHub Pages hosts the static files but the conversational engine executes in the browser.
+
+Do not claim end-to-end encryption or guarantees that are not implemented.
+
+Do not secretly transmit messages, page content, diagnostic reports, or browser data.
+
+16. PWA AND OFFLINE SUPPORT
+
+Varek should be installable as a Progressive Web App on supported browsers.
+
+Implement:
+
+* Web app manifest.
+* Appropriate application icons.
+* Service worker.
+* Offline application shell.
+* Cached static assets.
+* Cached local knowledge data.
+* Reliable update detection.
+* Safe cache versioning.
+* Install guidance where supported.
+
+After the application has been installed or successfully cached, its core conversation engine should remain usable offline.
+
+A cold first visit with no cached assets cannot be assumed to work offline.
+
+Do not make local diagnostics dependent on a hosted API.
+
+Ensure offline storage and service-worker behavior respect the GitHub Pages project base path.
+
+Provide a subtle indication when the application is offline, if relevant.
+
+17. GITHUB PAGES DEPLOYMENT
+
+Deploy the website from the hiyroscript/varek repository.
+
+The expected project-site URL is:
+
+https://hiyroscript.github.io/varek/
+
+Configure Vite appropriately for the /varek/ base path.
+
+Avoid broken asset URLs caused by absolute root paths.
+
+Use routing that works on GitHub Pages without requiring a server-side rewrite configuration.
+
+Create a GitHub Actions deployment workflow under:
+
+.github/workflows/deploy.yml
+
+The workflow should:
+
+1. Check out the repository.
+2. Set up Node.js.
+3. Install dependencies reproducibly.
+4. Run TypeScript checks.
+5. Run automated tests.
+6. Build the website.
+7. Publish the built static site to GitHub Pages.
+
+Provide documentation for enabling GitHub Pages with GitHub Actions as the publishing source.
+
+Make deployment reproducible.
+
+Do not depend on local, uncommitted build artifacts.
+
+Do not put secrets or private credentials in frontend source files.
+
+The extension should have a separate build command and downloadable artifact.
+
+18. INTERACTION DETAILS
+
+The application should feel responsive and deliberately crafted.
+
+Implement the following behaviors carefully.
+
+Chat composer
+
+* Automatic height adjustment.
+* Visible focus state.
+* Escape to close the command menu.
+* Arrow-key command navigation.
+* Enter to send.
+* Shift+Enter for newline.
+* Disabled or clearly managed input states during operations.
+* Stop generation control.
+
+Conversation management
+
+* New conversations.
+* Automatic conversation titles derived from the first meaningful message.
+* Rename.
+* Delete.
+* Pin.
+* Search.
+* Persistent history.
+* Correct ordering by recent activity.
+
+Do not use fake AI-generated titles. Use a deterministic title-generation strategy.
+
+Assistant responses
+
+* Streaming-style appearance.
+* Copy button.
+* Retry button.
+* Optional analysis summary.
+* Relevant follow-up suggestions.
+* Accurate command results.
+* Error handling.
+* Clean Markdown rendering.
+
+Model selector
+
+Show:
+
+* Zulvyn — Available.
+* Madon — Coming Soon.
+
+Do not add fake models.
+
+Keyboard shortcuts
+
+Implement a sensible shortcut system.
+
+For example:
+
+* New chat.
+* Focus composer.
+* Toggle sidebar.
+* Open command menu.
+* Search conversations.
+* Close dialogs.
+
+Avoid overriding important native browser shortcuts.
+
+Accessibility
+
+Implement:
+
+* Semantic HTML.
+* Proper input labels.
+* Keyboard accessibility.
+* Visible focus indicators.
+* Accessible dialog behavior.
+* Adequate color contrast.
+* Reduced-motion support.
+* Screen reader announcements.
+* Accessible streamed response behavior.
+
+Test both light and dark themes.
+
+19. RESPONSE QUALITY AND WRITING STYLE
+
+Zulvyn’s personality must feel consistent.
+
+It should be:
+
+* Calm.
+* Intelligent.
+* Precise.
+* Helpful.
+* Professional.
+* Concise by default.
+* Detailed when necessary.
+* Honest about uncertainty.
+
+Avoid repetitive expressions such as:
+
+“Certainly!”
+
+“Great question!”
+
+“Absolutely!”
+
+“I’d be happy to help!”
+
+Do not introduce every answer with unnecessary enthusiasm.
+
+Avoid making every response use the same template.
+
+Prefer direct answers followed by useful explanation.
+
+Example interaction:
+
+User: Why is my browser lagging?
+
+Zulvyn: There are a few common reasons for browser lag: heavy tabs, extensions, limited available memory, and graphics acceleration issues.
+
+I can check some information exposed by your browser, but I can’t directly measure system-wide CPU or RAM usage.
+
+Would you like to start with a quick browser check or troubleshoot a specific website?
+
+User: Quick check.
+
+Zulvyn: Checks available browser capabilities and reports actual observations, limitations, and suggested next steps.
+
+User: What should I try first?
+
+Zulvyn: Recommends the most appropriate next step based on the current troubleshooting context.
+
+This should work as a real multi-turn interaction, not as a hardcoded transcript.
+
+Handling unsupported questions
+
+Zulvyn should support a useful range of natural conversation, but must not pretend to understand every possible question.
+
+If the user asks an unrelated or unrecognized question, avoid generic technical answers that don’t address it.
+
+Instead, respond naturally:
+
+“I don’t have a reliable answer to that yet. I can help with browser settings, device information, performance, privacy, and troubleshooting.”
+
+Where appropriate, offer a more specific interpretation or clarifying question.
+
+20. DIAGNOSTIC DECISION TREES
+
+Build an actual rules-based troubleshooting system.
+
+Each troubleshooting flow should have:
+
+* Initial symptom.
+* Relevant platform.
+* Known environmental conditions.
+* Possible causes.
+* Diagnostic questions.
+* Recommended checks.
+* Low-risk remediation steps.
+* User confirmation.
+* Follow-up branching.
+* Escalation guidance.
+* Exit conditions.
+
+For example:
+
+Problem: Website doesn’t load.
+
+Evaluate, as appropriate:
+
+* Whether the browser reports connectivity.
+* Whether one website or many are affected.
+* Whether a browser error message is available.
+* Whether the issue happens across browsers.
+* Whether extensions may be involved.
+* Whether DNS or certificate problems are plausible.
+* Whether the problem is likely website-specific.
+
+Ask targeted questions rather than displaying a generic troubleshooting article.
+
+Prefer safe, reversible checks first.
+
+Do not recommend disabling security protections as a routine first step.
+
+Do not claim to have tested a network connection or external website unless a real test was performed.
+
+21. RESPONSE COMPOSITION ENGINE
+
+The final response should be assembled from meaningful structured information.
+
+Use:
+
+* Matched intent.
+* Available environment facts.
+* Knowledge-base content.
+* Platform-specific instructions.
+* Relevant troubleshooting outcomes.
+* User preferences.
+* Conversation context.
+* Evidence confidence.
+* Required permission notices.
+
+Support multiple response depths:
+
+* Brief.
+* Standard.
+* Detailed.
+* Step-by-step.
+
+The user should be able to request more detail without starting over.
+
+Examples:
+
+“Explain that more.”
+
+“Make it shorter.”
+
+“Give me the steps.”
+
+“How about Firefox?”
+
+“What does that mean?”
+
+“Can you compare those?”
+
+The assistant should resolve these requests based on the active conversation.
+
+Make the response engine extensible so more knowledge modules and diagnostic tools can be added later.
+
+22. SECURITY REQUIREMENTS
+
+Treat all user and webpage content as untrusted input.
+
+Requirements:
+
+* Do not execute user-entered JavaScript.
+* Do not execute arbitrary commands from chat input.
+* Do not use eval or equivalent dynamic execution.
+* Parse slash commands through an allowlisted registry.
+* Sanitize or safely render Markdown.
+* Do not inject untrusted HTML.
+* Validate stored data.
+* Validate extension messages.
+* Validate any URL before opening it.
+* Restrict privileged actions by capability and permission.
+* Avoid introducing unnecessary external dependencies.
+* Respect browser security boundaries.
+* Prevent accidental disclosure of sensitive diagnostic data.
+
+For extension features, explicitly handle restricted pages where content scripts cannot operate.
+
+Users should never believe that a command can modify protected settings unless that action is genuinely implemented and permissioned.
+
+23. PERFORMANCE REQUIREMENTS
+
+The application must remain fast despite its large knowledge base.
+
+Do not load and linearly scan every full answer on every keystroke.
+
+Build searchable indexes and lightweight intent metadata.
+
+Consider:
+
+* Category indexing.
+* Token-to-intent inverted indexes.
+* Lazy loading larger knowledge categories.
+* Memoized normalization.
+* Indexed search structures.
+* Worker-based matching for heavier operations.
+* Efficient chat virtualization when necessary.
+* Debounced conversation search.
+* Minimal unnecessary React renders.
+
+Keep common requests responsive on ordinary devices.
+
+Streaming must not block the main UI thread.
+
+Avoid creating hundreds of timers or inefficient rendering loops.
+
+Use dynamic imports where appropriate.
+
+24. TESTING REQUIREMENTS
+
+Write real automated tests.
+
+Test at least:
+
+* Intent matching.
+* Paraphrase recognition.
+* Typo tolerance.
+* Negation handling.
+* Multiple-intent handling.
+* Contextual follow-ups.
+* Ambiguous queries.
+* Unsupported questions.
+* Command parsing.
+* Command permissions.
+* Context expiration.
+* Device capability detection.
+* Unavailable browser APIs.
+* Thinking mode selection.
+* Response composition.
+* Streaming cancellation.
+* Markdown safety.
+* Local storage persistence.
+* Conversation deletion.
+* Knowledge indexing.
+* Browser-extension messaging security.
+
+Create realistic conversational test sequences rather than testing only isolated keywords.
+
+Include cases such as:
+
+“What browser am I using?”
+
+“Is that browser good?”
+
+“What about privacy?”
+
+“Make that shorter.”
+
+“Can I check my RAM?”
+
+“Why is my laptop hot?”
+
+“My browser keeps crashing.”
+
+“Does this work offline?”
+
+“Can you inspect my other apps?”
+
+“How do I clear my cache?”
+
+“Compare Chrome and Firefox.”
+
+“Actually, I’m using Safari.”
+
+“Run /browser.”
+
+“Switch to Madon.”
+
+Check that unsupported capabilities produce honest limitations rather than invented data.
+
+Test mobile and desktop layouts.
+
+Test the GitHub Pages production build using the /varek/ base path.
+
+Test offline behavior after caching.
+
+Test browser-extension behavior separately.
+
+25. DELIVERABLES
+
+Build and include:
+
+1. The complete responsive Varek web application.
+2. Functional Zulvyn conversational engine.
+3. Extensive authored knowledge library.
+4. Deterministic context-awareness system.
+5. Real browser/device diagnostics.
+6. Thinking and structured-analysis system.
+7. Progressive response renderer.
+8. Slash command engine.
+9. Persistent conversations and preferences.
+10. Functional model selector.
+11. Madon Coming Soon state.
+12. Light and dark themes.
+13. PWA manifest and offline assets.
+14. Manifest V3 browser-extension implementation.
+15. Extension side panel and popup.
+16. Secure optional extension bridge.
+17. Automated tests.
+18. GitHub Pages deployment workflow.
+19. Comprehensive README.
+20. A developer guide explaining how to add new knowledge, intents, commands, and future models.
+
+Document exactly which functionality is available in:
+
+* Web-only mode.
+* Installed PWA mode.
+* Browser-extension mode.
+
+Do not describe a feature as available unless it is implemented.
+
+26. IMPLEMENTATION ORDER
+
+Work in the following sequence.
+
+Phase 1 — Foundation
+
+Create the project, build configuration, design tokens, application shell, routing, persistence layer, and responsive chat interface.
+
+Phase 2 — Core Intelligence
+
+Implement intent processing, contextual memory, response ranking, structured knowledge records, response composition, and the first working Zulvyn conversations.
+
+Phase 3 — Real Diagnostics
+
+Implement browser capability detection, device reporting, evidence classification, diagnostic workflows, and supported local commands.
+
+Phase 4 — Knowledge Expansion
+
+Expand the actual authored answer library systematically across the required categories. Build validation scripts that report unique records, expression coverage, missing fields, duplicated content, and failing knowledge tests.
+
+Phase 5 — Thinking and Streaming
+
+Implement contextual analysis selection, truthful analysis summaries, progressive output, regeneration, cancellation, and follow-up resolution.
+
+Phase 6 — Extension
+
+Implement the Manifest V3 package, popup, side panel, permissions, tab-context features, and safe integration with the shared Zulvyn engine.
+
+Phase 7 — Final Product Quality
+
+Complete mobile refinements, accessibility, PWA support, offline operation, automated tests, build optimization, and deployment.
+
+Do not leave the application in a broken or unbuildable state between phases.
+
+27. ACCEPTANCE CRITERIA
+
+The implementation is complete when:
+
+* The website builds successfully.
+* GitHub Pages deployment is configured correctly.
+* The Varek interface looks like a polished, premium web application.
+* Zulvyn responds naturally to a broad range of supported questions.
+* Queries with different wording resolve to appropriate intents.
+* Answers use actual browser and device information when available.
+* Responses distinguish observations from assumptions.
+* Conversation follow-ups work.
+* Thinking mode meaningfully changes diagnostic processing.
+* Streaming responses can be stopped.
+* Slash commands actually execute their documented behaviors.
+* Conversation history persists locally.
+* PWA offline functionality works after initial caching.
+* The browser extension builds and its implemented features function.
+* The Madon option is clearly marked Coming Soon.
+* The application works on mobile and desktop.
+* No API key or backend is necessary.
+* Knowledge coverage is validated and reported.
+* All tests pass.
+* No fake metrics, invented device details, or placeholder functionality remain in the release.
+
+FINAL INSTRUCTION
+
+I want Varek to feel like a real, carefully engineered software product—not a rough demo, generic AI website, or collection of canned chatbot replies.
+
+Invest particular effort in the intelligence engine, knowledge coverage, conversational continuity, and visual polish.
+
+The central experience must feel natural:
+
+A user opens Varek, asks Zulvyn something about their browser or device, and receives a clear, relevant, context-aware answer using actual available information and a substantial offline knowledge base.
+
+A user can ask follow-up questions without repeating everything.
+
+A user can execute meaningful slash commands.
+
+A user can install Varek as a PWA or browser extension and use its supported local capabilities.
+
+Do not substitute a traditional API-based LLM for the specified deterministic engine.
+
+Do not misrepresent a simulated response as actual model inference.
+
+Do not stop after generating an attractive interface. The functional engine and extensive authored content are the heart of the project.
+
+Implement the complete system, verify it, and document what is truly working.
+
+At completion, provide:
+
+* A summary of implemented functionality.
+* Files and architecture created.
+* The exact number of validated knowledge records and phrase patterns.
+* Test results.
+* Build results.
+* GitHub Pages deployment status or remaining setup steps.
+* Browser-extension installation instructions.
+* Any incomplete requirements, explicitly identified.
+
+Prioritize real working functionality, maintainable architecture, broad knowledge coverage, clean design, and truthful technical behavior over superficial features.
