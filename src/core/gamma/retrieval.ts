@@ -1,7 +1,7 @@
 import { knowledge } from "../../data/knowledge";
-import { normalize, tokens, distance } from "../matcher";
+import { normalize, tokens, distance } from "../text";
 import { understand, entities } from "./language";
-export { normalize } from "../matcher";
+export { normalize } from "../text";
 const documents = knowledge.map((record) => {
   const terms = tokens(
     record.title +
@@ -42,6 +42,8 @@ export type Candidate = {
   score: number;
   lexical: number;
   coverage: number;
+  discovery?: boolean;
+  fusion?: number;
 };
 export function rank(input: string): Candidate[] {
   const request = understand(input);

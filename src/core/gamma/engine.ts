@@ -1,7 +1,11 @@
+import { compareKnowledge } from "./compare";
+import { analyzeRequest } from "./request";
+import { runCapability } from "./capabilities";
 import { retrieveCandidates } from "./hybrid";
 import { freshContext, resolveReference } from "./context";
 export { freshContext } from "./context";
 import { begin, advance, workflow } from "./workflows";
+import { health } from "./diagnostics";
 import { diagnosticGroups } from "./diagnostics";
 import { webResponse } from "./web";
 import { understand } from "./language";
@@ -54,7 +58,7 @@ function compose(id: string, c: Context) {
     );
   return prefix + k.answer;
 }
-export async function respond(
+async function respondSingle(
   input: string,
   previous: Context,
   options: EngineOptions,
@@ -68,9 +72,9 @@ export async function respond(
   c.updated = Date.now();
   c.turns++;
   let n = normalize(input);
-  const statedPlatform = understand(input).entities.find(
-    (e) => e.kind === "platform",
-  );
+  const statedPlatform = understand(input)
+    .entities.filter((e) => e.kind === "platform")
+    .at(-1);
   if (statedPlatform && /\b(using|on|running|actually)\b/.test(n))
     c.platform = statedPlatform.value;
   const answer = (text: string, rest: Partial<Response> = {}): Response => ({
@@ -108,6 +112,18 @@ export async function respond(
     return answer(
       "Use /help for supported commands. Arbitrary scripts and shell commands cannot be executed.",
     );
+  const computation = input.trim().match(/^(calculate|convert)\s+([\s\S]+)$/i);
+  if (computation)
+    return answer(
+      runCapability(
+        "calculate",
+        computation[2].replace(/[?]$/, ""),
+        options.signal,
+      ),
+    );
+  const supplied = input.trim().match(/^analyze\s+([\s\S]+)$/i);
+  if (supplied)
+    return answer(runCapability("analyze", supplied[1], options.signal));
   const web = await webResponse(
     input,
     c,
@@ -140,7 +156,9 @@ export async function respond(
     /\b(actually|correction|im using|i use|i am using)\b/.test(n) &&
     browserNames.test(n)
   ) {
-    c.browser = n.match(browserNames)![1];
+    c.browser = [...n.matchAll(new RegExp(browserNames.source, "gi"))].at(
+      -1,
+    )![1];
     c.flow = undefined;
     c.diagnosis = undefined;
     c.lastAction = undefined;
@@ -217,6 +235,17 @@ export async function respond(
       return answer(compose("compare", c));
     }
   }
+  if (
+    /^(?:check|inspect|show)(?: me)? (?:my |this )?browser capabilities[?.!]*$/.test(
+      n,
+    )
+  ) {
+    const evidence = await options.facts();
+    options.signal?.throwIfAborted();
+    return answer(health(evidence), { evidence });
+  }
+  if (/^compare\s/i.test(input))
+    return answer(compareKnowledge(input.replace(/^compare\s+/i, ""), c));
   const groups = diagnosticGroups(n);
   const featureRequest =
     /support|available|can.*(?:install|query|use)|check/.test(n) &&
@@ -283,6 +312,19 @@ export async function respond(
       return normalize(k.title) === n || id === n;
     });
     if (selected) {
+      const platform = c.platform
+        ?.toLowerCase()
+        .replace(/windows.*/, "windows")
+        .replace("ubuntu", "linux");
+      const record = get(selected)!;
+      if (
+        platform &&
+        record.platforms?.length &&
+        !record.platforms.some((p) => p.toLowerCase() === platform)
+      )
+        return answer(
+          `These instructions apply to ${record.platforms.join(" or ")}. You stated ${platform}. Are you asking about a different device?`,
+        );
       c.pending = undefined;
       c.intent = selected;
       return answer(compose(selected, c), {
@@ -401,6 +443,22 @@ export async function respond(
     candidates = [{ record: get("slow")!, score: 1, lexical: 1, coverage: 1 }];
   if (/start a new diagnosis/.test(n))
     return executeCommand("diagnose", "", c, []);
+  if (candidates[0]?.discovery) {
+    c.pending = candidates
+      .filter((candidate) => candidate.discovery)
+      .slice(0, 3)
+      .map((candidate) => candidate.record.id);
+    return answer(
+      `I found potentially related local guidance. Are you asking about ${candidates
+        .filter((candidate) => candidate.discovery)
+        .slice(0, 3)
+        .map((candidate) => candidate.record.title.toLowerCase())
+        .join(
+          " or ",
+        )}? Semantic similarity alone does not establish the answer.`,
+      { followups: c.pending.map((id) => get(id)!.title) },
+    );
+  }
   if (!candidates.length || candidates[0].score < 0.63)
     return answer(
       "I don’t have a reliable answer to that yet. I can help with browser settings, device information, performance, privacy, and troubleshooting. Could you describe the specific feature or symptom?",
@@ -505,4 +563,70 @@ export async function respond(
     analysis,
     followups: guided ? guided.followups : top.record.followups,
   });
+}
+
+// Bounded composition executes only user-authored tasks. Supplied documents,
+// commands and source text never re-enter this dispatcher.
+export async function respond(
+  input: string,
+  previous: Context,
+  options: EngineOptions,
+): Promise<Response> {
+  options.signal?.throwIfAborted();
+  const request = analyzeRequest(input);
+  if (request.tasks.length < 2) return respondSingle(input, previous, options);
+  let context = freshContext(previous);
+  const parts: string[] = [],
+    evidence: Evidence[] = [];
+  for (const task of request.tasks) {
+    options.signal?.throwIfAborted();
+    let text = task.text;
+    if (task.reference && task.dependsOn.length) {
+      const prior = request.tasks[task.dependsOn[0]];
+      const subject = prior.entities.find(
+        (e) => e.kind === "api" || e.kind === "browser",
+      )?.value;
+      if (!subject) {
+        parts.push(
+          `### ${task.id + 1}. Clarification needed\nWhich subject does “${task.reference}” refer to? Please name it for this part of the request.`,
+        );
+        continue;
+      }
+      text = text.replace(/\b(?:it|that)\b/i, subject);
+    }
+    // A compound request cannot grant permissions, issue commands, or send
+    // a fragment of private material to a provider. Ask for a separate action.
+    if (/^(?:run\s+)?\/|^(?:search|look up|lookup)\b/i.test(text.trim())) {
+      parts.push(
+        `### ${task.id + 1}. Separate action required\nSend this command or public lookup as a separate explicit request.`,
+      );
+      continue;
+    }
+    const response = await respondSingle(text, context, options);
+    if (response.effect) {
+      parts.push(
+        `### ${task.id + 1}. Separate action required\nSend this action separately.`,
+      );
+      continue;
+    }
+    context = response.context;
+    parts.push(
+      `### ${response.context.goal === text && response.context.intent ? (get(response.context.intent)?.title ?? task.intent) : task.intent === "unknown" ? "Request" : task.intent}\nPart ${task.id + 1} of ${request.tasks.length}\n\n${response.text}`,
+    );
+    for (const item of response.evidence ?? [])
+      if (
+        !evidence.some((e) => e.label === item.label && e.value === item.value)
+      )
+        evidence.push(item);
+  }
+  if (request.omitted)
+    parts.push(
+      `There are ${request.omitted} additional parts. Please send them in a separate message; I handle at most six parts per request.`,
+    );
+  context.turns = previous.turns + 1;
+  return {
+    text: parts.join("\n\n"),
+    context,
+    evidence: evidence.length ? evidence : undefined,
+  };
 }

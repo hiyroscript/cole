@@ -1,3 +1,5 @@
+import { compareKnowledge } from "./gamma/compare";
+import { capabilities, runCapability } from "./gamma/capabilities";
 import { emptyContext } from "./types";
 import { health } from "./gamma/diagnostics";
 import { begin } from "./gamma/workflows";
@@ -7,6 +9,9 @@ import type { Response, Context, Thinking, Evidence } from "./types";
 import { knowledge } from "../data/knowledge";
 import { features } from "../lib/diagnostics";
 export const commands = [
+  ["calculate", "Arithmetic, percentages and unit conversions"],
+  ["analyze", "Analyze explicitly supplied JSON or technical text"],
+  ["capabilities", "List local calculation and analysis capabilities"],
   ["gamma", "Gamma engine and privacy information"],
   ["health", "Evidence-aware browser capability report"],
   ["context", "Temporary context: show or clear"],
@@ -73,9 +78,14 @@ export const commands = [
     : "None",
 }));
 export function parseCommand(input: string) {
-  const m = input.trim().match(/^(?:run\s+)?\/([a-z]+)(?:\s+(.*))?$/i);
+  const m = input.trim().match(/^(?:run\s+)?\/([a-z]+)(?:\s+([\s\S]*))?$/i);
   if (!m) return null;
-  return { name: m[1].toLowerCase(), arg: m[2]?.trim().toLowerCase() ?? "" };
+  return {
+    name: m[1].toLowerCase(),
+    arg: ["calculate", "analyze"].includes(m[1].toLowerCase())
+      ? (m[2]?.trim() ?? "")
+      : (m[2]?.trim().toLowerCase() ?? ""),
+  };
 }
 export async function executeCommand(
   name: string,
@@ -90,6 +100,19 @@ export async function executeCommand(
     context,
     ...extra,
   });
+  if (name === "compare" && !["chrome firefox", "cache cookies"].includes(arg))
+    return result(compareKnowledge(arg, context));
+  if (name === "calculate" || name === "analyze")
+    return result(runCapability(name, arg));
+  if (name === "capabilities" && !arg)
+    return result(
+      capabilities
+        .map(
+          (c) =>
+            `- **/${c.name}** — ${c.description}. Local, no permissions, no side effects.`,
+        )
+        .join("\n"),
+    );
   if (name === "model") arg = String(normalizeModel(arg));
   const cmd = commands.find((c) => c.name === name);
   if (!cmd)

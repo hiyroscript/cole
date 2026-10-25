@@ -1,0 +1,50 @@
+{
+  "environment": "Headless Chromium, Linux container, local production preview, fresh browser context for each of five samples, reduced motion; no network throttling or physical mobile measurement",
+  "baseline": {
+    "javascriptBytes": 499750,
+    "gzipBytes": 160640
+  },
+  "current": {
+    "javascriptBytes": 825644,
+    "gzipBytes": 265941
+  },
+  "changePercent": 65.21140570285142,
+  "budgets": {
+    "initialJavascriptBytes": 650000,
+    "initialGzipBytes": 210000
+  },
+  "budgetExceeded": true,
+  "median": {
+    "readyMs": 302.10000000009313,
+    "responseVisibleMs": 61.5,
+    "jsHeapUsedBytes": 8198396
+  },
+  "samples": [
+    {
+      "readyMs": 335.0999999999767,
+      "responseVisibleMs": 63.5,
+      "jsHeapUsedBytes": 8198396
+    },
+    {
+      "readyMs": 309.4000000000233,
+      "responseVisibleMs": 61.5,
+      "jsHeapUsedBytes": 8262896
+    },
+    {
+      "readyMs": 257.5,
+      "responseVisibleMs": 59.29999999993015,
+      "jsHeapUsedBytes": 8178044
+    },
+    {
+      "readyMs": 302.10000000009313,
+      "responseVisibleMs": 91.19999999995343,
+      "jsHeapUsedBytes": 8220252
+    },
+    {
+      "readyMs": 287.5999999999767,
+      "responseVisibleMs": 58.29999999993015,
+      "jsHeapUsedBytes": 8195012
+    }
+  ],
+  "note": "The initial 650 kB / 210 kB gzip budget is exceeded after expansion from 205 to 700 records and 75 workflows. This is a documented payload regression. Optional inference runtimes and weights remain excluded from initial requests. Browser timing has no measured pre-upgrade counterpart; do not infer a startup speedup. CDP JS heap is not total process or peak inference memory."
+}

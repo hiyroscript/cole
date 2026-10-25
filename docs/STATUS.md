@@ -1,5 +1,7 @@
 # Implementation status
 
+Gamma 3.0 foundations: bounded multi-part requests, semantic candidate discovery, local calculations, JSON/log analysis and sourced comparisons are implemented. This is a partial milestone; see the [delivery report and remaining release gates](GAMMA3-DELIVERY.md).
+
 ## Cole rebrand (2026-10-25)
 
 Cole now uses the supplied two-part symbol and a shared monochrome design system across the website, PWA and Chromium extension. Sidebar, welcome view, chat, composer, settings and setup dialogs have been redesigned. The existing database, preferences, deployment path and permissions are unchanged. See [Cole delivery and verification](COLE-DELIVERY.md) for results and screenshots.

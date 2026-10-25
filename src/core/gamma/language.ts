@@ -1,4 +1,4 @@
-import { normalize } from "../matcher";
+import { normalize } from "../text";
 export type Entity = {
   kind: "browser" | "platform" | "api" | "error" | "version" | "display";
   value: string;
@@ -29,7 +29,7 @@ export function understand(input: string) {
   const normalized = normalize(input);
   const excluded: string[] = [];
   let positive = normalized.replace(
-    /\b(?:isnt|arent|not|is not|isnt with|not with)\s+(?:really\s+)?(slow|sluggish|crashing|crash|wifi|wi-fi|network|internet)\b/g,
+    /\b(?:isnt|arent|not|is not|isnt with|not with)\s+(?:(?:really|a|the)\s+)?(slow|sluggish|crashing|crash|wifi|wi-fi|network|internet)\b/g,
     (_, symptom: string) => {
       excluded.push(symptom);
       return " ";

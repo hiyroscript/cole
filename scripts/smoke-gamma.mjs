@@ -29,6 +29,7 @@ try {
   });
   await page.reload();
   await page.getByRole("button", { name: "Settings", exact: true }).click();
+  await page.locator("summary").filter({ hasText: "Assistant setup" }).click();
   page.on("dialog", (d) => d.accept());
   const start = Date.now();
   await page
@@ -47,6 +48,7 @@ try {
   await page.reload();
   await context.setOffline(true);
   await page.getByRole("button", { name: "Settings", exact: true }).click();
+  await page.locator("summary").filter({ hasText: "Assistant setup" }).click();
   await page
     .getByRole("button", {
       name: "Initialize enhanced understanding",

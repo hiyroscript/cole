@@ -1,5 +1,7 @@
 # Gamma 2.0 implementation and release gate
 
+Gamma 3.0 foundations: bounded multi-part requests, semantic candidate discovery, local calculations, JSON/log analysis and sourced comparisons are implemented. This is a partial milestone; see the [delivery report and remaining release gates](GAMMA3-DELIVERY.md).
+
 Gamma is Cole’s default lightweight assistant: **Fast, private browser and device intelligence.** Madon remains the separate Qwen3-1.7B/WebLLM generative assistant. No request to Gamma initializes Madon. The Cole monochrome interface, project path `/varek/`, storage namespaces, and extension permissions are preserved.
 
 This branch implements the rebrand, engine upgrade and all numeric content/evaluation targets in `max`. See [the delivery report](GAMMA-DELIVERY.md) for measured quality, regression results, payload growth and remaining release limits.
