@@ -1,6 +1,6 @@
 # Cole
 
-Gamma 3.0 foundations: bounded multi-part requests, semantic candidate discovery, local calculations, JSON/log analysis and sourced comparisons are implemented. This is a partial milestone; see the [delivery report and remaining release gates](docs/GAMMA3-DELIVERY.md).
+Gamma 3.0 adds optional knowledge packs, local documents and calculations, evidence-based troubleshooting, explicit preference memory and experimental semantic acceptance. Startup is within budget; broader quality targets remain unmet. See the [implementation and measured release gates](docs/GAMMA3-DELIVERY.md).
 
 Cole is a browser-local diagnostic and knowledge assistant. **Gamma is a deterministic engine, not a large language model.** It combines authored explanations, indexed intent matching, conversation context, and actual browser APIs. No account, backend, hosted inference API, or API key is required. Madon is now an opt-in local Qwen3/WebLLM website preview with explicit setup, real token streaming, and optional Wikimedia retrieval. Real GPU inference remains unverified in this environment; see [Madon setup and validation](docs/MADON.md).
 

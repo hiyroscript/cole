@@ -1,3 +1,4 @@
+import { observe, type Understanding } from "./observations";
 import { entities, understand, type Entity } from "./language";
 export type TaskIntent =
   | "explain"
@@ -17,6 +18,7 @@ export type RequestTask = {
 };
 export type StructuredRequest = {
   locale: "en";
+  understanding: Understanding;
   primaryIntent: TaskIntent;
   tasks: RequestTask[];
   omitted: number;
@@ -42,7 +44,7 @@ export function analyzeRequest(input: string): StructuredRequest {
   const clauses = opaque
     ? [input]
     : input.split(
-        /(?:[?;]\s+|\.\s+(?=[A-Z])|,?\s+(?:and|also|then)\s+|,\s+)(?=(?:what|why|how|explain|tell|check|detect|inspect|calculate|convert|compare|suggest|write|delete|search|look up)\b)/i,
+        /(?:[?;]\s+|\.\s+(?=[A-Z])|,?\s+(?:and|also|then)\s+|,\s+)(?=(?:(?:also|then|and)\s+)?(?:what|why|how|explain|tell|check|detect|inspect|calculate|convert|compare|suggest|write|delete|search|look up)\b)/i,
       );
   const tasks: RequestTask[] = clauses.slice(0, 6).map((text, id) => {
     text = text.trim().replace(/^(?:and|also|then)\s+/i, "");
@@ -58,6 +60,7 @@ export function analyzeRequest(input: string): StructuredRequest {
   });
   return {
     locale: "en",
+    understanding: observe(input),
     primaryIntent: tasks[0]?.intent ?? "unknown",
     tasks,
     omitted: Math.max(0, clauses.length - tasks.length),

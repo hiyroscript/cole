@@ -20,7 +20,12 @@
     "test:gamma:real": "node --import tsx scripts/smoke-gamma.mjs",
     "measure:gamma": "node scripts/measure-gamma.mjs",
     "build:icons": "node scripts/brand-assets.mjs",
-    "evaluate:gamma3": "tsx scripts/evaluate-gamma3.ts"
+    "evaluate:gamma3": "tsx scripts/evaluate-gamma3.ts",
+    "calibrate:gamma": "tsx scripts/calibrate-gamma.ts",
+    "evaluate:intelligence": "tsx scripts/evaluate-intelligence.ts",
+    "generate:workflow-nodes": "tsx scripts/generate-workflow-nodes.ts",
+    "check:payload": "node scripts/check-payload.mjs",
+    "evaluate:semantic-heldout": "tsx scripts/evaluate-semantic-heldout.ts"
   },
   "dependencies": {
     "@huggingface/transformers": "3.8.1",
@@ -28,7 +33,8 @@
     "lucide-react": "^0.468.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-markdown": "^10.1.0"
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "4.0.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0",

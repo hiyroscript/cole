@@ -67,7 +67,7 @@ test("calculator, analysis and comparisons survive a production offline reload",
     page.getByRole("link", { name: "WebGL", exact: true }),
   ).toHaveAttribute("href", /^https:\/\//);
 });
-test("semantic-only discovery is presented as clarification, never auto-accepted", async ({
+test("semantic-only discovery below the acceptance gate asks for clarification", async ({
   page,
 }) => {
   await page.addInitScript(() => {
@@ -85,8 +85,8 @@ test("semantic-only discovery is presented as clarification, never auto-accepted
                       type: "result",
                       id: data.id,
                       scores: [
-                        { id: "slow", score: 0.91 },
-                        { id: "dns", score: 0.65 },
+                        { id: "slow", score: 0.67 },
+                        { id: "dns", score: 0.58 },
                       ],
                     },
             }),

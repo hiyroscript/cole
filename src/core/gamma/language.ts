@@ -28,7 +28,18 @@ export function entities(input: string): Entity[] {
 export function understand(input: string) {
   const normalized = normalize(input);
   const excluded: string[] = [];
-  let positive = normalized.replace(
+  // Remove request framing, never technical identifiers or symptom qualifiers.
+  // This grammar is shared across topics rather than adding topic aliases.
+  const semanticInput = normalized
+    .replace(
+      /^(?:please\s+)?(?:(?:can|could|would) you\s+)?(?:briefly\s+)?(?:explain|describe|tell me about|define)\s+(?:what\s+)?/i,
+      "",
+    )
+    .replace(
+      /\s+(?:in simple terms|for a beginner|without jargon|for me)[?.!]*$/i,
+      "",
+    );
+  let positive = semanticInput.replace(
     /\b(?:isnt|arent|not|is not|isnt with|not with)\s+(?:(?:really|a|the)\s+)?(slow|sluggish|crashing|crash|wifi|wi-fi|network|internet)\b/g,
     (_, symptom: string) => {
       excluded.push(symptom);

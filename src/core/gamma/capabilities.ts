@@ -15,7 +15,19 @@ function analyze(input: string) {
   if (/^[\s]*[\[{]/.test(input)) {
     try {
       const parsed: unknown = JSON.parse(input);
+      const pending = [{ value: parsed, depth: 0 }];
+      let nodes = 0;
+      while (pending.length) {
+        const node = pending.pop()!;
+        if (++nodes > 5000 || node.depth > 64)
+          return `${header}\n\nStructurally valid JSON; formatting is limited to 5,000 nodes and depth 64.`;
+        if (node.value && typeof node.value === "object")
+          for (const value of Object.values(node.value))
+            pending.push({ value, depth: node.depth + 1 });
+      }
       const formatted = JSON.stringify(parsed, null, 2);
+      if (formatted.length > 32000)
+        return `${header}\n\nStructurally valid JSON; formatted output exceeds the 32,000-character limit.`;
       // Use a fence longer than any run in the document, preventing a breakout.
       const fence = "`".repeat(
         Math.max(

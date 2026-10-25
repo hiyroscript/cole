@@ -1,9 +1,26 @@
 import { chromium } from "@playwright/test";
-import { readdir, writeFile } from "node:fs/promises";
+import { readdir, writeFile, readFile } from "node:fs/promises";
 import { knowledge } from "../src/data/knowledge.ts";
 import { retrievalCases } from "../tests/gamma-cases.ts";
 import { rerank } from "../src/core/gamma/rerank.ts";
 import { confidence, rank } from "../src/core/gamma/retrieval.ts";
+const heldout = process.env.GAMMA_HELDOUT === "1";
+const extra = process.env.GAMMA_EXTRA_QUERIES;
+const cases = extra
+  ? JSON.parse(await readFile(extra, "utf8")).map((query) => ({
+      query,
+      expected: null,
+      kind: "engine-subquery",
+    }))
+  : heldout
+    ? JSON.parse(await readFile("tests/heldout/gamma3.json", "utf8"))
+        .cases.filter((c) => ["supported", "unsupported"].includes(c.category))
+        .map((c) => ({
+          query: c.query,
+          expected: c.expected ?? null,
+          kind: c.category,
+        }))
+    : retrievalCases;
 const browser = await chromium.launch({
   executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium",
   headless: true,
@@ -100,20 +117,32 @@ try {
         id: k.id,
         text: [k.title, ...k.phrases].join(". "),
       })),
-      queries: retrievalCases.map((c) => c.query),
+      queries: cases.map((c) => c.query),
     },
   );
-  const supported = retrievalCases.filter((c) => c.expected).length;
+  await writeFile(
+    extra
+      ? "docs/gamma3/semantic-extra-scores.json"
+      : heldout
+        ? "docs/gamma3/heldout-semantic-scores.json"
+        : "docs/gamma3/semantic-scores.json",
+    JSON.stringify(
+      cases.map((c, i) => ({ ...c, ...scores[i] })),
+      null,
+      2,
+    ) + "\n",
+  );
+  const supported = cases.filter((c) => c.expected).length;
   let top1 = 0,
     recall = 0;
   for (let i = 0; i < scores.length; i++) {
-    const expected = retrievalCases[i].expected;
+    const expected = cases[i].expected;
     if (expected) {
       if (scores[i].scores[0]?.id === expected) top1++;
       if (scores[i].scores.slice(0, 3).some((s) => s.id === expected)) recall++;
     }
   }
-  const hybridResults = retrievalCases.map((c, i) => {
+  const hybridResults = cases.map((c, i) => {
     const candidates = rerank(c.query, rank(c.query), scores[i].scores);
     const accepted = ["high", "moderate"].includes(confidence(candidates));
     return {
@@ -126,20 +155,23 @@ try {
         .some((candidate) => candidate.record.id === c.expected),
     };
   });
-  const hybrid = {
-    intentAccuracy:
-      hybridResults.filter(
-        (r) => r.expected && r.accepted && r.actual === r.expected,
-      ).length / supported,
-    recallAt3:
-      hybridResults.filter((r) => r.expected && r.recalled).length / supported,
-    falsePositiveRate:
-      hybridResults.filter((r) => !r.expected && r.accepted).length /
-      (retrievalCases.length - supported),
-    misses: hybridResults.filter((r) =>
-      r.expected ? !r.accepted || r.actual !== r.expected : r.accepted,
-    ),
-  };
+  const hybrid = extra
+    ? null
+    : {
+        intentAccuracy:
+          hybridResults.filter(
+            (r) => r.expected && r.accepted && r.actual === r.expected,
+          ).length / supported,
+        recallAt3:
+          hybridResults.filter((r) => r.expected && r.recalled).length /
+          supported,
+        falsePositiveRate:
+          hybridResults.filter((r) => !r.expected && r.accepted).length /
+          (cases.length - supported),
+        misses: hybridResults.filter((r) =>
+          r.expected ? !r.accepted || r.actual !== r.expected : r.accepted,
+        ),
+      };
   const latencies = scores.map((s) => s.ms).sort((a, b) => a - b);
   const report = {
     environment:
@@ -151,14 +183,20 @@ try {
     records: knowledge.length,
     queries: scores.length,
     hybrid,
-    semanticOnlyTop1: top1 / supported,
-    semanticOnlyRecallAt3: recall / supported,
+    semanticOnlyTop1: supported ? top1 / supported : null,
+    semanticOnlyRecallAt3: supported ? recall / supported : null,
     queryMedianMs: latencies[Math.floor(latencies.length / 2)],
     queryP95Ms: latencies[Math.floor(latencies.length * 0.95)],
-    note: "Raw semantic neighbors are not acceptance decisions. Hybrid reranking remains conservative and experimental; this small development set does not certify general relevance.",
+    note: extra
+      ? "Unlabelled engine subqueries collected for full-response replay. No relevance or acceptance rate is computed for this supplemental set."
+      : "Raw semantic neighbors are not acceptance decisions. Hybrid reranking remains conservative and experimental; this small development set does not certify general relevance.",
   };
   await writeFile(
-    "docs/gamma-semantic-measurements.json",
+    extra
+      ? "docs/gamma3/semantic-extra-measurements.json"
+      : heldout
+        ? "docs/gamma3/heldout-semantic-measurements.json"
+        : "docs/gamma3/semantic-after.json",
     JSON.stringify(report, null, 2) + "\n",
   );
   console.log(report);

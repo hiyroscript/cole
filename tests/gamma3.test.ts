@@ -105,8 +105,8 @@ it("adds semantic-only candidates without treating cosine as confidence", async 
   const lexical = rank(query);
   expect(lexical.some((c) => c.record.id === "slow")).toBe(false);
   const scores = [
-    { id: "slow", score: 0.91 },
-    { id: "dns", score: 0.65 },
+    { id: "slow", score: 0.67 },
+    { id: "dns", score: 0.58 },
   ];
   const candidates = rerank(query, lexical, scores);
   expect(candidates.find((c) => c.record.id === "slow")?.discovery).toBe(true);
@@ -201,4 +201,17 @@ it("checks platform applicability when a discovery suggestion is selected", asyn
   const result = await respond("mac-pressure", context, options);
   expect(result.text).toContain("different device");
   expect(result.context.intent).toBeUndefined();
+});
+it("accepts a strongly separated low-risk semantic candidate through the calibrated gate", async () => {
+  vi.spyOn(semantic, "query").mockResolvedValue([
+    { id: "slow", score: 0.82 },
+    { id: "dns", score: 0.5 },
+  ]);
+  const result = await respond(
+    "a flurry of panes causes judder",
+    emptyContext(),
+    { ...options, enhanced: true },
+  );
+  expect(result.context.intent).toBe("slow");
+  expect(result.text).not.toContain("potentially related");
 });

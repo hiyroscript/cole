@@ -1,0 +1,40 @@
+{
+  "environment": "Headless Chromium, Linux container, single-thread WASM CPU; not physical mobile hardware",
+  "model": "Xenova/all-MiniLM-L6-v2",
+  "revision": "751bff37182d3f1213fa05d7196b954e230abad9",
+  "setupMs": 28510,
+  "offlineCacheReuse": true,
+  "records": 700,
+  "queries": 38,
+  "hybrid": {
+    "intentAccuracy": 0.8846153846153846,
+    "recallAt3": 0.9230769230769231,
+    "falsePositiveRate": 0,
+    "misses": [
+      {
+        "query": "the update is stuck waiting in another tab",
+        "expected": "sw-waiting",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "A website asks me to run PowerShell to prove I am human",
+        "expected": "paste-command",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Can clearing cookies sign me out?",
+        "expected": "cookies",
+        "actual": "cookies",
+        "accepted": false,
+        "recalled": true
+      }
+    ]
+  },
+  "semanticOnlyTop1": 0.8846153846153846,
+  "semanticOnlyRecallAt3": 0.8846153846153846,
+  "queryMedianMs": 10.100000001490116,
+  "queryP95Ms": 49.100000001490116,
+  "note": "Raw semantic neighbors are not acceptance decisions. Hybrid reranking remains conservative and experimental; this small development set does not certify general relevance."
+}

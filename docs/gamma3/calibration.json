@@ -1,0 +1,254 @@
+{
+  "scope": "38 development queries, 26 supported and 12 unsupported. Raw scores from pinned MiniLM WASM. Frozen held-out cases are not used to select these gates. Small sample; not a calibrated probability or general safety guarantee.",
+  "selected": {
+    "floor": 0.7,
+    "margin": 0.1,
+    "lexicalWeight": 0.5
+  },
+  "selection": "Prefer the conservative middle floor/margin among zero-false-accept configurations; equal rank weights avoid fitting weights to a small set. Exact, dangerous, excluded, error and applicability checks remain independent gates.",
+  "results": [
+    {
+      "floor": 0.65,
+      "margin": 0.08,
+      "lexicalWeight": 0.25,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.65,
+      "margin": 0.08,
+      "lexicalWeight": 0.5,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.65,
+      "margin": 0.08,
+      "lexicalWeight": 0.75,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.65,
+      "margin": 0.1,
+      "lexicalWeight": 0.25,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.65,
+      "margin": 0.1,
+      "lexicalWeight": 0.5,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.65,
+      "margin": 0.1,
+      "lexicalWeight": 0.75,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.65,
+      "margin": 0.15,
+      "lexicalWeight": 0.25,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.65,
+      "margin": 0.15,
+      "lexicalWeight": 0.5,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.65,
+      "margin": 0.15,
+      "lexicalWeight": 0.75,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.7,
+      "margin": 0.08,
+      "lexicalWeight": 0.25,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.7,
+      "margin": 0.08,
+      "lexicalWeight": 0.5,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.7,
+      "margin": 0.08,
+      "lexicalWeight": 0.75,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.7,
+      "margin": 0.1,
+      "lexicalWeight": 0.25,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.7,
+      "margin": 0.1,
+      "lexicalWeight": 0.5,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.7,
+      "margin": 0.1,
+      "lexicalWeight": 0.75,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.7,
+      "margin": 0.15,
+      "lexicalWeight": 0.25,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.7,
+      "margin": 0.15,
+      "lexicalWeight": 0.5,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.7,
+      "margin": 0.15,
+      "lexicalWeight": 0.75,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.75,
+      "margin": 0.08,
+      "lexicalWeight": 0.25,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.75,
+      "margin": 0.08,
+      "lexicalWeight": 0.5,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.75,
+      "margin": 0.08,
+      "lexicalWeight": 0.75,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.75,
+      "margin": 0.1,
+      "lexicalWeight": 0.25,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.75,
+      "margin": 0.1,
+      "lexicalWeight": 0.5,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.75,
+      "margin": 0.1,
+      "lexicalWeight": 0.75,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.75,
+      "margin": 0.15,
+      "lexicalWeight": 0.25,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.75,
+      "margin": 0.15,
+      "lexicalWeight": 0.5,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    },
+    {
+      "floor": 0.75,
+      "margin": 0.15,
+      "lexicalWeight": 0.75,
+      "correct": 23,
+      "wrong": 0,
+      "falseAccepts": 0,
+      "recalled": 24
+    }
+  ]
+}

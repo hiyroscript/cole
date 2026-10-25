@@ -1,4 +1,5 @@
-import { workflow } from "../core/gamma/workflows";
+import { validCase } from "../core/gamma/case-state";
+import workflowNodes from "../core/gamma/workflow-nodes.json";
 import { normalizeModel } from "./legacy";
 import { validSource } from "../core/madon/sources";
 import {
@@ -50,7 +51,9 @@ function validDiagnosis(value: unknown): boolean {
   return (
     typeof d.id === "string" &&
     typeof d.node === "string" &&
-    !!workflow(d.id)?.nodes.some((n) => n.id === d.node) &&
+    !!(workflowNodes as Record<string, string[]>)[d.id]?.includes(
+      d.node as string,
+    ) &&
     Array.isArray(d.history) &&
     d.history.length <= 24 &&
     d.history.every(
@@ -72,6 +75,13 @@ function validContext(value: unknown): boolean {
     Number.isFinite(c.updated) &&
     Number.isFinite(c.turns) &&
     strings(c.attempted) &&
+    (c.case === undefined || validCase(c.case)) &&
+    (c.pausedCases === undefined ||
+      (Array.isArray(c.pausedCases) &&
+        c.pausedCases.length <= 3 &&
+        c.pausedCases.every(validCase))) &&
+    (c.authoredSources === undefined ||
+      (strings(c.authoredSources) && c.authoredSources.length <= 12)) &&
     (c.intent === undefined || typeof c.intent === "string") &&
     (c.browser === undefined || typeof c.browser === "string") &&
     (c.pending === undefined || strings(c.pending)) &&
@@ -184,6 +194,19 @@ export function normalizeConversation(value: unknown): unknown {
       delete next.flow;
     if (next.diagnosis && !validDiagnosis(next.diagnosis))
       delete next.diagnosis;
+    if (next.case && !validCase(next.case)) delete next.case;
+    if (
+      next.pausedCases &&
+      (!Array.isArray(next.pausedCases) ||
+        next.pausedCases.length > 3 ||
+        !next.pausedCases.every(validCase))
+    )
+      delete next.pausedCases;
+    if (
+      next.authoredSources &&
+      (!strings(next.authoredSources) || next.authoredSources.length > 12)
+    )
+      delete next.authoredSources;
     return next;
   };
   return {

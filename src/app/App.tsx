@@ -1,3 +1,5 @@
+import { DocumentImport } from "../components/DocumentImport";
+import type { LocalDocument } from "../core/gamma/documents";
 import { Welcome } from "../components/Welcome";
 import { GammaSetup } from "../components/GammaSetup";
 import { semantic } from "../core/gamma/semantic";
@@ -42,8 +44,8 @@ import { activeModel, models, type ModelId } from "../core/models";
 import { madon } from "../core/madon/runtime";
 import { MODEL_VERSION } from "../core/madon/model-config";
 import { MadonSetup } from "../components/MadonSetup";
-import { parseCommand } from "../core/commands";
-import { commands } from "../core/commands";
+import { parseCommand } from "../core/command-registry";
+import { commands } from "../core/command-registry";
 import { diagnose } from "../lib/diagnostics";
 import {
   clearConversations,
@@ -326,6 +328,7 @@ export default function App() {
       notify("Could not delete the conversation.");
     }
   }
+  const [localDocument, setLocalDocument] = useState<LocalDocument>();
   async function send(value = input, retry = false) {
     if (!value.trim() || busy || !ready) return;
     const selected = activeModel(prefsRef.current.model);
@@ -366,7 +369,7 @@ export default function App() {
         role: "assistant",
         text: "",
         model: selected.id,
-        modelVersion: selected.id === "madon" ? MODEL_VERSION : undefined,
+        modelVersion: selected.id === "madon" ? MODEL_VERSION : "gamma-3.0",
       };
     let chat: Conversation = {
       ...base,
@@ -384,6 +387,7 @@ export default function App() {
     persist(chat);
     try {
       const response = await selected.generate(value, base.context, {
+        document: selected.id === "gamma" ? localDocument : undefined,
         thinking: prefsRef.current.thinking,
         facts: diagnose,
         device: prefsRef.current.device,
@@ -932,6 +936,13 @@ export default function App() {
               onKeyDown={keydown}
               rows={1}
             />
+            {model.id === "gamma" && (
+              <DocumentImport
+                document={localDocument}
+                change={setLocalDocument}
+                disabled={busy}
+              />
+            )}
             <div className="composer-tools">
               <div>
                 <button
@@ -1224,6 +1235,7 @@ export default function App() {
                   ) {
                     madon.unload();
                     semantic.disable();
+                    localStorage.removeItem("gamma.memory.v1");
                     setPrefs({ ...defaults });
                   }
                 }}
@@ -1245,6 +1257,14 @@ export default function App() {
                       await semantic.remove();
                       await clearConversations();
                       localStorage.removeItem("varek.preferences.v1");
+                      localStorage.removeItem("gamma.memory.v1");
+                      localStorage.removeItem("gamma.knowledge.v1");
+                      setLocalDocument(undefined);
+                      const packs = await import("../core/gamma/packs");
+                      for (const pack of packs.packCatalog)
+                        await packs.removePack(pack.id);
+                      if ("caches" in window)
+                        await caches.delete("gamma-public-v1");
                       if ("caches" in window)
                         for (const key of await caches.keys())
                           if (key.startsWith("varek-"))

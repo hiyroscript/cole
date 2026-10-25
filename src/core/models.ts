@@ -1,5 +1,5 @@
-import { respond, type EngineOptions } from "./gamma/engine";
-import { parseCommand } from "./commands";
+import type { EngineOptions } from "./gamma/engine";
+import { parseCommand } from "./command-registry";
 import { stream } from "./stream";
 import type { Context, Message, Response } from "./types";
 import { madon } from "./madon/runtime";
@@ -31,11 +31,21 @@ export const models: readonly AssistantEngine[] = [
     id: "gamma",
     name: "Gamma",
     description: "Fast, private browser and device intelligence.",
-    capabilities: ["knowledge", "diagnostics", "commands", "context"],
+    capabilities: [
+      "knowledge",
+      "diagnostics",
+      "commands",
+      "context",
+      "calculations",
+      "documents",
+      "planning",
+      "knowledge-packs",
+    ],
     available: () => true,
     initialize: async () => {},
     unload: () => {},
     async generate(input, context, options) {
+      const { respond } = await import("./gamma/engine");
       const response = await respond(input, context, options);
       await stream(
         response.text,

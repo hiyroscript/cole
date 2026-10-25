@@ -9,6 +9,9 @@ export function freshContext(previous: Context, now = Date.now()): Context {
     next.browser = c.browser;
     next.platform = c.platform;
     next.diagnosis = c.diagnosis;
+    next.case = c.case;
+    next.pausedCases = c.pausedCases;
+    next.goal = c.goal;
     next.attempted = c.attempted;
     return next;
   }

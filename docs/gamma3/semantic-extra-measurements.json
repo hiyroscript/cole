@@ -1,0 +1,15 @@
+{
+  "environment": "Headless Chromium, Linux container, single-thread WASM CPU; not physical mobile hardware",
+  "model": "Xenova/all-MiniLM-L6-v2",
+  "revision": "751bff37182d3f1213fa05d7196b954e230abad9",
+  "setupMs": 25533,
+  "offlineCacheReuse": true,
+  "records": 700,
+  "queries": 14,
+  "hybrid": null,
+  "semanticOnlyTop1": null,
+  "semanticOnlyRecallAt3": null,
+  "queryMedianMs": 17.299999997019768,
+  "queryP95Ms": 185.10000000149012,
+  "note": "Unlabelled engine subqueries collected for full-response replay. No relevance or acceptance rate is computed for this supplemental set."
+}

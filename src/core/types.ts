@@ -1,3 +1,4 @@
+import type { CaseState } from "./gamma/case-state";
 import type { ModelId } from "./models";
 import type { Source } from "./madon/sources";
 export type Depth = "brief" | "standard" | "detailed" | "steps";
@@ -15,6 +16,9 @@ export type Evidence = {
     "Browser" | "Device" | "Display" | "Network" | "Storage" | "Permissions";
 };
 export type Context = {
+  case?: CaseState;
+  pausedCases?: CaseState[];
+  authoredSources?: string[];
   intent?: string;
   browser?: string;
   platform?: string;
@@ -37,6 +41,11 @@ export type Context = {
   attempted: string[];
 };
 export type Knowledge = {
+  pack?: string;
+  relationships?: {
+    id: string;
+    kind: "related" | "requires" | "alternative" | "possible-cause" | "part-of";
+  }[];
   id: string;
   category: string;
   title: string;

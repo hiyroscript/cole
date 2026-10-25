@@ -1,10 +1,23 @@
 import { chromium } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import { gzipSync } from "node:zlib";
-const html = await readFile("dist/index.html", "utf8");
-const entry = html.match(/src="[^"]*\/assets\/([^"/]+\.js)"/)?.[1];
-if (!entry) throw new Error("Built entry script was not found");
-const bytes = await readFile(`dist/assets/${entry}`);
+const manifest = JSON.parse(await readFile("dist/.vite/manifest.json", "utf8"));
+const initial = new Set();
+function collect(key) {
+  const item = manifest[key];
+  if (!item || initial.has(item.file)) return;
+  initial.add(item.file);
+  for (const imported of item.imports ?? []) collect(imported);
+}
+collect("index.html");
+const assets = await Promise.all(
+  [...initial].map((file) => readFile("dist/" + file)),
+);
+const javascriptBytes = assets.reduce((sum, bytes) => sum + bytes.length, 0);
+const gzipBytes = assets.reduce(
+  (sum, bytes) => sum + gzipSync(bytes).length,
+  0,
+);
 const browser = await chromium.launch({
   executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium",
   headless: true,
@@ -52,26 +65,32 @@ const median = (key) =>
     key
   ];
 const budgets = { initialJavascriptBytes: 650000, initialGzipBytes: 210000 };
+const sw = await readFile("dist/sw.js", "utf8");
+const precache = JSON.parse(sw.match(/const ASSETS=(\[[\s\S]*?\])\.map/)[1]);
+let precacheBytes = 0;
+for (const file of precache)
+  precacheBytes += (await readFile("dist/" + file)).length;
 const report = {
   environment:
     "Headless Chromium, Linux container, local production preview, fresh browser context for each of five samples, reduced motion; no network throttling or physical mobile measurement",
-  baseline: { javascriptBytes: 499750, gzipBytes: 160640 },
-  current: { javascriptBytes: bytes.length, gzipBytes: gzipSync(bytes).length },
-  changePercent: (bytes.length / 499750 - 1) * 100,
+  baseline: { javascriptBytes: 815496, gzipBytes: 262048 },
+  current: { javascriptBytes, gzipBytes, initialAssets: [...initial] },
+  changePercent: (javascriptBytes / 815496 - 1) * 100,
+  backgroundPrecacheBytes: precacheBytes,
   budgets,
   budgetExceeded:
-    bytes.length > budgets.initialJavascriptBytes ||
-    gzipSync(bytes).length > budgets.initialGzipBytes,
+    javascriptBytes > budgets.initialJavascriptBytes ||
+    gzipBytes > budgets.initialGzipBytes,
   median: {
     readyMs: median("readyMs"),
     responseVisibleMs: median("responseVisibleMs"),
     jsHeapUsedBytes: median("jsHeapUsedBytes"),
   },
   samples,
-  note: "The initial 650 kB / 210 kB gzip budget is exceeded after expansion from 205 to 700 records and 75 workflows. This is a documented payload regression. Optional inference runtimes and weights remain excluded from initial requests. Browser timing has no measured pre-upgrade counterpart; do not infer a startup speedup. CDP JS heap is not total process or peak inference memory.",
+  note: "Initial payload includes the entry and all static manifest imports, excluding dynamic engine/domain/inference chunks. Core offline assets still precache in the background. CDP JS heap is a post-answer snapshot, not peak process or inference memory. Container measurements do not certify physical-device performance.",
 };
 await writeFile(
-  "docs/gamma-performance.json",
+  "docs/gamma3/performance-after.json",
   JSON.stringify(report, null, 2) + "\n",
 );
 console.log(report);

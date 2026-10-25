@@ -1,0 +1,916 @@
+{
+  "environment": "Headless Chromium, Linux container, single-thread WASM CPU; not physical mobile hardware",
+  "model": "Xenova/all-MiniLM-L6-v2",
+  "revision": "751bff37182d3f1213fa05d7196b954e230abad9",
+  "setupMs": 28017,
+  "offlineCacheReuse": true,
+  "records": 700,
+  "queries": 356,
+  "hybrid": {
+    "intentAccuracy": 0.484375,
+    "recallAt3": 0.703125,
+    "falsePositiveRate": 0.05,
+    "misses": [
+      {
+        "query": "What distinguishes Mozilla's browser from Chromium ones?",
+        "expected": "firefox",
+        "actual": "firefox",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Can a website reliably tell that somebody is using Brave?",
+        "expected": "brave",
+        "actual": "brave",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "How do I find the actual installed browser build number?",
+        "expected": "version",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "My browser feels sluggish across ordinary tasks; where should I begin?",
+        "expected": "slow",
+        "actual": "slow",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Why might the browser be consuming so much processor time?",
+        "expected": "cpu",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Only one tab has stopped responding and I have unsaved text.",
+        "expected": "freeze",
+        "actual": "freeze",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Why do tabs I am not viewing still use resources?",
+        "expected": "background",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "The browser takes ages to open before I visit a site.",
+        "expected": "startup",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "How could sites recognize me without using cookies?",
+        "expected": "fingerprint",
+        "actual": "cookies",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Does an incognito window make me anonymous to my employer?",
+        "expected": "private",
+        "actual": "private",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Where can I review permissions previously granted to a website?",
+        "expected": "permissions",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "What does HTTPS guarantee and what does it not guarantee?",
+        "expected": "https",
+        "actual": "https",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "An unfamiliar add-on can read all pages; what should I do?",
+        "expected": "malicious-extension",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "A certificate warning appeared on a site I normally trust.",
+        "expected": "certificate",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "The browser says online but websites cannot be reached.",
+        "expected": "offline-network",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Please explain how domain names are translated into network addresses.",
+        "expected": "dns",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "My wireless signal looks strong but browsing is unreliable.",
+        "expected": "wifi",
+        "actual": "browser",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Does using a VPN mean that nobody can identify my activity?",
+        "expected": "vpn",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Why can a fast download connection still feel slow to respond?",
+        "expected": "latency",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "A page returns status 404; what does that indicate?",
+        "expected": "404",
+        "actual": "404",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "What should a visitor do when a website returns a server error?",
+        "expected": "500",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "A service keeps answering with status 429 after repeated requests.",
+        "expected": "429",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Hotel Wi-Fi connects but requires a sign-in page.",
+        "expected": "captive",
+        "actual": "captive",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "How do I investigate a stale page without deleting everything?",
+        "expected": "cache",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "What information do browser cookies actually hold?",
+        "expected": "cookies",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "How is localStorage data retained between browsing sessions?",
+        "expected": "localstorage",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "What is the lifetime of sessionStorage in a tab?",
+        "expected": "sessionstorage",
+        "actual": "sessionstorage",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Why would a web app use IndexedDB instead of small key-value storage?",
+        "expected": "indexeddb",
+        "actual": "indexeddb",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "What could I lose by removing a particular website's stored data?",
+        "expected": "delete-site",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "I accidentally shut a tab I still needed.",
+        "expected": "restore-tab",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "I have too many tabs and cannot locate the one playing content.",
+        "expected": "find-tab",
+        "actual": "group-tabs",
+        "accepted": true,
+        "recalled": true
+      },
+      {
+        "query": "What is the difference between bookmarking a page and leaving it open?",
+        "expected": "bookmarks",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "How do I locate a page that I visited earlier?",
+        "expected": "history",
+        "actual": "history",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Where should I look for a file downloaded by the browser?",
+        "expected": "downloads",
+        "actual": "downloads",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Can a browser show an article without surrounding page clutter?",
+        "expected": "reader",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Why does a browser fill old personal details into a form?",
+        "expected": "autofill",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "A login form rejects me although the page itself loads.",
+        "expected": "login",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "A website repeatedly signs me out between visits.",
+        "expected": "logout",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "The page appears to play audio but I hear nothing.",
+        "expected": "audio",
+        "actual": "audio",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Why might copying text from a web page be denied?",
+        "expected": "clipboard",
+        "actual": "text-selection",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "How could I check whether an extension is breaking a page?",
+        "expected": "extension-conflict",
+        "actual": "ext-message-sender",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "My device is almost out of storage; how does that affect browsing?",
+        "expected": "disk",
+        "actual": "android-storage-pressure",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Where does Windows show device information a website cannot inspect?",
+        "expected": "windows",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Where do an iPhone or iPad show their device details?",
+        "expected": "ios",
+        "actual": "ios",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "How can a web page tell whether touch or a precise pointer is available?",
+        "expected": "touch",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "What does the reduced-motion preference ask websites to do?",
+        "expected": "reduced-motion",
+        "actual": "motion-site",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "How can I make low-contrast website text easier to read?",
+        "expected": "contrast",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Can I navigate a webpage without using a mouse?",
+        "expected": "keyboard",
+        "actual": "keyboard",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Why is adding storage different from adding memory?",
+        "expected": "ram-storage",
+        "actual": "ram-storage",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "How do processor and graphics-processor workloads differ?",
+        "expected": "cpu-gpu",
+        "actual": "cpu-gpu",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Why is my network rate in megabits while file sizes are in megabytes?",
+        "expected": "bits",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "What do the pixel dimensions of a display describe?",
+        "expected": "resolution",
+        "actual": "screen",
+        "accepted": true,
+        "recalled": false
+      },
+      {
+        "query": "Is a synchronized folder sufficient as an independent backup?",
+        "expected": "backup",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "How does the DOM represent a loaded document?",
+        "expected": "dom",
+        "actual": "dom",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Why can a browser block a request between two website origins?",
+        "expected": "cors",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Will this assistant work on a first visit with no connection?",
+        "expected": "offline",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Is Gamma using a neural language model to produce its ordinary replies?",
+        "expected": "about",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "How is Madon different from the default Gamma engine?",
+        "expected": "madon",
+        "actual": "madon",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "What changes when I select Thinking Auto rather than Off?",
+        "expected": "thinking",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "How do I download a copy of my Cole conversation?",
+        "expected": "export",
+        "actual": "export",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "How can I erase chats saved by Cole in this browser?",
+        "expected": "delete",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Can a website inspect running programs on my computer?",
+        "expected": "limits",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Does Cole upload my conversation text to an inference service?",
+        "expected": "privacy-varek",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Why add a second authentication factor to a password?",
+        "expected": "mfa",
+        "actual": "mfa",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "What is a physical security key used for?",
+        "expected": "security-key",
+        "actual": "security-key",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Could stealing a session cookie bypass an account password?",
+        "expected": "session-hijack",
+        "actual": "session-hijack",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "What does a browser's HTTPS-only setting attempt to enforce?",
+        "expected": "https-only",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Why is an HTTPS page warned about insecure resources?",
+        "expected": "mixed-content",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "How does HSTS differ from an ordinary redirect to HTTPS?",
+        "expected": "hsts",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "A certificate is valid for a different hostname than the one I opened.",
+        "expected": "cert-name",
+        "actual": "cert-name",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Why would a wrong device clock produce a certificate date warning?",
+        "expected": "cert-expired",
+        "actual": "tls-clock",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "The browser warns that a download or site may be dangerous.",
+        "expected": "safe-browsing",
+        "actual": "safe-browsing",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Someone tells me to paste code into developer tools to fix my account.",
+        "expected": "self-xss",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "How can a domain name use lookalike characters to deceive people?",
+        "expected": "punycode",
+        "actual": "punycode",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "What precautions matter when signing in on a shared computer?",
+        "expected": "public-computer",
+        "actual": "public-computer",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Can a destination website learn which page linked me to it?",
+        "expected": "referrer",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "What could be exposed when I share my entire screen?",
+        "expected": "screen-sharing",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "What is WebRTC used for in web applications?",
+        "expected": "webrtc",
+        "actual": "webrtc",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "How is a WebSocket connection different from separate HTTP requests?",
+        "expected": "websocket",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "A site redirects repeatedly instead of reaching the page.",
+        "expected": "redirect-loop",
+        "actual": "redirect-loop",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "How should I interpret an immediate connection-refused error?",
+        "expected": "connection-refused",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "A page waits for a long time and then times out.",
+        "expected": "connection-timeout",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Why might a server return a request-timeout status?",
+        "expected": "http408",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "How is status 410 different from an ordinary missing page?",
+        "expected": "http410",
+        "actual": "404",
+        "accepted": true,
+        "recalled": false
+      },
+      {
+        "query": "Why would a server reject the media type of an upload?",
+        "expected": "http415",
+        "actual": "http415",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "What does a gateway-timeout response mean for a visitor?",
+        "expected": "http504",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "What does the Cache-Control response header describe?",
+        "expected": "cache-control",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "What protection does the HttpOnly cookie flag provide?",
+        "expected": "httponly",
+        "actual": "secure-cookie",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "How can two windows communicate without granting arbitrary access?",
+        "expected": "postmessage",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Why can a long JavaScript task make the page ignore input?",
+        "expected": "long-tasks",
+        "actual": "long-tasks",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Why do controls jump around while a page is loading?",
+        "expected": "layout-shift",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Why do timers slow down when their tab is hidden?",
+        "expected": "throttling",
+        "actual": "throttling",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "What makes going back to a page different from reloading it?",
+        "expected": "bfcache",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "How can a page know that its tab is no longer visible?",
+        "expected": "page-visibility",
+        "actual": "page-visibility",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "What changes does ResizeObserver report?",
+        "expected": "resize-observer",
+        "actual": "resize-observer",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Can a website read a local file without me selecting it?",
+        "expected": "local-files",
+        "actual": "local-files",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Can any website freely control connected USB hardware?",
+        "expected": "webusb",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "How does a website obtain access to a serial device?",
+        "expected": "webserial",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "What does the WebGPU API offer to browser applications?",
+        "expected": "webgpu",
+        "actual": "webgpu",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "What is WebGL used for on a web page?",
+        "expected": "webgl",
+        "actual": "webgl",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "What information belongs in a web application manifest?",
+        "expected": "web-manifest",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Does uninstalling a web app necessarily remove all its site data?",
+        "expected": "pwa-remove",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "My old chats are missing after I changed browser profiles.",
+        "expected": "storage-profile",
+        "actual": "profile",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Could the browser remove a web app's data automatically?",
+        "expected": "storage-eviction",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Why does embedded storage differ between top-level sites?",
+        "expected": "partitioned-storage",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "How can I locate a specific word within a long page?",
+        "expected": "find-page",
+        "actual": "find-page",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "How can Windows proxy settings disagree with a browser's network path?",
+        "expected": "win-proxy",
+        "actual": "win-proxy",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "How should I investigate suspicious browser behavior using Windows security tools?",
+        "expected": "win-security",
+        "actual": "win-security",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Why can macOS block a camera even after the website has permission?",
+        "expected": "mac-camera",
+        "actual": "mac-camera",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Why are some characters shown as empty boxes in a Linux browser?",
+        "expected": "linux-fonts",
+        "actual": "linux-fonts",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "A Linux browser cannot save to the chosen download folder.",
+        "expected": "linux-download",
+        "actual": "linux-download",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Why does an Android browser reload a tab after I switch apps?",
+        "expected": "android-suspend",
+        "actual": "android-suspend",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Why are both Android and website camera permissions relevant?",
+        "expected": "android-permission",
+        "actual": "android-permission",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Could data-saving settings change what a mobile page loads?",
+        "expected": "android-data-saver",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Where should I look for browser downloads on Android?",
+        "expected": "android-files",
+        "actual": "downloads",
+        "accepted": true,
+        "recalled": true
+      },
+      {
+        "query": "Why are desktop browser extensions unavailable in some Android browsers?",
+        "expected": "android-extension",
+        "actual": "android-extension",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Can I infer a browser engine solely from the app name on iOS?",
+        "expected": "iphone-engine",
+        "actual": "iphone-engine",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Why does my iPad sometimes identify itself as a Mac?",
+        "expected": "ipad-desktop",
+        "actual": "ipad-desktop",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "How should a client interpret status 400 from a server?",
+        "expected": "http400",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "A request is rejected because its HTTP method is not allowed.",
+        "expected": "http405",
+        "actual": "http405",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "What does an HTTP conflict response say about a write operation?",
+        "expected": "http409",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "A server accepts JSON syntax but rejects the submitted values.",
+        "expected": "http422",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Why might a website return HTTP status 451?",
+        "expected": "http451",
+        "actual": "http451",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "What does a bad-gateway error indicate?",
+        "expected": "http502",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "How should I interpret a service-unavailable response?",
+        "expected": "http503",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Why would a DHCP lease problem prevent network access?",
+        "expected": "dhcp-lease",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "Could a failed DNS answer stay cached after a domain is repaired?",
+        "expected": "dns-negative",
+        "actual": "dns-negative",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Why could a site work over one IP version but not another?",
+        "expected": "ipv6-path",
+        "actual": "tls-chain",
+        "accepted": true,
+        "recalled": false
+      },
+      {
+        "query": "What should a web application do when its GPU device is lost?",
+        "expected": "webgpu-lost",
+        "actual": "webgpu-lost",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Why might a local model require the shader-f16 feature?",
+        "expected": "webgpu-f16",
+        "accepted": false,
+        "recalled": false
+      },
+      {
+        "query": "How can Content Security Policy block WebAssembly initialization?",
+        "expected": "wasm-csp",
+        "actual": "csp",
+        "accepted": true,
+        "recalled": false
+      },
+      {
+        "query": "Why do WebAssembly threads depend on cross-origin isolation?",
+        "expected": "wasm-threads",
+        "actual": "wasm-threads",
+        "accepted": false,
+        "recalled": true
+      },
+      {
+        "query": "Tell me the exact current CPU package temperature.",
+        "expected": null,
+        "actual": "heat",
+        "accepted": true,
+        "recalled": false
+      },
+      {
+        "query": "Measure the true free graphics memory on this device.",
+        "expected": null,
+        "actual": "ram",
+        "accepted": true,
+        "recalled": false
+      },
+      {
+        "query": "Automatically change a managed browser policy.",
+        "expected": null,
+        "actual": "managed-browser",
+        "accepted": true,
+        "recalled": false
+      },
+      {
+        "query": "Provide the current list of revoked certificates from offline knowledge.",
+        "expected": null,
+        "actual": "certificate-revocation",
+        "accepted": true,
+        "recalled": false
+      },
+      {
+        "query": "Change the display refresh rate through this conversation.",
+        "expected": null,
+        "actual": "refresh",
+        "accepted": true,
+        "recalled": false
+      }
+    ]
+  },
+  "semanticOnlyTop1": 0.828125,
+  "semanticOnlyRecallAt3": 0.95703125,
+  "queryMedianMs": 6.599999997764826,
+  "queryP95Ms": 18.600000001490116,
+  "note": "Raw semantic neighbors are not acceptance decisions. Hybrid reranking remains conservative and experimental; this small development set does not certify general relevance."
+}

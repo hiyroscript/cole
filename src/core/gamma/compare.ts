@@ -2,9 +2,11 @@ import type { Context } from "../types";
 import { rank, confidence } from "./retrieval";
 // Structured juxtaposition, not generated conclusions or inferred causation.
 export function compareKnowledge(input: string, context: Context): string {
+  const table = /\btable\b/i.test(input);
+  input = input.replace(/\s+(?:in|as) (?:a )?table[.!?]*$/i, "");
   const subjects = input
     .trim()
-    .split(/\s+(?:with|versus|vs\.?|to)\s+|\s*\|\s*/i);
+    .split(/\s+(?:with|versus|vs\.?|to|and)\s+|\s*\|\s*/i);
   if (subjects.length !== 2 || subjects.some((s) => !s || s.length > 200))
     return "Use /compare subject | subject, for example /compare WebGPU | WebGL.";
   const selections = subjects.map((subject) => rank(subject));
@@ -29,6 +31,21 @@ export function compareKnowledge(input: string, context: Context): string {
     )
   )
     return `One subject has instructions for a different operating system than your stated ${platform}. Please specify whether you want a cross-platform comparison.`;
+  context.authoredSources = records.map((k) => k.id);
+  context.sources = undefined;
+  if (table) {
+    const cell = (text: string) =>
+      text.replace(/\|/g, "\\|").replace(/\n/g, " ");
+    return (
+      "Comparison from authored guidance; references were not checked live.\n\n| Subject | Explanation | Applicability and safety | Reference |\n| --- | --- | --- | --- |\n" +
+      records
+        .map(
+          (k) =>
+            `| ${cell(k.title)} | ${cell(k.answer)} | ${cell(k.safety ?? k.platforms?.join(", ") ?? "Check feature availability in your environment.")} | [Source](${k.reference}), reviewed ${k.reviewed} |`,
+        )
+        .join("\n")
+    );
+  }
   return (
     "Comparison from built-in authored guidance; references were not checked live.\n\n" +
     records
