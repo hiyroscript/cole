@@ -1,8 +1,14 @@
 # Implementation status
 
+## Cole rebrand (2026-10-25)
+
+Cole now uses the supplied two-part symbol and a shared monochrome design system across the website, PWA and Chromium extension. Sidebar, welcome view, chat, composer, settings and setup dialogs have been redesigned. The existing database, preferences, deployment path and permissions are unchanged. See [Cole delivery and verification](COLE-DELIVERY.md) for results and screenshots.
+
+The sections below record earlier engine release milestones.
+
 ## Gamma 2.0 upgrade (2026-10-24)
 
-The complete active-brand rename, compatible storage normalization, modular lexical/entity/context pipeline, graph diagnostics, optional real CPU/WASM embeddings, public extract retrieval and settings are implemented. See [GAMMA.md](GAMMA.md) for architecture and release gates. All five numeric coverage targets in `max` are met. See [the delivery report](GAMMA-DELIVERY.md) for measured results and release limitations.
+The complete active-brand rename, compatible storage normalization, modular lexical/entity/context pipeline, graph diagnostics, optional real CPU/WASM embeddings, public extract retrieval and settings are implemented. See [GAMMA.md](GAMMA.md) for architecture and release gates. All five numeric targets from the Gamma upgrade specification are met. See [the delivery report](GAMMA-DELIVERY.md) for measured results and release limitations.
 
 ## Madon upgrade (2026-10-24)
 

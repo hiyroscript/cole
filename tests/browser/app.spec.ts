@@ -147,7 +147,7 @@ test("history search, rename, pin, and export", async ({ page }) => {
   const downloaded = page.waitForEvent("download");
   await ask(page, "/export");
   expect((await downloaded).suggestedFilename()).toBe(
-    "varek-conversation.json",
+    "cole-conversation.json",
   );
 });
 test("welcome screenshot and keyboard accessibility", async ({ page }) => {

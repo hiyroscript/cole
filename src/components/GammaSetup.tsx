@@ -45,6 +45,7 @@ export function GammaSetup({
       )}
       <div className="settings-buttons">
         <button
+          className="primary"
           disabled={
             busy ||
             isExtension() ||

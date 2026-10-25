@@ -32,7 +32,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       }
       if (!tab.url || !/^https?:\/\//.test(tab.url))
         throw new Error(
-          "This page is restricted or activeTab access has not been granted. Click Varek’s toolbar icon on a normal website first.",
+          "This page is restricted or activeTab access has not been granted. Click Cole’s toolbar icon on a normal website first.",
         );
       if (request.name === "tab") {
         const u = new URL(tab.url);

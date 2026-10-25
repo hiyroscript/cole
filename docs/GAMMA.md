@@ -1,6 +1,6 @@
 # Gamma 2.0 implementation and release gate
 
-Gamma is Varek’s default lightweight assistant: **Fast, private browser and device intelligence.** Madon remains the separate Qwen3-1.7B/WebLLM generative assistant. No request to Gamma initializes Madon. The existing Porcelain/Fig interface, project path `/varek/`, storage namespaces, and extension permissions are preserved.
+Gamma is Cole’s default lightweight assistant: **Fast, private browser and device intelligence.** Madon remains the separate Qwen3-1.7B/WebLLM generative assistant. No request to Gamma initializes Madon. The Cole monochrome interface, project path `/varek/`, storage namespaces, and extension permissions are preserved.
 
 This branch implements the rebrand, engine upgrade and all numeric content/evaluation targets in `max`. See [the delivery report](GAMMA-DELIVERY.md) for measured quality, regression results, payload growth and remaining release limits.
 

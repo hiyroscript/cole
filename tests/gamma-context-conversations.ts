@@ -44,7 +44,7 @@ semantic-off-preserves-local-help|/enhance off~What are cookies?|Cookies
 semantic-consent-followup|What is WebAssembly?~/enhance on|explicitly consent
 unknown-command-during-flow|Why is my browser slow?~/delete-everything|cannot be executed
 invalid-web-argument|What is DNS?~/web private-history|Use /web
-extension-tab-boundary|What browser am I using?~/tab|requires the Varek Chromium extension
+extension-tab-boundary|What browser am I using?~/tab|requires the Cole Chromium extension
 extension-reader-boundary|What is WebAssembly?~/reader|cannot access your other tabs
 permission-command-not-a-grant|Why is my browser slow?~/permissions|browser-reported
 platform-ios-vs-windows|I am using Safari on iOS~Windows proxy mismatch|You stated iOS

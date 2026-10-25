@@ -2,6 +2,7 @@ import { copyFile, rm, readdir } from "node:fs/promises";
 import { build } from "esbuild";
 for (const file of ["manifest.json", "popup.html", "popup.js", "popup.css"])
   await copyFile("extension/" + file, "dist-extension/" + file);
+await copyFile("src/styles/tokens.css", "dist-extension/tokens.css");
 await build({
   entryPoints: ["extension/background.ts"],
   bundle: true,

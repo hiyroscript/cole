@@ -127,7 +127,7 @@ slow.nodes.push(
   {
     id: "tabs",
     kind: "recommendation",
-    text: "Save work. Open the browser task manager, identify a busy tab, and pause its work or close it only if it has no unsaved changes. Varek cannot read per-tab CPU or RAM use.",
+    text: "Save work. Open the browser task manager, identify a busy tab, and pause its work or close it only if it has no unsaved changes. Cole cannot read per-tab CPU or RAM use.",
     reason:
       "Tab workload is user-reported; the task manager can supply measurements the website cannot access.",
     branches: [{ label: "Continue", pattern: ".*", next: "tabs-confirm" }],

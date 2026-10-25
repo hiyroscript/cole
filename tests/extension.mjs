@@ -44,12 +44,12 @@ try {
   await panel.goto(`chrome-extension://${id}/index.html`);
   await panel
     .getByRole("textbox", { name: "Message Gamma" })
-    .fill("What is Varek?");
+    .fill("What is Cole?");
   await panel
     .getByRole("button", { name: "Send message", exact: true })
     .click();
   await panel
-    .getByText("Varek is a local browser and device assistant.", {
+    .getByText("Cole is a local browser and device assistant.", {
       exact: false,
     })
     .waitFor();
@@ -98,7 +98,7 @@ const server = createServer((req, res) => {
 });
 await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
 const port = server.address().port;
-const temporary = await mkdtemp(join(tmpdir(), "varek-extension-test-"));
+const temporary = await mkdtemp(join(tmpdir(), "cole-extension-test-"));
 await cp(path, temporary, { recursive: true });
 await writeFile(
   join(temporary, "manifest.json"),

@@ -1,6 +1,6 @@
 # Gamma 2.0 delivery report
 
-The `max` task is implemented on `feat/gamma-2`: Gamma is the default assistant, the active rename and saved-data compatibility are complete, and all five numeric coverage targets pass. The existing Varek interface, `/varek/` base path, local storage namespaces and extension permissions remain intact. Madon retains its separate Qwen3/WebLLM inference behavior. This report describes tested behavior and remaining limits; it is not a claim of production deployment or universal model accuracy.
+The previous Gamma upgrade specification was implemented on `feat/gamma-2`: Gamma is the default assistant, the active rename and saved-data compatibility are complete, and all five numeric coverage targets pass. That upgrade preserved the original interface, `/varek/` base path, local storage namespaces and extension permissions. The interface has since been redesigned; see [Cole delivery](COLE-DELIVERY.md). Madon retains its separate Qwen3/WebLLM inference behavior. This report describes tested behavior and remaining limits; it is not a claim of production deployment or universal model accuracy.
 
 ## Implementation
 

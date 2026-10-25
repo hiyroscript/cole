@@ -204,7 +204,7 @@ describe("Commands and boundaries", () => {
             [],
           )
         ).text,
-      ).toContain("requires the Varek Chromium extension"),
+      ).toContain("requires the Cole Chromium extension"),
     );
   it("unavailable memory is not fabricated", async () => {
     const r = await respond("Can I check my RAM?", emptyContext(), options);

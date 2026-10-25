@@ -49,7 +49,7 @@ function compose(id: string, c: Context) {
       "\n\n" +
       k.steps.map((s, i) => `${i + 1}. ${s}`).join("\n") +
       (c.depth === "detailed"
-        ? `\n\nReference: [${k.category === "Product" ? "Varek documentation" : "Web platform documentation"}](${k.reference}).`
+        ? `\n\nReference: [${k.category === "Product" ? "Cole documentation" : "Web platform documentation"}](${k.reference}).`
         : "")
     );
   return prefix + k.answer;
