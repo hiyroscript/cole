@@ -1,1520 +1,1650 @@
-PROJECT: Complete Varek → Cole Rebrand and Minimalist UI/UX Redesign
+GAMMA 3.0 — MAJOR INTELLIGENCE, KNOWLEDGE, REASONING AND CAPABILITY UPGRADE
 
-1. Your Role and Mission
+ROLE AND PRIMARY MISSION
 
-You are a senior product designer, UI/UX architect, frontend engineer, and brand identity specialist.
+You are a senior AI systems architect, TypeScript engineer, information-retrieval specialist, browser-platform expert, security engineer, and product engineer.
 
-Your assignment is to completely transform the existing application Varek into Cole, a sophisticated, minimalist, monochromatic browser-local intelligence assistant.
+Your assignment is to substantially upgrade Gamma, the default intelligence engine inside Cole.
 
-This is a comprehensive product rebrand and interface redesign, not a superficial color replacement.
+Repository: https://github.com/hiyroscript/cole
+Primary branch: main
+Project: Cole
+Engine being upgraded: Gamma
+Proposed milestone: Gamma 3.0
 
-You must work directly within the existing repository, understand its architecture, modify the implementation, and deliver a cohesive, production-ready result.
+Your objective is to make Gamma significantly smarter, more knowledgeable, more adaptable, more useful, and capable of completing substantially more complex tasks than it currently can.
 
-Repository: https://github.com/hiyroscript/varek
+This must be a real architectural and functional upgrade, not a cosmetic redesign, superficial prompt change, artificially inflated dataset, or collection of additional hardcoded responses.
 
-New product name: Cole
+Gamma should become a sophisticated, efficient, privacy-first local assistant that can:
 
-Core aesthetic: Premium minimalism, editorial sophistication, quiet confidence, architectural simplicity, and monochromatic precision.
+* Understand substantially more natural language.
+* Handle more topics and unfamiliar questions.
+* Follow complex conversations.
+* Understand intent, context, references, and corrections.
+* Reason over multiple pieces of information.
+* Solve practical problems systematically.
+* Diagnose problems more intelligently.
+* Answer compound and multi-part questions.
+* Retrieve and combine knowledge from multiple relevant records.
+* Use relevant browser capabilities and approved tools.
+* Explain its conclusions and uncertainty.
+* Learn useful facts from explicitly provided user information.
+* Use optionally enabled public information responsibly.
+* Perform useful deterministic computations.
+* Analyze user-supplied technical information.
+* Produce clearer, more complete, context-sensitive answers.
+* Work reliably offline for built-in capabilities.
+* Remain fast and lightweight by default.
 
-Primary objectives
+The end result should feel like a dramatically more competent assistant rather than a sophisticated FAQ matcher.
 
-1. Completely replace the Varek visual identity with Cole.
-2. Replace the current cream, mauve, and purple color scheme with a strictly black, white, and grayscale design system.
-3. Redesign the entire user interface to feel exceptionally clean, simple, organized, spacious, and modern.
-4. Improve information hierarchy, layout composition, typography, interactions, responsiveness, and visual consistency.
-5. Create a new minimalist Cole logo and complete accompanying icon system.
-6. Ensure the website, PWA, and Chromium extension share one cohesive identity.
-7. Preserve all existing functionality, storage, security, offline capabilities, and assistant behavior.
-8. Deliver actual implementation changes, not mockups, suggestions, or a high-level design proposal.
+However, preserve architectural honesty: Gamma is currently a deterministic, retrieval-based engine, not a generative language model. Do not claim it has general LLM reasoning, unconstrained natural-language generation, or human-like learning unless actual corresponding capabilities are implemented and verified.
 
-Do not stop after planning. Audit the codebase, implement the redesign, run validation, fix regressions, and report the finished work.
+Do not silently invoke Madon to simulate improvements to Gamma.
 
-⸻
+1. UNDERSTAND THE EXISTING REPOSITORY
 
-2. Understand the Existing Application
+Before changing code, thoroughly inspect the actual repository.
 
-Before modifying anything, inspect the repository thoroughly.
+Prioritize:
 
-This project currently uses:
+* README.md
+* docs/GAMMA.md
+* docs/GAMMA-DELIVERY.md
+* docs/DEVELOPING.md
+* docs/STATUS.md
+* docs/MADON.md
+* src/core/models.ts
+* src/core/types.ts
+* src/core/gamma/engine.ts
+* src/core/gamma/language.ts
+* src/core/gamma/retrieval.ts
+* src/core/gamma/hybrid.ts
+* src/core/gamma/rerank.ts
+* src/core/gamma/semantic.ts
+* src/core/gamma/semantic-worker.ts
+* src/core/gamma/context.ts
+* src/core/gamma/workflows.ts
+* src/core/gamma/diagnostics.ts
+* src/core/gamma/web.ts
+* src/core/commands.ts
+* src/lib/diagnostics.ts
+* src/lib/storage.ts
+* src/data/
+* src/app/App.tsx
+* extension/
+* tests/
+* scripts/
 
-* React 19 and TypeScript.
-* Vite for application builds.
-* Plain CSS with centralized design tokens.
-* Lucide icons.
-* A responsive chat-based application.
-* IndexedDB for conversation persistence.
-* Local storage for user preferences.
-* A local deterministic intelligence engine called Gamma.
-* An optional local generative AI engine called Madon.
-* PWA functionality and offline caching.
-* A Chromium Manifest V3 browser extension.
-* Vitest and Playwright tests.
-* GitHub Actions deployment to GitHub Pages.
+Inspect the current interfaces, storage migrations, security boundaries, test assumptions, performance reports, browser compatibility, extension packaging, and build pipeline.
 
-Important files to inspect
+The existing system documents approximately:
 
-* src/app/App.tsx — Main application interface and interactions.
-* src/styles/app.css — Existing visual styling, themes, layout, responsiveness, and tokens.
-* src/components/Dialog.tsx — Dialog system.
-* src/components/GammaSetup.tsx — Gamma configuration interface.
-* src/components/MadonSetup.tsx — Madon configuration interface.
-* src/components/Markdown.tsx — Message content rendering.
-* src/core/models.ts — Assistant engine registry.
-* src/core/commands.ts — Command descriptions and application behavior.
-* src/lib/storage.ts — Local persistence and preferences.
-* src/main.tsx — Application entry point and service worker registration.
-* index.html — Browser metadata and identity.
-* public/ — Existing logos, icons, and PWA assets.
-* public/manifest.webmanifest — PWA identity and installation settings.
-* extension/manifest.json — Browser extension metadata.
-* extension/popup.html and extension/popup.css — Extension popup interface.
-* extension/background.ts — Extension behavior and user-facing messages.
-* scripts/service-worker.mjs — Offline cache generation.
-* scripts/check-brand.ts — Existing legacy branding audit.
-* .github/workflows/deploy.yml — CI, deployment, and extension artifact generation.
-* README.md and docs/ — Documentation.
-* tests/ — Automated verification.
+* 700 authored knowledge records.
+* 2,811 expressions.
+* 75 diagnostic workflows.
+* 560 terminal diagnostic paths.
+* 300 authored multi-turn testing scenarios.
+* BM25 lexical retrieval.
+* Optional MiniLM semantic enhancement.
+* Contextual routing and diagnostic graphs.
+* Explicit Wikimedia retrieval.
+* A separate Madon generative engine.
 
-Investigate other relevant files and references yourself.
+These are existing achievements to preserve and build upon.
 
-Important: Gamma and Madon are internal assistant/model identities. Keep these model names and their functional identifiers unless an actual product requirement necessitates changing them. The product itself must be branded Cole throughout.
+Identify the actual code implementing each capability. Do not assume documentation is current if source code contradicts it.
 
-Do not accidentally alter the application’s intelligence, retrieval, diagnostics, model runtime, or permissions while redesigning its presentation.
+Existing weaknesses requiring attention
 
-⸻
+Semantic recall limitation: hybrid.ts currently starts with lexical candidates. rerank.ts only adjusts the ordering or scores of those candidates. Semantic neighbors that have no lexical match cannot normally enter the final candidate set.
 
-3. Brand Identity: COLE
+Rigid natural-language handling: language.ts and engine.ts include many narrow regular expressions and special cases. This creates brittle behavior when users paraphrase requests, change subjects, use unusual grammar, or combine intentions.
 
-Brand philosophy
+Restricted response composition: compose() largely reformats a single knowledge record into predefined response depths. It does not provide broadly applicable multi-document synthesis.
 
-Cole should feel like a product designed with exceptional restraint.
+Limited multi-step reasoning: Diagnostic workflows work through authored graph branches, but Gamma lacks a general-purpose evidence-based planning mechanism.
 
-Imagine the visual character of a premium editorial publication combined with a modern productivity application and a meticulously designed monochromatic operating-system interface.
+Limited source utilization: web.ts performs explicitly requested Wikimedia lookup and presents literal extracts, rather than generating a structured, attributed synthesis from retrieved information.
 
-The result should feel:
+Short-lived contextual understanding: Current context supports bounded references, diagnostic states, and limited conversational memory. It is not a robust representation of goals, facts, corrections, unresolved questions, and completed actions.
 
-* Intelligent without looking technical or intimidating.
-* Premium without appearing luxurious or decorative.
-* Minimal without feeling unfinished.
-* Friendly without being playful.
-* Functional without becoming visually cluttered.
-* Quiet, calm, and focused.
-* Structured, deliberate, and timeless.
+Performance regression: The documented initial JavaScript payload grew beyond the original established size budget. Intelligence improvements must not cause uncontrolled bundle growth.
 
-Cole should not resemble a generic AI chatbot template.
+Solve these through structural improvements.
 
-It should have a distinctive visual identity built through typography, composition, spacing, contrast, and exceptionally good execution.
-
-Brand personality
-
-Cole is precise, private, helpful, thoughtful, confident, and understated.
-
-Avoid exaggerated AI marketing language, futuristic visual clichés, or unnecessary personality elements.
-
-Potential copy directions:
-
-Cole
-
-Clarity, without the noise.
-
-Other short phrases may be developed if they fit naturally, but avoid introducing slogans everywhere.
-
-Use clear, confident, concise language throughout the interface.
-
-Do not exaggerate the application’s capabilities. Gamma remains a deterministic assistant, while Madon provides optional local generative inference.
+Do not simply add more regexes and records to conceal architectural weaknesses.
 
 ⸻
 
-4. Strict Monochromatic Color System
+2. REBUILD GAMMA’S UNDERSTANDING PIPELINE
 
-Completely eliminate the existing mauve, purple, beige, cream, lavender, and other tinted interface colors.
+Implement a modular, typed natural-language understanding system.
 
-The new interface must use exclusively neutral blacks, whites, and grays.
+Create a request representation that can express:
 
-No blue accent buttons.
+* Primary intent.
+* Secondary intents.
+* Multiple requested tasks.
+* Entities.
+* Subject and object.
+* Important constraints.
+* Negations.
+* Desired output format.
+* Referenced conversation information.
+* Browser and operating-system context.
+* User-provided observations.
+* Temporal references.
+* Question type.
+* Task dependencies.
+* Ambiguity.
+* Requested operations.
+* Safety-sensitive actions.
 
-No purple highlights.
+For example:
 
-No colorful gradients.
+“My internet is working, but Firefox keeps freezing when I watch videos. Chrome is fine. What should I test first, and could it be my GPU?”
 
-No neon elements.
+Gamma should recognize that:
 
-No colored backgrounds.
+1. The internet is not reported as completely unavailable.
+2. Firefox is the affected browser.
+3. Chrome reportedly works.
+4. The primary symptom concerns video playback or rendering freezes.
+5. The user requests troubleshooting steps.
+6. The user also asks about a possible GPU-related cause.
+7. A GPU problem is a hypothesis, not a confirmed diagnosis.
+8. Browser-specific, reversible comparisons are likely more useful than generic network advice.
 
-No decorative multicolor illustrations.
+Produce structured understanding that downstream systems can use.
 
-Light mode color palette
+Language improvements
 
-Use these as the initial design tokens:
+Implement:
 
-Token	Hex	Purpose
-Primary background	#F7F7F7	Application canvas
-Primary surface	#FFFFFF	Cards, dialogs, composer
-Secondary surface	#F2F2F2	Subtle grouped areas
-Surface hover	#ECECEC	Hovered elements
-Primary text	#111111	Titles and important text
-Pure black	#000000	Primary controls and brand
-Secondary text	#666666	Descriptions and metadata
-Tertiary text	#757575	Low-priority readable labels
-Border	#E5E5E5	Light structural borders
-Strong border	#C9C9C9	Stronger component separation
-Pressed black	#292929	Button hover/active
-White text	#FFFFFF	Text on black controls
+* Better normalization.
+* Word and phrase boundary recognition.
+* Synonym handling.
+* Acronym and abbreviation recognition.
+* Typo tolerance.
+* Technical term recognition.
+* Negation scope.
+* Contrast handling.
+* Entity linking.
+* Pronoun and reference resolution.
+* Follow-up classification.
+* Intent decomposition.
+* Lightweight multilingual-ready interfaces.
+* Detection of conflicting information.
+* Unsupported-intent detection.
 
-Use extremely subtle neutral shadows where they materially help distinguish surfaces.
+Preserve exact-error-code and technical-identifier handling. Do not normalize away important distinctions such as ERR_CERT_AUTHORITY_INVALID versus ERR_CERT_DATE_INVALID.
 
-Suggested shadow:
+Use layered deterministic processing with optional local embeddings where appropriate.
 
-0 6px 24px rgba(0, 0, 0, 0.045)
+Keep heavy processing out of the default startup path.
 
-Do not place obvious drop shadows around every component.
+Multi-intent interpretation
 
-Contrast philosophy
+Replace the current narrow two-topic splitting approach with bounded compositional request analysis.
 
-Black communicates importance and action.
+Support requests containing multiple independent questions and questions with dependencies.
 
-White provides clarity.
+For example:
 
-Gray establishes hierarchy and depth.
+“Tell me if WebGPU is available, explain what that means, compare it to WebGL, and tell me what I can try if it doesn’t work.”
 
-The interface should not need an additional accent color.
+Gamma should determine which parts require browser observations, which require static knowledge, and which require recommendations.
 
-Primary actions should use black backgrounds and white text.
+Then answer all supported parts in a coherent order.
 
-Secondary actions should use white or very light gray backgrounds with dark text.
-
-Destructive actions should use clear language, appropriate icons, and strong confirmation rather than relying on bright red styling.
-
-Maintain accessible color contrast and distinguish states through more than color alone.
-
-Dark mode
-
-Preserve the existing Light, Dark, and System appearance functionality.
-
-Redesign dark mode to use a true neutral grayscale palette.
-
-Suggested values:
-
-* Background: #101010
-* Sidebar: #141414
-* Surface: #1B1B1B
-* Secondary surface: #242424
-* Primary text: #F5F5F5
-* Secondary text: #B3B3B3
-* Border: #353535
-* Hover: #303030
-
-In dark mode, invert the primary action treatment where appropriate: white action surfaces with black text.
-
-Avoid creating a washed-out, low-contrast dark interface.
-
-Both themes must feel intentionally designed, not mechanically inverted.
-
-The default should remain a beautifully executed light mode.
+Never silently discard secondary questions.
 
 ⸻
 
-5. Visual Direction — Exact Description
+3. IMPLEMENT INTELLIGENT HYBRID KNOWLEDGE RETRIEVAL
 
-No reference images will be supplied.
+This is one of the highest-priority upgrades.
 
-Use the following description as the definitive creative direction.
+Improve the existing lexical-plus-semantic system into a calibrated, multi-stage retrieval architecture.
 
-Overall composition
+Retrieval pipeline
 
-Imagine a soft light-gray background supporting clean white interface panels.
+Implement the following conceptual stages:
 
-Each panel feels deliberately placed and perfectly aligned.
+Stage A — Query understanding
 
-The visual hierarchy comes from a combination of generous whitespace, strong typography, subtle gray dividers, restrained black controls, and carefully balanced proportions.
+Normalize and decompose the request while retaining its important meaning, technical entities, and exclusions.
 
-An excellent minimalist interface should feel visually effortless even when it contains complex functionality.
+Stage B — Lexical retrieval
 
-Key visual characteristics
+Use the existing inverted index, BM25, exact matching, and phrase ranking as a foundation.
 
-Large, elegant whitespace
+Stage C — Semantic retrieval
 
-Do not crowd content.
+When enhanced understanding has been explicitly enabled and initialized, retrieve top semantic neighbors from the full semantic index, not only lexical candidates.
 
-Create enough separation between interface sections that the user immediately understands their hierarchy.
+Stage D — Candidate fusion
 
-Softly rounded white surfaces
+Merge lexical and semantic result sets using a defensible, experimentally calibrated fusion method.
 
-Panels and cards may use corner radii around 12–18 pixels, depending on context.
+Possible techniques include reciprocal rank fusion, weighted scoring, and rank-based methods.
 
-Maintain consistent geometry across components.
+Do not arbitrarily treat uncalibrated similarity as confidence.
 
-Extremely subtle structural borders
+Stage E — Compatibility filtering
 
-Use thin 1px light-gray borders instead of heavy outlines.
+Apply browser, operating-system, feature, version, negation, and safety constraints.
 
-Strong black typography
+Stage F — Context-aware reranking
 
-Important headings should be visually prominent, confident, and beautifully spaced.
+Use supported conversation context and user-provided observations to prioritize relevant records.
 
-Editorial typography
+Stage G — Acceptance or clarification
 
-Use elegant serif typography selectively for major headings or brand moments, paired with a clean sans-serif for the working interface.
+Classify results into supported, uncertain, ambiguous, conflicting, or unsupported.
 
-Monochrome iconography
+Ask a targeted clarification question when required.
 
-Use thin, consistent, simple line icons.
+Critical retrieval requirements
 
-Minimal black action controls
+Semantic-only candidates must be eligible for consideration when legitimately relevant.
 
-Primary buttons should be solid black with white text.
+An unrelated semantic neighbor must not bypass safety restrictions or become an accepted answer merely because its embedding similarity is high.
 
-Quiet interactive states
+High-risk recommendations need stronger evidence and stricter acceptance criteria.
 
-Hover effects should feel subtle and precise.
+Exact technical matches should remain reliable.
 
-Professional alignment
-
-Every icon, label, button, margin, and surface should appear meticulously positioned.
-
-Do not copy a dashboard layout into Cole
-
-The visual inspiration includes highly refined grayscale data dashboards, but Cole is a conversational assistant.
-
-Borrow the visual discipline, spacing, monochrome card styling, and information hierarchy — not irrelevant dashboard charts, sales metrics, visitor counters, or statistics.
-
-Similarly, do not introduce voice recording, subscription paywalls, or other features simply because they are common in premium mobile applications.
-
-The redesign must serve Cole’s actual capabilities.
-
-⸻
-
-6. Typography System
-
-Typography is one of the most important parts of this rebrand.
-
-The application should feel closer to a well-designed editorial product than a typical developer dashboard.
-
-Primary typography
-
-Use a refined modern sans-serif font stack.
-
-Preferred direction:
-
-* Inter, when already available.
-* System UI fonts as reliable fallbacks.
-* Clean, neutral, highly legible letterforms.
-
-Do not introduce unnecessary external font-loading dependencies.
-
-Editorial display typography
-
-Use a sophisticated serif font selectively for:
-
-* The main welcome heading.
-* Potentially the brand wordmark.
-* Important empty-state or onboarding headings.
-
-A high-quality available serif such as Georgia is acceptable.
-
-Avoid using serif typography for buttons, forms, settings, and technical explanations.
-
-Recommended type scale
-
-Element	Suggested size
-Main welcome heading	40–52px desktop
-Mobile welcome heading	30–36px
-Dialog/page heading	24–30px
-Section heading	17–20px
-Main body	15–16px
-Secondary text	13–14px
-Small metadata	12–13px
-Compact labels	12–13px
-
-These are starting points; adjust based on actual rendering.
-
-Ensure readable line heights, controlled letter spacing, and consistent font weights.
-
-Use regular and medium weights for most content.
-
-Use semibold strategically.
-
-Avoid excessive uppercase headings.
-
-Uppercase micro-labels with subtle tracking can be used sparingly for small section identifiers.
-
-Do not rely on tiny 9–11px text for information that users need to read.
-
-⸻
-
-7. Create a New Cole Logo
-
-The current Varek logo and its associated imagery must be replaced.
-
-Develop a distinctive minimalist identity for Cole.
-
-Preferred direction
-
-Create a simple, refined, geometric Cole symbol.
-
-Possible direction:
-
-A custom letter C, developed using precise geometric proportions and thoughtful negative space.
-
-It should communicate clarity and simplicity.
-
-The symbol must be recognizable in both tiny favicon sizes and larger application contexts.
-
-Use pure black and white.
-
-No gradients.
-
-No colorful effects.
-
-No unnecessary circles, stars, sparkles, brains, robots, or generic AI imagery.
-
-Do not copy another company’s logo.
-
-Required brand assets
-
-Create and replace the necessary assets for:
-
-* Main application logo.
-* Cole wordmark or text lockup.
-* Favicon.
-* PWA icons.
-* Apple touch icon.
-* Chromium extension toolbar icons.
-* Extension popup branding.
-* Any other places where the previous Varek logo appears.
-
-Use a reusable SVG master or equivalent scalable vector source.
-
-Generate correct PNG assets at the existing required dimensions, including 16, 32, 128, 192, and 512 pixels as appropriate.
-
-Use the repository’s existing asset tooling where practical.
-
-Verify that icons remain recognizable at small sizes and that PWA maskable icons have safe padding.
-
-A text-only Cole wordmark may be used in larger layouts if it looks better than repeatedly displaying the symbol.
-
-⸻
-
-8. Redesign the Main Application Shell
-
-The application shell is the foundation of the entire interface.
-
-Create a desktop layout consisting of:
-
-1. A minimal conversation sidebar.
-2. A clean header.
-3. A spacious central conversation area.
-4. A refined bottom message composer.
-
-The entire application should feel like one cohesive system.
-
-Desktop layout
-
-Use a very light-gray or white application background.
-
-The sidebar should be visually distinguished through a subtle surface difference or a simple dividing line.
-
-Suggested sidebar width: approximately 240–260px.
-
-Avoid heavy navigation borders, strong shadows, or unnecessary section backgrounds.
-
-The main content should be wide enough to breathe, but conversations should remain centered in a readable column.
-
-Suggested conversation maximum width: 720–780px.
-
-Do not allow response text to stretch across an excessively wide desktop screen.
-
-The composer should align precisely with the conversation column.
-
-Maintain a calm, balanced layout at wide desktop resolutions.
-
-⸻
-
-9. Redesign the Sidebar
-
-The sidebar should become simpler, lighter, and significantly more refined.
-
-Top branding
-
-Display the new Cole logo or wordmark.
-
-Use balanced spacing and a simple collapse icon.
-
-Avoid unnecessary subtitle clutter.
-
-New conversation action
-
-The new conversation control should feel natural and immediately discoverable.
-
-Possible treatment:
-
-A small plus icon paired with “New conversation” in a clean, lightly outlined or understated filled row.
-
-Use a black primary button only if it works compositionally; avoid making every action visually dominant.
-
-Conversation search
-
-Redesign the search field with:
-
-* A subtle search icon.
-* A soft gray background or faint border.
-* Clear placeholder text.
-* Comfortable internal spacing.
-* Minimal focus styling with strong accessibility.
-
-Conversation history
-
-Use a clean list with generous, consistent row heights.
-
-Selected conversations should have a neutral light-gray background or a subtle indicator.
-
-Hover states should be understated.
-
-Conversation titles should truncate gracefully.
-
-Pinning, renaming, and deleting must remain fully functional.
-
-Consider revealing secondary actions on hover or keyboard focus on desktop, while retaining accessible equivalents on touch devices.
-
-Do not permanently hide important actions behind hover-only interactions.
-
-Bottom navigation
-
-Keep necessary controls such as:
-
-* Browser & device.
-* Settings.
-
-The bottom area may contain a restrained statement about local processing, but avoid excessive decorative text.
-
-Every navigation element should have consistent icons, spacing, focus states, and target sizes.
-
-⸻
-
-10. Completely Redesign the Welcome Screen
-
-The welcome screen should be one of the strongest visual expressions of Cole.
-
-It should immediately communicate simplicity, intelligence, and clarity.
-
-Recommended composition
-
-A centered content group with generous whitespace.
-
-At the top, include a small Cole brand mark or subtle identifying element.
-
-Below, display a large editorial-style heading.
-
-Potential heading:
-
-Where should we begin?
-
-Or, if it fits the design:
-
-A little more clarity.
-
-Retain the existing personalized greeting functionality.
-
-Follow with a short description of Cole’s purpose.
+The system should be especially good at matching realistic paraphrases with little vocabulary overlap.
 
 Example:
 
-“Understand your browser, explore your device, and find clearer answers. Privately, right here.”
+“Whenever I leave a lot of pages running, my laptop starts stuttering.”
 
-Keep descriptions accurate to the selected engine and existing capabilities.
+This should retrieve applicable tab-resource or browser-performance knowledge even without exact authored wording.
 
-Suggested actions
+Efficiency
 
-The application already includes example prompts concerning browser information, device information, performance, and privacy.
+* Reuse normalized embeddings.
+* Maintain fingerprinted, versioned indexes.
+* Avoid rebuilding indexes unnecessarily.
+* Use worker-based computation.
+* Respect cancellation.
+* Limit expensive candidate calculations.
+* Support incremental index updates.
+* Keep the deterministic path fast.
+* Handle missing or unsupported WASM gracefully.
 
-Retain these behaviors.
-
-Redesign the example prompts into beautifully balanced minimalist cards or interactive rows.
-
-Card styling
-
-* White background.
-* Light-gray border.
-* Approximately 12–16px radius.
-* Minimal line icon.
-* Short primary label.
-* Optional muted description.
-* Sufficient internal padding.
-* Quiet hover effect.
-
-On desktop, a balanced 2-column grid can work well.
-
-On smaller screens, use a single column when needed.
-
-Do not overload the welcome screen with too many suggestions.
-
-Do not add generic fake feature cards.
-
-The goal is a simple, immediately usable first experience.
+Preserve the existing explicit semantic-model download consent and cache management.
 
 ⸻
 
-11. Redesign the Conversation Experience
+4. GIVE GAMMA A REAL STRUCTURED REASONING SYSTEM
 
-This is the most important functional interface in Cole.
+Implement evidence-based, auditable reasoning rather than pretending that retrieval scores constitute reasoning.
 
-It must be beautiful, readable, and exceptionally easy to use.
+Create a compositional reasoning layer capable of:
 
-Conversation structure
+* Comparing information.
+* Connecting related facts.
+* Evaluating hypotheses.
+* Applying conditional rules.
+* Identifying contradictions.
+* Distinguishing cause from correlation.
+* Performing elimination.
+* Choosing appropriate next checks.
+* Making constrained recommendations.
+* Explaining why recommendations follow from evidence.
+* Identifying information that is still missing.
 
-Keep conversation messages arranged vertically in a centered reading column.
+Use a bounded representation of facts, relationships, constraints, and steps.
 
-Use generous vertical spacing between messages.
+Reasoning operations
 
-Ensure assistant responses feel like well-structured editorial content.
+Gamma should support:
 
-User messages
+Multi-hop reasoning
 
-Use a subtle light-gray surface with rounded corners.
+Combine multiple records or observations to answer a question that no single record fully answers.
 
-Suggested:
+Conditional reasoning
 
-* Background #F2F2F2.
-* Dark text.
-* Comfortable padding.
-* Restrained radius.
-* Clear visual separation from assistant messages.
+Interpret statements such as:
 
-Avoid thick borders.
+“If it happens in Firefox but not Chrome, what should I check?”
 
-Assistant messages
+Comparison reasoning
 
-Prefer a clean, largely borderless presentation.
+Compare alternatives by documented capabilities, limitations, compatibility, privacy implications, and tradeoffs.
 
-Use white or transparent backgrounds.
+Diagnostic reasoning
 
-The content itself should define the hierarchy.
+Evaluate competing explanations and choose tests that distinguish between them.
 
-Provide a simple role label or small brand identifier only where it improves clarity.
+Causal caution
 
-Avoid repeating large logos unnecessarily.
+Recognize that an observation may support a hypothesis without proving it.
 
-Rich text and Markdown
+Constraint reasoning
 
-Refine the styling of:
+Reject steps that contradict a stated operating system, unavailable browser API, denied permission, or user preference.
 
-* Paragraphs.
-* Headings.
-* Lists.
-* Code.
-* Preformatted blocks.
-* Links.
-* Quotes.
-* Diagnostic information.
-* Source references.
+Basic quantitative reasoning
 
-Use consistent typography, spacing, and restrained grayscale styling.
+Add genuinely implemented deterministic mathematical tools for calculations, percentages, ratios, unit conversions, durations, and similar bounded tasks.
 
-Code blocks can use a soft-gray background with a thin border.
+Use tested numerical operations rather than invented answers.
 
-Keep code horizontally scrollable when required.
+Reasoning explanation
 
-Prevent horizontal overflow on mobile.
+Do not expose fictional internal thought processes or produce elaborate pseudo-thinking text.
 
-Evidence and technical analysis
+Instead, provide concise, verifiable explanations:
 
-Cole supports diagnostic evidence and analysis summaries.
+* What information was supplied.
+* What was observed.
+* What relevant knowledge was used.
+* Why the suggested step matters.
+* What remains uncertain.
+* What result would change the next recommendation.
 
-Retain all functionality.
+Thinking Auto should intelligently decide when to use extra diagnostic or comparison processing.
 
-Present technical detail through clear, understated sections or accessible disclosure panels.
-
-Use light dividers, concise labels, and orderly rows.
-
-Secondary information may be progressively disclosed, but the user must still be able to find it easily.
-
-Do not hide essential results or remove existing diagnostic explanations.
-
-Message actions
-
-Keep copy and regenerate functionality.
-
-Use lightweight monochrome icon buttons.
-
-Display appropriate tooltips, accessible labels, and interaction feedback.
-
-Loading and streaming
-
-Preserve existing Gamma and Madon behavior.
-
-Create understated response-loading feedback using grayscale shapes or text.
-
-Avoid colorful spinners, pulsating gradients, and theatrical animations.
-
-Respect reduced-motion preferences.
-
-Preserve partial responses and stop/retry behavior.
+Thinking Off may reduce optional analysis detail but must never disable essential validation or safety checks.
 
 ⸻
 
-12. Redesign the Message Composer
+5. EXPAND GAMMA’S KNOWLEDGE SUBSTANTIALLY
 
-The composer must become a particularly polished component.
+Gamma should become much more knowledgeable than its current browser-focused scope while maintaining editorial quality.
 
-It should feel lightweight, precise, and effortless.
+Expand the structured knowledge system across useful domains.
 
-Composition
+Priority areas:
 
-A centered white input container with:
+Computers and operating systems
 
-* Thin light-gray border.
-* Approximately 12–16px corner radius.
-* Generous internal spacing.
-* Minimal shadow, if appropriate.
-* A clean multiline text field.
-* A clearly distinguished send button.
+Windows, macOS, Linux, Android, iOS, file systems, processes, startup issues, updates, storage, permissions, drivers, hardware concepts, memory, GPUs, CPUs, thermals, troubleshooting, and compatibility.
 
-Keep it anchored near the bottom of the interface, accounting for safe areas and mobile viewport behavior.
+Browsers and web technologies
 
-Text input
+Chromium, Chrome, Firefox, Safari, Edge, Brave, extensions, cookies, storage, caching, rendering, browser engines, networking, web standards, APIs, accessibility, PWAs, service workers, permissions, and browser security.
 
-Use a clear placeholder.
+Networking
 
-Possible neutral copy:
+DNS, IP addressing, DHCP, TCP/IP, HTTPS, TLS, routers, Wi-Fi, VPNs, proxies, latency, packet loss, connectivity, network diagnostics, and common protocol errors.
 
-“Ask Cole something…”
+Privacy and cybersecurity
 
-However, preserve contextual clarity around Gamma and Madon’s different capabilities where important.
+Phishing, account protection, authentication, malware warning signs, permission risks, tracking, fingerprinting, secure browsing, encryption fundamentals, and recovery procedures.
 
-The text should be comfortably readable on mobile.
+Programming and technical education
 
-Retain automatic textarea growth, keyboard composition, and Enter/Shift+Enter behavior.
+JavaScript, TypeScript, HTML, CSS, Python, JSON, Git, GitHub, command-line concepts, common error messages, debugging strategies, APIs, and introductory development workflows.
 
-Send button
+Provide explanations and safe code examples from reviewed material, while avoiding unverified code execution claims.
 
-Use a black button with a white upward arrow.
+Everyday technical tasks
 
-It may be rounded-square or circular, but must match the rest of the interface.
+File formats, document compatibility, software installation, device setup, backups, sync problems, account settings, app troubleshooting, productivity tools, and digital organization.
 
-Give it a compact, premium appearance.
+Foundational general knowledge
 
-Provide a clearly distinguishable disabled state.
+Add reliable coverage of commonly requested mathematics, science, technology, terminology, logical concepts, and general factual explanations.
 
-When a response is running, preserve and clearly display the stop control.
+This should expand Gamma beyond exclusively browser troubleshooting.
 
-Secondary controls
+Prioritize answerability and accurate retrieval over trying to imitate an unrestricted general-purpose LLM.
 
-The application currently supports:
+Knowledge structure
 
-* Slash commands.
-* Thinking preferences.
-* Model selection.
-* Optional web retrieval.
+Extend the existing Knowledge schema as needed, compatibly.
 
-Retain all these controls.
+Consider support for:
 
-However, simplify their presentation.
+* Stable ID.
+* Canonical title.
+* Domain and subdomain.
+* Realistic aliases.
+* Search concepts.
+* Detailed explanation.
+* Key facts.
+* Prerequisites.
+* Procedure steps.
+* Examples.
+* Common misconceptions.
+* Applicability conditions.
+* Exceptions.
+* Risks and side effects.
+* Related records.
+* Source metadata.
+* Last reviewed date.
+* Version constraints.
+* Evidence strength.
+* Suggested follow-up questions.
+* Difficulty.
+* Knowledge relationships.
 
-Avoid displaying unnecessary technical information at all times.
+Do not introduce all fields without a purpose. Use optional, validated metadata where appropriate.
 
-Use concise labels, compact controls, and progressive disclosure where useful.
+Knowledge quality rules
 
-Never make an important control inaccessible solely to achieve minimalism.
+Every added record must provide distinct, useful information.
 
-The slash-command popup must remain keyboard accessible.
+Avoid repetitive filler.
 
-Composer footer
+Avoid generating thousands of near-duplicate records.
 
-If useful, display one short, muted privacy statement.
+Use authoritative documentation where appropriate.
 
-Do not fill the bottom of the screen with several lines of disclaimers or shortcuts.
+Version-sensitive instructions should indicate their applicability and review status.
 
-Provide supplementary information in Settings or About where appropriate.
+Never imply that a source was checked live if it was not.
 
-⸻
+Automatically detect duplicate titles, expressions, relationships, stale references, and low-information entries.
 
-13. Redesign the Header
+Extend scripts/validate-knowledge.ts accordingly.
 
-The main header should be minimal.
+Knowledge packaging
 
-Suggested height: around 60–68px.
+The current architecture imports substantial authored content into the application bundle.
 
-Include only necessary controls.
+Investigate domain-based lazy loading, compressed indexes, chunked static assets, and selective retrieval so knowledge growth does not create unacceptable startup costs.
 
-Potential arrangement:
+Keep core offline functionality available after installation.
 
-Left:
+Make optional knowledge packs explicit and downloadable only when needed.
 
-* Sidebar toggle when relevant.
-* Current assistant selector.
-
-Right:
-
-* Offline indication when relevant.
-* Application update notice when available.
-* Help or informational control where appropriate.
-
-Use clean typography and monochrome icons.
-
-Avoid large colored buttons or complex header backgrounds.
-
-Separate the header from the content only when doing so improves clarity.
-
-Retain all important interactions and state feedback.
+Provide a practical knowledge-management architecture that can continue expanding without requiring repeated redesigns.
 
 ⸻
 
-14. Redesign Every Dialog and Settings Interface
+6. BUILD AN ADVANCED RESPONSE COMPOSER
 
-Do not limit the redesign to the main chat screen.
+Replace the predominantly single-record response formatter with a structured composition layer.
 
-All dialogs, modals, setup screens, menus, and secondary interfaces must adopt Cole’s new design system.
+Gamma should be able to assemble answers from:
 
-This includes:
+* Multiple trusted knowledge records.
+* Relevant browser observations.
+* Diagnostic findings.
+* Conversation context.
+* Deterministic calculations.
+* Explicitly retrieved public information.
+* User-supplied reference material.
 
-* Model selection.
-* Gamma enhancement setup.
-* Madon setup.
-* Browser diagnostics.
-* General settings.
-* Theme preferences.
-* Data management.
-* Export controls.
-* Reset and deletion workflows.
-* Error messages.
-* Confirmation flows.
-* Toast notifications.
-* Slash-command menu.
-* Source displays.
-* Offline and update notices.
+Use reusable response structures rather than countless special-case strings.
 
-Modal styling
+Support:
 
-White background in light mode.
+* Direct answers.
+* Short explanations.
+* Detailed explanations.
+* Step-by-step guides.
+* Side-by-side comparisons.
+* Tables.
+* Troubleshooting plans.
+* Checklists.
+* Definitions.
+* Pros and cons.
+* Cause-and-effect explanations.
+* Technical breakdowns.
+* Evidence summaries.
+* Source-attributed answers.
 
-Clean dark text.
+Preserve the existing brief, standard, detailed, and steps modes.
 
-Soft rounded corners.
+Allow multi-part answers with distinct sections.
 
-Thin neutral border.
+Avoid repeating identical background explanations.
 
-Minimal shadow.
+Use natural, clear, relevant wording, without making unsupported claims of human-like understanding.
 
-Elegant headings.
+If the system cannot reliably synthesize a particular answer without generative inference, use an accurate structured output or acknowledge the limitation.
 
-Generous vertical spacing.
-
-A properly constrained scrolling area for long settings content.
-
-Settings layout
-
-Organize settings into visually distinct but understated sections.
-
-Favor simple rows:
-
-Setting name on the left.
-
-Control on the right.
-
-Use muted descriptive text underneath when needed.
-
-Maintain consistent vertical rhythm and aligned controls.
-
-Avoid large piles of buttons and explanatory text without visual hierarchy.
-
-Important setup information
-
-Gamma and Madon have legitimate setup, privacy, download, and runtime requirements.
-
-Do not remove important disclosures about downloading model assets, local inference, experimental behavior, privacy, or browser limitations.
-
-Instead, present them more elegantly using concise summaries and optional explanatory sections.
-
-Retain consent requirements and existing setup behavior.
-
-Destructive controls
-
-Preserve confirmation safeguards for deleting conversations, clearing settings, and removing model data.
-
-Visual minimalism must not weaken user protection or obscure consequences.
+Do not use fabricated text-generation effects to disguise a deterministic engine as a generative model.
 
 ⸻
 
-15. Browser Diagnostics Presentation
+7. CREATE MUCH BETTER CONVERSATIONAL INTELLIGENCE
 
-The current application can display browser and device information.
+Upgrade src/core/gamma/context.ts and the related types.
 
-Redesign this presentation into clean, highly readable information groups.
+Gamma should track conversation state more intelligently.
 
-Use lightweight information rows or compact neutral cards.
+Represent:
 
-Each row should have:
+* Current topic.
+* Current task or goal.
+* Previous relevant topics.
+* Important user-stated facts.
+* Browser and operating-system context.
+* Current troubleshooting hypotheses.
+* Tests already attempted.
+* Observed test results.
+* Rejected suggestions.
+* Active comparison subjects.
+* Pending questions.
+* Unresolved tasks.
+* Correction history.
+* Previous cited sources.
+* Known uncertainty.
 
-* A clear label.
-* A readable value.
-* Optional muted supporting information.
-* Thin gray separators where useful.
+Implement reliable reference resolution for terms such as:
 
-Avoid complicated dashboard graphics unless there is actual data that benefits from visualization.
+* “it”
+* “that”
+* “the first one”
+* “the other browser”
+* “what about that?”
+* “why?”
+* “show me the steps”
+* “I tried that”
+* “that didn’t work”
+* “actually, I’m on Windows”
 
-Do not invent performance measurements or device statistics.
+Do not force users to repeat the entire question after every answer.
 
-Preserve existing uncertainty and evidence classifications, and make them understandable to users.
+Corrections
 
-⸻
+When a user corrects an earlier statement, Gamma should:
 
-16. Responsive and Mobile Design
+1. Detect the correction.
+2. Update the applicable contextual fact.
+3. Invalidate incompatible diagnostic assumptions.
+4. Preserve unrelated context.
+5. Explain important consequences if necessary.
+6. Continue the original task.
 
-Cole must feel purpose-built on phones and smaller screens.
+Multi-turn task continuity
 
-Do not simply shrink the desktop design.
+Gamma must retain the active diagnostic or task goal across relevant topic changes.
 
-Mobile direction
+For example, a user may ask what GPU acceleration means while troubleshooting video freezes.
 
-Think of an elegant monochromatic mobile productivity app.
+Gamma should be able to explain the concept and return to the original troubleshooting session afterward.
 
-The screen should feel spacious even when the available area is small.
+Optional persistent memory
 
-Use:
+Design a small, explicit, privacy-first local memory capability.
 
-* Clean white backgrounds.
-* Black navigation icons.
-* Minimal headers.
-* Simple content hierarchy.
-* Carefully rounded surfaces.
-* Comfortable touch targets.
-* Generous breathing room around primary content.
-* A beautifully integrated bottom composer.
+Potentially remember user-approved preferences such as:
 
-Navigation
+* Preferred explanation detail.
+* User-stated device type.
+* Frequently used browser.
+* Accessibility preferences.
+* Preferred troubleshooting style.
 
-Preserve the existing mobile conversation drawer.
+Persist only with clear user control.
 
-Refine it with a clean animation, appropriate backdrop, proper focus behavior, and easy dismissal.
+Do not infer or silently retain sensitive personal information.
 
-Do not let the drawer cover content without an accessible way to close it.
+Provide review, correction, clear, and disable controls.
 
-Welcome screen
+Keep ephemeral conversation context distinct from optional persistent preferences.
 
-Scale the editorial heading appropriately.
-
-Keep example actions easy to tap.
-
-Avoid unnecessary vertical height that forces users to scroll past decorative elements before reaching the composer.
-
-Composer
-
-Handle mobile keyboard visibility correctly.
-
-Use dynamic viewport units and safe-area insets where appropriate.
-
-The user must be able to interact with the composer on small screens without controls being cut off.
-
-Avoid iOS text-input zoom by maintaining an appropriate input font size.
-
-Responsiveness
-
-Validate layouts at approximately:
-
-* 1440px desktop.
-* 1024px laptop/tablet.
-* 768px tablet.
-* 390px mobile.
-* 320px narrow mobile.
-* Chromium side-panel widths.
-
-There must be no unexpected horizontal scrolling, clipped controls, unreadable text, or overlapping UI.
+Preserve existing user data during any storage migration.
 
 ⸻
 
-17. Chromium Extension Rebrand
+8. UPGRADE DIAGNOSTICS INTO AN INTELLIGENT TROUBLESHOOTING SYSTEM
 
-The Chromium extension is part of Cole and must be fully redesigned.
+Preserve the existing 75 authored workflows and their stable IDs.
 
-Update its:
+Build an adaptive diagnostic planner around them.
 
-* Manifest display name.
-* Description where appropriate.
-* Toolbar title.
-* Popup title.
-* Popup typography.
-* Popup background and colors.
-* Popup buttons.
-* Toolbar icons.
-* Header logo.
-* Any visible Varek references.
-* Relevant user-facing messages.
+Instead of always following a fixed predefined path, Gamma should be able to select relevant next checks using supported evidence.
 
-Extension popup design
+Diagnostic process
 
-Create a compact, beautiful, monochrome interface.
+1. Identify the problem.
+2. Extract observable symptoms.
+3. Recognize known exclusions.
+4. Identify plausible causes.
+5. Determine missing evidence.
+6. Select a useful, low-risk diagnostic check.
+7. Explain what that check distinguishes.
+8. Record the user’s reported result.
+9. Eliminate or deprioritize incompatible hypotheses.
+10. Choose the next most informative check.
+11. Stop when resolved or appropriately escalate.
 
-Suggested layout:
+Prioritize reversible and non-destructive actions.
 
-A simple Cole mark and name at the top.
+Avoid repeatedly recommending checks the user already completed.
 
-A short, elegant heading:
+Recognize when a user reports that a recommendation failed.
 
-“Clarity, alongside your browser.”
+Do not claim to have fixed a problem unless the user or a reliable observation confirms it.
 
-A brief explanation of the local browser assistant.
+Diagnostic capabilities
 
-A black primary action:
+Include support for:
 
-“Open side panel”
+* Browser performance.
+* Crashes and freezes.
+* Website loading failures.
+* Sign-in and session issues.
+* Video and audio problems.
+* Browser storage problems.
+* Permission failures.
+* Extension conflicts.
+* Network and DNS issues.
+* Rendering problems.
+* Browser compatibility.
+* Download issues.
+* Security warnings.
+* Device-resource symptoms.
 
-A quieter secondary action:
+Adaptive planning
 
-“Open full conversation”
+Represent checks with:
 
-A restrained privacy note.
+* Applicability.
+* Required information.
+* Estimated risk.
+* Reversibility.
+* User effort.
+* Expected diagnostic usefulness.
+* Possible outcomes.
+* Suggested next actions.
 
-Use the same typography, spacing, button geometry, and colors as the main application.
+Build an auditable prioritization system.
 
-Keep the extension popup compact and functional.
+Do not invent precise probabilities of causes.
 
-Maintain the existing Manifest V3 permissions, security restrictions, and extension behavior.
+Use qualitative evidence strength unless likelihoods have been meaningfully calibrated.
 
-Do not introduce additional browser permissions for visual purposes.
-
-Ensure the actual browser side panel also uses the new Cole interface.
-
-⸻
-
-18. PWA and Application Metadata
-
-A complete rebrand includes the installed application, not just the website.
-
-Update appropriate identity fields in:
-
-* index.html
-* public/manifest.webmanifest
-* extension/manifest.json
-* package.json
-* README and documentation.
-* Relevant scripts and CI workflow names.
-* Generated icon files.
-* Browser titles and descriptions.
-
-The application should display Cole when installed on a device.
-
-Suggested browser title:
-
-Cole — Local Intelligence
-
-Suggested short PWA name:
-
-Cole
-
-Update PWA background and theme colors to the new grayscale palette.
-
-Make sure the favicon, installed app icon, browser extension icon, and UI logo match.
-
-Rename the extension build artifact to reflect Cole if all related references are updated consistently.
-
-Important deployment constraint
-
-The repository currently uses the GitHub Pages path /varek/ through its Vite configuration.
-
-Do not blindly change that path to /cole/.
-
-The existing deployment path must continue functioning unless the repository and hosting URL are actually migrated.
-
-The visual product name and underlying deployment path are separate concerns.
-
-Do not rename the GitHub repository as part of this task.
-
-A separate infrastructure migration can be performed later if desired.
-
-Update user-facing links where appropriate, but keep existing valid source and deployment URLs functional.
+Existing authored workflow branches remain the reliable fallback.
 
 ⸻
 
-19. Preserve User Data and Backward Compatibility
+9. ADD A TRUSTED CAPABILITY AND TOOL SYSTEM
 
-This is a mandatory requirement.
+Gamma should do more than return explanations.
 
-The existing application stores conversations in the IndexedDB database named varek.
+Create a centralized, typed capability registry.
 
-Preferences are stored under the local-storage key varek.preferences.v1.
+Each capability should describe:
 
-The offline service worker also uses Varek-related cache identifiers.
+* Name.
+* Description.
+* Supported environment.
+* Required permissions.
+* Input schema.
+* Input validation.
+* Side-effect level.
+* Consent requirement.
+* Execution function.
+* Error handling.
+* Cancellation behavior.
+* Output schema.
+* Safety policy.
+* Tests.
 
-Do not casually rename these internal identifiers.
+Use explicit tool routing. Natural-language content and retrieved documents must never be permitted to execute privileged capabilities.
 
-Aesthetic rebranding must never cause users to lose saved conversations, settings, pinned chats, or cached data.
+Useful initial capabilities
 
-Preferred approach
+Browser capability inspection
 
-Preserve legacy persistence identifiers internally where necessary for backward compatibility.
+Provide more precise checks of available browser APIs.
 
-If changing internal storage names is genuinely beneficial, implement a carefully designed, tested migration with backup-safe behavior and no destructive automatic reset.
+Distinguish:
 
-A visible Cole identity is more important than eliminating every historical internal identifier.
+* API exposed.
+* Permission available.
+* Permission denied.
+* Actual operation successfully tested.
+* Operation failed.
+* Unable to determine.
 
-Existing user data must remain available after upgrading.
+For example, WebGPU API presence is not equivalent to obtaining a functioning adapter.
 
-Preserve existing conversation data, model metadata, personalization, and saved preferences.
+Browser diagnostics
 
-Do not rewrite user-authored conversation text merely because it contains the old product name.
+Support safe checks for viewport, platform hints, language, storage estimates, online hints, permission states, and available browser features.
 
-Retain necessary legacy compatibility mappings, including historical Zulvyn model migration behavior.
+Calculations
 
-Cache handling
+Implement a local calculator, percentages, ratios, conversions, and bounded time calculations.
 
-Review the current service worker cache naming and cleanup logic carefully.
+Structured comparisons
 
-Ensure older Varek application-shell caches can be upgraded or retired safely without deleting unrelated caches or model data.
+Allow Gamma to compare supported browsers, features, technologies, and configuration options using referenced information.
 
-Avoid premature service worker registration changes that could break offline operation.
+Text analysis
 
-Preserve current extension-origin storage behavior.
+Allow explicit user-provided text to be analyzed for common error codes, structured technical data, configuration details, and recognizable troubleshooting signals.
 
-Branding audit
+JSON analysis
 
-Expand scripts/check-brand.ts as appropriate.
+Support validation, safe pretty-printing, common syntax-error explanations, and schema-guided inspection.
 
-Detect unexpected visible Varek branding in product surfaces while explicitly allowlisting legitimate compatibility identifiers, historical fixtures, existing deployment URLs, and migration logic.
+Error explanation
 
-Do not break the existing Zulvyn legacy-brand audit.
+Recognize HTTP status codes, browser error codes, common operating-system errors, and programming errors.
 
-⸻
+Troubleshooting report generation
 
-20. Design System and Code Quality
+Create a structured report of:
 
-Implement the new visual system cleanly.
+* Reported issue.
+* Environment.
+* Relevant evidence.
+* Checks performed.
+* Results.
+* Remaining hypotheses.
+* Recommended next actions.
 
-Do not scatter unrelated hex values and spacing decisions across the codebase.
+Support export using existing download mechanisms.
 
-Centralized tokens
+Extension-assisted analysis
 
-Establish a comprehensive grayscale design-token system covering:
+Where the existing extension permissions permit, improve current-page inspection and reader analysis.
 
-* Canvas and surface colors.
-* Text hierarchy.
-* Borders.
-* Hover and active states.
-* Focus indicators.
-* Shadows.
-* Typography.
-* Spacing.
-* Radii.
-* Control heights.
-* Responsive breakpoints.
+Support explicit, local analysis of user-authorized page content.
 
-Keep the project aligned with its existing plain-CSS architecture unless a change is justified by a clear technical benefit.
+Never inspect background tabs silently.
 
-Do not introduce Tailwind, a large UI framework, or additional runtime dependencies merely to execute this redesign.
+No arbitrary JavaScript execution, shell execution, secret reading, or unrestricted browsing actions.
 
-Component quality
+Operational policy
 
-Refactor overly complex UI sections into reusable presentational components where this improves maintainability.
+Use a permission-aware execution boundary.
 
-The existing main application component is substantial, so consider isolating elements such as:
+Read-only operations may be available after the required user action.
 
-* Sidebar.
-* Welcome view.
-* Message presentation.
-* Composer.
-* Reusable settings controls.
-* Minimal buttons or icon controls.
+Operations that change state must use explicit confirmation where appropriate.
 
-Maintain a sensible balance.
-
-Do not create dozens of tiny components without meaningful reuse.
-
-Use consistent styling and semantic HTML.
-
-Remove outdated CSS, obsolete theme values, and unused visual assets.
-
-Avoid stacking endless override rules at the bottom of the stylesheet.
-
-The result should be organized and maintainable.
-
-⸻
-
-21. Interactions and Motion
-
-Cole should feel responsive and polished, but never animated for the sake of animation.
-
-Interaction principles
-
-Use subtle:
-
-* Hover changes.
-* Focus indicators.
-* Button press states.
-* Selected navigation treatments.
-* Dialog transitions.
-* Disclosure transitions where appropriate.
-* Lightweight loading indicators.
-
-Motion should be restrained, quick, and functional.
-
-Typical duration: approximately 120–200ms for small interface state changes.
-
-Avoid:
-
-* Large bouncing animations.
-* Decorative parallax.
-* Excessive blurring.
-* Animated gradients.
-* Glowing buttons.
-* Elaborate page transitions.
-* Constant pulsing effects.
-
-Respect prefers-reduced-motion.
-
-Every motion effect should communicate a state change or improve orientation.
+Never claim an operation completed before receiving a successful result.
 
 ⸻
 
-22. Accessibility
+10. EXPAND PAGE AND DOCUMENT UNDERSTANDING
 
-Minimalism must not come at the expense of usability.
+Make Gamma more useful with information explicitly supplied by the user.
 
-Implement accessible:
+Website and extension
 
-* Keyboard navigation.
-* Focus indication.
-* Dialog focus management.
-* Navigation drawer behavior.
-* Button and icon labels.
-* Form labels.
-* Error/status announcements.
-* Disabled-state feedback.
-* Screen-reader semantics.
-* Disclosure controls.
-* Touch target sizing.
+Build upon /page and /reader.
 
-Aim for WCAG AA contrast standards.
+Possible capabilities:
 
-Maintain body-text contrast of at least 4.5:1 where required.
+* Identify the current page’s title and metadata.
+* Analyze heading hierarchy.
+* Extract meaningful page sections.
+* Identify missing metadata.
+* Identify obvious accessibility concerns.
+* Explain page structure.
+* Find specific terms within a page.
+* Generate an extractive summary.
+* Identify the visible page’s general purpose.
+* Explain common links and web concepts.
 
-Interactive controls should have approximately 44px comfortable touch targets on mobile when practical.
+Use deterministic extractive or structured methods when a generative model is unavailable.
 
-Do not rely on hover alone.
+Do not claim semantic understanding beyond what the implemented algorithm supports.
 
-Do not make gray text so faint that the interface becomes difficult to read.
+All page content is untrusted data.
 
-Preserve existing accessible roles and labels unless replaced by better equivalents, and update associated tests when interface names legitimately change.
+Preserve the extension’s temporary activeTab permission model and sender validation.
 
-⸻
+User-supplied documents
 
-23. Things You Must Not Do
+Implement optional local document ingestion where feasible.
 
-Do not:
+Start with:
 
-1. Simply rename Varek and replace purple with black while leaving the rest of the interface unchanged.
-2. Create an overly futuristic AI design.
-3. Add gradients, neon effects, glassmorphism, glowing controls, or rainbow accents.
-4. Use black borders around every element.
-5. Cover the application in excessive cards.
-6. Introduce decorative imagery that distracts from the chat.
-7. Add dashboard metrics that do not exist in the application.
-8. Add fictitious voice features, analytics, accounts, subscriptions, or integrations.
-9. Remove Gamma or Madon.
-10. Remove important settings or technical capabilities to simplify the appearance.
-11. Break IndexedDB persistence or existing user preferences.
-12. Change the deployed URL path without an actual hosting migration.
-13. Increase browser extension permissions.
-14. Add automatic remote requests or analytics.
-15. Break offline usage.
-16. Introduce unnecessary dependencies.
-17. Make everything tiny in the name of minimalism.
-18. Sacrifice accessibility for aesthetics.
-19. Leave old Varek logos, browser titles, or extension assets visible.
-20. Deliver only a mockup or a partially updated interface.
+* Plain text.
+* Markdown.
+* JSON.
+* CSV.
+* Small technical logs.
 
-The goal is radical visual simplification with complete functional preservation.
+Allow users to ask focused questions about imported material.
 
-⸻
+Support:
 
-24. Technical Implementation Procedure
+* Keyword search.
+* Relevant passage retrieval.
+* Extractive summaries.
+* Section identification.
+* Basic structured-data analysis.
+* Finding contradictions where explicit facts conflict.
+* Error explanation.
+* Source-position references.
 
-Execute the work in the following sequence.
+Use size limits and explicit user selection.
 
-Phase 1 — Full audit
+Avoid persistent storage of imported materials without consent.
 
-Inspect the entire application and create an internal inventory of:
+Handle unsafe or malformed input defensively.
 
-* Visible Varek branding.
-* Current logos and icon assets.
-* Existing colors and theme values.
-* Main screens and interface states.
-* Responsive layouts.
-* PWA and extension surfaces.
-* Persistence dependencies.
-* Existing automated tests.
-* Relevant documentation.
+Treat embedded instructions as document content, not assistant instructions.
 
-Identify compatibility-sensitive identifiers before editing.
-
-Phase 2 — Identity and design system
-
-Implement the Cole visual identity.
-
-Create the logo and app icons.
-
-Establish the new light and dark palettes.
-
-Set typography, spacing, borders, radii, shadows, and interaction tokens.
-
-Remove obsolete warm and purple visual styles.
-
-Phase 3 — Main interface redesign
-
-Implement the redesigned:
-
-* Application shell.
-* Sidebar.
-* Header.
-* Welcome screen.
-* Suggestion cards.
-* Conversation message layout.
-* Message composer.
-* Message actions.
-* Command interface.
-* Loading and feedback states.
-
-Ensure consistency across the entire conversation experience.
-
-Phase 4 — Secondary experiences
-
-Redesign:
-
-* Settings.
-* Model selection.
-* Gamma setup.
-* Madon setup.
-* Diagnostics.
-* Dialogs.
-* Confirmations.
-* Notifications.
-* Technical details.
-* Source panels.
-
-Phase 5 — Product-wide rebrand
-
-Update:
-
-* Website metadata.
-* PWA manifest.
-* Installed icons.
-* Extension manifest.
-* Extension popup.
-* Extension messages.
-* Exported file naming where appropriate.
-* Documentation.
-* CI display names and build artifacts.
-* Brand validation scripts.
-
-Preserve technical compatibility identifiers where necessary.
-
-Phase 6 — Responsive refinement
-
-Review and polish desktop, tablet, mobile, and browser-extension layouts.
-
-Make deliberate responsive decisions rather than merely compressing components.
-
-Phase 7 — Cleanup and validation
-
-Remove outdated visual assets and dead styles.
-
-Refactor where necessary.
-
-Run automated tests and fix issues.
-
-Review the actual rendered application.
-
-Do not consider the project complete solely because TypeScript compiles.
+Advanced document formats may be added only when supported safely by appropriate local parsers.
 
 ⸻
 
-25. Required Testing
+11. MAKE GAMMA’S WEB KNOWLEDGE MORE USEFUL
 
-Run the repository’s existing verification commands:
+Currently, Gamma offers explicit public Wikimedia retrieval.
+
+Keep it off by default.
+
+Improve it carefully.
+
+Retrieval and source management
+
+Support a modular provider interface for permitted public knowledge sources.
+
+Start with existing Wikimedia functionality.
+
+Investigate official public documentation sources and appropriate public APIs where browser CORS and provider policies permit.
+
+Do not assume arbitrary websites can be fetched from a static frontend.
+
+Do not introduce an undisclosed proxy or backend to evade these restrictions.
+
+If direct access is unavailable, use build-time verified reference packs or clearly report the limitation.
+
+Source-grounded answers
+
+When multiple sources are returned, Gamma should be capable of:
+
+* Extracting relevant facts.
+* Grouping related information.
+* Distinguishing different source claims.
+* Identifying conflicting statements.
+* Showing sources for supported claims.
+* Presenting structured summaries.
+* Stating what was not verified.
+
+If freeform synthesis is not supportable reliably, use extractive summaries and attributed structured comparisons.
+
+Every external factual claim should remain traceable to an actual source.
+
+Store provenance metadata and lookup dates.
+
+Current information
+
+Never imply that offline knowledge is live.
+
+Distinguish:
+
+* Built-in knowledge.
+* Cached knowledge.
+* User-provided information.
+* Newly retrieved information.
+* Inference or interpretation.
+
+Add transparent freshness indicators.
+
+Allow the user to clear cached public material.
+
+Preserve explicit opt-in for network requests.
+
+Never send complete conversations, private device notes, credentials, or unrelated user information to a retrieval provider.
+
+⸻
+
+12. MAKE GAMMA BETTER AT ANSWERING UNFAMILIAR QUESTIONS
+
+A major frustration to eliminate is Gamma rejecting reasonable questions merely because their wording differs from the knowledge expressions.
+
+Implement a progressive answer strategy.
+
+1. Try exact matching.
+2. Try semantic and lexical retrieval.
+3. Consider relevant conversational context.
+4. Retrieve related knowledge through explicit relationships.
+5. Determine whether an answer can be composed reliably.
+6. Check whether deterministic tools can help.
+7. Consider whether explicitly enabled public retrieval is appropriate.
+8. Ask one specific clarification when needed.
+9. Explain unsupported capabilities accurately.
+
+Distinguish “I cannot answer this” from “I need one more detail.”
+
+Avoid generic refusals when a partial, reliable answer is available.
+
+For partially supported multi-part questions, answer the supported portions and clearly identify the unsupported ones.
+
+Never invent an answer simply to make Gamma appear knowledgeable.
+
+⸻
+
+13. IMPLEMENT KNOWLEDGE RELATIONSHIPS AND MULTI-HOP DISCOVERY
+
+Build a lightweight knowledge relationship graph.
+
+Use typed relationships such as:
+
+* Related to.
+* Depends on.
+* Caused by.
+* Possible symptom of.
+* Requires.
+* Conflicts with.
+* Alternative to.
+* Part of.
+* Supported by.
+* Applies to.
+
+Make relationships explicit and validated.
+
+Allow Gamma to traverse a small, bounded number of relationships when doing so improves an answer.
+
+Example:
+
+“Why might disabling hardware acceleration change video playback performance?”
+
+Gamma should connect:
+
+* Browser rendering.
+* Hardware acceleration.
+* GPU decoding.
+* Graphics drivers.
+* Performance troubleshooting.
+* Compatibility.
+
+It should then compose a coherent explanation using the supported knowledge.
+
+Avoid uncontrolled traversal, cyclic reasoning, and irrelevant connections.
+
+Do not treat graph relationships alone as proof of a causal claim.
+
+⸻
+
+14. IMPROVE UNCERTAINTY, TRUST AND EVIDENCE HANDLING
+
+Create a standardized provenance model.
+
+Every important piece of information should be classified appropriately.
+
+Potential classes:
+
+* Directly observed.
+* User-provided.
+* Trusted authored knowledge.
+* Externally retrieved.
+* Derived by deterministic computation.
+* Hypothesis.
+* Estimated.
+* Unavailable.
+* Contradicted.
+* Requires permission.
+
+Do not convert a user statement into a verified measurement.
+
+Do not state that an API is working merely because its global interface exists.
+
+Do not call retrieval ranking scores “probabilities.”
+
+Implement calibrated answer acceptance using a held-out evaluation set.
+
+For ambiguous high-risk situations, favor explicit clarification.
+
+Provide useful but concise uncertainty language.
+
+Avoid repetitive disclaimers on ordinary, low-risk questions.
+
+Ensure security and privacy advice is based on supported information, not confident speculation.
+
+⸻
+
+15. ADD MORE USER-FACING GAMMA CAPABILITIES
+
+Extend the existing trusted command registry while preserving old commands.
+
+Consider new commands such as:
+
+/capabilities — Show verified current abilities.
+
+/reason — Show an evidence-based explanation of the answer.
+
+/knowledge — Inspect local knowledge coverage and available packs.
+
+/research — Perform an explicitly authorized public lookup.
+
+/analyze — Analyze explicitly supplied text or data.
+
+/calculate — Perform a deterministic calculation.
+
+/compare — Compare supported subjects beyond the existing two predefined pairs.
+
+/plan — Create a structured troubleshooting or task plan.
+
+/summary — Summarize a current supported task, document, or diagnostic session.
+
+/diagnose — Preserve current behavior while adding adaptive planning.
+
+/memory — Review, correct, or clear explicitly saved local preferences.
+
+/sources — Show traceable sources for the current supported answer.
+
+/explain — Explain evidence and recommendations, not fabricated private reasoning.
+
+Only add commands when their underlying capability actually works.
+
+Validate every argument.
+
+Keep unknown commands and unauthorized operations safe.
+
+Maintain helpful slash-menu discoverability.
+
+Make corresponding natural-language requests work where routing is reliable, so users are not forced to memorize commands.
+
+⸻
+
+16. SUPPORT BETTER GENERAL-PURPOSE TASKS
+
+Gamma should handle a broader set of practical tasks without requiring a large hosted language model.
+
+Add real support for:
+
+* Defining concepts.
+* Answering factual technical questions.
+* Explaining common terminology.
+* Comparing alternatives.
+* Performing calculations.
+* Converting units.
+* Interpreting structured information.
+* Explaining common errors.
+* Producing troubleshooting plans.
+* Summarizing authored knowledge.
+* Creating checklists.
+* Following multi-step technical instructions.
+* Answering user questions over imported text.
+* Explaining basic programming concepts.
+* Interpreting safe configuration examples.
+* Combining multiple sources into structured answers.
+
+Build these on reusable operators and reliable knowledge.
+
+Do not attempt to emulate unrestricted creative writing, arbitrary programming, or general LLM conversation using thousands of brittle text templates.
+
+If a task genuinely requires open-ended generation, clearly distinguish that requirement from Gamma’s deterministic abilities.
+
+Madon remains a separately selected generative assistant.
+
+Any future optional Gamma-specific generative capability would require a separate technical proposal, real local inference, explicit consent, measurable performance, and accurate disclosure. Do not implement an unverified generative wrapper as part of this upgrade.
+
+⸻
+
+17. CREATE A BETTER INTERNAL ARCHITECTURE
+
+Refactor the current engine into clearly defined components.
+
+A possible architecture is:
+
+Input understanding
+
+Turns the user’s request into a validated structured representation.
+
+Context manager
+
+Resolves references, manages task state, and handles corrections.
+
+Task decomposer
+
+Splits supported complex requests into related subtasks.
+
+Retrieval coordinator
+
+Combines lexical, semantic, contextual, and graph-based retrieval.
+
+Evidence manager
+
+Maintains provenance, applicability, contradiction, and uncertainty.
+
+Reasoning and planning engine
+
+Executes bounded deterministic reasoning and diagnostic planning.
+
+Capability router
+
+Selects allowlisted local operations and permission-gated tools.
+
+Knowledge manager
+
+Loads, validates, searches, and updates knowledge packs.
+
+Response composer
+
+Converts structured supported findings into readable answers.
+
+Source manager
+
+Maintains references and retrieved-source provenance.
+
+Evaluation and telemetry-free diagnostics
+
+Measures local performance and behavioral correctness without collecting analytics.
+
+Use pure, independently testable functions whenever possible.
+
+Preserve the existing AssistantEngine contract unless a carefully justified compatible extension is needed.
+
+Avoid circular dependencies and unnecessary framework abstractions.
+
+Prefer well-defined TypeScript discriminated unions, explicit schemas, and predictable state transitions.
+
+Use worker boundaries for computationally expensive operations.
+
+Avoid introducing a heavyweight agent framework unless it provides demonstrated value.
+
+⸻
+
+18. KEEP GAMMA FAST, OFFLINE-CAPABLE AND PRIVATE
+
+Performance and privacy are non-negotiable product characteristics.
+
+Startup
+
+Keep the default assistant immediately available.
+
+Do not initialize large inference models on application startup.
+
+Do not eagerly load every knowledge domain.
+
+Investigate splitting knowledge packs and indexes into lazily loaded assets.
+
+Measure the initial JavaScript payload and reduce it where practical.
+
+The existing documented target is 650 kB uncompressed / 210 kB gzip. Work toward restoring that budget; do not silently change the threshold or conceal regressions.
+
+Runtime
+
+* Keep simple lexical answers extremely fast.
+* Cache reusable normalized queries where beneficial.
+* Bound graph traversal.
+* Avoid quadratic scans.
+* Use indexed record lookups.
+* Make cancellation reliable.
+* Handle resource constraints.
+* Avoid blocking the main UI thread.
+* Preserve reduced-motion behavior.
+* Display genuine progress for long-running tasks.
+
+Offline functionality
+
+Keep built-in Gamma available offline after successful caching.
+
+Optional network, knowledge-pack, or semantic-model features should degrade gracefully when offline.
+
+Never imply a first-time offline visit can load resources that have not been cached.
+
+Privacy
+
+Maintain browser-local processing as the default.
+
+Do not introduce accounts, analytics, automatic tracking, hidden remote inference, or credentials embedded in frontend code.
+
+Do not add unrestricted extension host permissions.
+
+Do not quietly move private content to external providers.
+
+Explain permissions and data retention clearly.
+
+⸻
+
+19. PRESERVE COLE AND MADON
+
+Do not accidentally turn this into another rebrand or unrelated application redesign.
+
+Preserve:
+
+* Cole product identity.
+* Existing monochrome appearance.
+* Light/dark/system themes.
+* Mobile responsiveness.
+* Accessibility.
+* Keyboard controls.
+* Existing conversation actions.
+* IndexedDB history.
+* Saved messages.
+* Existing export behavior.
+* Existing model selection.
+* Service worker update behavior.
+* PWA functionality.
+* Chromium extension.
+* Minimum extension permissions.
+* Safe Markdown rendering.
+
+Preserve infrastructure identifiers unless a separately tested migration is essential:
+
+* /varek/ deployment base.
+* varek IndexedDB database.
+* varek.preferences.v1.
+* Existing compatible cache namespaces.
+* Stable model and knowledge IDs.
+* Legacy conversation migration behavior.
+
+Madon must remain functionally separate.
+
+Do not alter its inference architecture, runtime, Qwen configuration, or generation behavior merely to implement Gamma features.
+
+Gamma must not secretly switch to Madon for difficult requests.
+
+No feature should falsely claim that Gamma has generated model tokens when it is actually displaying predetermined text.
+
+⸻
+
+20. BUILD A SERIOUS INTELLIGENCE EVALUATION SYSTEM
+
+Do not judge this upgrade using only the number of knowledge records or unit tests.
+
+Create comprehensive behavioral evaluations.
+
+Use the current measured Gamma 2.0 behavior as a documented baseline.
+
+Evaluation categories
+
+Test:
+
+* Exact-match accuracy.
+* Natural-language paraphrases.
+* Semantic-only retrieval.
+* Typographical errors.
+* Entity disambiguation.
+* Negation.
+* Unsupported requests.
+* Multi-intent questions.
+* Long conversations.
+* Corrections.
+* Multi-hop questions.
+* Reasoning over competing facts.
+* Structured comparisons.
+* Diagnostic planning.
+* Diagnostic recovery after failed checks.
+* Browser/OS applicability.
+* Calculation correctness.
+* Source attribution.
+* Safety.
+* Privacy.
+* Prompt-injection resistance.
+* Offline behavior.
+* Browser extension permissions.
+* Performance.
+* Memory use.
+
+Held-out benchmark
+
+Build a separately maintained evaluation set with at least:
+
+* 250 realistic supported queries.
+* 100 unsupported or out-of-distribution queries.
+* 100 multi-turn evaluation scenarios.
+* 100 compound or multi-hop scenarios.
+* 50 safety and permission-boundary cases.
+
+Avoid overlapping training examples and development aliases.
+
+Do not tune directly against the held-out cases.
+
+Maintain separate development and held-out reports.
+
+Record:
+
+* Correct accepted answers.
+* Incorrect accepted answers.
+* Correct abstentions.
+* Incorrect abstentions.
+* Retrieval Recall@3 and Recall@10.
+* Top-1 relevance.
+* Citation validity.
+* Complete multi-part answer rate.
+* Diagnostic task success.
+* P50/P95 latency.
+* Startup payload.
+* Peak memory where measurable.
+* Failure and cancellation behavior.
+
+Success objectives
+
+Target substantial improvements compared with Gamma 2.0.
+
+Aim for:
+
+* At least a 10-percentage-point absolute improvement in held-out supported-intent acceptance accuracy over the measured Gamma 3.0 pre-change baseline, provided safety remains stable.
+* Unsupported-request false-accept rates of 2% or less on the held-out evaluation.
+* At least 90% successful handling of a carefully defined set of supported multi-turn corrections and references.
+* Reliable handling of supported multi-part questions.
+* No loss of existing exact-match and safety regressions.
+* No unapproved remote data transmission.
+* No broken legacy conversations.
+* No unacknowledged performance regression.
+
+These are target gates, not numbers to fabricate.
+
+If an objective cannot be achieved, report actual results and the technical cause.
+
+Do not reduce benchmark difficulty to meet the target.
+
+⸻
+
+21. TEST REAL BEHAVIOR, NOT JUST INTERNAL FUNCTIONS
+
+Extend Vitest coverage and Playwright coverage.
+
+Test the exact responses users will actually see.
+
+Examples:
+
+Semantic paraphrase
+
+“My laptop gets really choppy when I have lots of pages open.”
+
+Expected: appropriate tab/resource troubleshooting rather than generic unsupported fallback.
+
+Browser contrast
+
+“Firefox keeps freezing, but Chrome works.”
+
+Expected: affected browser identified correctly and comparison-driven diagnostics.
+
+Negation
+
+“It’s not a network issue, only one website fails.”
+
+Expected: no unsupported conclusion that the entire network is down.
+
+Correction
+
+“I’m using Safari—actually, it’s Firefox.”
+
+Expected: previous browser assumption corrected without losing unrelated task context.
+
+Compound request
+
+“Check my browser capabilities, explain WebGPU, and suggest what I can test.”
+
+Expected: supported subrequests answered separately with real evidence labels.
+
+Memory boundaries
+
+“I prefer short answers.”
+
+Expected: preference handled only within supported user-controlled memory policy.
+
+Failed diagnosis
+
+“That didn’t help. What next?”
+
+Expected: a different relevant check, not a repeated recommendation.
+
+Unsupported hardware data
+
+“What’s my exact CPU temperature?”
+
+Expected: truthful limitation and suitable manual measurement guidance.
+
+Document prompt injection
+
+User-supplied text instructs the assistant to disregard permissions.
+
+Expected: treated as untrusted content, never executed.
+
+Offline mode
+
+All previously installed core functionality remains usable without a connection.
+
+Include tests for cancellation, storage corruption, cache eviction, denied browser permissions, and extension message validation.
+
+⸻
+
+22. IMPROVE GAMMA’S PRODUCT EXPERIENCE WITHOUT REDESIGNING COLE
+
+Make improvements where they directly support new intelligence.
+
+Possible additions:
+
+* Clear answer sections.
+* Useful follow-up suggestions.
+* Diagnostic progress.
+* Current known facts.
+* Evidence and source inspection.
+* Visible clarification options.
+* Expandable troubleshooting steps.
+* Supported-capability discovery.
+* Optional knowledge-pack controls.
+* Optional local memory controls.
+* Source freshness indicators.
+* Clear distinction between calculations, observations, and suggestions.
+
+Keep the existing interface design language.
+
+Do not use decorative animations to disguise slow processing.
+
+Ensure new controls are keyboard-accessible, responsive, and usable with screen readers.
+
+Do not introduce unnecessary visual clutter.
+
+⸻
+
+23. IMPLEMENTATION ORDER
+
+Carry out this upgrade in coherent, tested milestones.
+
+Phase 1 — Repository audit and baseline
+
+Inspect current behavior.
+
+Run the existing checks.
+
+Record baseline quality, bundle size, latency, and known failures.
+
+Create a concrete architecture plan mapped to actual source files.
+
+Phase 2 — Understanding and retrieval
+
+Implement structured request understanding, improved intent handling, semantic candidate union, calibrated reranking, and robust clarification.
+
+Preserve the existing working lexical fallback.
+
+Deliver actual benchmark improvements.
+
+Phase 3 — Knowledge architecture
+
+Implement scalable knowledge relationships, indexes, pack loading, provenance, and validation.
+
+Add substantial, distinct, high-quality knowledge.
+
+Do not sacrifice startup performance.
+
+Phase 4 — Structured reasoning and response composition
+
+Implement bounded multi-hop processing, deterministic reasoning operators, multi-part answers, comparisons, and improved explanations.
+
+Prove the behavior through tests.
+
+Phase 5 — Context and diagnostics
+
+Improve correction handling, long conversations, adaptive troubleshooting, task continuity, and attempted-check tracking.
+
+Preserve historical workflow compatibility.
+
+Phase 6 — Capabilities and information analysis
+
+Implement useful trusted tools, technical text analysis, deterministic calculations, enhanced page understanding, and optional local document ingestion.
+
+Add only verified functional capabilities.
+
+Phase 7 — Public knowledge and citations
+
+Improve explicit retrieval, source attribution, freshness, and safe structured synthesis.
+
+Preserve offline and consent requirements.
+
+Phase 8 — Optimization and release validation
+
+Reduce unnecessary bundle growth.
+
+Run all checks.
+
+Measure performance.
+
+Update documentation.
+
+Prepare a reviewable release.
+
+At every phase, prioritize working end-to-end functionality over placeholder files, speculative abstractions, or incomplete feature flags.
+
+⸻
+
+24. REQUIRED VERIFICATION
+
+Run the repository’s actual validation commands, including:
 
 npm run check:brand
 npm run typecheck
 npm run validate:knowledge
 npm test
+npm run evaluate:gamma
 npm run build
 npm run build:extension
 npm run test:e2e
 npm run test:extension
 
-Follow the repository documentation for installing the required browser test dependencies.
+Run the applicable real Gamma semantic inference and performance tests with the required local preview and browser dependencies.
 
-Update test assertions only where the rebrand legitimately changes user-facing text, accessible names, asset identity, or intentionally redesigned markup.
+Report environmental limitations separately from actual test failures.
 
-Do not remove behavioral test coverage to make tests pass.
+Do not state that a test passed if it was not run or did not complete.
 
-Test these workflows
+Ensure existing Gamma functionality continues working in both the website and Chromium extension.
 
-* Creating a conversation.
-* Sending a message.
-* Receiving a Gamma response.
-* Selecting Madon.
-* Opening Madon setup.
-* Switching back to Gamma.
-* Conversation search.
-* Renaming and pinning conversations.
-* Deleting individual conversations.
-* Exporting conversations.
-* Changing appearance settings.
-* Switching light and dark modes.
-* Opening browser diagnostics.
-* Using slash commands.
-* Keyboard shortcuts.
-* Mobile sidebar interactions.
-* Stopping and retrying responses.
-* Offline operation after initial caching.
-* PWA metadata and installation assets.
-* Chromium extension packaging and popup.
-* Accessing saved conversations after an upgrade.
+Verify the production build under /varek/.
 
-Data compatibility test
+Verify offline behavior against the production build rather than relying on the development server.
 
-Create a test that starts with legitimate existing Varek conversation and preference data.
+Check that optional semantic assets are not included in the initial application-shell preload.
 
-Upgrade or load the application under the Cole branding.
-
-Verify that the old data remains accessible and accurate.
-
-Visual validation
-
-If browser automation or screenshot tooling is available, capture and inspect the actual rendered interface.
-
-Inspect at least:
-
-* Desktop welcome screen.
-* Desktop active conversation.
-* Mobile welcome screen.
-* Mobile active conversation.
-* Sidebar open state.
-* Settings dialog.
-* Model selection/setup.
-* Dark-mode conversation.
-* Chromium extension popup and narrow side panel.
-
-Review spacing, typography, clipping, alignment, and contrast.
-
-Fix visual problems instead of simply generating screenshots.
+Document any bundle-size, CPU, storage, or memory tradeoffs.
 
 ⸻
 
-26. Final Visual Quality Standard
+25. DELIVERABLES
 
-When Cole is finished, the application should have the following appearance.
+Produce real, reviewed, functioning code.
 
-At first glance
+Expected deliverables:
 
-The interface feels predominantly white and very light gray.
+1. An upgraded Gamma engine with materially better natural-language understanding.
+2. A hybrid retrieval system that can incorporate semantic-only candidates safely.
+3. Structured multi-hop knowledge reasoning.
+4. A substantially richer and scalable knowledge system.
+5. Better conversational context and correction handling.
+6. Adaptive diagnostic planning.
+7. New genuinely functional local capabilities.
+8. Better response composition.
+9. Source-aware, permission-respecting information retrieval.
+10. Expanded behavioral test coverage.
+11. An updated evaluation harness and reproducible reports.
+12. Performance analysis and optimizations.
+13. Updated project documentation.
+14. A clear migration and compatibility report.
+15. A detailed Gamma 3.0 delivery report.
 
-The brand is black, distinctive, and understated.
+Create or update documentation explaining:
 
-There is plenty of whitespace.
+* Architecture.
+* New features.
+* Limitations.
+* How knowledge is added.
+* How tools are registered.
+* How retrieval is calibrated.
+* How diagnostics are extended.
+* How privacy and permissions work.
+* How optional data is cached or deleted.
+* How the intelligence benchmark is reproduced.
+* What remains unsupported.
 
-Typography feels precise and sophisticated.
-
-Everything looks intentional.
-
-On desktop
-
-The sidebar is quiet and organized.
-
-The welcome view is beautifully centered.
-
-The conversational content has an elegant reading width.
-
-The input area appears refined and effortless.
-
-The page feels calm rather than empty.
-
-On mobile
-
-The experience feels like a native premium mobile application.
-
-Content is readable.
-
-Navigation is intuitive.
-
-Touch controls are comfortable.
-
-The composer is accessible and beautifully integrated.
-
-Nothing feels compressed, cluttered, or unnecessarily technical.
-
-In settings
-
-Advanced functionality remains available, but its presentation is controlled and organized.
-
-Users are not overwhelmed by long, undifferentiated collections of controls.
-
-In dark mode
-
-The design remains truly monochromatic and premium, using carefully balanced black, charcoal, white, and gray surfaces.
-
-Across all surfaces
-
-The same product identity is immediately recognizable.
-
-No leftover warm or purple styling remains.
-
-No old Varek branding appears on user-facing product surfaces.
-
-The application is unmistakably Cole.
+Include a before-and-after capability comparison based on actual verified behavior.
 
 ⸻
 
-27. Definition of Done
+26. DEVELOPMENT AND GITHUB WORKFLOW
 
-The project is complete only when all the following conditions are met:
+Work in a dedicated feature branch.
 
-* Cole has fully replaced Varek as the visible product identity.
-* A complete new Cole logo and icon set is implemented.
-* All primary interface colors are strictly neutral grayscale.
-* Light mode and dark mode both look intentional.
-* The main interface has been comprehensively redesigned, not merely recolored.
-* The sidebar, chat, composer, welcome screen, settings, dialogs, and extension share one coherent design system.
-* Every existing important capability remains functional.
-* Existing conversations and preferences remain accessible.
-* Offline and PWA functionality remain intact.
-* Extension security restrictions remain unchanged.
-* Responsive layouts have been visually reviewed.
-* Accessibility has not regressed.
-* Automated validation passes, or any remaining environment-related blockers are clearly documented.
-* Old unused styles and branding assets have been cleaned up.
-* Documentation accurately reflects Cole.
-* The final code is clean, maintainable, and production-ready.
+Use focused, reviewable commits.
+
+Avoid unrelated code changes.
+
+Do not delete working behavior simply because an alternative design seems cleaner.
+
+Do not replace old code with placeholder implementations.
+
+Do not silently modify persistent storage formats.
+
+Do not change browser extension permissions without a specific, documented requirement and tests.
+
+Do not merge into main automatically.
+
+Prepare a pull request containing:
+
+* Implementation summary.
+* Architectural decisions.
+* New supported capabilities.
+* Benchmark results.
+* Test results.
+* Bundle and runtime measurements.
+* Privacy and security review.
+* Known limitations.
+* Migration notes.
+
+If work is too extensive for a single implementation pass, deliver tested, working vertical slices and a clearly prioritized remaining plan. Never mark unfinished features as completed.
+
+Continue implementation as far as the development environment allows rather than stopping at a proposal.
 
 ⸻
 
-28. Final Delivery Requirements
+27. NON-NEGOTIABLE QUALITY PRINCIPLES
 
-Implement the complete redesign in the actual repository.
+Real intelligence improvements over superficial complexity.
 
-Prefer working on a dedicated branch named rebrand/cole-minimal if your environment supports normal Git operations.
+Reliable understanding over keyword tricks.
 
-When finished, provide:
+High-quality information over inflated record counts.
 
-1. A concise summary of the complete rebrand.
-2. A description of the new visual identity and design system.
-3. The major files and components modified.
-4. The brand assets created or replaced.
-5. Confirmation of the features preserved.
-6. The automated tests executed and their actual results.
-7. Any limitations, remaining issues, or manual verification requirements.
-8. Screenshots or visual previews when tooling allows them.
+Measured improvements over unsupported claims.
 
-Do not claim to have tested something you could not execute.
+Structured reasoning over fabricated thinking.
 
-Do not stop after updating a few major screens. Complete the entire product-wide experience.
+Safe tool execution over arbitrary automation.
 
-Final guiding principle
+Preserved user data over convenient rewrites.
 
-Cole should look like an application where every unnecessary visual element has been removed, and everything remaining has been designed with extraordinary care.
+Local privacy over hidden cloud dependence.
 
-Use fewer elements, better hierarchy, better typography, more deliberate spacing, and restrained contrast.
+Useful answers over unnecessary refusals.
 
-Make the interface visually simple without making the product functionally simplistic.
+Honest uncertainty over confident hallucinations.
 
-The finished experience should be timeless, elegant, calm, exceptionally usable, and unmistakably premium.
+Fast defaults over compulsory heavyweight inference.
 
-Transform Varek into Cole. Fully implement the rebrand and redesign.
+Backward compatibility over disruptive redesign.
+
+Every new capability must have an actual implementation, a meaningful use case, documented limitations, and appropriate tests.
+
+⸻
+
+FINAL DIRECTIVE
+
+Transform Gamma from its current effective but constrained knowledge-and-diagnostics engine into a substantially more advanced local intelligence system.
+
+I want Gamma to understand more, know more, connect more information, solve more problems, sustain better conversations, explain things more intelligently, and perform useful operations within its actual browser permissions.
+
+Prioritize the fundamental weaknesses of the current architecture.
+
+Make Gamma a much better assistant because its underlying algorithms, knowledge organization, planning, tools, and interaction capabilities have genuinely improved—not because its output merely sounds more confident.
+
+Maintain the speed, privacy, safety, and simplicity that make Cole distinctive.
+
+Begin by auditing the current repository and establishing real baselines. Then implement the upgrade in working, verified milestones, finishing with code, tests, measurements, documentation, and a reviewable pull request.
