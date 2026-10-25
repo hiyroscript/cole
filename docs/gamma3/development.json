@@ -2,8 +2,8 @@
   "scope": "22 development response checks; not held out, not a general intelligence accuracy estimate. Empty browser facts; semantics disabled.",
   "passed": 22,
   "total": 22,
-  "p50Ms": 0.15746500000000196,
-  "p95Ms": 2.1985030000000165,
+  "p50Ms": 0.1923360000000116,
+  "p95Ms": 2.258381000000014,
   "results": [
     {
       "query": "/calculate 2 + 3 * 4",
@@ -12,7 +12,7 @@
       ],
       "category": "calculation",
       "passed": true,
-      "ms": 2.1985030000000165,
+      "ms": 3.2057000000000073,
       "response": "Calculated locally: **14**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive."
     },
     {
@@ -22,7 +22,7 @@
       ],
       "category": "calculation",
       "passed": true,
-      "ms": 0.4828890000000001,
+      "ms": 0.5059729999999831,
       "response": "Calculated locally: **20**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive."
     },
     {
@@ -32,7 +32,7 @@
       ],
       "category": "calculation",
       "passed": true,
-      "ms": 0.30544499999999175,
+      "ms": 0.83275900000001,
       "response": "Calculated locally: **36**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive."
     },
     {
@@ -42,7 +42,7 @@
       ],
       "category": "conversion",
       "passed": true,
-      "ms": 0.1758920000000046,
+      "ms": 0.4002360000000067,
       "response": "Calculated locally: **120 minutes**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive."
     },
     {
@@ -52,7 +52,7 @@
       ],
       "category": "conversion",
       "passed": true,
-      "ms": 0.055001000000004296,
+      "ms": 0.08401499999999373,
       "response": "Calculated locally: **1 GiB**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive."
     },
     {
@@ -62,7 +62,7 @@
       ],
       "category": "conversion",
       "passed": true,
-      "ms": 0.03991999999999507,
+      "ms": 0.048721999999997934,
       "response": "Calculated locally: **1 m**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive."
     },
     {
@@ -72,7 +72,7 @@
       ],
       "category": "conversion",
       "passed": true,
-      "ms": 0.034431999999981144,
+      "ms": 0.06814099999999712,
       "response": "Calculated locally: **0 C**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive."
     },
     {
@@ -82,7 +82,7 @@
       ],
       "category": "safety",
       "passed": true,
-      "ms": 0.09528199999999742,
+      "ms": 0.07346899999998868,
       "response": "Cannot calculate: division by zero is undefined."
     },
     {
@@ -92,7 +92,7 @@
       ],
       "category": "safety",
       "passed": true,
-      "ms": 0.07546199999998748,
+      "ms": 0.12735000000000696,
       "response": "Cannot calculate: unsupported expression; use numbers, parentheses, +, -, *, / and postfix %."
     },
     {
@@ -102,7 +102,7 @@
       ],
       "category": "safety",
       "passed": true,
-      "ms": 0.05579299999999421,
+      "ms": 0.07677400000000034,
       "response": "Cannot calculate: incompatible unit dimensions."
     },
     {
@@ -114,7 +114,7 @@
       ],
       "category": "analysis",
       "passed": true,
-      "ms": 0.14964299999999753,
+      "ms": 0.22725800000000618,
       "response": "Local analysis of user-provided, untrusted text (25 characters, 1 lines); no commands were executed.\n\nStructurally valid JSON. This does not validate an application schema.\n\n```json\n{\n  \"Name\": \"Cole\",\n  \"count\": 3\n}\n```"
     },
     {
@@ -124,7 +124,7 @@
       ],
       "category": "analysis",
       "passed": true,
-      "ms": 0.08884299999999712,
+      "ms": 0.12581700000001206,
       "response": "Local analysis of user-provided, untrusted text (11 characters, 1 lines); no commands were executed.\n\nSyntax: invalid JSON. Check double-quoted keys and strings, commas between values, and matching brackets; trailing commas are not allowed."
     },
     {
@@ -136,7 +136,7 @@
       ],
       "category": "analysis",
       "passed": true,
-      "ms": 0.15746500000000196,
+      "ms": 0.1923360000000116,
       "response": "Local analysis of user-provided, untrusted text (30 characters, 2 lines); no commands were executed.\n\nRecognized technical identifiers (not a diagnosis):\n- Line 1: ERR_CERT_DATE_INVALID\n- Line 2: HTTP 403"
     },
     {
@@ -147,7 +147,7 @@
       ],
       "category": "safety",
       "passed": true,
-      "ms": 0.04087100000000987,
+      "ms": 0.057315999999985934,
       "response": "Local analysis of user-provided, untrusted text (28 characters, 1 lines); no commands were executed.\n\nNo supported technical identifiers found. Paste JSON or a short log containing browser errors, HTTP status codes or JavaScript errors."
     },
     {
@@ -162,7 +162,7 @@
       ],
       "category": "compound",
       "passed": true,
-      "ms": 5.8104000000000156,
+      "ms": 2.258381000000014,
       "response": "### DNS\nPart 1 of 3\n\nDNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.\n\n### WebAssembly\nPart 2 of 3\n\nWebAssembly is a compact code format designed for portable execution. In a browser it operates within sandbox and API constraints; it does not grant unrestricted system access.\n\n### Cookies\nPart 3 of 3\n\nCookies are small values attached to requests under browser rules. Sites use them for sessions and preferences; third parties can use them for tracking. Deleting session cookies commonly signs you out."
     },
     {
@@ -173,7 +173,7 @@
       ],
       "category": "compound",
       "passed": true,
-      "ms": 1.5041690000000472,
+      "ms": 0.1988460000000032,
       "response": "### WebAssembly\nPart 1 of 2\n\nWebAssembly is a compact code format designed for portable execution. In a browser it operates within sandbox and API constraints; it does not grant unrestricted system access.\n\n### calculate\nPart 2 of 2\n\nCalculated locally: **63**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive."
     },
     {
@@ -184,8 +184,8 @@
       ],
       "category": "compound",
       "passed": true,
-      "ms": 1.5064629999999966,
-      "response": "### DNS\nPart 1 of 2\n\nDNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.\n\n### Request\nPart 2 of 2\n\nI don’t have a reliable answer to that yet. I can help with browser settings, device information, performance, privacy, and troubleshooting. Could you describe the specific feature or symptom?"
+      "ms": 0.18808999999998832,
+      "response": "### DNS\nPart 1 of 2\n\nDNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.\n\n### Request\nPart 2 of 2\n\nI don’t have a reliable answer for open-ended writing, image generation or arbitrary program creation. Gamma can retrieve authored explanations, compare supported subjects, calculate, analyze supplied text and plan bounded checks. Madon is a separately selected generative model."
     },
     {
       "query": "Check my browser capabilities, explain WebGPU, and calculate 50% of 80",
@@ -196,7 +196,7 @@
       ],
       "category": "compound",
       "passed": true,
-      "ms": 2.001790000000028,
+      "ms": 0.5448010000000068,
       "response": "### observe\nPart 1 of 3\n\n### Browser capability report\n- WebGPU: API unavailable\n- IndexedDB: API unavailable\n- Service worker: API unavailable\n- Storage estimate: API unavailable\n- Clipboard write: API unavailable\n- Permission queries: API unavailable\n- Secure context: API unavailable\n- WebAssembly: API exposed\n\nAPI presence does not guarantee successful use. For current resource use, check your operating system’s activity monitor. There is no universal browser-health score.\n\n### WebGPU\nPart 2 of 3\n\nWebGPU supports graphics and compute workloads in compatible secure contexts. Adapter availability depends on browser, operating system, and device policy; it is not a system GPU-utilization monitor.\n\n### calculate\nPart 3 of 3\n\nCalculated locally: **40**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive."
     },
     {
@@ -206,7 +206,7 @@
       ],
       "category": "correction",
       "passed": true,
-      "ms": 0.5862229999999613,
+      "ms": 0.7428759999999954,
       "response": "I’ll use firefox as your stated browser for this conversation. That is user-provided information, separate from automatic detection."
     },
     {
@@ -216,7 +216,7 @@
       ],
       "category": "regression",
       "passed": true,
-      "ms": 0.10428599999994503,
+      "ms": 0.1849550000000022,
       "response": "WebAssembly is a compact code format designed for portable execution. In a browser it operates within sandbox and API constraints; it does not grant unrestricted system access."
     },
     {
@@ -226,7 +226,7 @@
       ],
       "category": "regression",
       "passed": true,
-      "ms": 0.052408000000014,
+      "ms": 0.1430029999999931,
       "response": "DNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration."
     },
     {
@@ -236,7 +236,7 @@
       ],
       "category": "boundary",
       "passed": true,
-      "ms": 0.26416399999999385,
+      "ms": 0.4908100000000104,
       "response": "A website cannot read your CPU temperature or diagnose hardware cooling. High load, blocked ventilation, or hardware faults can cause heat."
     }
   ]

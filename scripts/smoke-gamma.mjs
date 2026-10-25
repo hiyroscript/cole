@@ -155,20 +155,23 @@ try {
         .some((candidate) => candidate.record.id === c.expected),
     };
   });
-  const hybrid = {
-    intentAccuracy:
-      hybridResults.filter(
-        (r) => r.expected && r.accepted && r.actual === r.expected,
-      ).length / supported,
-    recallAt3:
-      hybridResults.filter((r) => r.expected && r.recalled).length / supported,
-    falsePositiveRate:
-      hybridResults.filter((r) => !r.expected && r.accepted).length /
-      (cases.length - supported),
-    misses: hybridResults.filter((r) =>
-      r.expected ? !r.accepted || r.actual !== r.expected : r.accepted,
-    ),
-  };
+  const hybrid = extra
+    ? null
+    : {
+        intentAccuracy:
+          hybridResults.filter(
+            (r) => r.expected && r.accepted && r.actual === r.expected,
+          ).length / supported,
+        recallAt3:
+          hybridResults.filter((r) => r.expected && r.recalled).length /
+          supported,
+        falsePositiveRate:
+          hybridResults.filter((r) => !r.expected && r.accepted).length /
+          (cases.length - supported),
+        misses: hybridResults.filter((r) =>
+          r.expected ? !r.accepted || r.actual !== r.expected : r.accepted,
+        ),
+      };
   const latencies = scores.map((s) => s.ms).sort((a, b) => a - b);
   const report = {
     environment:
@@ -180,11 +183,13 @@ try {
     records: knowledge.length,
     queries: scores.length,
     hybrid,
-    semanticOnlyTop1: top1 / supported,
-    semanticOnlyRecallAt3: recall / supported,
+    semanticOnlyTop1: supported ? top1 / supported : null,
+    semanticOnlyRecallAt3: supported ? recall / supported : null,
     queryMedianMs: latencies[Math.floor(latencies.length / 2)],
     queryP95Ms: latencies[Math.floor(latencies.length * 0.95)],
-    note: "Raw semantic neighbors are not acceptance decisions. Hybrid reranking remains conservative and experimental; this small development set does not certify general relevance.",
+    note: extra
+      ? "Unlabelled engine subqueries collected for full-response replay. No relevance or acceptance rate is computed for this supplemental set."
+      : "Raw semantic neighbors are not acceptance decisions. Hybrid reranking remains conservative and experimental; this small development set does not certify general relevance.",
   };
   await writeFile(
     extra

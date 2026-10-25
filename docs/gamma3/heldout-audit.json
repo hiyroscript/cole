@@ -1,0 +1,6 @@
+{
+  "supportedInputs": 256,
+  "uniqueNormalizedInputs": 256,
+  "exactNormalizedTitleOrAliasOverlap": 0,
+  "scope": "Exact normalized overlap audit only; semantic and topic overlap is inherent in evaluating known records."
+}

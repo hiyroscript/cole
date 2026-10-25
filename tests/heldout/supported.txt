@@ -1,0 +1,256 @@
+browser|How can I tell which browser is displaying this chat?
+chrome|Can you describe Google's Chrome browser for me?
+firefox|What distinguishes Mozilla's browser from Chromium ones?
+safari|Please explain Apple's Safari browser in simple terms.
+edge|What should I know about Microsoft's Edge browser?
+brave|Can a website reliably tell that somebody is using Brave?
+engine|What does the browser engine actually do with a page?
+useragent|Why does a browser send such a confusing user-agent string?
+mobile|Why isn't desktop mode on a phone equivalent to using a desktop?
+update-browser|Where should I obtain an update for my web browser?
+compare|Could you compare Chrome with Firefox for ordinary browsing?
+version|How do I find the actual installed browser build number?
+slow|My browser feels sluggish across ordinary tasks; where should I begin?
+cpu|Why might the browser be consuming so much processor time?
+ram|Can this site determine how much physical RAM I have?
+crash|The whole browser repeatedly closes unexpectedly; what can I check?
+freeze|Only one tab has stopped responding and I have unsaved text.
+acceleration|Could you explain the tradeoffs of hardware acceleration?
+background|Why do tabs I am not viewing still use resources?
+load|Pages take a long time to finish loading; how should I narrow it down?
+leak|Does steadily rising tab memory necessarily indicate a leak?
+startup|The browser takes ages to open before I visit a site.
+privacy|Which browser settings can improve everyday privacy?
+secure|How can I keep a browser reasonably secure?
+fingerprint|How could sites recognize me without using cookies?
+private|Does an incognito window make me anonymous to my employer?
+tracking|How can tracking protection interfere with legitimate websites?
+permissions|Where can I review permissions previously granted to a website?
+notifications|A site keeps sending unwanted notifications after I leave it.
+phishing|How can I recognize a login page that is phishing for credentials?
+passwords|Why would using a password manager improve account security?
+https|What does HTTPS guarantee and what does it not guarantee?
+malicious-extension|An unfamiliar add-on can read all pages; what should I do?
+certificate|A certificate warning appeared on a site I normally trust.
+offline-network|The browser says online but websites cannot be reached.
+website|A single website refuses to open while others load.
+dns|Please explain how domain names are translated into network addresses.
+wifi|My wireless signal looks strong but browsing is unreliable.
+vpn|Does using a VPN mean that nobody can identify my activity?
+proxy|What role does a proxy server play in a browser connection?
+latency|Why can a fast download connection still feel slow to respond?
+404|A page returns status 404; what does that indicate?
+403|The server replies with HTTP status 403; how should I interpret it?
+500|What should a visitor do when a website returns a server error?
+429|A service keeps answering with status 429 after repeated requests.
+captive|Hotel Wi-Fi connects but requires a sign-in page.
+cache|How do I investigate a stale page without deleting everything?
+cookies|What information do browser cookies actually hold?
+third-party|How do third-party cookies differ from a site's own cookies?
+localstorage|How is localStorage data retained between browsing sessions?
+sessionstorage|What is the lifetime of sessionStorage in a tab?
+indexeddb|Why would a web app use IndexedDB instead of small key-value storage?
+quota|What happens when a web application reaches its storage quota?
+persistent|What does persistent storage protect a web app against?
+cache-storage|Can you explain the purpose of the Cache Storage API?
+delete-site|What could I lose by removing a particular website's stored data?
+restore-tab|I accidentally shut a tab I still needed.
+pin-tab|What happens when I pin a browser tab?
+group-tabs|How can tab groups help organize several ongoing projects?
+find-tab|I have too many tabs and cannot locate the one playing content.
+bookmarks|What is the difference between bookmarking a page and leaving it open?
+history|How do I locate a page that I visited earlier?
+downloads|Where should I look for a file downloaded by the browser?
+zoom|The text on a site is too small; how can I enlarge it?
+reader|Can a browser show an article without surrounding page clutter?
+search-engine|How do I choose the search provider used in the address bar?
+autofill|Why does a browser fill old personal details into a form?
+login|A login form rejects me although the page itself loads.
+logout|A website repeatedly signs me out between visits.
+video|A movie player opens but the video will not play.
+audio|The page appears to play audio but I hear nothing.
+clipboard|Why might copying text from a web page be denied?
+popups|A legitimate sign-in window seems to be blocked as a popup.
+download-fail|A download repeatedly stops before the file is complete.
+blank|A normally useful page displays nothing except a blank area.
+layout|A site's text and controls overlap in a broken layout.
+javascript-error|What does a JavaScript error in the browser console tell me?
+extension-conflict|How could I check whether an extension is breaking a page?
+update-fail|My browser updater fails rather than installing the new version.
+battery|Browsing drains my laptop battery much faster than expected.
+heat|My laptop becomes hot during browsing; what can I check safely?
+disk|My device is almost out of storage; how does that affect browsing?
+windows|Where does Windows show device information a website cannot inspect?
+macos|Where can I find accurate system information on a Mac?
+linux|How can I inspect basic system information on Linux?
+android|Where should I find device specifications on Android?
+ios|Where do an iPhone or iPad show their device details?
+screen|Why does the viewport size differ from the reported screen size?
+touch|How can a web page tell whether touch or a precise pointer is available?
+language|Which language preferences can a browser expose to a website?
+timezone|How can a web page determine the browser's current time zone?
+reduced-motion|What does the reduced-motion preference ask websites to do?
+contrast|How can I make low-contrast website text easier to read?
+keyboard|Can I navigate a webpage without using a mouse?
+ram-storage|Why is adding storage different from adding memory?
+cpu-gpu|How do processor and graphics-processor workloads differ?
+bits|Why is my network rate in megabits while file sizes are in megabytes?
+resolution|What do the pixel dimensions of a display describe?
+refresh|Does a high display refresh rate guarantee smooth software?
+backup|Is a synchronized folder sufficient as an independent backup?
+formats|What determines whether software can open a particular file format?
+updates|Why are security updates important even when the software works?
+html|What part of a web page is described by HTML?
+css|What role do style sheets play in how a page appears?
+js|What does JavaScript add to a webpage?
+dom|How does the DOM represent a loaded document?
+wasm|Could you explain WebAssembly without assuming I am a specialist?
+cors|Why can a browser block a request between two website origins?
+csp|How does a Content Security Policy restrict page behavior?
+service-worker|What can a service worker do when a page is not open?
+pwa|How do I install Cole as a web app on a supported device?
+offline|Will this assistant work on a first visit with no connection?
+about|Is Gamma using a neural language model to produce its ordinary replies?
+madon|How is Madon different from the default Gamma engine?
+thinking|What changes when I select Thinking Auto rather than Off?
+export|How do I download a copy of my Cole conversation?
+delete|How can I erase chats saved by Cole in this browser?
+extension|How do I load Cole's Chromium extension package?
+limits|Can a website inspect running programs on my computer?
+privacy-varek|Does Cole upload my conversation text to an inference service?
+passkeys|What does a passkey replace in an account sign-in process?
+mfa|Why add a second authentication factor to a password?
+recovery-codes|How should I keep account recovery codes available safely?
+security-key|What is a physical security key used for?
+session-hijack|Could stealing a session cookie bypass an account password?
+https-only|What does a browser's HTTPS-only setting attempt to enforce?
+mixed-content|Why is an HTTPS page warned about insecure resources?
+hsts|How does HSTS differ from an ordinary redirect to HTTPS?
+cert-name|A certificate is valid for a different hostname than the one I opened.
+cert-expired|Why would a wrong device clock produce a certificate date warning?
+safe-browsing|The browser warns that a download or site may be dangerous.
+self-xss|Someone tells me to paste code into developer tools to fix my account.
+punycode|How can a domain name use lookalike characters to deceive people?
+qr-phishing|Can scanning a QR code take me to a phishing site?
+public-computer|What precautions matter when signing in on a shared computer?
+browser-sync|Which risks should I consider before enabling browser synchronization?
+do-not-track|Does the Do Not Track setting force sites to stop tracking me?
+gpc|What signal is sent by Global Privacy Control?
+referrer|Can a destination website learn which page linked me to it?
+url-tracking|What are the extra tracking parameters in a shared link?
+location-precision|Why is a website's reported location sometimes inaccurate?
+webcam-light|What does a camera-use indicator tell me about browser access?
+screen-sharing|What could be exposed when I share my entire screen?
+webrtc|What is WebRTC used for in web applications?
+websocket|How is a WebSocket connection different from separate HTTP requests?
+sse|What are server-sent events useful for?
+http2|How does HTTP/2 handle multiple resources on a connection?
+http3|What is the role of QUIC in HTTP/3?
+redirect-loop|A site redirects repeatedly instead of reaching the page.
+connection-refused|How should I interpret an immediate connection-refused error?
+connection-reset|A network connection is reset while a page loads.
+connection-timeout|A page waits for a long time and then times out.
+http401|What is the meaning of an HTTP 401 response?
+http408|Why might a server return a request-timeout status?
+http410|How is status 410 different from an ordinary missing page?
+http413|A server rejects an upload as too large.
+http415|Why would a server reject the media type of an upload?
+http504|What does a gateway-timeout response mean for a visitor?
+cache304|Is an HTTP 304 response a failed request?
+etag|How does an ETag help validate a cached resource?
+cache-control|What does the Cache-Control response header describe?
+samesite|How does SameSite change when cookies are sent?
+httponly|What protection does the HttpOnly cookie flag provide?
+secure-cookie|What does the Secure attribute of a cookie require?
+origin|Why are scheme, hostname and port part of a web origin?
+sandbox|What does sandboxing an iframe restrict?
+postmessage|How can two windows communicate without granting arbitrary access?
+workers|Why use a Web Worker for expensive processing?
+long-tasks|Why can a long JavaScript task make the page ignore input?
+layout-shift|Why do controls jump around while a page is loading?
+lcp|What user experience does Largest Contentful Paint try to measure?
+inp|What does Interaction to Next Paint indicate about responsiveness?
+image-size|Why can oversized images slow down a page?
+lazy-images|When does lazy loading an image help or hurt a page?
+font-loading|Why does page text change shape after loading a web font?
+throttling|Why do timers slow down when their tab is hidden?
+bfcache|What makes going back to a page different from reloading it?
+page-visibility|How can a page know that its tab is no longer visible?
+resize-observer|What changes does ResizeObserver report?
+intersection|How does IntersectionObserver detect that an element enters view?
+local-files|Can a website read a local file without me selecting it?
+filesystem-api|What permission does the File System Access API depend on?
+webusb|Can any website freely control connected USB hardware?
+webbluetooth|What are the browser restrictions around Bluetooth access?
+webserial|How does a website obtain access to a serial device?
+gamepad|What kind of input can the Gamepad API expose?
+webgpu|What does the WebGPU API offer to browser applications?
+webgl|What is WebGL used for on a web page?
+wasm-memory|Why can a WebAssembly program hit a memory limit?
+secure-context|Why do some APIs require a secure context?
+permission-policy|How does Permissions Policy constrain embedded features?
+web-manifest|What information belongs in a web application manifest?
+pwa-update|How do I apply a new version of the installed Cole app?
+pwa-remove|Does uninstalling a web app necessarily remove all its site data?
+storage-profile|My old chats are missing after I changed browser profiles.
+private-storage|Why should I not rely on a private window for permanent app storage?
+storage-eviction|Could the browser remove a web app's data automatically?
+partitioned-storage|Why does embedded storage differ between top-level sites?
+partitioned-cookies|What does partitioning a third-party cookie mean?
+print-pdf|How do I save a page as a PDF using browser printing?
+full-screen|How can I leave a webpage that has entered fullscreen mode?
+find-page|How can I locate a specific word within a long page?
+profile|What is isolated by a separate browser profile?
+managed-browser|Why are some browser settings controlled by an organization?
+win-memory|How should I investigate memory pressure on Windows?
+win-display|Why might browser text look blurry after Windows scaling changes?
+win-proxy|How can Windows proxy settings disagree with a browser's network path?
+win-security|How should I investigate suspicious browser behavior using Windows security tools?
+win-update-restart|Why would a pending Windows restart affect browser behavior?
+win-efficiency|Could Windows efficiency mode affect a busy browser process?
+mac-pressure|How should I interpret memory pressure in macOS Activity Monitor?
+mac-energy|Where can I inspect a browser's energy impact on macOS?
+mac-camera|Why can macOS block a camera even after the website has permission?
+mac-safari-site|Where are Safari's settings for one specific website?
+mac-rosetta|Why does a browser's architecture matter on Apple Silicon?
+mac-screen-share|Which macOS permission can block screen recording from a browser?
+linux-package|What is the safe way to update a Linux browser installed by a package manager?
+linux-wayland|Why might screen sharing differ under Wayland?
+linux-sandbox|A browser on Linux reports a sandbox startup failure.
+linux-fonts|Why are some characters shown as empty boxes in a Linux browser?
+linux-gpu|How can software rendering affect browser performance on Linux?
+linux-download|A Linux browser cannot save to the chosen download folder.
+android-suspend|Why does an Android browser reload a tab after I switch apps?
+android-permission|Why are both Android and website camera permissions relevant?
+android-data-saver|Could data-saving settings change what a mobile page loads?
+android-files|Where should I look for browser downloads on Android?
+android-extension|Why are desktop browser extensions unavailable in some Android browsers?
+android-battery|Could Android battery restrictions stop background browser work?
+iphone-storage|How can I remove data for an individual website on an iPhone?
+iphone-camera|What can restrict camera use in an iPhone browser?
+iphone-pwa|How does an iPhone home-screen web app differ from a regular tab?
+iphone-engine|Can I infer a browser engine solely from the app name on iOS?
+ipad-desktop|Why does my iPad sometimes identify itself as a Mac?
+iphone-lowpower|Could low-power mode affect web behavior on an iPhone?
+http400|How should a client interpret status 400 from a server?
+http405|A request is rejected because its HTTP method is not allowed.
+http409|What does an HTTP conflict response say about a write operation?
+http422|A server accepts JSON syntax but rejects the submitted values.
+http451|Why might a website return HTTP status 451?
+http502|What does a bad-gateway error indicate?
+http503|How should I interpret a service-unavailable response?
+dhcp-lease|Why would a DHCP lease problem prevent network access?
+dns-negative|Could a failed DNS answer stay cached after a domain is repaired?
+doh-policy|Why can secure DNS conflict with an organization's network configuration?
+ipv6-path|Why could a site work over one IP version but not another?
+vpn-split|What does split tunneling change about which traffic uses a VPN?
+mtu-upload|Large uploads stall on one connection while small requests work.
+captive-https|Why should I not bypass an HTTPS certificate warning at a Wi-Fi sign-in portal?
+webgpu-adapter|The WebGPU global exists but requesting an adapter returns nothing.
+webgpu-lost|What should a web application do when its GPU device is lost?
+webgpu-f16|Why might a local model require the shader-f16 feature?
+wasm-csp|How can Content Security Policy block WebAssembly initialization?
+wasm-threads|Why do WebAssembly threads depend on cross-origin isolation?
+idb-blocked|An IndexedDB schema upgrade waits while another tab is open.
+idb-abort|Why can an IndexedDB transaction abort after requests were queued?
+idb-inactive|Why does an IndexedDB transaction become inactive after awaiting unrelated work?

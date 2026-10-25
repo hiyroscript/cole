@@ -1,0 +1,1826 @@
+[
+  {
+    "query": "Could you detect my browsr please?",
+    "expected": "browser",
+    "kind": "typo",
+    "scores": [
+      {
+        "id": "browser",
+        "score": 0.5739535984091085
+      },
+      {
+        "id": "private",
+        "score": 0.5359087740397396
+      },
+      {
+        "id": "version",
+        "score": 0.43223810537999635
+      },
+      {
+        "id": "privacy",
+        "score": 0.4156962936208803
+      },
+      {
+        "id": "fingerprint",
+        "score": 0.4095943115028515
+      },
+      {
+        "id": "api-idle-detection",
+        "score": 0.40327090733872095
+      },
+      {
+        "id": "win-security",
+        "score": 0.38933142207239085
+      },
+      {
+        "id": "downloads",
+        "score": 0.38015599184253174
+      },
+      {
+        "id": "webcam-light",
+        "score": 0.3750052990141935
+      },
+      {
+        "id": "safe-browsing",
+        "score": 0.37373997433920064
+      }
+    ],
+    "ms": 193.59999999776483
+  },
+  {
+    "query": "My broswer is sluggish",
+    "expected": "slow",
+    "kind": "typo",
+    "scores": [
+      {
+        "id": "slow",
+        "score": 0.5607597826972969
+      },
+      {
+        "id": "load",
+        "score": 0.4406770998938363
+      },
+      {
+        "id": "win-efficiency",
+        "score": 0.4330297599179965
+      },
+      {
+        "id": "long-tasks",
+        "score": 0.41122807981341497
+      },
+      {
+        "id": "startup",
+        "score": 0.4095639391192817
+      },
+      {
+        "id": "cpu",
+        "score": 0.3963379225834054
+      },
+      {
+        "id": "battery",
+        "score": 0.3930396528195547
+      },
+      {
+        "id": "win-power-mode",
+        "score": 0.3511983927195613
+      },
+      {
+        "id": "win-disk-active",
+        "score": 0.33807600368054636
+      },
+      {
+        "id": "hardware-power-adapter",
+        "score": 0.33575409781402565
+      }
+    ],
+    "ms": 17
+  },
+  {
+    "query": "Every time I have a bunch of pages open everything becomes choppy",
+    "expected": "slow",
+    "kind": "paraphrase",
+    "scores": [
+      {
+        "id": "win-pagefile",
+        "score": 0.5091665736960087
+      },
+      {
+        "id": "load",
+        "score": 0.5034912372614869
+      },
+      {
+        "id": "zoom",
+        "score": 0.4620222862833269
+      },
+      {
+        "id": "file-reader-memory",
+        "score": 0.415671386113373
+      },
+      {
+        "id": "leak",
+        "score": 0.4110797928539413
+      },
+      {
+        "id": "mac-process-memory",
+        "score": 0.40654311208903054
+      },
+      {
+        "id": "api-page-lifecycle",
+        "score": 0.4051557529725183
+      },
+      {
+        "id": "layout-shift",
+        "score": 0.3987745703584794
+      },
+      {
+        "id": "perf-layout-thrashing",
+        "score": 0.39517286929016426
+      },
+      {
+        "id": "slow",
+        "score": 0.38869541596370266
+      }
+    ],
+    "ms": 23.800000000745058
+  },
+  {
+    "query": "My browser isn’t slow, it just crashes",
+    "expected": "crash",
+    "kind": "negation",
+    "scores": [
+      {
+        "id": "crash",
+        "score": 0.7165337183510132
+      },
+      {
+        "id": "slow",
+        "score": 0.6894166220781037
+      },
+      {
+        "id": "cpu",
+        "score": 0.5760462851817013
+      },
+      {
+        "id": "startup",
+        "score": 0.5594888639953872
+      },
+      {
+        "id": "freeze",
+        "score": 0.5570170977976691
+      },
+      {
+        "id": "leak",
+        "score": 0.5408132259259272
+      },
+      {
+        "id": "battery",
+        "score": 0.5367517269330065
+      },
+      {
+        "id": "video-playback-rate",
+        "score": 0.5287488958276297
+      },
+      {
+        "id": "load",
+        "score": 0.5246259189100972
+      },
+      {
+        "id": "win-efficiency",
+        "score": 0.4987559067780351
+      }
+    ],
+    "ms": 49.100000001490116
+  },
+  {
+    "query": "My internet works but one website doesn’t",
+    "expected": "website",
+    "kind": "negation",
+    "scores": [
+      {
+        "id": "website",
+        "score": 0.5870259348444596
+      },
+      {
+        "id": "offline-network",
+        "score": 0.5609109834958658
+      },
+      {
+        "id": "blank",
+        "score": 0.4975627561171819
+      },
+      {
+        "id": "network-online-event",
+        "score": 0.44956321067699756
+      },
+      {
+        "id": "freeze",
+        "score": 0.4224761345865596
+      },
+      {
+        "id": "audio",
+        "score": 0.41670571683078883
+      },
+      {
+        "id": "load",
+        "score": 0.414317987783952
+      },
+      {
+        "id": "cache",
+        "score": 0.399847662414209
+      },
+      {
+        "id": "connection-timeout",
+        "score": 0.38963368618454064
+      },
+      {
+        "id": "delete-site",
+        "score": 0.38320532358404075
+      }
+    ],
+    "ms": 19.699999999254942
+  },
+  {
+    "query": "The issue isn’t with Wi-Fi",
+    "expected": null,
+    "kind": "negation",
+    "scores": [
+      {
+        "id": "wifi",
+        "score": 0.5145703369417389
+      },
+      {
+        "id": "captive-https",
+        "score": 0.38481987711147525
+      },
+      {
+        "id": "network-metered",
+        "score": 0.34578531742215063
+      },
+      {
+        "id": "captive",
+        "score": 0.34561385048652205
+      },
+      {
+        "id": "http511",
+        "score": 0.3385545309773164
+      },
+      {
+        "id": "iphone-lowdata",
+        "score": 0.3324807871200462
+      },
+      {
+        "id": "offline-network",
+        "score": 0.3215863070046294
+      },
+      {
+        "id": "android-battery",
+        "score": 0.31139830275192637
+      },
+      {
+        "id": "media-preload",
+        "score": 0.3101650929605544
+      },
+      {
+        "id": "hardware-usb-hub",
+        "score": 0.30212328167994923
+      }
+    ],
+    "ms": 9.5
+  },
+  {
+    "query": "Chrome works but Firefox doesn’t",
+    "expected": null,
+    "kind": "entity",
+    "scores": [
+      {
+        "id": "compare",
+        "score": 0.5515900489752139
+      },
+      {
+        "id": "crash",
+        "score": 0.4845294793826449
+      },
+      {
+        "id": "browser-flags",
+        "score": 0.47647855383321996
+      },
+      {
+        "id": "audio",
+        "score": 0.4701817101928324
+      },
+      {
+        "id": "chrome",
+        "score": 0.46350706602412295
+      },
+      {
+        "id": "browser",
+        "score": 0.4523906924734784
+      },
+      {
+        "id": "profile-lock",
+        "score": 0.44818669172498693
+      },
+      {
+        "id": "freeze",
+        "score": 0.4474276768308419
+      },
+      {
+        "id": "website",
+        "score": 0.44296143686771644
+      },
+      {
+        "id": "update-browser",
+        "score": 0.4402677746432105
+      }
+    ],
+    "ms": 12.600000001490116
+  },
+  {
+    "query": "This browser closes itself unexpectedly",
+    "expected": "crash",
+    "kind": "paraphrase",
+    "scores": [
+      {
+        "id": "crash",
+        "score": 0.7402713635516402
+      },
+      {
+        "id": "website",
+        "score": 0.5412877133213323
+      },
+      {
+        "id": "network-websocket-close",
+        "score": 0.5079122099981732
+      },
+      {
+        "id": "ext-popup-lifetime",
+        "score": 0.4915970798416954
+      },
+      {
+        "id": "freeze",
+        "score": 0.4695574005462867
+      },
+      {
+        "id": "profile-lock",
+        "score": 0.4626690890623832
+      },
+      {
+        "id": "privacy-crash-report",
+        "score": 0.45378578519439966
+      },
+      {
+        "id": "update-fail",
+        "score": 0.45361978260694447
+      },
+      {
+        "id": "leak",
+        "score": 0.44696473840038453
+      },
+      {
+        "id": "offline-network",
+        "score": 0.4392692112383745
+      }
+    ],
+    "ms": 39.29999999701977
+  },
+  {
+    "query": "What is WebAssembly?",
+    "expected": "wasm",
+    "kind": "entity",
+    "scores": [
+      {
+        "id": "wasm",
+        "score": 0.8381946956961998
+      },
+      {
+        "id": "wasm-memory",
+        "score": 0.6152160629718278
+      },
+      {
+        "id": "wasm-csp",
+        "score": 0.5257103793424412
+      },
+      {
+        "id": "html",
+        "score": 0.447090068124212
+      },
+      {
+        "id": "wasm-threads",
+        "score": 0.4102150705553174
+      },
+      {
+        "id": "engine",
+        "score": 0.4049471503478815
+      },
+      {
+        "id": "ext-webaccessible",
+        "score": 0.4011977737328681
+      },
+      {
+        "id": "api-webcrypto",
+        "score": 0.38178842846835526
+      },
+      {
+        "id": "image-webp",
+        "score": 0.3722965875557949
+      },
+      {
+        "id": "perf-worker-start",
+        "score": 0.36946551313230486
+      }
+    ],
+    "ms": 10.800000000745058
+  },
+  {
+    "query": "ERR_CERT_AUTHORITY_INVALID",
+    "expected": "certificate",
+    "kind": "entity",
+    "scores": [
+      {
+        "id": "cert-expired",
+        "score": 0.6526324791074021
+      },
+      {
+        "id": "cert-name",
+        "score": 0.6055210381596056
+      },
+      {
+        "id": "tls-clock",
+        "score": 0.5900465388147876
+      },
+      {
+        "id": "certificate-revocation",
+        "score": 0.5734834247994461
+      },
+      {
+        "id": "certificate",
+        "score": 0.5406978540508554
+      },
+      {
+        "id": "tls-chain",
+        "score": 0.5285485721275985
+      },
+      {
+        "id": "tls-version",
+        "score": 0.4923118813861115
+      },
+      {
+        "id": "tls-root-install",
+        "score": 0.4851929084036392
+      },
+      {
+        "id": "linux-ca-trust",
+        "score": 0.4612798759224685
+      },
+      {
+        "id": "tls-hostname",
+        "score": 0.44224514456617336
+      }
+    ],
+    "ms": 10.100000001490116
+  },
+  {
+    "query": "DNS_PROBE_FINISHED_NXDOMAIN",
+    "expected": "dns",
+    "kind": "entity",
+    "scores": [
+      {
+        "id": "dns",
+        "score": 0.6855333782279229
+      },
+      {
+        "id": "dns-negative",
+        "score": 0.5946500858818989
+      },
+      {
+        "id": "dns-servfail",
+        "score": 0.49265249809301837
+      },
+      {
+        "id": "dns-refused",
+        "score": 0.45344127753339425
+      },
+      {
+        "id": "dns-search-suffix",
+        "score": 0.4037317862229128
+      },
+      {
+        "id": "android-private-dns",
+        "score": 0.37404097727587704
+      },
+      {
+        "id": "dns-dnssec",
+        "score": 0.3467182940618949
+      },
+      {
+        "id": "perf-preconnect",
+        "score": 0.3436026945300271
+      },
+      {
+        "id": "cert-name",
+        "score": 0.33146095121079977
+      },
+      {
+        "id": "dns-idn",
+        "score": 0.32972854661558815
+      }
+    ],
+    "ms": 10.399999998509884
+  },
+  {
+    "query": "HTTP 403",
+    "expected": "403",
+    "kind": "entity",
+    "scores": [
+      {
+        "id": "403",
+        "score": 0.8065443011093365
+      },
+      {
+        "id": "http451",
+        "score": 0.5897113743168669
+      },
+      {
+        "id": "http401",
+        "score": 0.4945864745145887
+      },
+      {
+        "id": "429",
+        "score": 0.474187125073434
+      },
+      {
+        "id": "mixed-content",
+        "score": 0.41476158134299296
+      },
+      {
+        "id": "http405",
+        "score": 0.40831158500394504
+      },
+      {
+        "id": "http206",
+        "score": 0.405192819206239
+      },
+      {
+        "id": "network-port",
+        "score": 0.40031831385785327
+      },
+      {
+        "id": "http201",
+        "score": 0.3951844438911612
+      },
+      {
+        "id": "http408",
+        "score": 0.38449080328407925
+      }
+    ],
+    "ms": 6
+  },
+  {
+    "query": "How can I improve my privacy?",
+    "expected": "privacy",
+    "kind": "paraphrase",
+    "scores": [
+      {
+        "id": "privacy",
+        "score": 0.6964250760733879
+      },
+      {
+        "id": "private",
+        "score": 0.4518640770322312
+      },
+      {
+        "id": "public-computer",
+        "score": 0.41651927020560964
+      },
+      {
+        "id": "gpc",
+        "score": 0.4124862552957788
+      },
+      {
+        "id": "privacy-screen-share",
+        "score": 0.3969708664419613
+      },
+      {
+        "id": "privacy-incognito-extension",
+        "score": 0.39002567914214037
+      },
+      {
+        "id": "perf-time-resolution",
+        "score": 0.3806066616262625
+      },
+      {
+        "id": "api-idle-detection",
+        "score": 0.37520248239284876
+      },
+      {
+        "id": "win-network-profile",
+        "score": 0.36569539594691036
+      },
+      {
+        "id": "mac-limit-tracking",
+        "score": 0.35827710721126604
+      }
+    ],
+    "ms": 8.300000000745058
+  },
+  {
+    "query": "I need to restore a closed tab",
+    "expected": "restore-tab",
+    "kind": "paraphrase",
+    "scores": [
+      {
+        "id": "restore-tab",
+        "score": 0.8782981778247883
+      },
+      {
+        "id": "find-tab",
+        "score": 0.6907596479643171
+      },
+      {
+        "id": "pin-tab",
+        "score": 0.49277224997328495
+      },
+      {
+        "id": "ext-active-tab",
+        "score": 0.39947426256069213
+      },
+      {
+        "id": "api-page-lifecycle",
+        "score": 0.39934324364883644
+      },
+      {
+        "id": "crash",
+        "score": 0.39182883493931486
+      },
+      {
+        "id": "background",
+        "score": 0.37999008318227
+      },
+      {
+        "id": "cache",
+        "score": 0.3746638418780307
+      },
+      {
+        "id": "android-suspend",
+        "score": 0.36496896314322724
+      },
+      {
+        "id": "freeze",
+        "score": 0.3649553337878631
+      }
+    ],
+    "ms": 10.5
+  },
+  {
+    "query": "How much RAM?",
+    "expected": "ram",
+    "kind": "entity",
+    "scores": [
+      {
+        "id": "ram",
+        "score": 0.620655856019306
+      },
+      {
+        "id": "hardware-memory-bandwidth",
+        "score": 0.5589616486784352
+      },
+      {
+        "id": "hardware-device-memory",
+        "score": 0.5336802516302186
+      },
+      {
+        "id": "perf-memory-measure",
+        "score": 0.47990196896852305
+      },
+      {
+        "id": "hardware-32bit",
+        "score": 0.4703736858869773
+      },
+      {
+        "id": "hardware-vram-shared",
+        "score": 0.46675817651429863
+      },
+      {
+        "id": "linux",
+        "score": 0.4545350940161371
+      },
+      {
+        "id": "ram-storage",
+        "score": 0.4365080581920311
+      },
+      {
+        "id": "win-memory",
+        "score": 0.42757523224895594
+      },
+      {
+        "id": "linux-memory-available",
+        "score": 0.4227032173128638
+      }
+    ],
+    "ms": 7.399999998509884
+  },
+  {
+    "query": "Why is my laptop hot?",
+    "expected": "heat",
+    "kind": "paraphrase",
+    "scores": [
+      {
+        "id": "heat",
+        "score": 0.842363951439528
+      },
+      {
+        "id": "hardware-thermal-throttle",
+        "score": 0.6044823551064711
+      },
+      {
+        "id": "cpu",
+        "score": 0.35946594209966515
+      },
+      {
+        "id": "mac-temperature",
+        "score": 0.35027282579640034
+      },
+      {
+        "id": "hardware-power-adapter",
+        "score": 0.32720332017332976
+      },
+      {
+        "id": "win-power-mode",
+        "score": 0.3024127546840588
+      },
+      {
+        "id": "mac-energy",
+        "score": 0.28620920511401204
+      },
+      {
+        "id": "battery",
+        "score": 0.272268204025598
+      },
+      {
+        "id": "win-disk-active",
+        "score": 0.24583841630018233
+      },
+      {
+        "id": "perf-benchmark-variance",
+        "score": 0.2317503910431624
+      }
+    ],
+    "ms": 34.30000000074506
+  },
+  {
+    "query": "Can you inspect my other apps?",
+    "expected": "limits",
+    "kind": "boundary",
+    "scores": [
+      {
+        "id": "limits",
+        "score": 0.6305964355518652
+      },
+      {
+        "id": "private",
+        "score": 0.3810501317384622
+      },
+      {
+        "id": "mac-download-quarantine",
+        "score": 0.3808347247513618
+      },
+      {
+        "id": "android-custom-tabs",
+        "score": 0.3806081755790364
+      },
+      {
+        "id": "api-idle-detection",
+        "score": 0.37961383603263166
+      },
+      {
+        "id": "android-app-links",
+        "score": 0.3504810088081447
+      },
+      {
+        "id": "iphone-files-download",
+        "score": 0.34835385554848763
+      },
+      {
+        "id": "win-screen-capture",
+        "score": 0.3392604310321691
+      },
+      {
+        "id": "ext-download-inspection",
+        "score": 0.3339256665084456
+      },
+      {
+        "id": "webcam-light",
+        "score": 0.33256434542666685
+      }
+    ],
+    "ms": 10.600000001490116
+  },
+  {
+    "query": "What is DNS?",
+    "expected": "dns",
+    "kind": "entity",
+    "scores": [
+      {
+        "id": "dns",
+        "score": 0.6288798486962727
+      },
+      {
+        "id": "doh-policy",
+        "score": 0.48365254286586534
+      },
+      {
+        "id": "dns-refused",
+        "score": 0.4591817559402218
+      },
+      {
+        "id": "privacy-dns-vpn",
+        "score": 0.4174271503530348
+      },
+      {
+        "id": "dns-idn",
+        "score": 0.41367150181601886
+      },
+      {
+        "id": "dns-ttl",
+        "score": 0.40403546024800013
+      },
+      {
+        "id": "dns-negative",
+        "score": 0.3919091364537758
+      },
+      {
+        "id": "dns-split-horizon",
+        "score": 0.3878321630386742
+      },
+      {
+        "id": "dns-a-aaaa",
+        "score": 0.375803311815288
+      },
+      {
+        "id": "dns-servfail",
+        "score": 0.3726422486982029
+      }
+    ],
+    "ms": 10.100000001490116
+  },
+  {
+    "query": "The site keeps logging me out",
+    "expected": "logout",
+    "kind": "paraphrase",
+    "scores": [
+      {
+        "id": "logout",
+        "score": 0.7159903417053597
+      },
+      {
+        "id": "third-party",
+        "score": 0.4746570685654264
+      },
+      {
+        "id": "login",
+        "score": 0.4582402467199464
+      },
+      {
+        "id": "connection-timeout",
+        "score": 0.4519134146193146
+      },
+      {
+        "id": "website",
+        "score": 0.44741625580289696
+      },
+      {
+        "id": "auth-logout-scope",
+        "score": 0.4397838727275677
+      },
+      {
+        "id": "samesite",
+        "score": 0.4221878687003085
+      },
+      {
+        "id": "httponly",
+        "score": 0.3803975362835324
+      },
+      {
+        "id": "http431",
+        "score": 0.3736140202706621
+      },
+      {
+        "id": "http408",
+        "score": 0.3669305213843723
+      }
+    ],
+    "ms": 10.399999998509884
+  },
+  {
+    "query": "Windows memory pressure",
+    "expected": "win-memory",
+    "kind": "platform",
+    "scores": [
+      {
+        "id": "win-memory",
+        "score": 0.7880628709649464
+      },
+      {
+        "id": "mac-pressure",
+        "score": 0.544339284579449
+      },
+      {
+        "id": "win-pagefile",
+        "score": 0.49603124655060826
+      },
+      {
+        "id": "ram",
+        "score": 0.48079665212228023
+      },
+      {
+        "id": "hardware-device-memory",
+        "score": 0.423286398892018
+      },
+      {
+        "id": "perf-memory-measure",
+        "score": 0.4196289983056676
+      },
+      {
+        "id": "hardware-vram-shared",
+        "score": 0.41824124791459805
+      },
+      {
+        "id": "android-storage-pressure",
+        "score": 0.4122163324531355
+      },
+      {
+        "id": "ram-storage",
+        "score": 0.3814199814308859
+      },
+      {
+        "id": "hardware-memory-bandwidth",
+        "score": 0.3778615096227096
+      }
+    ],
+    "ms": 8.800000000745058
+  },
+  {
+    "query": "Activity Monitor memory pressure",
+    "expected": "mac-pressure",
+    "kind": "platform",
+    "scores": [
+      {
+        "id": "mac-pressure",
+        "score": 0.6096294420854944
+      },
+      {
+        "id": "win-memory",
+        "score": 0.5864354903614567
+      },
+      {
+        "id": "ram",
+        "score": 0.45617908948292507
+      },
+      {
+        "id": "perf-memory-measure",
+        "score": 0.427475044573286
+      },
+      {
+        "id": "android-storage-pressure",
+        "score": 0.4141762789099003
+      },
+      {
+        "id": "limits",
+        "score": 0.41140313152289737
+      },
+      {
+        "id": "hardware-vram-shared",
+        "score": 0.39382596748589016
+      },
+      {
+        "id": "android",
+        "score": 0.3733271779565235
+      },
+      {
+        "id": "win-pagefile",
+        "score": 0.36266286828463773
+      },
+      {
+        "id": "mac-process-memory",
+        "score": 0.35211765034732434
+      }
+    ],
+    "ms": 10.800000000745058
+  },
+  {
+    "query": "Wayland browser screen share fails",
+    "expected": "linux-wayland",
+    "kind": "platform",
+    "scores": [
+      {
+        "id": "linux-wayland",
+        "score": 0.8596416711690223
+      },
+      {
+        "id": "linux-wayland-input",
+        "score": 0.5589353543704512
+      },
+      {
+        "id": "screen-sharing",
+        "score": 0.5585666205151503
+      },
+      {
+        "id": "iphone-screen-share",
+        "score": 0.524979736000663
+      },
+      {
+        "id": "web-share",
+        "score": 0.5195810386189372
+      },
+      {
+        "id": "screen-audio",
+        "score": 0.5085369743516207
+      },
+      {
+        "id": "mac-screen-share",
+        "score": 0.4934394500693265
+      },
+      {
+        "id": "win-screen-capture",
+        "score": 0.48793177334334537
+      },
+      {
+        "id": "privacy-screen-share",
+        "score": 0.4227230291492173
+      },
+      {
+        "id": "fullscreen-gesture",
+        "score": 0.41122927583131363
+      }
+    ],
+    "ms": 9.300000000745058
+  },
+  {
+    "query": "Chrome Android extensions unavailable",
+    "expected": "android-extension",
+    "kind": "platform",
+    "scores": [
+      {
+        "id": "android-extension",
+        "score": 0.820675847479831
+      },
+      {
+        "id": "ext-restricted-pages",
+        "score": 0.6178570168263747
+      },
+      {
+        "id": "extension-site",
+        "score": 0.5764194247425072
+      },
+      {
+        "id": "ext-unpacked-update",
+        "score": 0.5621409979861285
+      },
+      {
+        "id": "ext-download-inspection",
+        "score": 0.5319557960381696
+      },
+      {
+        "id": "ext-sidepanel",
+        "score": 0.5049034638134162
+      },
+      {
+        "id": "ext-file-access",
+        "score": 0.5022953153503295
+      },
+      {
+        "id": "malicious-extension",
+        "score": 0.4915095914633122
+      },
+      {
+        "id": "ext-csp",
+        "score": 0.4805719134544683
+      },
+      {
+        "id": "extension-sale",
+        "score": 0.4786975981486255
+      }
+    ],
+    "ms": 42.399999998509884
+  },
+  {
+    "query": "iPad identified as Mac",
+    "expected": "ipad-desktop",
+    "kind": "platform",
+    "scores": [
+      {
+        "id": "ipad-desktop",
+        "score": 0.7688503872808043
+      },
+      {
+        "id": "safari",
+        "score": 0.4724588916941927
+      },
+      {
+        "id": "ios",
+        "score": 0.44798326330397165
+      },
+      {
+        "id": "mac-rosetta",
+        "score": 0.41222719769083005
+      },
+      {
+        "id": "iphone-engine",
+        "score": 0.37257976769201906
+      },
+      {
+        "id": "macos",
+        "score": 0.3624490312689661
+      },
+      {
+        "id": "fingerprint",
+        "score": 0.3338790762105809
+      },
+      {
+        "id": "browser",
+        "score": 0.31927696330643474
+      },
+      {
+        "id": "public-computer",
+        "score": 0.3176856099052845
+      },
+      {
+        "id": "mac-download-quarantine",
+        "score": 0.309452564558605
+      }
+    ],
+    "ms": 8.900000002235174
+  },
+  {
+    "query": "SharedArrayBuffer WASM threads",
+    "expected": "wasm-threads",
+    "kind": "entity",
+    "scores": [
+      {
+        "id": "wasm-threads",
+        "score": 0.768074101372462
+      },
+      {
+        "id": "perf-worker-transfer",
+        "score": 0.5099625682930843
+      },
+      {
+        "id": "wasm-memory",
+        "score": 0.3915351366795993
+      },
+      {
+        "id": "file-reader-memory",
+        "score": 0.3571504779842017
+      },
+      {
+        "id": "hardware-vram-shared",
+        "score": 0.3466739911544945
+      },
+      {
+        "id": "wasm",
+        "score": 0.33143324397735874
+      },
+      {
+        "id": "perf-layout-thrashing",
+        "score": 0.30888079816031844
+      },
+      {
+        "id": "video-buffering",
+        "score": 0.29373365633540316
+      },
+      {
+        "id": "wasm-csp",
+        "score": 0.2919149399173887
+      },
+      {
+        "id": "fetch-stream",
+        "score": 0.2893556948224043
+      }
+    ],
+    "ms": 7.5
+  },
+  {
+    "query": "the update is stuck waiting in another tab",
+    "expected": "sw-waiting",
+    "kind": "paraphrase",
+    "scores": [
+      {
+        "id": "freeze",
+        "score": 0.5033412248837373
+      },
+      {
+        "id": "idb-blocked",
+        "score": 0.4994845752958093
+      },
+      {
+        "id": "update-fail",
+        "score": 0.47993552734797384
+      },
+      {
+        "id": "sw-waiting",
+        "score": 0.4529201684161349
+      },
+      {
+        "id": "win-update-restart",
+        "score": 0.42640036875695364
+      },
+      {
+        "id": "update-browser",
+        "score": 0.42419977972396594
+      },
+      {
+        "id": "focus-trap",
+        "score": 0.4091940958787538
+      },
+      {
+        "id": "mac-safari-update",
+        "score": 0.3739667010434487
+      },
+      {
+        "id": "api-page-lifecycle",
+        "score": 0.3576682259458591
+      },
+      {
+        "id": "download-fail",
+        "score": 0.35041346216937397
+      }
+    ],
+    "ms": 7.799999997019768
+  },
+  {
+    "query": "A website asks me to run PowerShell to prove I am human",
+    "expected": "paste-command",
+    "kind": "security",
+    "scores": [
+      {
+        "id": "paste-command",
+        "score": 0.5911939508023341
+      },
+      {
+        "id": "remote-support",
+        "score": 0.3960756002693
+      },
+      {
+        "id": "useragent",
+        "score": 0.3453559402003953
+      },
+      {
+        "id": "self-xss",
+        "score": 0.31358052818645965
+      },
+      {
+        "id": "help",
+        "score": 0.2909040707865942
+      },
+      {
+        "id": "auth-recovery-phishing",
+        "score": 0.2860232618489755
+      },
+      {
+        "id": "notification-scam",
+        "score": 0.27559171131895743
+      },
+      {
+        "id": "auth-xss",
+        "score": 0.2638237824288723
+      },
+      {
+        "id": "safe-browsing",
+        "score": 0.26343768174994087
+      },
+      {
+        "id": "win-security",
+        "score": 0.2612889841862614
+      }
+    ],
+    "ms": 10.5
+  },
+  {
+    "query": "Can clearing cookies sign me out?",
+    "expected": "cookies",
+    "kind": "paraphrase",
+    "scores": [
+      {
+        "id": "cookies",
+        "score": 0.5721489776048259
+      },
+      {
+        "id": "cookie-consent",
+        "score": 0.5660760454119895
+      },
+      {
+        "id": "auth-logout-scope",
+        "score": 0.5395687772385079
+      },
+      {
+        "id": "logout",
+        "score": 0.5328181759896721
+      },
+      {
+        "id": "third-party",
+        "score": 0.48394493915667763
+      },
+      {
+        "id": "cookie-size",
+        "score": 0.4691546892834306
+      },
+      {
+        "id": "public-computer",
+        "score": 0.4489422681604129
+      },
+      {
+        "id": "secure-cookie",
+        "score": 0.44628377583773743
+      },
+      {
+        "id": "httponly",
+        "score": 0.4406640653116028
+      },
+      {
+        "id": "samesite",
+        "score": 0.43972475655787097
+      }
+    ],
+    "ms": 5.800000000745058
+  },
+  {
+    "query": "I need browser assistance",
+    "expected": null,
+    "kind": "ambiguous",
+    "scores": [
+      {
+        "id": "browser",
+        "score": 0.6552299552850587
+      },
+      {
+        "id": "version",
+        "score": 0.5800252438407915
+      },
+      {
+        "id": "secure",
+        "score": 0.531006660822629
+      },
+      {
+        "id": "update-browser",
+        "score": 0.5214274241715728
+      },
+      {
+        "id": "managed-browser",
+        "score": 0.5150760623336996
+      },
+      {
+        "id": "ext-file-access",
+        "score": 0.4972572664659157
+      },
+      {
+        "id": "profile",
+        "score": 0.49581194497534686
+      },
+      {
+        "id": "privacy",
+        "score": 0.4955299436467954
+      },
+      {
+        "id": "fingerprint",
+        "score": 0.490187424275264
+      },
+      {
+        "id": "remote-support",
+        "score": 0.4684275122572999
+      }
+    ],
+    "ms": 4.300000000745058
+  },
+  {
+    "query": "Help with something broken",
+    "expected": null,
+    "kind": "ambiguous",
+    "scores": [
+      {
+        "id": "layout",
+        "score": 0.45561902059845355
+      },
+      {
+        "id": "video",
+        "score": 0.3486904675427117
+      },
+      {
+        "id": "website",
+        "score": 0.3107215671175287
+      },
+      {
+        "id": "crash",
+        "score": 0.30992618946794476
+      },
+      {
+        "id": "offline-network",
+        "score": 0.30114684681516746
+      },
+      {
+        "id": "freeze",
+        "score": 0.2960643786878576
+      },
+      {
+        "id": "update-fail",
+        "score": 0.2814271315830127
+      },
+      {
+        "id": "privacy-crash-report",
+        "score": 0.28007795094319743
+      },
+      {
+        "id": "blank",
+        "score": 0.25868167124154456
+      },
+      {
+        "id": "remote-support",
+        "score": 0.2545303021517724
+      }
+    ],
+    "ms": 4.599999997764826
+  },
+  {
+    "query": "write me a love poem",
+    "expected": null,
+    "kind": "unsupported",
+    "scores": [
+      {
+        "id": "file-write-commit",
+        "score": 0.16360884613913532
+      },
+      {
+        "id": "idb-abort",
+        "score": 0.1606824707168697
+      },
+      {
+        "id": "js-safe-html",
+        "score": 0.1601299334200033
+      },
+      {
+        "id": "contrast",
+        "score": 0.15529410376965638
+      },
+      {
+        "id": "idb-clone",
+        "score": 0.13912962134544984
+      },
+      {
+        "id": "dhcp-lease",
+        "score": 0.1382587525264875
+      },
+      {
+        "id": "perf-list-virtualization",
+        "score": 0.1361660080425724
+      },
+      {
+        "id": "offline-network",
+        "score": 0.130170746984042
+      },
+      {
+        "id": "http412",
+        "score": 0.12495981408229562
+      },
+      {
+        "id": "delete",
+        "score": 0.11823782271130075
+      }
+    ],
+    "ms": 5.5
+  },
+  {
+    "query": "who won the football game",
+    "expected": null,
+    "kind": "unsupported",
+    "scores": [
+      {
+        "id": "http-content-length",
+        "score": 0.17814914532786186
+      },
+      {
+        "id": "gamepad",
+        "score": 0.17224376307490408
+      },
+      {
+        "id": "api-gamepad-gesture",
+        "score": 0.15968037453974543
+      },
+      {
+        "id": "abort-timeout",
+        "score": 0.1505159383258289
+      },
+      {
+        "id": "image-decode",
+        "score": 0.14092076510261897
+      },
+      {
+        "id": "http-content-encoding",
+        "score": 0.1303794148451453
+      },
+      {
+        "id": "javascript-error",
+        "score": 0.12086880193839916
+      },
+      {
+        "id": "hardware-vram-shared",
+        "score": 0.12030189540923952
+      },
+      {
+        "id": "storage-profile",
+        "score": 0.11793689781645113
+      },
+      {
+        "id": "bits",
+        "score": 0.1174863248137553
+      }
+    ],
+    "ms": 5
+  },
+  {
+    "query": "tell me a joke about giraffes",
+    "expected": null,
+    "kind": "unsupported",
+    "scores": [
+      {
+        "id": "safari",
+        "score": 0.16072000642150283
+      },
+      {
+        "id": "punycode",
+        "score": 0.15974342280187478
+      },
+      {
+        "id": "engine",
+        "score": 0.15621115151122386
+      },
+      {
+        "id": "self-xss",
+        "score": 0.1535409541022441
+      },
+      {
+        "id": "safe-browsing",
+        "score": 0.15182402475961013
+      },
+      {
+        "id": "idb-abort",
+        "score": 0.1412327717404372
+      },
+      {
+        "id": "perf-long-animation",
+        "score": 0.14118319896186052
+      },
+      {
+        "id": "fetch-status",
+        "score": 0.13818780699438907
+      },
+      {
+        "id": "reduced-motion",
+        "score": 0.13691382124197418
+      },
+      {
+        "id": "chrome",
+        "score": 0.1366926629119122
+      }
+    ],
+    "ms": 38.900000002235174
+  },
+  {
+    "query": "predict tomorrow’s stock prices",
+    "expected": null,
+    "kind": "unsupported",
+    "scores": [
+      {
+        "id": "js-date-timezone",
+        "score": 0.17105836854372541
+      },
+      {
+        "id": "browser-channel",
+        "score": 0.16865243157118825
+      },
+      {
+        "id": "timezone",
+        "score": 0.16363000826523197
+      },
+      {
+        "id": "perf-font-display",
+        "score": 0.1557355403314523
+      },
+      {
+        "id": "network-rtt",
+        "score": 0.15261066702812107
+      },
+      {
+        "id": "js-float",
+        "score": 0.13743727833282648
+      },
+      {
+        "id": "screen-reader-live",
+        "score": 0.1368944559055463
+      },
+      {
+        "id": "http-immutable",
+        "score": 0.13623396079283667
+      },
+      {
+        "id": "safe-browsing",
+        "score": 0.13152455921414286
+      },
+      {
+        "id": "linux-package",
+        "score": 0.12847947252715733
+      }
+    ],
+    "ms": 5.299999997019768
+  },
+  {
+    "query": "translate my novel to French",
+    "expected": null,
+    "kind": "unsupported",
+    "scores": [
+      {
+        "id": "language",
+        "score": 0.22590790656244641
+      },
+      {
+        "id": "reader",
+        "score": 0.2014764382802803
+      },
+      {
+        "id": "javascript-error",
+        "score": 0.19687350314141772
+      },
+      {
+        "id": "contrast",
+        "score": 0.18398564478453425
+      },
+      {
+        "id": "pwa-update",
+        "score": 0.16811634228052272
+      },
+      {
+        "id": "find-tab",
+        "score": 0.16802930387865933
+      },
+      {
+        "id": "export",
+        "score": 0.14355968971985095
+      },
+      {
+        "id": "network-loopback",
+        "score": 0.14102180193043157
+      },
+      {
+        "id": "connection-refused",
+        "score": 0.13422866422888236
+      },
+      {
+        "id": "bfcache",
+        "score": 0.13276575503902552
+      }
+    ],
+    "ms": 4.800000000745058
+  },
+  {
+    "query": "delete all my operating system files",
+    "expected": null,
+    "kind": "dangerous",
+    "scores": [
+      {
+        "id": "disk",
+        "score": 0.3762259108590385
+      },
+      {
+        "id": "linux-disk-inodes",
+        "score": 0.33328720527769207
+      },
+      {
+        "id": "delete-site",
+        "score": 0.2963400921463753
+      },
+      {
+        "id": "linux",
+        "score": 0.2830625370522343
+      },
+      {
+        "id": "windows",
+        "score": 0.27377244096363895
+      },
+      {
+        "id": "delete",
+        "score": 0.2706941391207369
+      },
+      {
+        "id": "win-safe-mode",
+        "score": 0.26169461886244544
+      },
+      {
+        "id": "history",
+        "score": 0.2530597931231667
+      },
+      {
+        "id": "linux-permission-owner",
+        "score": 0.2435552411358796
+      },
+      {
+        "id": "mac-storage-purgeable",
+        "score": 0.23268570517530296
+      }
+    ],
+    "ms": 6
+  },
+  {
+    "query": "disable security and bypass certificate warnings",
+    "expected": null,
+    "kind": "dangerous",
+    "scores": [
+      {
+        "id": "certificate-revocation",
+        "score": 0.47467290000776485
+      },
+      {
+        "id": "tls-interception",
+        "score": 0.4598654797091333
+      },
+      {
+        "id": "safe-browsing",
+        "score": 0.44689848678930844
+      },
+      {
+        "id": "tls-root-install",
+        "score": 0.43817138053165083
+      },
+      {
+        "id": "https-only",
+        "score": 0.43739744728380486
+      },
+      {
+        "id": "linux-ca-trust",
+        "score": 0.4215806239889296
+      },
+      {
+        "id": "notifications",
+        "score": 0.42101877465159054
+      },
+      {
+        "id": "captive-https",
+        "score": 0.41533678209011526
+      },
+      {
+        "id": "js-csp-report",
+        "score": 0.401295708275825
+      },
+      {
+        "id": "certificate",
+        "score": 0.390378977484591
+      }
+    ],
+    "ms": 6.5
+  },
+  {
+    "query": "what should I cook for dinner",
+    "expected": null,
+    "kind": "unsupported",
+    "scores": [
+      {
+        "id": "layout",
+        "score": 0.16119353679213863
+      },
+      {
+        "id": "cache",
+        "score": 0.14586904141026458
+      },
+      {
+        "id": "bfcache",
+        "score": 0.14482196561795174
+      },
+      {
+        "id": "pwa-remove",
+        "score": 0.13612400772796648
+      },
+      {
+        "id": "linux-gpu",
+        "score": 0.1337308486551667
+      },
+      {
+        "id": "heat",
+        "score": 0.12937224878904824
+      },
+      {
+        "id": "website",
+        "score": 0.12363703584830925
+      },
+      {
+        "id": "pwa",
+        "score": 0.12277450378927657
+      },
+      {
+        "id": "screen-sharing",
+        "score": 0.11948382728276405
+      },
+      {
+        "id": "privacy-screen-share",
+        "score": 0.11886481274987967
+      }
+    ],
+    "ms": 5
+  }
+]

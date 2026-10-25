@@ -1,6 +1,6 @@
 {
-  "records": 700,
-  "uniqueExpressions": 2811,
+  "records": 804,
+  "uniqueExpressions": 3019,
   "indexTokens": 2513,
   "categories": [
     "Browser",
@@ -22,7 +22,11 @@
     "Android",
     "iOS",
     "Web technology",
-    "Display"
+    "Display",
+    "Programming",
+    "Mathematics and science",
+    "Computer systems",
+    "Everyday technical work"
   ],
   "troubleshootingFlows": 75,
   "branchPaths": 560,
