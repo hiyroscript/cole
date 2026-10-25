@@ -5,14 +5,14 @@ Madon is an opt-in website preview backed by actual WebLLM generation. It is **n
 ## Use
 
 1. Run `npm ci`, `npm run build`, then `npm run preview`, or open the deployed `/varek/` website after this change is released.
-2. Select **Madon** in the model menu. Zulvyn remains the initial default. Selecting a model never downloads weights.
+2. Select **Madon** in the model menu. Gamma remains the initial default. Selecting a model never downloads weights.
 3. Read setup's requirements and click **Download and initialize**. This grants permission to fetch missing model files. Initialization reuses WebLLM caches when possible. Every reload/unload requires another explicit initialization; missing or evicted files are never silently redownloaded on page load.
 4. Close setup when Ready and send a message. Stop interrupts the underlying inference and retains visible text. A stalled worker is terminated after five seconds during cancellation; reinitialization is then required.
 5. Auto/On/Off controls Qwen3 thinking. Hidden reasoning is discarded, never displayed or saved. A thought-only response that exhausts the generation budget produces an actionable error. Try Off or a shorter request.
 6. Use **Use web sources** only if you want factual queries sent to Wikimedia. It is off initially. Search is limited to eligible public factual questions, not arbitrary browsing, URLs, personal/device prompts, or complete chat histories. Review your own prompts before enabling it. Wikimedia may not have current information.
 7. **Settings → Set up Madon → Unload model** frees the worker and GPU resources. **Remove model data** confirms and calls WebLLM's model-specific removal API. It preserves other model/site caches. Browser site-data settings can also remove data. Clearing all Varek data includes Madon data.
 
-No model weights are committed, backend is needed, or inference API is called. The extension deliberately supports Zulvyn only: no inference runtime is included in its output and its CSP/permissions remain unchanged. Current-page summarization is deferred until compliant, packaged MV3 inference is implemented and tested. Existing permissioned `/page` and `/reader` commands still work.
+No model weights are committed, backend is needed, or inference API is called. The extension deliberately supports Gamma only: no inference runtime is included in its output and its CSP/permissions remain unchanged. Current-page summarization is deferred until compliant, packaged MV3 inference is implemented and tested. Existing permissioned `/page` and `/reader` commands still work.
 
 ## Verified configuration
 
@@ -28,7 +28,7 @@ Reviewed upstream reports: [Adreno device loss #836](https://github.com/mlc-ai/w
 
 ## Architecture and boundaries
 
-`models.ts` exposes typed adapters for both engines. Zulvyn retains its existing engine and presentation stream. Madon's runtime is a single observable lifecycle controller; its dynamically imported transport uses the official `WebWorkerMLCEngine` and `WebWorkerMLCEngineHandler`. No generation mock is shipped.
+`models.ts` exposes typed adapters for both engines. Gamma uses its upgraded deterministic pipeline and presentation stream; its optional sentence embeddings are separate from Madon. Madon's runtime is a single observable lifecycle controller; its dynamically imported transport uses the official `WebWorkerMLCEngine` and `WebWorkerMLCEngineHandler`. No generation mock is shipped.
 
 Initialization exposes genuine WebLLM progress, with indeterminate progress when none is available. Initialization has a 15-minute timeout, generation a 120-second idle timeout, and no automatic retry loop. Unload terminates the worker, including pending setup. State covers unsupported hardware, cache/storage failure, insufficient memory, partial-output failure, and cancellation. Retry requires user action.
 
@@ -48,7 +48,7 @@ Automated checks on 2026-10-24:
 
 - Strict TypeScript; knowledge validator (205 records, 831 expressions, 103 paths).
 - 1,026 Vitest tests, including new lifecycle, cancellation, parser, prompt, evidence, retrieval, preference and security coverage.
-- 28 production Playwright cases across desktop/mobile, including official-protocol worker mocks, no-download selection, follow-ups, cancellation/recovery, missing-cache failures, persistence, no-WebGPU, and Zulvyn/offline regressions.
+- 28 production Playwright cases across desktop/mobile, including official-protocol worker mocks, no-download selection, follow-ups, cancellation/recovery, missing-cache failures, persistence, no-WebGPU, and Gamma/offline regressions.
 - Website and MV3 production builds; 13 extension checks covering security/permissions, local page extraction, and the website-only model boundary.
 - Chromium 156.0.8078.4 real probe: WebGPU API true, adapter false. No model download, initialization, output, generation speed or cached-model offline result can be reported.
 - Real browser CORS requests to official model metadata and Wikimedia lookup both returned HTTP 200.

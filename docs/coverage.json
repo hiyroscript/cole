@@ -1,7 +1,7 @@
 {
-  "records": 205,
-  "uniqueExpressions": 831,
-  "indexTokens": 866,
+  "records": 700,
+  "uniqueExpressions": 2811,
+  "indexTokens": 2513,
   "categories": [
     "Browser",
     "Performance",
@@ -15,14 +15,26 @@
     "Accessibility",
     "Literacy",
     "Web",
-    "Product"
+    "Product",
+    "Windows",
+    "macOS",
+    "Linux",
+    "Android",
+    "iOS",
+    "Web technology",
+    "Display"
   ],
-  "troubleshootingFlows": 26,
-  "branchPaths": 103,
+  "troubleshootingFlows": 75,
+  "branchPaths": 560,
+  "authoredMultiTurnScenarios": 300,
+  "sourceUrlsValidated": true,
+  "sourceAvailabilityChecked": false,
   "errors": [],
   "targets": {
     "records": 700,
     "expressions": 2500,
-    "flowsOrPaths": 100
+    "workflows": 75,
+    "branchPaths": 250,
+    "multiTurnScenarios": 300
   }
 }

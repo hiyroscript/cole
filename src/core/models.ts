@@ -1,10 +1,10 @@
-import { respond, type EngineOptions } from "./engine";
+import { respond, type EngineOptions } from "./gamma/engine";
 import { parseCommand } from "./commands";
 import { stream } from "./stream";
 import type { Context, Message, Response } from "./types";
 import { madon } from "./madon/runtime";
 import { isExtension } from "../lib/extension";
-export type ModelId = "zulvyn" | "madon";
+export type ModelId = "gamma" | "madon";
 export type RunOptions = EngineOptions & {
   history: Message[];
   webSources: boolean;
@@ -28,9 +28,9 @@ export type AssistantEngine = {
 };
 export const models: readonly AssistantEngine[] = [
   {
-    id: "zulvyn",
-    name: "Zulvyn",
-    description: "Fast local assistance.",
+    id: "gamma",
+    name: "Gamma",
+    description: "Fast, private browser and device intelligence.",
     capabilities: ["knowledge", "diagnostics", "commands", "context"],
     available: () => true,
     initialize: async () => {},
@@ -49,7 +49,7 @@ export const models: readonly AssistantEngine[] = [
   {
     id: "madon",
     name: "Madon",
-    description: "Local Qwen3 AI · setup required.",
+    description: "Advanced local AI.",
     capabilities: [
       "generation",
       "diagnostics",
@@ -65,11 +65,11 @@ export const models: readonly AssistantEngine[] = [
         return models[0].generate(input, context, options);
       if (import.meta.env.MODE === "extension" || isExtension())
         throw new Error(
-          "Madon inference is supported on the website only. Select Zulvyn in this extension.",
+          "Madon inference is supported on the website only. Select Gamma in this extension.",
         );
       return (await import("./madon/engine")).generate(input, context, options);
     },
   },
 ];
-export const activeModel = (id: ModelId = "zulvyn") =>
+export const activeModel = (id: ModelId = "gamma") =>
   models.find((m) => m.id === id)!;

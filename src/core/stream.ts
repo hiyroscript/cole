@@ -4,6 +4,11 @@ export async function stream(
   signal: AbortSignal,
   reduced = false,
 ) {
+  if (text.length < 180) {
+    if (signal.aborted) return false;
+    onChunk(text);
+    return !signal.aborted;
+  }
   const parts = Array.from(text);
   let count = 0;
   while (count < parts.length) {

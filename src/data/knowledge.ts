@@ -1,3 +1,8 @@
+import { webPlatformKnowledge } from "./web-platform";
+import { platformKnowledge } from "./platform-guidance";
+import { networkSecurityKnowledge } from "./network-security";
+import { additionalKnowledge } from "./additional";
+import { gammaKnowledge } from "./gamma";
 import { extendedKnowledge } from "./extended";
 import type { Knowledge } from "../core/types";
 // Each row is independently authored: id | category | title | expressions | answer | reversible checks.
@@ -115,8 +120,8 @@ csp|Web|Content Security Policy|what is csp~content security policy~script block
 service-worker|Web|Service workers|what is service worker~service worker update~offline worker~background web worker|A service worker can intercept requests within its scope and provide cached resources offline. It has a separate lifecycle and cannot directly access the DOM.|Version app caches.~Offer a deliberate reload when a new worker is ready.~Do not assume a first-ever offline visit can load uncached assets.
 pwa|Product|Install Varek|install varek~install pwa~add to home screen~progressive web app|Varek can be installed on browsers that support web apps. Installation controls vary: use Install in a desktop browser menu or Add to Home Screen from a supported mobile browser. Core use works offline after assets are cached.|Visit Varek online once and allow caching to finish.~Use the browser’s install or home-screen action.~Open the installed app and verify it loads before relying on it offline.
 offline|Product|Offline operation|does this work offline~use varek offline~offline assistant~no internet assistant|Varek’s engine and knowledge run locally. After a successful online visit caches the app, it can answer offline. A first visit without cached assets cannot work offline; browser eviction or cleared site data can remove the cache.|Load the app online once.~Use /features to inspect service-worker support.~Export important conversations independently of the offline cache.
-about|Product|Varek and Zulvyn|what is varek~what is zulvyn~are you an llm~how do you work~local processing|Varek is a local browser and device assistant. Zulvyn uses authored knowledge, intent matching, context, and browser APIs—not a neural language model or remote inference service. No account or API key is required.|Use /help to discover commands.~Ask a browser or device question.~Inspect diagnostic evidence when it is attached to a response.
-madon|Product|Madon|switch to madon~use madon~what is madon~other model|Madon uses Qwen3 locally through WebLLM on compatible WebGPU devices. Select Madon and explicitly initialize its model to begin. Zulvyn remains the lightweight deterministic assistant.|Use /model madon to open setup. The Chromium extension currently supports Zulvyn only.
+about|Product|Varek and Gamma|what is varek~what is gamma~are you an llm~how do you work~local processing|Varek is a local browser and device assistant. Gamma uses authored knowledge, intent matching, context, and browser APIs—not a neural language model or remote inference service. No account or API key is required.|Use /help to discover commands.~Ask a browser or device question.~Inspect diagnostic evidence when it is attached to a response.
+madon|Product|Madon|switch to madon~use madon~what is madon~other model|Madon uses Qwen3 locally through WebLLM on compatible WebGPU devices. Select Madon and explicitly initialize its model to begin. Gamma remains the lightweight deterministic assistant.|Use /model madon to open setup. The Chromium extension currently supports Gamma only.
 thinking|Product|Thinking mode|what is thinking mode~turn thinking on~structured analysis~thinking settings|Thinking mode selects more thorough deterministic analysis. Auto uses it for troubleshooting and ambiguous technical questions; On prefers it; Off keeps answers direct. Analysis summaries describe checks and limitations, not hidden neural reasoning.|Use /think auto, /think on, or /think off.~Open Analysis on a response to inspect the checks used.
 export|Product|Export conversations|export my chats~download conversations~backup varek~save conversation|/export downloads the current conversation as JSON. Settings can export all conversations. Exports may contain personal text or diagnostics, so choose where to store them carefully.|Open a conversation and run /export.~Use Settings for a full local archive.~Keep the downloaded file outside browser storage.
 delete|Product|Delete saved conversations|delete saved chats~clear varek history~erase conversations~remove chat history|Use a conversation’s delete control to remove it, or Settings to clear all conversations after confirmation. /clear clears the active conversation. Deletion cannot remove copies you previously exported.|Export anything you want to keep.~Choose the correct conversation or reset scope.~Review the confirmation before deleting.
@@ -150,3 +155,13 @@ export const knowledge: Knowledge[] = source
     };
   });
 knowledge.push(...extendedKnowledge);
+
+knowledge.push(...gammaKnowledge);
+
+knowledge.push(...additionalKnowledge);
+
+knowledge.push(...networkSecurityKnowledge);
+
+knowledge.push(...platformKnowledge);
+
+knowledge.push(...webPlatformKnowledge);

@@ -4,10 +4,10 @@ import { MODEL_ID, VRAM_MB, WEIGHT_BYTES } from "../core/madon/model-config";
 import { isExtension } from "../lib/extension";
 export function MadonSetup({
   busy,
-  switchToZulvyn,
+  switchToGamma,
 }: {
   busy: boolean;
-  switchToZulvyn: () => void;
+  switchToGamma: () => void;
 }) {
   const state = useSyncExternalStore(madon.subscribe, madon.getSnapshot);
   useEffect(() => {
@@ -100,8 +100,8 @@ export function MadonSetup({
         >
           Remove model data
         </button>
-        <button disabled={busy} onClick={switchToZulvyn}>
-          Switch to Zulvyn
+        <button disabled={busy} onClick={switchToGamma}>
+          Switch to Gamma
         </button>
       </div>
       <p className="fine-print">

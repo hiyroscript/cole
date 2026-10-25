@@ -1,9 +1,22 @@
+import { emptyContext } from "./types";
+import { health } from "./gamma/diagnostics";
+import { begin } from "./gamma/workflows";
+import { semantic } from "./gamma/semantic";
+import { normalizeModel } from "../lib/legacy";
 import type { Response, Context, Thinking, Evidence } from "./types";
 import { knowledge } from "../data/knowledge";
 import { features } from "../lib/diagnostics";
 export const commands = [
+  ["gamma", "Gamma engine and privacy information"],
+  ["health", "Evidence-aware browser capability report"],
+  ["context", "Temporary context: show or clear"],
+  ["explain", "Explain the last recommended check"],
+  ["sources", "Actual sources in the last web response"],
+  ["enhance", "Optional local understanding: status, on, off"],
+  ["web", "Public Wikimedia lookup: status, on, off"],
+  ["compare", "Compare Chrome and Firefox, or cache and cookies"],
   ["help", "Show available commands"],
-  ["about", "About Varek and Zulvyn"],
+  ["about", "About Varek and Gamma"],
   ["model", "Available models"],
   ["think", "Analysis preference: auto, on, off"],
   ["theme", "Appearance: light, dark, system"],
@@ -38,15 +51,23 @@ export const commands = [
   description,
   extension: ["tab", "tabs", "page", "reader"].includes(name),
   args:
-    name === "model"
-      ? ["zulvyn", "madon", "status", "unload"]
-      : name === "think"
-        ? ["auto", "on", "off"]
-        : name === "theme"
-          ? ["light", "dark", "system"]
-          : name === "tabs"
-            ? ["pin", "unpin"]
-            : [],
+    name === "diagnose"
+      ? ["status", "restart", "stop"]
+      : name === "context"
+        ? ["clear"]
+        : ["web", "enhance"].includes(name)
+          ? ["status", "on", "off"]
+          : name === "compare"
+            ? ["chrome firefox", "cache cookies"]
+            : name === "model"
+              ? ["gamma", "madon", "status", "unload"]
+              : name === "think"
+                ? ["auto", "on", "off"]
+                : name === "theme"
+                  ? ["light", "dark", "system"]
+                  : name === "tabs"
+                    ? ["pin", "unpin"]
+                    : [],
   permission: ["tab", "tabs", "page", "reader"].includes(name)
     ? "Explicit activeTab action"
     : "None",
@@ -62,21 +83,107 @@ export async function executeCommand(
   context: Context,
   facts: Evidence[],
   extension?: (name: string, arg: string) => Promise<string>,
+  preferences: { webSources?: boolean; enhanced?: boolean } = {},
 ): Promise<Response> {
   const result = (text: string, extra: Partial<Response> = {}): Response => ({
     text,
     context,
     ...extra,
   });
+  if (name === "model") arg = String(normalizeModel(arg));
   const cmd = commands.find((c) => c.name === name);
   if (!cmd)
     return result(
       `Unknown command /${name}. Use /help for the allowlisted commands.`,
     );
-  if (cmd.args.length && !cmd.args.includes(arg) && !(name === "model" && !arg))
+  if (
+    cmd.args.length &&
+    !cmd.args.includes(arg) &&
+    !(["model", "diagnose", "context", "web", "enhance"].includes(name) && !arg)
+  )
     return result(`Use /${name} ${cmd.args.join(" | ")}.`);
   if (!cmd.args.length && arg)
     return result(`/${name} does not accept arguments.`);
+  if (name === "gamma")
+    return result(
+      "**Gamma 2.0** — Fast, private browser and device intelligence. Local authored guidance, lexical retrieval, diagnostic graphs, and optional CPU embeddings. Madon is a separate generative model; Gamma never downloads or invokes it automatically.",
+    );
+  if (name === "health") return result(health(facts), { evidence: facts });
+  if (name === "context")
+    return arg === "clear"
+      ? result("Temporary context cleared. Saved messages are preserved.", {
+          context: emptyContext(),
+        })
+      : result(
+          `Topic: ${context.intent ?? "none"}. Stated browser: ${context.browser ?? "none"}. Diagnostic: ${context.diagnosis?.id ?? context.flow?.id ?? "none"}. Remembered checks: ${context.attempted.length}.`,
+        );
+  if (name === "explain")
+    return result(
+      context.lastAction
+        ? `Last recommendation: ${context.lastAction}\n\nThis reversible comparison narrows possible causes; it does not establish a measured diagnosis.`
+        : "No recommendation is active. Start a diagnostic question first.",
+    );
+  if (name === "sources")
+    return result(
+      context.sources?.length
+        ? "Sources from the most recent public lookup are attached."
+        : "No public sources have been retrieved in this context.",
+      { sources: context.sources },
+    );
+  if (name === "web")
+    return result(
+      arg === "on"
+        ? "Public web retrieval enabled. Explicit lookup requests send a short public topic to Wikimedia. History and diagnostics are not sent. Use /web off to disable."
+        : arg === "off"
+          ? "Web retrieval disabled. Bundled knowledge remains available."
+          : `Web retrieval is ${preferences.webSources ? "on" : "off"}.`,
+      arg === "on" || arg === "off"
+        ? { effect: { type: "web", value: arg } }
+        : {},
+    );
+  if (name === "enhance")
+    return result(
+      arg === "on"
+        ? "Open Enhanced understanding in Settings to review the download and explicitly consent."
+        : arg === "off"
+          ? "Enhanced understanding disabled. Built-in matching remains available."
+          : semantic.getSnapshot().detail,
+      arg === "on" || arg === "off"
+        ? { effect: { type: "enhance", value: arg } }
+        : {},
+    );
+  if (name === "compare")
+    return result(
+      arg === "cache cookies"
+        ? "Cache stores reusable resources. Cookies store small request-associated values, including sign-in state. Clearing cookies can sign you out; clearing cache can force resource downloads."
+        : knowledge.find((k) => k.id === "compare")!.answer,
+    );
+  if (name === "diagnose" && arg) {
+    if (arg === "stop") {
+      context.diagnosis = undefined;
+      context.flow = undefined;
+      context.lastAction = undefined;
+      context.attempted = [];
+      return result("Diagnostic session stopped.");
+    }
+    if (arg === "status")
+      return result(
+        context.diagnosis
+          ? `Workflow: ${context.diagnosis.id}. Node: ${context.diagnosis.node}. Outcome: ${context.diagnosis.outcome ?? "in progress"}. Answers: ${context.diagnosis.history.length}.`
+          : context.flow
+            ? `Legacy workflow: ${context.flow.id}, step ${context.flow.step + 1}.`
+            : "No active diagnostic session.",
+      );
+    const id = context.diagnosis?.id ?? context.flow?.id;
+    if (id) {
+      context.attempted = [];
+      context.lastAction = undefined;
+      return (
+        begin(id, context) ?? result("This diagnostic is no longer available.")
+      );
+    }
+    return result("Start a diagnostic question before restarting.");
+  }
   if (cmd.extension) {
     if (!extension)
       return result(
@@ -109,11 +216,11 @@ export async function executeCommand(
     );
   if (name === "model")
     return result(
-      arg === "zulvyn" || arg === "madon"
-        ? `Selected ${arg}. Madon requires explicit setup before generation.`
+      arg === "gamma" || arg === "madon"
+        ? `Selected ${arg === "gamma" ? "Gamma" : "Madon"}. Madon requires explicit setup before generation.`
         : arg === "unload"
           ? "Unloading Madon from memory; cached assets are retained."
-          : "**Zulvyn** — local knowledge and diagnostics.\n\n**Madon** — local Qwen3 AI on compatible website devices. Use /model madon to open setup.",
+          : "**Gamma** — local knowledge and diagnostics.\n\n**Madon** — local Qwen3 AI on compatible website devices. Use /model madon to open setup.",
       { effect: { type: "model", value: arg || "status" } },
     );
   if (name === "shortcuts")

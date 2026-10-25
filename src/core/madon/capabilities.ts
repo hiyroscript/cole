@@ -11,7 +11,7 @@ export async function checkCapabilities(): Promise<Capability> {
       supported: false,
       webgpu: false,
       detail:
-        "Madon is website-only. This extension retains Zulvyn; remote model WebAssembly is not permitted by its security policy.",
+        "Madon is website-only. This extension retains Gamma; remote model WebAssembly is not permitted by its security policy.",
     };
   if (!globalThis.isSecureContext)
     return {
@@ -24,7 +24,7 @@ export async function checkCapabilities(): Promise<Capability> {
       supported: false,
       webgpu: false,
       detail:
-        "WebGPU is unavailable. Use a WebGPU-capable browser and device, or switch to Zulvyn.",
+        "WebGPU is unavailable. Use a WebGPU-capable browser and device, or switch to Gamma.",
     };
   try {
     const adapter = await navigator.gpu.requestAdapter();
@@ -33,7 +33,7 @@ export async function checkCapabilities(): Promise<Capability> {
         supported: false,
         webgpu: true,
         detail:
-          "No WebGPU adapter is available. Check browser graphics settings or use Zulvyn.",
+          "No WebGPU adapter is available. Check browser graphics settings or use Gamma.",
       };
     if (!adapter.features.has("shader-f16"))
       return {

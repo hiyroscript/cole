@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-24T23:22:11.066512+00:00",
+  "uniqueReferences": 333,
+  "successful": 329,
+  "unverified": [
+    {
+      "url": "https://www.cisa.gov/secure-our-world/use-strong-passwords",
+      "status": 403,
+      "method": "GET"
+    },
+    {
+      "url": "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing",
+      "status": 403,
+      "method": "GET"
+    },
+    {
+      "url": "https://www.cisa.gov/secure-our-world/turn-mfa",
+      "status": 403,
+      "method": "GET"
+    },
+    {
+      "url": "https://help.ubuntu.com/",
+      "status": 503,
+      "method": "GET"
+    }
+  ],
+  "method": "HEAD, with GET retry for non-200 results; HTTP availability does not certify editorial accuracy.",
+  "note": "Broken paths were corrected. CISA access restrictions and Ubuntu availability remain unverified from this environment."
+}

@@ -1,3 +1,5 @@
+import { GammaSetup } from "../components/GammaSetup";
+import { semantic } from "../core/gamma/semantic";
 import {
   useEffect,
   useRef,
@@ -147,7 +149,7 @@ export default function App() {
   const modelState = useSyncExternalStore(madon.subscribe, madon.getSnapshot);
   function selectModel(id: ModelId) {
     if (busy) return;
-    if (id === "zulvyn") madon.unload();
+    if (id === "gamma") madon.unload();
     setPrefs((p) => ({ ...p, model: id }));
     setModal(id === "madon" ? "models" : null);
   }
@@ -392,6 +394,7 @@ export default function App() {
         stage: setStage,
         history: base.messages,
         webSources: prefsRef.current.webSources,
+        enhanced: prefsRef.current.enhanced,
         signal,
         reduced: matchMedia("(prefers-reduced-motion: reduce)").matches,
         onText: (text) => {
@@ -434,11 +437,19 @@ export default function App() {
       if (complete && effect) {
         if (effect.type === "model") {
           if (effect.value === "unload") madon.unload();
-          else if (effect.value === "zulvyn" || effect.value === "madon") {
-            if (effect.value === "zulvyn") madon.unload();
+          else if (effect.value === "gamma" || effect.value === "madon") {
+            if (effect.value === "gamma") madon.unload();
             setPrefs((p) => ({ ...p, model: effect.value as ModelId }));
             if (effect.value === "madon") setModal("models");
           } else setModal("models");
+        }
+        if (effect.type === "web")
+          setPrefs((p) => ({ ...p, webSources: effect.value === "on" }));
+        if (effect.type === "enhance") {
+          if (effect.value === "off") {
+            semantic.disable();
+            setPrefs((p) => ({ ...p, enhanced: false }));
+          } else setModal("settings");
         }
         if (effect.type === "theme")
           setPrefs((p) => ({
@@ -756,7 +767,7 @@ export default function App() {
                     {m.role === "assistant" ? (
                       <>
                         <img src={logo} alt="" />{" "}
-                        {activeModel(m.model ?? "zulvyn").name}
+                        {activeModel(m.model ?? "gamma").name}
                       </>
                     ) : (
                       prefs.name || "You"
@@ -1042,11 +1053,11 @@ export default function App() {
           {model.id === "madon" && (
             <MadonSetup
               busy={busy}
-              switchToZulvyn={() => selectModel("zulvyn")}
+              switchToGamma={() => selectModel("gamma")}
             />
           )}
           <p className="fine-print">
-            Zulvyn uses authored knowledge and browser diagnostics. Madon
+            Gamma uses authored knowledge and browser diagnostics. Madon
             generates answers with a local language model.
           </p>
         </Dialog>
@@ -1088,12 +1099,38 @@ export default function App() {
       )}
       {modal === "settings" && (
         <Dialog title="Make it your space" close={() => setModal(null)}>
-          <MadonSetup
+          <GammaSetup
             busy={busy}
-            switchToZulvyn={() => selectModel("zulvyn")}
+            enabled={prefs.enhanced}
+            change={(enhanced) => setPrefs((p) => ({ ...p, enhanced }))}
+            clear={() => {
+              if (current) persist({ ...current, context: emptyContext() });
+              notify(
+                "Temporary context cleared. Saved messages are preserved.",
+              );
+            }}
           />
+
+          <MadonSetup busy={busy} switchToGamma={() => selectModel("gamma")} />
           <section className="settings-section">
             <h3>Preferences</h3>
+            <label>
+              Public web retrieval
+              <input
+                type="checkbox"
+                checked={prefs.webSources}
+                disabled={busy}
+                onChange={(e) =>
+                  setPrefs((p) => ({ ...p, webSources: e.target.checked }))
+                }
+              />
+            </label>
+            <p className="fine-print">
+              Public topic queries go to Wikimedia. Gamma displays source
+              extracts; Madon can use them in locally generated answers. Chats
+              and diagnostics are not sent.
+            </p>
+
             <label>
               Appearance
               <select
@@ -1190,6 +1227,7 @@ export default function App() {
                     )
                   ) {
                     madon.unload();
+                    semantic.disable();
                     setPrefs({ ...defaults });
                   }
                 }}
@@ -1202,12 +1240,13 @@ export default function App() {
                 onClick={async () => {
                   if (
                     confirm(
-                      "Delete every Varek conversation and preference, and remove this app’s offline cache and Madon model data?",
+                      "Delete every Varek conversation and preference, and remove this app’s offline cache and both assistants’ model data?",
                     )
                   )
                     try {
                       if (!(await madon.remove()))
                         throw new Error("Model cache could not be cleared");
+                      await semantic.remove();
                       await clearConversations();
                       localStorage.removeItem("varek.preferences.v1");
                       if ("caches" in window)
@@ -1245,7 +1284,7 @@ export default function App() {
           <section className="settings-section">
             <h3>Offline & installation</h3>
             <p>
-              After a successful cached visit, Zulvyn works offline. Use your
+              After a successful cached visit, Gamma works offline. Use your
               browser’s Install or Add to Home Screen control where supported.
               For the Chromium extension, download the build artifact from
               GitHub Actions and load its extracted folder through the extension

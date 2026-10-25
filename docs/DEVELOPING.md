@@ -6,15 +6,17 @@
 
 To add a topic, author a genuinely different answer and several realistic expressions. Include limitations and safe checks where relevant. Prefer precise authoritative references for version-sensitive instructions; generic category references are a starting point, not evidence that every browser's current UI was externally verified. Avoid claiming API support based solely on browser name.
 
-`matcher.ts` builds a token-to-record index once, normalizes punctuation and Unicode, expands a small synonym lexicon, uses bounded edit distance, and ranks candidate phrase overlap. Exact authored expressions are also indexed. Retrieval runs on submission, never every keystroke. Full answer text is not searched. Current dataset size does not require a worker; measure before adding one.
+Gamma’s `core/gamma/retrieval.ts` builds a weighted lexical index once. `language.ts` extracts entities and exclusions; `context.ts` resolves bounded references; `engine.ts` orchestrates these with commands, diagnostics and composition. The old shared `matcher.ts` remains Madon’s lexical reference helper. See [Gamma’s full extension guide](GAMMA.md).
 
-`engine.ts` handles commands, corrections, short replies, context-sensitive depth changes, two-topic questions, ambiguity, diagnostics, and composition. It expires context after 30 minutes or 24 turns. Unknown or low-confidence topics must fall back honestly. Extend the independent language test cases alongside new expressions; avoid tuning only to the authored aliases.
+Optional Transformers.js inference runs in `semantic-worker.ts`, only after explicit setup consent. Model revision and record-text fingerprints version the cached index. No model download belongs in React effects, the default bundle or the application-shell precache.
 
-Run `npm run validate:knowledge`. This checks missing fields, duplicate IDs/answers/normalized expressions, and top-ranked expression ownership, and writes exact coverage to `docs/coverage.json`. Commit the report; CI checks it is reproducible. Counts are observations, not permission to pad the dataset.
+Run `npm run validate:knowledge`. This checks missing fields, duplicate IDs/answers/normalized expressions, and top-ranked expression ownership, and writes exact coverage to `docs/coverage.json`. Commit the report; CI checks it is reproducible. The validator also enforces the requested minima, distinct multi-turn conversations and reachable workflow structure. Counts are observations, not permission to pad the dataset.
+
+`npm run evaluate:gamma` records retrieval and full local-response timings. With a production preview, `npm run measure:gamma` records five browser startup/heap samples and the actual built entry size. Keep the baseline and report budget regressions; do not silently raise the budget to make a check look successful. The current payload exceeds the initial budget after content expansion.
 
 ## Troubleshooting
 
-`flows.ts` contains an initial yes/no question, different first recommendations, a next observation, and an escalation/exit. The heat safety branch exits immediately. Store attempted responses in context. Add only low-risk initial checks; do not advise disabling protections as a standard fix. Test every reachable branch and add a multi-turn conversation case.
+`gamma/workflows.ts` adapts existing flows to stable graph nodes and adds multi-choice diagnosis. `gamma/scenarios.ts` and `gamma/more-scenarios.ts` contain additional authored alternatives, second checks and escalation. Numeric legacy states still use `flows.ts`; do not remove that adapter without a migration. New scenarios need distinct symptom branches, low-risk checks, graph validation and independent multi-turn cases.
 
 Thinking Auto selects structured flows and relevant technical analysis. Off does not bypass essential command validation or safety boundaries. Analysis summaries describe evidence and operations, not private model reasoning.
 
@@ -26,13 +28,13 @@ Add commands to the centralized registry and executor in `commands.ts`. Specify 
 
 ## Models and streaming
 
-`models.ts` is the typed registry and shared execution contract. Zulvyn adapts the original engine; Madon delegates to a lazy WebLLM worker transport with a single observable lifecycle. Commands execute locally before inference. See [Madon architecture and release gate](MADON.md). Never substitute presentation streaming for model tokens, or instantiate a worker from a React effect.
+`models.ts` is the typed registry and shared execution contract. Gamma invokes its modular engine; Madon delegates to a lazy WebLLM worker transport with a single observable lifecycle. Commands execute locally before inference. See [Madon architecture and release gate](MADON.md). Never substitute presentation streaming for model tokens, or instantiate a worker from a React effect.
 
 `stream.ts` iterates Unicode code points in bounded chunks, listens to AbortSignal, and skips animation for reduced motion. Persist final or cancelled content, not every animation frame. Preserve the context before a user turn so regeneration can repeat a contextual request correctly.
 
 ## Persistence
 
-IndexedDB schema version 1 has one `conversations` object store keyed by ID. For future changes, increment the database version and migrate only the required stores inside `onupgradeneeded`, preserving existing user records. Add upgrade fixtures and data validation tests. Storage failure must leave the current session usable and notify the user.
+IndexedDB schema version 1 has one `conversations` object store keyed by ID. Gamma normalizes legacy model metadata on read without changing database version or freeform text. For future schema changes, increment the database version and migrate only the required stores inside `onupgradeneeded`, preserving existing user records. Add upgrade fixtures and data validation tests. Storage failure must leave the current session usable and notify the user.
 
 Preferences use a separate versioned local-storage key with enum/type checks and bounded free text. Avoid storing credentials. Do not add background network synchronization without an explicit product decision and user-facing privacy changes.
 

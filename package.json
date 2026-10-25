@@ -9,14 +9,19 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "validate:knowledge": "tsx scripts/validate-knowledge.ts",
-    "build": "tsc --noEmit && vite build && node scripts/service-worker.mjs",
+    "build": "tsc --noEmit && vite build && node scripts/semantic-assets.mjs && node scripts/service-worker.mjs",
     "build:extension": "vite build --mode extension && node scripts/extension.mjs",
     "preview": "vite preview --host 0.0.0.0",
     "test:extension": "node tests/extension.mjs",
     "format": "prettier --write src extension scripts tests *.ts *.json index.html .github/workflows/*.yml docs/*.md README.md",
-    "test:madon:real": "node scripts/smoke-madon.mjs"
+    "test:madon:real": "node scripts/smoke-madon.mjs",
+    "check:brand": "tsx scripts/check-brand.ts",
+    "evaluate:gamma": "tsx scripts/evaluate-gamma.ts",
+    "test:gamma:real": "node --import tsx scripts/smoke-gamma.mjs",
+    "measure:gamma": "node scripts/measure-gamma.mjs"
   },
   "dependencies": {
+    "@huggingface/transformers": "3.8.1",
     "@mlc-ai/web-llm": "0.2.86",
     "lucide-react": "^0.468.0",
     "react": "^19.2.0",

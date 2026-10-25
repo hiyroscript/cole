@@ -2,11 +2,11 @@ import { test, expect } from "@playwright/test";
 test.beforeEach(async ({ page }) => {
   await page.goto("./");
   await expect(
-    page.getByRole("textbox", { name: "Message Zulvyn" }),
+    page.getByRole("textbox", { name: "Message Gamma" }),
   ).toBeEnabled();
 });
 async function ask(page: import("@playwright/test").Page, text: string) {
-  await page.getByRole("textbox", { name: "Message Zulvyn" }).fill(text);
+  await page.getByRole("textbox", { name: "Message Gamma" }).fill(text);
   await page.getByRole("button", { name: "Send message", exact: true }).click();
   await expect(
     page.getByRole("button", { name: "Stop response", exact: true }),
@@ -52,7 +52,7 @@ test("brand, diagnostics, follow-up, persistence and deletion", async ({
   ).toBeVisible();
 });
 test("slash keyboard navigation and dark theme", async ({ page }) => {
-  const input = page.getByRole("textbox", { name: "Message Zulvyn" });
+  const input = page.getByRole("textbox", { name: "Message Gamma" });
   await input.fill("/the");
   await expect(page.getByRole("listbox")).toBeVisible();
   await input.press("Enter");
@@ -73,7 +73,7 @@ test("Madon selection requires explicit setup and persists without downloading",
     if (/huggingface|raw.githubusercontent/.test(request.url()))
       downloads.push(request.url());
   });
-  await page.getByRole("button", { name: "Zulvyn", exact: true }).click();
+  await page.getByRole("button", { name: "Gamma", exact: true }).click();
   await page.getByRole("button", { name: /Madon/ }).click();
   await expect(
     page.getByRole("heading", { name: "Set up Madon" }),
@@ -89,10 +89,10 @@ test("Madon selection requires explicit setup and persists without downloading",
   expect(downloads).toEqual([]);
   await page.getByRole("button", { name: "Madon", exact: true }).click();
   await page
-    .getByRole("button", { name: "Switch to Zulvyn", exact: true })
+    .getByRole("button", { name: "Switch to Gamma", exact: true })
     .click();
   await expect(
-    page.getByRole("textbox", { name: "Message Zulvyn" }),
+    page.getByRole("textbox", { name: "Message Gamma" }),
   ).toBeVisible();
 });
 test("safe untrusted input and no horizontal overflow", async ({ page }) => {
@@ -161,11 +161,11 @@ test("welcome screenshot and keyboard accessibility", async ({ page }) => {
   ).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(
-    page.getByRole("textbox", { name: "Message Zulvyn" }),
+    page.getByRole("textbox", { name: "Message Gamma" }),
   ).toBeFocused();
 });
 test("stop keeps a partial answer", async ({ page }) => {
-  await page.getByRole("textbox", { name: "Message Zulvyn" }).fill("/help");
+  await page.getByRole("textbox", { name: "Message Gamma" }).fill("/help");
   await page.getByRole("button", { name: "Send message", exact: true }).click();
   await page
     .getByRole("button", { name: "Stop response", exact: true })
