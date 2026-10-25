@@ -19,7 +19,8 @@
     "evaluate:gamma": "tsx scripts/evaluate-gamma.ts",
     "test:gamma:real": "node --import tsx scripts/smoke-gamma.mjs",
     "measure:gamma": "node scripts/measure-gamma.mjs",
-    "build:icons": "node scripts/brand-assets.mjs"
+    "build:icons": "node scripts/brand-assets.mjs",
+    "evaluate:gamma3": "tsx scripts/evaluate-gamma3.ts"
   },
   "dependencies": {
     "@huggingface/transformers": "3.8.1",
