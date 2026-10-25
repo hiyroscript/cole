@@ -18,7 +18,7 @@ try {
     const cdp = await context.newCDPSession(page);
     await cdp.send("Performance.enable");
     await page.goto(
-      process.env.VAREK_PREVIEW_URL || "http://127.0.0.1:4173/varek/",
+      process.env.VAREK_PREVIEW_URL || "http://127.0.0.1:4173/cole/",
     );
     await page
       .getByRole("textbox", { name: "Message Gamma", exact: true })

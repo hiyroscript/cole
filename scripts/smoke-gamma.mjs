@@ -22,7 +22,7 @@ try {
   const page = await context.newPage();
   page.setDefaultTimeout(30000);
   await page.goto(
-    process.env.VAREK_PREVIEW_URL || "http://127.0.0.1:4173/varek/",
+    process.env.VAREK_PREVIEW_URL || "http://127.0.0.1:4173/cole/",
   );
   await page.evaluate(async () => {
     await navigator.serviceWorker.ready;
@@ -64,7 +64,7 @@ try {
   );
   const scores = await page.evaluate(
     async ({ file, records, queries }) => {
-      const worker = new Worker(`/varek/assets/${file}`, { type: "module" });
+      const worker = new Worker(`/cole/assets/${file}`, { type: "module" });
       try {
         await new Promise((resolve, reject) => {
           worker.onmessage = ({ data }) => {

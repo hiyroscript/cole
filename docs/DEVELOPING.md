@@ -48,7 +48,7 @@ The extension integration test first checks the shipping package, invalid-messag
 
 ## Builds and review
 
-Run type checks, unit tests, knowledge validation, both builds, and relevant browser/extension tests. Use the production `/varek/` URL for offline tests. The generated service worker caches assets with content-based versioning and never removes unrelated origin caches. Do not commit `dist`, `dist-extension`, browser traces, or dependency folders.
+Run type checks, unit tests, knowledge validation, both builds, and relevant browser/extension tests. Use the production `/cole/` URL for offline tests. The generated service worker caches assets with content-based versioning and never removes unrelated origin caches. Do not commit `dist`, `dist-extension`, browser traces, or dependency folders.
 
 Use `npm run format` to format code. CSS design tokens are shared by both targets. Tailwind is not required: this implementation uses plain tokenized CSS to avoid another styling runtime/build layer.
 
@@ -58,4 +58,4 @@ Use `npm run format` to format code. CSS design tokens are shared by both target
 
 `public/logo.svg` is the scalable master prepared from the supplied two-part symbol. Run `npm run build:icons` to regenerate the wordmark and PNG sizes with the existing Sharp dependency; the separate maskable icon keeps the mark inside the central safe circle. No external fonts or runtime design dependencies are used.
 
-Retain `varek`, `varek.preferences.v1`, `varek-` shell cache names, `varek-update`, `VAREK_ACTION`, stable knowledge IDs, and `/varek/` until a separately tested infrastructure or data migration exists. New visible copy and export names use Cole. `check:brand` permits these exact compatibility tokens and rejects other old branding on product surfaces, as well as tinted CSS hex colors.
+Retain `varek`, `varek.preferences.v1`, `varek-` shell cache names, `varek-update`, `VAREK_ACTION`, stable knowledge IDs until a separately tested data migration exists. The GitHub Pages base is `/cole/`, matching the repository name; `tests/browser/pages.spec.ts` checks that exact deployment path independently of the preview base, and browser tests cover offline reloads and existing saved data. New visible copy and export names use Cole. `check:brand` permits these exact compatibility tokens and rejects other old branding on product surfaces, as well as tinted CSS hex colors.

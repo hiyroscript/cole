@@ -26,7 +26,7 @@ ONNXRUNTIME_NODE_INSTALL_CUDA=skip npm ci
 npm run dev
 ```
 
-Open the printed address with `/varek/` appended. Production commands:
+Open the printed address with `/cole/` appended. Production commands:
 
 ```sh
 npm run check:brand
@@ -42,7 +42,7 @@ npm run test:extension
 
 For browser tests, set `CHROMIUM_PATH` to your installed Chromium executable. The web test configuration falls back to `/usr/bin/chromium`; extension tests default to the full Chromium installed by Playwright. The CI workflow sets a portable path for both. Some distribution Chromium builds disable unpacked-extension command-line loading; use Playwright's full Chromium for the extension suite.
 
-`npm run preview` serves the production build at `http://localhost:4173/varek/`. Test offline behavior against this production build, not the Vite development server.
+`npm run preview` serves the production build at `http://localhost:4173/cole/`. Test offline behavior against this production build, not the Vite development server.
 
 ## What works in each mode
 
@@ -85,7 +85,7 @@ Settings provide current/all-chat exports, individual/all-chat deletion, prefere
 
 ## Offline and updates
 
-The build generates a content-versioned service worker caching the app shell, local knowledge bundle, logo, and icons under `/varek/`. Only application-owned shell cache names are removed during updates. WebLLM and Gamma semantic model data are separate. Lazy inference code is cached only after it is requested; model weights are never shell-precached. Cached same-origin assets are matched independently of development server `Vary: Origin` headers. A new worker waits until the user chooses the update control; active responses disable that control.
+The build generates a content-versioned service worker caching the app shell, local knowledge bundle, logo, and icons under `/cole/`. Only application-owned shell cache names are removed during updates. WebLLM and Gamma semantic model data are separate. Lazy inference code is cached only after it is requested; model weights are never shell-precached. Cached same-origin assets are matched independently of development server `Vary: Origin` headers. A new worker waits until the user chooses the update control; active responses disable that control.
 
 A first-ever offline visit cannot work. Cleared/evicted storage or failed service-worker installation can remove offline availability. Install using the browser's Install or Add to Home Screen control where supported. There is no assumption that all browsers offer an install prompt.
 
@@ -95,9 +95,9 @@ The workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) chec
 
 In repository **Settings → Pages → Build and deployment → Source**, select **GitHub Actions**. If Pages has not been enabled, this is a required repository setting; a workflow file alone does not enable hosting. The expected URL after a successful deployment is:
 
-https://hiyroscript.github.io/varek/
+https://hiyroscript.github.io/cole/
 
-Vite uses the `/varek/` project base. The application uses local state rather than server-dependent routes. No credentials belong in frontend code. Pull requests run verification without deploying.
+Vite uses the `/cole/` project base. The application uses local state rather than server-dependent routes. No credentials belong in frontend code. Pull requests run verification without deploying.
 
 ## Install the Chromium extension
 

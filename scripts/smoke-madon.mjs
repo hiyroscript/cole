@@ -14,7 +14,7 @@ const report = {
   generated: false,
 };
 try {
-  await page.goto(process.env.VAREK_URL || "http://127.0.0.1:4173/varek/");
+  await page.goto(process.env.VAREK_URL || "http://127.0.0.1:4173/cole/");
   report.capabilities = await page.evaluate(async () => {
     const adapter = await navigator.gpu?.requestAdapter();
     return {
