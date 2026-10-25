@@ -323,5 +323,5 @@ it("routes model commands through trusted effects and validates arguments", asyn
   ).toContain("Use /model");
   expect(
     (await executeCommand("reader", "", emptyContext(), [])).text,
-  ).toContain("requires the Varek Chromium extension");
+  ).toContain("requires the Cole Chromium extension");
 });

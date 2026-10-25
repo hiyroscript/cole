@@ -1,5 +1,5 @@
 {
-  "name": "varek",
+  "name": "cole",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -18,7 +18,8 @@
     "check:brand": "tsx scripts/check-brand.ts",
     "evaluate:gamma": "tsx scripts/evaluate-gamma.ts",
     "test:gamma:real": "node --import tsx scripts/smoke-gamma.mjs",
-    "measure:gamma": "node scripts/measure-gamma.mjs"
+    "measure:gamma": "node scripts/measure-gamma.mjs",
+    "build:icons": "node scripts/brand-assets.mjs"
   },
   "dependencies": {
     "@huggingface/transformers": "3.8.1",

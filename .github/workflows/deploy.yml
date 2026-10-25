@@ -1,4 +1,4 @@
-name: Verify, build, and deploy Varek
+name: Verify, build, and deploy Cole
 on:
   push:
     branches: [main]
@@ -36,7 +36,7 @@ jobs:
           npm run test:extension
       - uses: actions/upload-artifact@v4
         with:
-          name: varek-chromium-extension
+          name: cole-chromium-extension
           path: dist-extension/
       - uses: actions/upload-pages-artifact@v3
         with:

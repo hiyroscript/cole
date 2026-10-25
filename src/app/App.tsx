@@ -1,3 +1,4 @@
+import { Welcome } from "../components/Welcome";
 import { GammaSetup } from "../components/GammaSetup";
 import { semantic } from "../core/gamma/semantic";
 import {
@@ -25,8 +26,6 @@ import {
   ChevronDown,
   Check,
   Monitor,
-  Shield,
-  Globe,
   Command,
   Download,
   WifiOff,
@@ -59,25 +58,7 @@ import {
 import { isExtension, extensionAction } from "../lib/extension";
 import { Markdown } from "../components/Markdown";
 import { Dialog } from "../components/Dialog";
-const logo = import.meta.env.BASE_URL + "logo.jpg";
-const suggestions = [
-  { icon: Globe, text: "What browser am I using?", label: "Know your browser" },
-  {
-    icon: Monitor,
-    text: "Check my device information",
-    label: "Understand your device",
-  },
-  {
-    icon: ArrowRight,
-    text: "Why is my browser slow?",
-    label: "Find a way forward",
-  },
-  {
-    icon: Shield,
-    text: "How can I improve my privacy?",
-    label: "Make browsing more private",
-  },
-];
+const logo = import.meta.env.BASE_URL + "logo.svg";
 function EvidenceView({ facts }: { facts: Evidence[] }) {
   const [status, setStatus] = useState("");
   return (
@@ -115,6 +96,16 @@ function EvidenceView({ facts }: { facts: Evidence[] }) {
 }
 
 export default function App() {
+  const [mobile, setMobile] = useState(
+    () => matchMedia("(max-width: 760px)").matches,
+  );
+  useEffect(() => {
+    const media = matchMedia("(max-width: 760px)");
+    const changed = () => setMobile(media.matches);
+    media.addEventListener("change", changed);
+    return () => media.removeEventListener("change", changed);
+  }, []);
+  const [setupOpen, setSetupOpen] = useState(false);
   const [chats, setChats] = useState<Conversation[]>([]),
     [active, setActive] = useState<string>(),
     [ready, setReady] = useState(false),
@@ -122,7 +113,9 @@ export default function App() {
     [input, setInput] = useState(""),
     [busy, setBusy] = useState(false),
     [stage, setStage] = useState(""),
-    [sidebar, setSidebar] = useState(() => innerWidth > 760),
+    [sidebar, setSidebar] = useState(
+      () => !matchMedia("(max-width: 760px)").matches,
+    ),
     [search, setSearch] = useState(""),
     [modal, setModal] = useState<"settings" | "diagnostics" | "models" | null>(
       null,
@@ -184,13 +177,17 @@ export default function App() {
       notify("Preferences could not be saved. Storage may be blocked or full.");
     }
     const media = matchMedia("(prefers-color-scheme: dark)");
-    const apply = () =>
-      (document.documentElement.dataset.theme =
+    const apply = () => {
+      const theme = (document.documentElement.dataset.theme =
         prefs.theme === "system"
           ? media.matches
             ? "dark"
             : "light"
           : prefs.theme);
+      document
+        .querySelector('meta[name="theme-color"]')
+        ?.setAttribute("content", theme === "dark" ? "#101010" : "#F7F7F7");
+    };
     apply();
     media.addEventListener("change", apply);
     return () => media.removeEventListener("change", apply);
@@ -209,7 +206,7 @@ export default function App() {
     };
   }, []);
   useEffect(() => {
-    if (!sidebar || innerWidth > 760) return;
+    if (!sidebar || !mobile) return;
     const previous = document.activeElement as HTMLElement | null;
     const items = () =>
       Array.from(
@@ -236,7 +233,7 @@ export default function App() {
       document.removeEventListener("keydown", trap);
       previous?.focus();
     };
-  }, [sidebar]);
+  }, [sidebar, mobile]);
   useEffect(() => {
     if (menu)
       document
@@ -281,7 +278,7 @@ export default function App() {
     setActive(undefined);
     setInput("");
     setMenuDismissed(false);
-    if (innerWidth <= 760) setSidebar(false);
+    if (mobile) setSidebar(false);
     composer.current?.focus();
   }
   useEffect(() => {
@@ -307,7 +304,7 @@ export default function App() {
       }
       if (e.key === "Escape") {
         setMenuDismissed(true);
-        if (innerWidth <= 760) setSidebar(false);
+        if (mobile) setSidebar(false);
       }
     };
     addEventListener("keydown", key);
@@ -449,7 +446,10 @@ export default function App() {
           if (effect.value === "off") {
             semantic.disable();
             setPrefs((p) => ({ ...p, enhanced: false }));
-          } else setModal("settings");
+          } else {
+            setSetupOpen(true);
+            setModal("settings");
+          }
         }
         if (effect.type === "theme")
           setPrefs((p) => ({
@@ -461,7 +461,7 @@ export default function App() {
             ...p,
             thinking: effect.value as Preferences["thinking"],
           }));
-        if (effect.type === "export") download(chat, "varek-conversation.json");
+        if (effect.type === "export") download(chat, "cole-conversation.json");
         if (effect.type === "new") setActive(undefined);
         if (
           effect.type === "clear" &&
@@ -574,7 +574,7 @@ export default function App() {
                 }}
               >
                 <img src={logo} alt="" />
-                Varek
+                Cole
               </a>
               <button
                 className="icon"
@@ -613,11 +613,12 @@ export default function App() {
                 >
                   <button
                     className="chat-select"
+                    aria-current={c.id === active ? "page" : undefined}
                     disabled={busy}
                     onClick={() => {
                       setActive(c.id);
                       follow.current = true;
-                      if (innerWidth <= 760) setSidebar(false);
+                      if (mobile) setSidebar(false);
                     }}
                   >
                     {c.pinned ? <Pin size={14} /> : <MessageSquare size={14} />}
@@ -657,7 +658,12 @@ export default function App() {
               <button onClick={() => void diagnostics()}>
                 <Monitor size={17} /> Browser & device
               </button>
-              <button onClick={() => setModal("settings")}>
+              <button
+                onClick={() => {
+                  setSetupOpen(false);
+                  setModal("settings");
+                }}
+              >
                 <Settings size={17} /> Settings
               </button>
               <div className="local-note">
@@ -667,7 +673,7 @@ export default function App() {
           </aside>
         </>
       )}
-      <main inert={sidebar && innerWidth <= 760}>
+      <main inert={sidebar && mobile}>
         <header className="topbar">
           <div>
             {!sidebar && (
@@ -707,7 +713,7 @@ export default function App() {
             <button
               className="icon"
               aria-label="About local processing"
-              onClick={() => void send("What is Varek?")}
+              onClick={() => void send("What is Cole?")}
               disabled={busy}
             >
               <Info size={18} />
@@ -715,7 +721,9 @@ export default function App() {
           </div>
         </header>
         <div
-          className="scroll-area"
+          className={
+            "scroll-area" + (!current?.messages.length ? " is-welcome" : "")
+          }
           ref={scrollRef}
           onScroll={() => {
             const e = scrollRef.current;
@@ -725,36 +733,12 @@ export default function App() {
           }}
         >
           {!current?.messages.length ? (
-            <section className="welcome">
-              <img className="welcome-logo" src={logo} alt="Varek" />
-              <p className="eyebrow">A clearer view, right here.</p>
-              <h1>
-                {prefs.name
-                  ? `${prefs.name}, where should we begin?`
-                  : "Where should we begin?"}
-              </h1>
-              <p className="welcome-description">
-                Your browser, your device, a little more understood.
-                <br />
-                Ask {model.name}. Inference stays on your device.
-              </p>
-              <div className="suggestions">
-                {suggestions.map(({ icon: Icon, text, label }) => (
-                  <button
-                    key={text}
-                    disabled={busy || !ready}
-                    onClick={() => void send(text)}
-                  >
-                    <Icon size={18} />
-                    <span>
-                      {label}
-                      <small>{text}</small>
-                    </span>
-                    <ArrowRight className="suggestion-arrow" size={15} />
-                  </button>
-                ))}
-              </div>
-            </section>
+            <Welcome
+              name={prefs.name}
+              model={model.id}
+              disabled={busy || !ready}
+              send={(text) => void send(text)}
+            />
           ) : (
             <div
               className="messages"
@@ -934,7 +918,7 @@ export default function App() {
               placeholder={
                 model.id === "madon"
                   ? "Ask Madon…"
-                  : "Ask about your browser or device…"
+                  : "Ask Cole about your browser or device…"
               }
               value={input}
               maxLength={20000}
@@ -1003,8 +987,7 @@ export default function App() {
             </div>
           </div>
           <p className="composer-note">
-            Local knowledge. Real browser signals. No remote AI.
-            <span>Enter to send · Shift + Enter for a new line</span>
+            Private by design. Processed on your device.
           </p>
         </div>
       </main>
@@ -1028,6 +1011,7 @@ export default function App() {
             <button
               key={item.id}
               className="model-option"
+              aria-pressed={model.id === item.id}
               disabled={busy}
               onClick={() => selectModel(item.id)}
             >
@@ -1089,7 +1073,7 @@ export default function App() {
               ))}
               <button
                 className="secondary"
-                onClick={() => download(facts, "varek-diagnostics.json")}
+                onClick={() => download(facts, "cole-diagnostics.json")}
               >
                 <Download size={15} /> Export these observations
               </button>
@@ -1098,20 +1082,7 @@ export default function App() {
         </Dialog>
       )}
       {modal === "settings" && (
-        <Dialog title="Make it your space" close={() => setModal(null)}>
-          <GammaSetup
-            busy={busy}
-            enabled={prefs.enhanced}
-            change={(enhanced) => setPrefs((p) => ({ ...p, enhanced }))}
-            clear={() => {
-              if (current) persist({ ...current, context: emptyContext() });
-              notify(
-                "Temporary context cleared. Saved messages are preserved.",
-              );
-            }}
-          />
-
-          <MadonSetup busy={busy} switchToGamma={() => selectModel("gamma")} />
+        <Dialog title="Settings" close={() => setModal(null)}>
           <section className="settings-section">
             <h3>Preferences</h3>
             <label>
@@ -1142,8 +1113,8 @@ export default function App() {
                   }))
                 }
               >
-                <option value="light">Light · Porcelain</option>
-                <option value="dark">Dark · Ink</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
                 <option value="system">Follow system</option>
               </select>
             </label>
@@ -1179,12 +1150,37 @@ export default function App() {
               Clear device notes
             </button>
           </section>
+          <details
+            className="settings-disclosure"
+            open={setupOpen}
+            onToggle={(event) => setSetupOpen(event.currentTarget.open)}
+          >
+            <summary>
+              Assistant setup <span>Gamma & Madon</span>
+            </summary>
+            <GammaSetup
+              busy={busy}
+              enabled={prefs.enhanced}
+              change={(enhanced) => setPrefs((p) => ({ ...p, enhanced }))}
+              clear={() => {
+                if (current) persist({ ...current, context: emptyContext() });
+                notify(
+                  "Temporary context cleared. Saved messages are preserved.",
+                );
+              }}
+            />
+
+            <MadonSetup
+              busy={busy}
+              switchToGamma={() => selectModel("gamma")}
+            />
+          </details>
           <section className="settings-section">
             <h3>Your local data</h3>
             <p>
               Chats are saved in this browser’s IndexedDB. Preferences stay in
               local storage. No accounts, analytics, or remote inference.
-              Exports and local storage are not encrypted by Varek.
+              Exports and local storage are not encrypted by Cole.
             </p>
             <div className="settings-buttons">
               <button
@@ -1195,7 +1191,7 @@ export default function App() {
                       exported: new Date().toISOString(),
                       conversations: chats,
                     },
-                    "varek-conversations.json",
+                    "cole-conversations.json",
                   )
                 }
               >
@@ -1240,7 +1236,7 @@ export default function App() {
                 onClick={async () => {
                   if (
                     confirm(
-                      "Delete every Varek conversation and preference, and remove this app’s offline cache and both assistants’ model data?",
+                      "Delete every Cole conversation and preference, and remove this app’s offline cache and both assistants’ model data?",
                     )
                   )
                     try {
@@ -1268,7 +1264,7 @@ export default function App() {
                         setPrefs({ ...defaults });
                       }
                       notify(
-                        "Varek data cleared. Reload online to restore offline caching.",
+                        "Cole data cleared. Reload online to restore offline caching.",
                       );
                     } catch {
                       notify(
@@ -1277,7 +1273,7 @@ export default function App() {
                     }
                 }}
               >
-                Clear all Varek data
+                Clear all Cole data
               </button>
             </div>
           </section>

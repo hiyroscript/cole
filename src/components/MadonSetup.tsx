@@ -77,6 +77,7 @@ export function MadonSetup({
       <div className="settings-buttons">
         {!loading && state.state !== "ready" && (
           <button
+            className="primary"
             disabled={busy || isExtension()}
             onClick={() => void madon.initialize()}
           >

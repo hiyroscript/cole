@@ -1,13 +1,13 @@
 {
   "manifest_version": 3,
-  "name": "Varek · Gamma",
+  "name": "Cole · Gamma",
   "version": "0.1.0",
   "description": "Local browser intelligence with deliberate, permissioned page inspection.",
   "minimum_chrome_version": "116",
   "permissions": ["activeTab", "scripting", "sidePanel"],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Open Varek",
+    "default_title": "Open Cole",
     "default_icon": {
       "16": "icon-16.png",
       "32": "icon-32.png",

@@ -16,7 +16,7 @@ export const commands = [
   ["web", "Public Wikimedia lookup: status, on, off"],
   ["compare", "Compare Chrome and Firefox, or cache and cookies"],
   ["help", "Show available commands"],
-  ["about", "About Varek and Gamma"],
+  ["about", "About Cole and Gamma"],
   ["model", "Available models"],
   ["think", "Analysis preference: auto, on, off"],
   ["theme", "Appearance: light, dark, system"],
@@ -187,7 +187,7 @@ export async function executeCommand(
   if (cmd.extension) {
     if (!extension)
       return result(
-        `/${name} requires the Varek Chromium extension and a deliberate action on a permitted tab. The website cannot access your other tabs or page contents.`,
+        `/${name} requires the Cole Chromium extension and a deliberate action on a permitted tab. The website cannot access your other tabs or page contents.`,
       );
     return result(await extension(name, arg));
   }

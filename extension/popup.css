@@ -1,50 +1,83 @@
+@import "tokens.css";
+* {
+  box-sizing: border-box;
+}
 body {
-  width: 290px;
+  width: 340px;
   margin: 0;
-  padding: 24px;
-  background: #f9f7f3;
-  color: #282529;
-  font: 13px/1.7 system-ui;
+  padding: 28px;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.7 var(--font-ui);
 }
 header {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 21px;
+}
+header strong {
+  font: 32px var(--font-display);
+  letter-spacing: -1px;
 }
 img {
-  width: 36px;
-  border-radius: 6px;
+  width: 32px;
+  height: 32px;
 }
 h1 {
-  font:
-    26px/1.2 Georgia,
-    serif;
-  margin-top: 28px;
+  font: 32px/1.15 var(--font-display);
+  letter-spacing: -0.8px;
+  margin: 32px 0 18px;
 }
 p,
 small {
-  color: #776f73;
+  color: var(--muted);
+}
+p {
+  margin-bottom: 24px;
 }
 button {
   display: block;
-  background: #695365;
-  color: white;
-  border: 0;
-  border-radius: 5px;
+  font: inherit;
+  background: var(--accent);
+  color: var(--on-accent);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
   padding: 12px;
+  min-height: var(--control);
   width: 100%;
   margin: 10px 0;
   cursor: pointer;
+  transition: background var(--motion);
+}
+button:hover {
+  background: var(--pressed);
 }
 button + button {
-  background: #f1edef;
-  color: #695365;
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+button + button:hover {
+  background: var(--hover);
 }
 button:focus-visible {
-  outline: 2px solid #695365;
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 small {
-  font-size: 10px;
+  display: block;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 20px;
+}
+#status:empty {
+  display: none;
+}
+#status {
+  font-size: 13px;
+}
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition: none;
+  }
 }

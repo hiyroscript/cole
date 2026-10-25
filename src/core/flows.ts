@@ -76,7 +76,7 @@ export const flows: Flow[] = [
     id: "heat",
     question: "Is there swelling, smoke, or a burning smell?",
     yes: "Stop using the device. Disconnect power if safe and contact qualified support; do not continue load testing.",
-    no: "Use a firm ventilated surface and inspect system activity for sustained load. Varek cannot measure temperature.",
+    no: "Use a firm ventilated surface and inspect system activity for sustained load. Cole cannot measure temperature.",
     next: "Did reducing the workload improve the heat?",
     escalation:
       "Persistent unusual heat needs manufacturer or qualified hardware support.",

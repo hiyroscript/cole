@@ -1,8 +1,8 @@
-# Varek
+# Cole
 
-Varek is a browser-local diagnostic and knowledge assistant. **Gamma is a deterministic engine, not a large language model.** It combines authored explanations, indexed intent matching, conversation context, and actual browser APIs. No account, backend, hosted inference API, or API key is required. Madon is now an opt-in local Qwen3/WebLLM website preview with explicit setup, real token streaming, and optional Wikimedia retrieval. Real GPU inference remains unverified in this environment; see [Madon setup and validation](docs/MADON.md).
+Cole is a browser-local diagnostic and knowledge assistant. **Gamma is a deterministic engine, not a large language model.** It combines authored explanations, indexed intent matching, conversation context, and actual browser APIs. No account, backend, hosted inference API, or API key is required. Madon is now an opt-in local Qwen3/WebLLM website preview with explicit setup, real token streaming, and optional Wikimedia retrieval. Real GPU inference remains unverified in this environment; see [Madon setup and validation](docs/MADON.md).
 
-The supplied Varek image is used unchanged as the application logo, with resized copies for favicons, PWA icons, and extension icons. The UI uses Porcelain/Fig design tokens, light by default, with dark and system themes.
+Cole uses the supplied two-part symbol, a scalable SVG master, and a neutral grayscale design system. Editorial headings pair with readable system UI typography. Light, dark, and system appearance are supported. See [the Cole delivery report](docs/COLE-DELIVERY.md).
 
 ## Release scope and coverage
 
@@ -15,7 +15,7 @@ Gamma now has a modular lexical/context/diagnostic pipeline and an optional loca
 - Optional CPU/WASM sentence embeddings with explicit consent, progress, cache management and lexical fallback.
 - Explicit public Wikimedia lookup with literal extracts and source attribution.
 
-The validator verifies every numeric `max` coverage target. The [delivery report](docs/GAMMA-DELIVERY.md) records implementation, measurements, verification and remaining limits. Semantic relevance is experimental; no broad benchmark or physical-device certification is claimed. Run `npm run validate:knowledge` for the generated [coverage report](docs/coverage.json).
+The validator verifies the Gamma coverage targets. The [delivery report](docs/GAMMA-DELIVERY.md) records implementation, measurements, verification and remaining limits. Semantic relevance is experimental; no broad benchmark or physical-device certification is claimed. Run `npm run validate:knowledge` for the generated [coverage report](docs/coverage.json).
 
 ## Run locally
 
@@ -77,15 +77,15 @@ Commands that change preferences return typed effects. Destructive actions requi
 
 ## Privacy and data
 
-GitHub Pages serves static assets and receives normal HTTP asset requests. Conversation processing runs in the browser. Varek has no analytics, tracking pixels, remote inference calls, or automatic page inspection. Gamma enhancement explicitly downloads MiniLM from Hugging Face; its single-thread WASM runs locally. Madon setup downloads model assets from Hugging Face and the WebLLM library host. Optional web lookup sends minimized search terms to Wikimedia; it is off by default. Markdown cannot inject HTML, execute JavaScript URLs, or load remote images.
+GitHub Pages serves static assets and receives normal HTTP asset requests. Conversation processing runs in the browser. Cole has no analytics, tracking pixels, remote inference calls, or automatic page inspection. Gamma enhancement explicitly downloads MiniLM from Hugging Face; its single-thread WASM runs locally. Madon setup downloads model assets from Hugging Face and the WebLLM library host. Optional web lookup sends minimized search terms to Wikimedia; it is off by default. Markdown cannot inject HTML, execute JavaScript URLs, or load remote images.
 
-Conversations are stored in IndexedDB database `varek`, schema version 1. Preferences and optional user-provided device notes are stored in `varek.preferences.v1` in local storage. Data is validated on load. Browser storage can be unavailable or evicted; errors are surfaced instead of claiming persistence succeeded. Varek does not encrypt local storage or exports.
+Conversations are stored in IndexedDB database `varek`, schema version 1. Preferences and optional user-provided device notes are stored in `varek.preferences.v1` in local storage. Data is validated on load. Browser storage can be unavailable or evicted; errors are surfaced instead of claiming persistence succeeded. Cole does not encrypt local storage or exports.
 
 Settings provide current/all-chat exports, individual/all-chat deletion, preference reset, device-note clearing, and full data/cache clearing. Exported files may contain private text or URLs; review before sharing. Deleting local data does not delete previously exported copies. Website and extension histories are independent.
 
 ## Offline and updates
 
-The build generates a content-versioned service worker caching the app shell, local knowledge bundle, logo, and icons under `/varek/`. Only Varek-owned shell cache names are removed during updates. WebLLM and Gamma semantic model data are separate. Lazy inference code is cached only after it is requested; model weights are never shell-precached. Cached same-origin assets are matched independently of development server `Vary: Origin` headers. A new worker waits until the user chooses the update control; active responses disable that control.
+The build generates a content-versioned service worker caching the app shell, local knowledge bundle, logo, and icons under `/varek/`. Only application-owned shell cache names are removed during updates. WebLLM and Gamma semantic model data are separate. Lazy inference code is cached only after it is requested; model weights are never shell-precached. Cached same-origin assets are matched independently of development server `Vary: Origin` headers. A new worker waits until the user chooses the update control; active responses disable that control.
 
 A first-ever offline visit cannot work. Cleared/evicted storage or failed service-worker installation can remove offline availability. Install using the browser's Install or Add to Home Screen control where supported. There is no assumption that all browsers offer an install prompt.
 
@@ -101,10 +101,10 @@ Vite uses the `/varek/` project base. The application uses local state rather th
 
 ## Install the Chromium extension
 
-1. Download **varek-chromium-extension** from a successful workflow run's Artifacts section and extract the ZIP. Alternatively run `npm run build:extension` locally.
+1. Download **cole-chromium-extension** from a successful workflow run's Artifacts section and extract the ZIP. Alternatively run `npm run build:extension` locally.
 2. Open `chrome://extensions` or your Chromium browser's extension manager and enable Developer mode.
 3. Choose **Load unpacked** and select the folder containing `manifest.json` (locally, `dist-extension/`).
-4. Click Varek's toolbar icon on the webpage you want to inspect, then choose **Open side panel**.
+4. Click Cole's toolbar icon on the webpage you want to inspect, then choose **Open side panel**.
 5. Deliberately run `/tab`, `/page`, or `/reader` and confirm the local read. If you switch to another origin, click the toolbar icon again to grant temporary access there.
 
 The extension supports Gamma; Madon is explicitly website-only until a compliant packaged inference runtime is verified. The package contains all executable code. It requests `activeTab`, `scripting`, and `sidePanel`, with **no blanket host permissions**, history permission, or remote executable code. Restricted browser pages and missing permission produce an explicit limitation. `/reader` returns an excerpt of up to 12,000 visible characters, not a semantic summary. Page content is untrusted and is never executed as instructions.

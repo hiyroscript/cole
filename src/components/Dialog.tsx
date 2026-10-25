@@ -21,7 +21,16 @@ export function Dialog({
       onCancel={close}
       aria-labelledby="dialog-title"
       onClick={(e) => {
-        if (e.target === ref.current) close();
+        const rect = ref.current?.getBoundingClientRect();
+        if (
+          e.target === ref.current &&
+          rect &&
+          (e.clientX < rect.left ||
+            e.clientX > rect.right ||
+            e.clientY < rect.top ||
+            e.clientY > rect.bottom)
+        )
+          close();
       }}
     >
       <header>
