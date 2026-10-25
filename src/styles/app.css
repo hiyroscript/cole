@@ -1190,3 +1190,26 @@ p[role="alert"] {
     animation: none !important;
   }
 }
+.document-import {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  padding: 4px 12px;
+}
+.document-import span {
+  overflow-wrap: anywhere;
+}
+.message table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+.message th,
+.message td {
+  padding: 8px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+}

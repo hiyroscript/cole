@@ -1,3 +1,4 @@
+import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 export function Markdown({
   text,
@@ -8,6 +9,7 @@ export function Markdown({
 }) {
   return (
     <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
       skipHtml
       components={{
         img: ({ alt }) => (

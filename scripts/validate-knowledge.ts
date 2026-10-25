@@ -1,14 +1,45 @@
+import { loadPack, packCatalog } from "../src/core/gamma/packs";
 import { workflows, validateGraphs } from "../src/core/gamma/workflows";
 import { conversations } from "../tests/gamma-cases";
 import { rank as gammaRank } from "../src/core/gamma/retrieval";
 import { knowledge } from "../src/data/knowledge";
 import { indexSize, normalize } from "../src/core/matcher";
 import { writeFileSync } from "node:fs";
+import { reasoningLinks } from "../src/core/gamma/reasoning";
+import workflowNodes from "../src/core/gamma/workflow-nodes.json";
+for (const pack of packCatalog) await loadPack(pack.id);
 const errors: string[] = [...validateGraphs()];
+if (
+  JSON.stringify(workflowNodes) !==
+  JSON.stringify(
+    Object.fromEntries(workflows.map((f) => [f.id, f.nodes.map((n) => n.id)])),
+  )
+)
+  errors.push(
+    "Workflow storage manifest is stale: npm run generate:workflow-nodes",
+  );
+for (const [id, links] of Object.entries(reasoningLinks))
+  if (
+    ![id, ...links.map((l) => l.id)].every((id) =>
+      knowledge.some((k) => k.id === id),
+    )
+  )
+    errors.push("Broken reasoning relationship: " + id);
+const titles = new Set<string>();
 const ids = new Set<string>(),
   answers = new Set<string>(),
   phrases = new Set<string>();
 for (const k of knowledge) {
+  const title = normalize(k.title);
+  if (titles.has(title)) errors.push("Duplicate title: " + k.id);
+  titles.add(title);
+  if (k.answer.length < 70) errors.push("Low-information answer: " + k.id);
+  if (k.related.includes(k.id) || new Set(k.related).size !== k.related.length)
+    errors.push("Invalid duplicate/self relationship: " + k.id);
+  if (
+    k.relationships?.some((r) => !knowledge.some((other) => other.id === r.id))
+  )
+    errors.push("Broken typed relationship: " + k.id);
   if (ids.has(k.id)) errors.push("Duplicate id: " + k.id);
   ids.add(k.id);
   if (answers.has(k.answer)) errors.push("Duplicate answer: " + k.id);

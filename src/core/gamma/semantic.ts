@@ -1,4 +1,3 @@
-import { knowledge } from "../../data/knowledge";
 import { isExtension } from "../../lib/extension";
 import { SEMANTIC_CACHE } from "./semantic-config";
 export type SemanticState = {
@@ -86,13 +85,23 @@ export class SemanticRuntime {
         }
         if (data.type === "error") this.fail(data.detail);
       };
-      worker.postMessage({
-        type: "init",
-        records: knowledge.map((k) => ({
-          id: k.id,
-          text: [k.title, ...k.phrases].join(". "),
-        })),
-      });
+      void import("./packs")
+        .then(async ({ restorePacks, installedRecords }) => {
+          await restorePacks();
+          const knowledge = installedRecords();
+          if (worker !== this.worker) return;
+          worker.postMessage({
+            type: "init",
+            records: knowledge.map((k) => ({
+              id: k.id,
+              text: [k.title, ...k.phrases].join(". "),
+            })),
+          });
+        })
+        .catch(() => {
+          if (worker === this.worker)
+            this.fail("Unable to load local knowledge for indexing.");
+        });
     } catch {
       this.fail(
         "Unable to start the optional worker. Use built-in matching or retry setup.",

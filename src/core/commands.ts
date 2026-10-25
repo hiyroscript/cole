@@ -1,3 +1,6 @@
+import { memoryCommand } from "./gamma/memory";
+import { plan, evidenceAnswer, caseSummary } from "./gamma/reasoning";
+import { knowledgeCommand } from "./gamma/packs";
 import { compareKnowledge } from "./gamma/compare";
 import { capabilities, runCapability } from "./gamma/capabilities";
 import { emptyContext } from "./types";
@@ -8,85 +11,8 @@ import { normalizeModel } from "../lib/legacy";
 import type { Response, Context, Thinking, Evidence } from "./types";
 import { knowledge } from "../data/knowledge";
 import { features } from "../lib/diagnostics";
-export const commands = [
-  ["calculate", "Arithmetic, percentages and unit conversions"],
-  ["analyze", "Analyze explicitly supplied JSON or technical text"],
-  ["capabilities", "List local calculation and analysis capabilities"],
-  ["gamma", "Gamma engine and privacy information"],
-  ["health", "Evidence-aware browser capability report"],
-  ["context", "Temporary context: show or clear"],
-  ["explain", "Explain the last recommended check"],
-  ["sources", "Actual sources in the last web response"],
-  ["enhance", "Optional local understanding: status, on, off"],
-  ["web", "Public Wikimedia lookup: status, on, off"],
-  ["compare", "Compare Chrome and Firefox, or cache and cookies"],
-  ["help", "Show available commands"],
-  ["about", "About Cole and Gamma"],
-  ["model", "Available models"],
-  ["think", "Analysis preference: auto, on, off"],
-  ["theme", "Appearance: light, dark, system"],
-  ["clear", "Clear this chat after confirmation"],
-  ["new", "Start a new conversation"],
-  ["export", "Download this conversation"],
-  ["shortcuts", "Keyboard shortcuts"],
-  ["browser", "Reported browser information"],
-  ["device", "Available device information"],
-  ["system", "Platform hints and access limits"],
-  ["screen", "Display and viewport"],
-  ["language", "Browser language preferences"],
-  ["timezone", "Reported time zone"],
-  ["permissions", "Query selected permission states"],
-  ["features", "Supported browser APIs"],
-  ["storage", "Origin usage and quota estimates"],
-  ["privacy", "Privacy recommendations"],
-  ["network", "Connection hints, not a speed test"],
-  ["diagnose", "Start guided troubleshooting"],
-  ["performance", "Performance observations and advice"],
-  ["compatibility", "Feature support in this browser"],
-  ["security", "Safer browsing practices"],
-  ["cache", "Safe cache troubleshooting"],
-  ["cookies", "Cookie behavior and settings"],
-  ["tab", "Current tab · extension only"],
-  ["tabs", "Pin the current tab · extension only"],
-  ["page", "Inspect page metadata · extension only"],
-  ["reader", "Extract page text · extension only"],
-  ["extensions", "Explain extension permissions"],
-].map(([name, description]) => ({
-  name,
-  description,
-  extension: ["tab", "tabs", "page", "reader"].includes(name),
-  args:
-    name === "diagnose"
-      ? ["status", "restart", "stop"]
-      : name === "context"
-        ? ["clear"]
-        : ["web", "enhance"].includes(name)
-          ? ["status", "on", "off"]
-          : name === "compare"
-            ? ["chrome firefox", "cache cookies"]
-            : name === "model"
-              ? ["gamma", "madon", "status", "unload"]
-              : name === "think"
-                ? ["auto", "on", "off"]
-                : name === "theme"
-                  ? ["light", "dark", "system"]
-                  : name === "tabs"
-                    ? ["pin", "unpin"]
-                    : [],
-  permission: ["tab", "tabs", "page", "reader"].includes(name)
-    ? "Explicit activeTab action"
-    : "None",
-}));
-export function parseCommand(input: string) {
-  const m = input.trim().match(/^(?:run\s+)?\/([a-z]+)(?:\s+([\s\S]*))?$/i);
-  if (!m) return null;
-  return {
-    name: m[1].toLowerCase(),
-    arg: ["calculate", "analyze"].includes(m[1].toLowerCase())
-      ? (m[2]?.trim() ?? "")
-      : (m[2]?.trim().toLowerCase() ?? ""),
-  };
-}
+import { commands } from "./command-registry";
+export { commands, parseCommand } from "./command-registry";
 export async function executeCommand(
   name: string,
   arg: string,
@@ -100,6 +26,11 @@ export async function executeCommand(
     context,
     ...extra,
   });
+  if (name === "memory") return result(memoryCommand(arg));
+  if (name === "plan") return plan(arg || context.goal || "", context);
+  if (name === "reason") return evidenceAnswer(arg, context);
+  if (name === "summary" && !arg) return result(caseSummary(context));
+  if (name === "knowledge") return result(await knowledgeCommand(arg));
   if (name === "compare" && !["chrome firefox", "cache cookies"].includes(arg))
     return result(compareKnowledge(arg, context));
   if (name === "calculate" || name === "analyze")
@@ -129,7 +60,7 @@ export async function executeCommand(
     return result(`/${name} does not accept arguments.`);
   if (name === "gamma")
     return result(
-      "**Gamma 2.0** — Fast, private browser and device intelligence. Local authored guidance, lexical retrieval, diagnostic graphs, and optional CPU embeddings. Madon is a separate generative model; Gamma never downloads or invokes it automatically.",
+      "**Gamma 3.0** — Fast, private browser and device intelligence. Local authored guidance, bounded task planning, calculations, document analysis, optional domain packs and CPU embeddings. Madon is a separate generative model; Gamma never downloads or invokes it automatically.",
     );
   if (name === "health") return result(health(facts), { evidence: facts });
   if (name === "context")
@@ -145,6 +76,17 @@ export async function executeCommand(
       context.lastAction
         ? `Last recommendation: ${context.lastAction}\n\nThis reversible comparison narrows possible causes; it does not establish a measured diagnosis.`
         : "No recommendation is active. Start a diagnostic question first.",
+    );
+  if (name === "sources" && context.authoredSources?.length)
+    return result(
+      "No public sources were fetched for this answer. Built-in authored references (not fetched live):\n\n" +
+        context.authoredSources
+          .map((id) => knowledge.find((k) => k.id === id))
+          .filter((k) => !!k)
+          .map(
+            (k) => `- [${k!.title}](${k!.reference}); reviewed ${k!.reviewed}.`,
+          )
+          .join("\n"),
     );
   if (name === "sources")
     return result(

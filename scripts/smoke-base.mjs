@@ -16,7 +16,7 @@ try {
   const precache = JSON.parse(sw.match(/const ASSETS=(\[[\s\S]*?\])\.map/)[1]);
   assert(
     !precache.some((f) =>
-      /semantic-worker|ort-|\.wasm$|transport-|^assets\/worker-/.test(f),
+      /pack-|semantic-worker|ort-|\.wasm$|transport-|^assets\/worker-/.test(f),
     ),
   );
   await page.evaluate(async () => {

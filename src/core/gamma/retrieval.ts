@@ -2,50 +2,66 @@ import { knowledge } from "../../data/knowledge";
 import { normalize, tokens, distance } from "../text";
 import { understand, entities } from "./language";
 export { normalize } from "../text";
-const documents = knowledge.map((record) => {
-  const terms = tokens(
-    record.title +
-      " " +
-      record.phrases.join(" ") +
-      " " +
-      record.keywords.join(" "),
-  );
-  const frequencies = new Map<string, number>();
-  for (const term of terms)
-    frequencies.set(term, (frequencies.get(term) ?? 0) + 1);
-  return {
-    record,
-    terms,
-    frequencies,
-    entities: entities(record.title + " " + record.phrases.join(" ")).map(
-      (e) => e.value,
-    ),
-    phrases: [record.title, ...record.phrases].map((p) => ({
-      text: normalize(p),
-      terms: tokens(p),
-    })),
-  };
-});
+const makeDocuments = () =>
+  knowledge.map((record) => {
+    const terms = tokens(
+      record.title +
+        " " +
+        record.phrases.join(" ") +
+        " " +
+        record.keywords.join(" "),
+    );
+    const frequencies = new Map<string, number>();
+    for (const term of terms)
+      frequencies.set(term, (frequencies.get(term) ?? 0) + 1);
+    return {
+      record,
+      terms,
+      frequencies,
+      entities: entities(record.title + " " + record.phrases.join(" ")).map(
+        (e) => e.value,
+      ),
+      phrases: [record.title, ...record.phrases].map((p) => ({
+        text: normalize(p),
+        terms: tokens(p),
+      })),
+    };
+  });
+let documents = makeDocuments();
 const inverted = new Map<string, Set<number>>();
 const exact = new Map<string, number>();
-const average =
-  documents.reduce((s, d) => s + d.terms.length, 0) / documents.length;
-for (const [i, doc] of documents.entries()) {
-  for (const term of doc.frequencies.keys()) {
-    if (!inverted.has(term)) inverted.set(term, new Set());
-    inverted.get(term)!.add(i);
+let average = 0;
+let signature = "";
+function refreshIndex() {
+  const next = knowledge.map((k) => k.id).join("|");
+  if (next === signature) return;
+  signature = next;
+  documents = makeDocuments();
+  inverted.clear();
+  exact.clear();
+  average =
+    documents.reduce((s, d) => s + d.terms.length, 0) /
+    Math.max(1, documents.length);
+  for (const [i, doc] of documents.entries()) {
+    for (const term of doc.frequencies.keys()) {
+      if (!inverted.has(term)) inverted.set(term, new Set());
+      inverted.get(term)!.add(i);
+    }
+    for (const p of doc.phrases) if (!exact.has(p.text)) exact.set(p.text, i);
   }
-  for (const p of doc.phrases) if (!exact.has(p.text)) exact.set(p.text, i);
 }
+refreshIndex();
 export type Candidate = {
   record: (typeof knowledge)[number];
   score: number;
   lexical: number;
   coverage: number;
   discovery?: boolean;
+  semanticAccepted?: boolean;
   fusion?: number;
 };
 export function rank(input: string): Candidate[] {
+  refreshIndex();
   const request = understand(input);
   if (
     request.excluded.length &&
@@ -56,7 +72,8 @@ export function rank(input: string): Candidate[] {
     return [];
   if (/\b(chrome|firefox|safari|edge|brave) works but/.test(request.normalized))
     return [];
-  const exactId = exact.get(request.normalized);
+  const exactId =
+    exact.get(request.normalized) ?? exact.get(normalize(request.positive));
   if (exactId !== undefined && !request.excluded.length)
     return [
       { record: documents[exactId].record, score: 1, lexical: 1, coverage: 1 },
@@ -131,7 +148,8 @@ export function rank(input: string): Candidate[] {
 }
 export function confidence(candidates: Candidate[]) {
   const first = candidates[0];
-  if (!first || first.score < 0.63) return "unsupported";
+  if (first?.semanticAccepted) return "moderate";
+  if (!first || first.discovery || first.score < 0.63) return "unsupported";
   if (
     candidates[1] &&
     first.score < 0.9 &&

@@ -1,3 +1,12 @@
+import { executeTrustedTool } from "./trusted-tools";
+import { probe } from "./probe";
+import { clearPublicCache } from "./public-sources";
+import { documentAnswer, type LocalDocument } from "./documents";
+import { applyMemory } from "./memory";
+import { plan, continuePlan, evidenceAnswer } from "./reasoning";
+import { observe } from "./observations";
+import { mergeFacts } from "./case-state";
+import { restorePacks } from "./packs";
 import { compareKnowledge } from "./compare";
 import { analyzeRequest } from "./request";
 import { runCapability } from "./capabilities";
@@ -21,6 +30,7 @@ import {
 import { executeCommand, parseCommand } from "../commands";
 import { flows, flowReply } from "../flows";
 export type EngineOptions = {
+  document?: LocalDocument;
   thinking: Thinking;
   webSources?: boolean;
   enhanced?: boolean;
@@ -85,6 +95,10 @@ async function respondSingle(
   options.stage?.("Matching the request");
   const cmd = parseCommand(input);
   if (cmd) {
+    const trusted = await executeTrustedTool(cmd.name, cmd.arg, c, options);
+    if (trusted) return trusted;
+  }
+  if (cmd) {
     const needsFacts = [
       "health",
       "browser",
@@ -111,6 +125,79 @@ async function respondSingle(
   if (/^\//.test(input.trim()))
     return answer(
       "Use /help for supported commands. Arbitrary scripts and shell commands cannot be executed.",
+    );
+  if (
+    /^(?:please\s+)?(?:write|compose|invent|generate|draw|design)\b/i.test(
+      input,
+    ) &&
+    !/troubleshooting|checklist|report|plan/.test(n)
+  )
+    return answer(
+      "I don’t have a reliable answer for open-ended writing, image generation or arbitrary program creation. Gamma can retrieve authored explanations, compare supported subjects, calculate, analyze supplied text and plan bounded checks. Madon is a separately selected generative model.",
+    );
+  if (c.case?.pending && /^(?:i tried that|tried it)[.!?]*$/i.test(input))
+    return answer(
+      "Did the suggested check help, fail, or remain inconclusive? I will keep its result separate from a confirmed diagnosis.",
+      { followups: ["That helped", "That didn’t help", "Skip that check"] },
+    );
+  if (
+    c.case &&
+    /^(?:why|explain the evidence|what do we know)[?!]*$/i.test(input)
+  )
+    return evidenceAnswer("", c);
+  const continuation = continuePlan(input, c);
+  if (continuation) return continuation;
+  const observed = observe(input);
+  if (
+    /^i prefer (?:short|brief|detailed|step by step) answers[.!]*$/i.test(input)
+  ) {
+    c.depth = /short|brief/i.test(input)
+      ? "brief"
+      : /detailed/i.test(input)
+        ? "detailed"
+        : "steps";
+    return answer(
+      `I’ll use ${c.depth} answers in this conversation. This is temporary context; cross-conversation preferences require /memory on and an explicit /memory save command.`,
+    );
+  }
+  if (observed.output === "brief" || observed.output === "steps")
+    c.depth = observed.output;
+
+  if (c.case && observed.facts.length) mergeFacts(c.case, observed.facts);
+  if (c.case && observed.corrections) {
+    if (observed.affectedBrowser) c.browser = observed.affectedBrowser;
+    const platform = observed.facts.findLast((f) => f.key === "platform");
+    if (platform) c.platform = platform.value;
+    c.case.pending = undefined;
+    return plan(c.case.goal, c);
+  }
+  if (
+    /^(?:create|make|give me) (?:a )?(?:troubleshooting )?plan\b/i.test(input)
+  )
+    return plan(input, c);
+  if (
+    observed.affectedBrowser &&
+    observed.workingBrowsers.length &&
+    observed.symptoms.some((s) =>
+      ["freeze", "video", "crash", "slow"].includes(s),
+    )
+  )
+    return plan(input, c);
+  if (/^why.*(?:hardware|gpu) acceleration/i.test(input))
+    return evidenceAnswer("hardware acceleration", c);
+  if (
+    /^(?:summarize|search|find in|ask about) (?:the |this |my )?(?:document|file)\b/i.test(
+      input,
+    )
+  )
+    return answer(
+      documentAnswer(
+        options.document,
+        input.replace(
+          /^(?:summarize|search|find in|ask about) (?:the |this |my )?(?:document|file)\s*/i,
+          "",
+        ),
+      ),
     );
   const computation = input.trim().match(/^(calculate|convert)\s+([\s\S]+)$/i);
   if (computation)
@@ -327,6 +414,8 @@ async function respondSingle(
         );
       c.pending = undefined;
       c.intent = selected;
+      c.authoredSources = [selected];
+      c.sources = undefined;
       return answer(compose(selected, c), {
         followups: get(selected)!.followups,
       });
@@ -459,13 +548,17 @@ async function respondSingle(
       { followups: c.pending.map((id) => get(id)!.title) },
     );
   }
-  if (!candidates.length || candidates[0].score < 0.63)
+  if (
+    !candidates.length ||
+    (!candidates[0].semanticAccepted && candidates[0].score < 0.63)
+  )
     return answer(
       "I don’t have a reliable answer to that yet. I can help with browser settings, device information, performance, privacy, and troubleshooting. Could you describe the specific feature or symptom?",
       { followups: ["What can you do?", "/help"] },
     );
   const top = candidates[0];
   if (
+    !top.semanticAccepted &&
     candidates[1] &&
     top.score < 0.9 &&
     top.score - candidates[1].score < 0.055
@@ -497,6 +590,8 @@ async function respondSingle(
   c.topic = top.record.title;
   c.goal = input.slice(0, 200);
   c.intent = top.record.id;
+  c.authoredSources = [top.record.id];
+  c.sources = undefined;
   c.flow = undefined;
   c.diagnosis = undefined;
   const thorough =
@@ -573,9 +668,17 @@ export async function respond(
   options: EngineOptions,
 ): Promise<Response> {
   options.signal?.throwIfAborted();
+  if (input.length > 20000)
+    return {
+      text: "Please keep a message within 20,000 characters or import a bounded local document.",
+      context: previous,
+    };
+  previous = applyMemory(previous);
+  await restorePacks(options.signal);
   const request = analyzeRequest(input);
   if (request.tasks.length < 2) return respondSingle(input, previous, options);
   let context = freshContext(previous);
+  const authoredSources = new Set<string>();
   const parts: string[] = [],
     evidence: Evidence[] = [];
   for (const task of request.tasks) {
@@ -610,6 +713,7 @@ export async function respond(
       continue;
     }
     context = response.context;
+    for (const id of context.authoredSources ?? []) authoredSources.add(id);
     parts.push(
       `### ${response.context.goal === text && response.context.intent ? (get(response.context.intent)?.title ?? task.intent) : task.intent === "unknown" ? "Request" : task.intent}\nPart ${task.id + 1} of ${request.tasks.length}\n\n${response.text}`,
     );
@@ -624,6 +728,7 @@ export async function respond(
       `There are ${request.omitted} additional parts. Please send them in a separate message; I handle at most six parts per request.`,
     );
   context.turns = previous.turns + 1;
+  context.authoredSources = [...authoredSources].slice(-12);
   return {
     text: parts.join("\n\n"),
     context,

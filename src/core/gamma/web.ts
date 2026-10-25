@@ -1,4 +1,5 @@
-import { retrieve, webQuery } from "../madon/retrieval";
+import { lookupPublic, sourceSynthesis } from "./public-sources";
+import { webQuery } from "../madon/retrieval";
 import type { Context, Response } from "../types";
 export async function webResponse(
   input: string,
@@ -19,21 +20,14 @@ export async function webResponse(
       context,
     };
   try {
-    const sources = await retrieve(query, signal);
+    const result = await lookupPublic(query, signal);
+    const sources = result.sources;
     signal.throwIfAborted();
     context.sources = sources;
-    // Escaping makes extracts literal data, including Markdown-looking instructions.
-    const literal = (s: string) =>
-      s.replace(/[\\`*_{}\[\]()<>#+.!|~-]/g, "\\$&");
+    context.authoredSources = undefined;
     return {
       text: sources.length
-        ? "Public reference extracts from Wikipedia (not independently verified):\n\n" +
-          sources
-            .map(
-              (s, i) =>
-                `### Source ${i + 1}: ${literal(s.title)}\n${literal(s.text)}`,
-            )
-            .join("\n\n")
+        ? sourceSynthesis(result, query)
         : "No public reference results were found. Live information is unavailable.",
       sources,
       context,
