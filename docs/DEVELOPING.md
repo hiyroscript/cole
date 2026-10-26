@@ -59,3 +59,10 @@ Use `npm run format` to format code. CSS design tokens are shared by both target
 `public/logo.svg` is the scalable master prepared from the supplied two-part symbol. Run `npm run build:icons` to regenerate the wordmark and PNG sizes with the existing Sharp dependency; the separate maskable icon keeps the mark inside the central safe circle. No external fonts or runtime design dependencies are used.
 
 Retain `varek`, `varek.preferences.v1`, `varek-` shell cache names, `varek-update`, `VAREK_ACTION`, stable knowledge IDs until a separately tested data migration exists. The GitHub Pages base is `/cole/`, matching the repository name; `tests/browser/pages.spec.ts` checks that exact deployment path independently of the preview base, and browser tests cover offline reloads and existing saved data. New visible copy and export names use Cole. `check:brand` permits these exact compatibility tokens and rejects other old branding on product surfaces, as well as tinted CSS hex colors.
+
+
+## Gamma 4.0 task and evidence contracts
+
+Keep `request.ts` decomposition separate from execution. Data payloads must remain opaque; only user-authored tasks may reach `natural-tools.ts` and the existing trusted tool allowlist. Dependencies require a successful prior part, and each part must have its own source IDs. New retrieval strategies may discover candidates without authorizing their acceptance. `answerability.ts` is a conservative evidence contract, not a probability or an entailment model. Preserve original exact matches before rewriting queries.
+
+Use optional output paths for evaluation scripts and `GAMMA_REPORT_DIR=docs/gamma4` for browser measurement/semantic scripts to preserve historical artifacts. `evaluate:gamma4` verifies its frozen fixture digest; after exposure, treat its cases as regression data. An independent untouched benchmark is still needed.

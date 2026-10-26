@@ -1,3 +1,5 @@
+import { naturalTool } from "./natural-tools";
+import { assessAnswerability } from "./answerability";
 import { executeTrustedTool } from "./trusted-tools";
 import { probe } from "./probe";
 import { clearPublicCache } from "./public-sources";
@@ -163,9 +165,33 @@ async function respondSingle(
   if (observed.output === "brief" || observed.output === "steps")
     c.depth = observed.output;
 
+  if (observed.statedBrowser) c.browser = observed.statedBrowser;
   if (c.case && observed.facts.length) mergeFacts(c.case, observed.facts);
   if (c.case && observed.corrections) {
-    if (observed.affectedBrowser) c.browser = observed.affectedBrowser;
+    if (observed.statedBrowser || observed.affectedBrowser) {
+      c.browser = observed.statedBrowser ?? observed.affectedBrowser;
+      for (const fact of c.case.facts)
+        if (
+          fact.key.startsWith("browser:") &&
+          fact.value === "affected" &&
+          fact.key !== `browser:${c.browser}`
+        )
+          fact.contradicted = true;
+      mergeFacts(c.case, [
+        {
+          key: `browser:${c.browser}`,
+          value: "affected",
+          kind: "user",
+          source: input.slice(0, 500),
+        },
+      ]);
+      c.case.corrections.push(`Stated browser corrected to ${c.browser}`);
+      // Do not replay the obsolete user statement and undo the correction.
+      c.case.goal = c.case.goal.replace(
+        /\b(?:chrome|firefox|safari|edge|brave|opera)\b/i,
+        c.browser!,
+      );
+    }
     const platform = observed.facts.findLast((f) => f.key === "platform");
     if (platform) c.platform = platform.value;
     c.case.pending = undefined;
@@ -175,6 +201,28 @@ async function respondSingle(
     /^(?:create|make|give me) (?:a )?(?:troubleshooting )?plan\b/i.test(input)
   )
     return plan(input, c);
+  if (
+    (observed.statedBrowser &&
+      observed.symptoms.some((s) =>
+        ["slow", "freeze", "crash", "video"].includes(s),
+      )) ||
+    /\b(?:diagnose|troubleshoot)\b/i.test(input)
+  )
+    return plan(input, c);
+  if (c.case && /\b(?:back to|resume|continue fixing)\b/i.test(input)) {
+    const check = c.case.checks.find((k) => k.id === c.case?.pending);
+    return check
+      ? answer(
+          `Resumed: ${c.case.goal}\n\nPending check: ${check.text}\n\nReport whether it helped, failed, or should be skipped.`,
+        )
+      : plan(c.case.goal, c);
+  }
+  if (c.case?.pending && /^why.*(?:check|test|matter)/i.test(input)) {
+    const check = c.case.checks.find((k) => k.id === c.case?.pending);
+    return answer(
+      `The pending check is: ${check?.text}\n\nIt tests whether the symptom changes under a controlled condition. A change narrows the hypotheses; it does not prove the cause. No check has been executed by Cole.`,
+    );
+  }
   if (
     observed.affectedBrowser &&
     observed.workingBrowsers.length &&
@@ -199,6 +247,11 @@ async function respondSingle(
         ),
       ),
     );
+  const natural = naturalTool(input);
+  if (natural) {
+    options.stage?.(`Running local ${natural.name}`);
+    return (await executeTrustedTool(natural.name, natural.input, c, options))!;
+  }
   const computation = input.trim().match(/^(calculate|convert)\s+([\s\S]+)$/i);
   if (computation)
     return answer(
@@ -241,11 +294,10 @@ async function respondSingle(
     );
   if (
     /\b(actually|correction|im using|i use|i am using)\b/.test(n) &&
-    browserNames.test(n)
+    browserNames.test(n) &&
+    (observed.corrections || !observed.symptoms.length)
   ) {
-    c.browser = [...n.matchAll(new RegExp(browserNames.source, "gi"))].at(
-      -1,
-    )![1];
+    c.browser = observed.statedBrowser ?? observed.affectedBrowser ?? c.browser;
     c.flow = undefined;
     c.diagnosis = undefined;
     c.lastAction = undefined;
@@ -256,7 +308,7 @@ async function respondSingle(
           {
             group: "Browser",
             label: "Stated browser",
-            value: c.browser,
+            value: c.browser ?? "unknown",
             kind: "User-provided",
           },
         ],
@@ -468,31 +520,6 @@ async function respondSingle(
     return answer(
       "Understood. What is happening instead? Describe the symptom you want to troubleshoot.",
     );
-  const clean = understand(input).positive;
-  const multi = clean.split(/\s+(?:and|also)\s+|;\s*/i).filter(Boolean);
-  if (multi.length === 2) {
-    const matches = multi.map((part) => rank(part)[0]);
-    if (
-      matches.every((m) => m && m.score >= 0.78) &&
-      matches[0].record.id !== matches[1].record.id
-    ) {
-      c.intent = matches[1].record.id;
-      return answer(
-        matches
-          .map((m) => `### ${m.record.title}\n${compose(m.record.id, c)}`)
-          .join("\n\n"),
-        {
-          analysis:
-            options.thinking !== "off"
-              ? [
-                  "Matched two independent knowledge topics.",
-                  "No system-level measurements were taken.",
-                ]
-              : undefined,
-        },
-      );
-    }
-  }
   let candidates = await retrieveCandidates(
     input,
     options.enhanced === true,
@@ -530,6 +557,10 @@ async function respondSingle(
     ];
   if (/^(how do i make it faster|make it faster)$/.test(n) && c.intent)
     candidates = [{ record: get("slow")!, score: 1, lexical: 1, coverage: 1 }];
+  if (/^inspect\b/.test(n))
+    return answer(
+      "I cannot execute that inspection. Use /help to see the supported browser observations and permission-gated page tools; no tab or file content was read.",
+    );
   if (/start a new diagnosis/.test(n))
     return executeCommand("diagnose", "", c, []);
   if (candidates[0]?.discovery) {
@@ -557,6 +588,15 @@ async function respondSingle(
       { followups: ["What can you do?", "/help"] },
     );
   const top = candidates[0];
+  const support = assessAnswerability(input, top.record);
+  if (
+    support.status === "unsupported" &&
+    understand(input).entities.some((e) => e.kind === "error")
+  )
+    return answer(
+      "I don’t have a reliable answer for that exact technical identifier. Related guidance is not evidence of its meaning.",
+    );
+
   if (
     !top.semanticAccepted &&
     candidates[1] &&
@@ -679,6 +719,7 @@ export async function respond(
   if (request.tasks.length < 2) return respondSingle(input, previous, options);
   let context = freshContext(previous);
   const authoredSources = new Set<string>();
+  const results: NonNullable<Response["tasks"]> = [];
   const parts: string[] = [],
     evidence: Evidence[] = [];
   for (const task of request.tasks) {
@@ -686,10 +727,20 @@ export async function respond(
     let text = task.text;
     if (task.reference && task.dependsOn.length) {
       const prior = request.tasks[task.dependsOn[0]];
-      const subject = prior.entities.find(
-        (e) => e.kind === "api" || e.kind === "browser",
-      )?.value;
+      const priorResult = results.find((r) => r.id === prior.id);
+      const subject =
+        priorResult?.status === "answered"
+          ? (prior.entities.find(
+              (e) => e.kind === "api" || e.kind === "browser",
+            )?.value ?? prior.subjects[0])
+          : undefined;
       if (!subject) {
+        results.push({
+          id: task.id,
+          intent: task.intent,
+          status: "needs-information",
+          sources: [],
+        });
         parts.push(
           `### ${task.id + 1}. Clarification needed\nWhich subject does “${task.reference}” refer to? Please name it for this part of the request.`,
         );
@@ -700,19 +751,49 @@ export async function respond(
     // A compound request cannot grant permissions, issue commands, or send
     // a fragment of private material to a provider. Ask for a separate action.
     if (/^(?:run\s+)?\/|^(?:search|look up|lookup)\b/i.test(text.trim())) {
+      results.push({
+        id: task.id,
+        intent: task.intent,
+        status: "blocked",
+        sources: [],
+      });
       parts.push(
         `### ${task.id + 1}. Separate action required\nSend this command or public lookup as a separate explicit request.`,
       );
       continue;
     }
-    const response = await respondSingle(text, context, options);
+    options.stage?.(
+      `Part ${task.id + 1} of ${request.tasks.length}: ${task.intent}`,
+    );
+    // Never retain another task's source IDs as evidence for this task.
+    const response = await respondSingle(
+      text,
+      { ...context, authoredSources: undefined },
+      { ...options, webSources: false },
+    );
     if (response.effect) {
+      results.push({
+        id: task.id,
+        intent: task.intent,
+        status: "blocked",
+        sources: [],
+      });
       parts.push(
         `### ${task.id + 1}. Separate action required\nSend this action separately.`,
       );
       continue;
     }
     context = response.context;
+    const sources = context.authoredSources ?? [];
+    const verifiedTool =
+      /^(?:Calculated locally:|Local analysis)/.test(response.text) &&
+      !/invalid JSON|No supported/.test(response.text);
+    results.push({
+      id: task.id,
+      intent: task.intent,
+      status: sources.length || verifiedTool ? "answered" : "needs-information",
+      sources,
+    });
     for (const id of context.authoredSources ?? []) authoredSources.add(id);
     parts.push(
       `### ${response.context.goal === text && response.context.intent ? (get(response.context.intent)?.title ?? task.intent) : task.intent === "unknown" ? "Request" : task.intent}\nPart ${task.id + 1} of ${request.tasks.length}\n\n${response.text}`,
@@ -733,5 +814,13 @@ export async function respond(
     text: parts.join("\n\n"),
     context,
     evidence: evidence.length ? evidence : undefined,
+    tasks: results,
+    analysis:
+      options.thinking === "off"
+        ? undefined
+        : results.map(
+            (r) =>
+              `Part ${r.id + 1}: ${r.status}${r.sources.length ? `; authored sources: ${r.sources.join(", ")}` : ""}.`,
+          ),
   };
 }

@@ -6,8 +6,12 @@ export function compareKnowledge(input: string, context: Context): string {
   input = input.replace(/\s+(?:in|as) (?:a )?table[.!?]*$/i, "");
   const subjects = input
     .trim()
-    .split(/\s+(?:with|versus|vs\.?|to|and)\s+|\s*\|\s*/i);
-  if (subjects.length !== 2 || subjects.some((s) => !s || s.length > 200))
+    .split(/\s+(?:with|versus|vs\.?|to|and)\s+|,\s*(?:and\s+)?|\s*\|\s*/i);
+  if (
+    subjects.length < 2 ||
+    subjects.length > 4 ||
+    subjects.some((s) => !s || s.length > 200)
+  )
     return "Use /compare subject | subject, for example /compare WebGPU | WebGL.";
   const selections = subjects.map((subject) => rank(subject));
   if (
@@ -17,7 +21,7 @@ export function compareKnowledge(input: string, context: Context): string {
   )
     return "I need two clearly supported subjects for a sourced comparison. Try /compare WebGPU | WebGL.";
   const records = selections.map((results) => results[0].record);
-  if (records[0].id === records[1].id)
+  if (new Set(records.map((k) => k.id)).size !== records.length)
     return "Both subjects matched the same guidance. Please name two distinct features.";
   const platform = context.platform
     ?.replace(/windows.*/, "windows")

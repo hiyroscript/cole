@@ -117,7 +117,7 @@ try {
 }
 if (missingQueries.size)
   writeFileSync(
-    "docs/gamma3/heldout-semantic-missing.json",
+    `${process.env.GAMMA_REPORT_DIR ?? "docs/gamma3"}/heldout-semantic-missing.json`,
     JSON.stringify([...missingQueries], null, 2) + "\n",
   );
 const report = {

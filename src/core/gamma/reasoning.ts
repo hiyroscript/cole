@@ -170,7 +170,7 @@ export function plan(query: string, c: Context): Response {
     checks: [],
     corrections: [],
   };
-  mergeFacts(state, u.facts);
+  if (!c.case) mergeFacts(state, u.facts);
   mergeFacts(
     state,
     u.constraints.map((constraint, i) => ({
@@ -179,7 +179,7 @@ export function plan(query: string, c: Context): Response {
       kind: "user" as const,
     })),
   );
-  if (u.affectedBrowser) c.browser = u.affectedBrowser;
+  if (!c.case && u.affectedBrowser) c.browser = u.affectedBrowser;
   for (const hypothesis of u.hypothesis)
     mergeFacts(state, [
       {

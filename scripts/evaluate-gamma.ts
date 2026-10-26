@@ -75,7 +75,7 @@ const report = {
   reports,
 };
 writeFileSync(
-  "docs/gamma-evaluation.json",
+  process.argv[2] ?? "docs/gamma-evaluation.json",
   JSON.stringify(report, null, 2) + "\n",
 );
 console.log(JSON.stringify(report, null, 2));

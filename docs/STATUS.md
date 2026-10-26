@@ -1,5 +1,9 @@
 # Implementation status
 
+## Gamma 4.0 foundations (2026-10-26)
+
+Working request frames, coordinated explanations, multi-subject comparisons, natural local-tool routing, correction/diagnostic continuity, answer-field discovery and stricter semantic evidence validation. This is a partial A/B milestone, not the complete `max` roadmap. See [Gamma 4.0 delivery](GAMMA4-DELIVERY.md), including the hybrid acceptance trade-off and unmet targets. Historical milestones below retain their original figures.
+
 Gamma 3.0 foundations: bounded multi-part requests, semantic candidate discovery, local calculations, JSON/log analysis and sourced comparisons are implemented. This is a partial milestone; see the [delivery report and remaining release gates](GAMMA3-DELIVERY.md).
 
 ## Cole rebrand (2026-10-25)

@@ -1,3 +1,4 @@
+import { rewriteQuery } from "./query";
 import { knowledge } from "../../data/knowledge";
 import { normalize, tokens, distance } from "../text";
 import { understand, entities } from "./language";
@@ -16,6 +17,7 @@ const makeDocuments = () =>
       frequencies.set(term, (frequencies.get(term) ?? 0) + 1);
     return {
       record,
+      answerTerms: new Set(tokens(record.answer)),
       terms,
       frequencies,
       entities: entities(record.title + " " + record.phrases.join(" ")).map(
@@ -62,7 +64,7 @@ export type Candidate = {
 };
 export function rank(input: string): Candidate[] {
   refreshIndex();
-  const request = understand(input);
+  const request = understand(rewriteQuery(input));
   if (
     request.excluded.length &&
     !tokens(request.positive).some(
@@ -73,7 +75,9 @@ export function rank(input: string): Candidate[] {
   if (/\b(chrome|firefox|safari|edge|brave) works but/.test(request.normalized))
     return [];
   const exactId =
-    exact.get(request.normalized) ?? exact.get(normalize(request.positive));
+    exact.get(normalize(input)) ??
+    exact.get(request.normalized) ??
+    exact.get(normalize(request.positive));
   if (exactId !== undefined && !request.excluded.length)
     return [
       { record: documents[exactId].record, score: 1, lexical: 1, coverage: 1 },
@@ -86,7 +90,18 @@ export function rank(input: string): Candidate[] {
         ) ?? t),
   );
   const candidates = new Set<number>();
+  const evidenceHits = new Set<string>();
   for (const t of query) inverted.get(t)?.forEach((i) => candidates.add(i));
+  // A second retrieval strategy finds explanatory evidence absent from aliases.
+  // Discovery-only results cannot bypass the independent acceptance decision.
+  for (const [i, d] of documents.entries())
+    if (
+      query.length >= 2 &&
+      query.filter((t) => d.answerTerms.has(t)).length >= 2
+    ) {
+      candidates.add(i);
+      evidenceHits.add(d.record.id);
+    }
   const blocked = new Set(
     request.excluded.flatMap((s) =>
       /slow|sluggish/.test(s)
@@ -143,8 +158,13 @@ export function rank(input: string): Candidate[] {
         coverage,
       };
     })
-    .filter((c) => c.score >= 0.5)
-    .sort((a, b) => b.score - a.score);
+    .filter((c) => c.score >= 0.5 || evidenceHits.has(c.record.id))
+    .map((c) => ({ ...c, discovery: c.score < 0.5 }))
+    .sort(
+      (a, b) =>
+        Number(!!a.discovery) - Number(!!b.discovery) || b.score - a.score,
+    )
+    .slice(0, 24);
 }
 export function confidence(candidates: Candidate[]) {
   const first = candidates[0];

@@ -69,6 +69,12 @@ export type Knowledge = {
   confidence?: number;
 };
 export type Response = {
+  tasks?: {
+    id: number;
+    intent: string;
+    status: "answered" | "needs-information" | "blocked";
+    sources: string[];
+  }[];
   sources?: Source[];
   text: string;
   context: Context;

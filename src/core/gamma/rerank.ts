@@ -1,3 +1,4 @@
+import { assessAnswerability } from "./answerability";
 import { confidence, type Candidate } from "./retrieval";
 import { understand, entities } from "./language";
 import { knowledge } from "../../data/knowledge";
@@ -100,8 +101,17 @@ export function rerank(
         lexical: 0,
         coverage: 0,
         score: 0.62,
-        discovery: !(rank === 0 && semanticAccepted && !lexicalAccepted),
-        semanticAccepted: rank === 0 && semanticAccepted && !lexicalAccepted,
+        discovery: !(
+          rank === 0 &&
+          semanticAccepted &&
+          !lexicalAccepted &&
+          assessAnswerability(input, record).status === "direct"
+        ),
+        semanticAccepted:
+          rank === 0 &&
+          semanticAccepted &&
+          !lexicalAccepted &&
+          assessAnswerability(input, record).status === "direct",
       });
     }
   }
@@ -121,7 +131,10 @@ export function rerank(
     ) {
       const eligible =
         !c.record.platforms?.length && !c.record.browsers?.length;
-      if (eligible) {
+      if (
+        eligible &&
+        assessAnswerability(input, c.record).status === "direct"
+      ) {
         c.semanticAccepted = true;
         c.discovery = false;
       }

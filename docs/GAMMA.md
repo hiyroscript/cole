@@ -91,3 +91,8 @@ npm run test:extension
 The CUDA install flag avoids an unused native GPU download: production inference here is browser CPU/WASM, not ONNX Node CUDA. For repeatable browser startup/payload measurements, run the production preview on port 4173, then `npm run measure:gamma`. For the opt-in real semantic test, use the same preview and `npm run test:gamma:real`. It deliberately downloads the optional model and writes measured results. Proxy settings are respected when present.
 
 Production still builds for GitHub Pages at `/varek/`; extension assets are separate. A draft branch/PR is not deployment. No successful Pages deployment is claimed for this work. Madon’s real GPU inference remains subject to its existing hardware-validation gate in [MADON.md](MADON.md).
+
+
+## Gamma 4.0 foundations
+
+The new request/query/evidence contract, integration, measurements and remaining release gates are documented in [GAMMA4-DELIVERY.md](GAMMA4-DELIVERY.md). Discovery candidates are distinct from accepted answers. Semantic acceptance now also requires independent evidence coverage; older descriptions of cosine-only acceptance are historical.

@@ -25,7 +25,8 @@
     "evaluate:intelligence": "tsx scripts/evaluate-intelligence.ts",
     "generate:workflow-nodes": "tsx scripts/generate-workflow-nodes.ts",
     "check:payload": "node scripts/check-payload.mjs",
-    "evaluate:semantic-heldout": "tsx scripts/evaluate-semantic-heldout.ts"
+    "evaluate:semantic-heldout": "tsx scripts/evaluate-semantic-heldout.ts",
+    "evaluate:gamma4": "tsx scripts/evaluate-gamma4.ts"
   },
   "dependencies": {
     "@huggingface/transformers": "3.8.1",
