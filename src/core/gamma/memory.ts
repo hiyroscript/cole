@@ -3,11 +3,15 @@ export type LocalMemory = {
   version: 1;
   enabled: boolean;
   depth?: Depth;
+  language?: "en" | "fr";
+  familiarity?: "beginner" | "technical";
   browser?: string;
   platform?: string;
 };
 const key = "gamma.memory.v1";
 const allowed: Record<string, string[]> = {
+  language: ["en", "fr"],
+  familiarity: ["beginner", "technical"],
   depth: ["brief", "standard", "detailed", "steps"],
   browser: ["chrome", "firefox", "safari", "edge", "brave", "opera"],
   platform: ["windows", "macos", "linux", "android", "ios"],
@@ -41,6 +45,8 @@ export function applyMemory(context: Context): Context {
     depth: context.turns === 0 ? (p.depth ?? context.depth) : context.depth,
     browser: context.browser ?? p.browser,
     platform: context.platform ?? p.platform,
+    language: context.language ?? p.language,
+    familiarity: context.familiarity ?? p.familiarity,
   };
 }
 export function memoryCommand(arg: string) {
@@ -49,11 +55,24 @@ export function memoryCommand(arg: string) {
   if (!arg.trim() || arg === "status")
     return `Local memory is ${p.enabled ? "on" : "off"}. Saved explicit preferences: ${
       Object.entries(p)
-        .filter(([k]) => ["depth", "browser", "platform"].includes(k))
+        .filter(([k]) =>
+          ["depth", "browser", "platform", "language", "familiarity"].includes(
+            k,
+          ),
+        )
         .map(([k, v]) => `${k}=${v}`)
         .join(", ") || "none"
-    }. It stores only supported preferences you explicitly save, separately from conversation history. Use /memory on, /memory save depth brief, /memory save browser firefox, /memory save platform windows, /memory off, or /memory clear.`;
+    }. It stores only supported preferences you explicitly save, separately from conversation history. Use /memory on, /memory save depth brief, /memory save browser firefox, /memory save platform windows, /memory off, /memory save language fr, /memory save familiarity beginner, /memory forget browser, or /memory clear.`;
   try {
+    if (
+      parts.length === 2 &&
+      parts[0] === "forget" &&
+      Object.hasOwn(allowed, parts[1])
+    ) {
+      delete p[parts[1] as keyof Omit<LocalMemory, "version" | "enabled">];
+      localStorage.setItem(key, JSON.stringify(p));
+      return `Removed saved ${parts[1]}.`;
+    }
     if (arg === "clear") {
       localStorage.removeItem(key);
       return "Saved local preferences cleared and memory disabled. Conversation history is unchanged.";
@@ -75,7 +94,7 @@ export function memoryCommand(arg: string) {
       localStorage.setItem(key, JSON.stringify({ ...p, [parts[1]]: parts[2] }));
       return `Saved ${parts[1]}=${parts[2]} locally. Use /memory to review, /memory save to correct, or /memory clear to remove it.`;
     }
-    return "Unsupported memory input. Only depth, browser and platform values listed by /memory can be saved. Freeform or sensitive personal information is not stored as memory.";
+    return "Unsupported memory input. Only depth, browser, platform, language and familiarity values listed by /memory can be saved. Freeform or sensitive personal information is not stored as memory.";
   } catch {
     return "Local memory storage is unavailable. No preference was saved; this conversation remains usable.";
   }

@@ -12,7 +12,7 @@ Optional Transformers.js inference runs in `semantic-worker.ts`, only after expl
 
 Run `npm run validate:knowledge`. This checks missing fields, duplicate IDs/answers/normalized expressions, and top-ranked expression ownership, and writes exact coverage to `docs/coverage.json`. Commit the report; CI checks it is reproducible. The validator also enforces the requested minima, distinct multi-turn conversations and reachable workflow structure. Counts are observations, not permission to pad the dataset.
 
-`npm run evaluate:gamma` records retrieval and full local-response timings. With a production preview, `npm run measure:gamma` records five browser startup/heap samples and the actual built entry size. Keep the baseline and report budget regressions; do not silently raise the budget to make a check look successful. The current payload exceeds the initial budget after content expansion.
+`npm run evaluate:gamma` records retrieval and full local-response timings. With a production preview, `npm run measure:gamma` records five browser startup/heap samples and the actual built entry size. Keep the baseline and report budget regressions; do not silently raise the budget to make a check look successful. The Gamma 4 payload is within the original budget; report future regressions without changing those limits.
 
 ## Troubleshooting
 
@@ -59,3 +59,21 @@ Use `npm run format` to format code. CSS design tokens are shared by both target
 `public/logo.svg` is the scalable master prepared from the supplied two-part symbol. Run `npm run build:icons` to regenerate the wordmark and PNG sizes with the existing Sharp dependency; the separate maskable icon keeps the mark inside the central safe circle. No external fonts or runtime design dependencies are used.
 
 Retain `varek`, `varek.preferences.v1`, `varek-` shell cache names, `varek-update`, `VAREK_ACTION`, stable knowledge IDs until a separately tested data migration exists. The GitHub Pages base is `/cole/`, matching the repository name; `tests/browser/pages.spec.ts` checks that exact deployment path independently of the preview base, and browser tests cover offline reloads and existing saved data. New visible copy and export names use Cole. `check:brand` permits these exact compatibility tokens and rejects other old branding on product surfaces, as well as tinted CSS hex colors.
+
+## Gamma 4.0 task and evidence contracts
+
+Keep `request.ts` decomposition separate from execution. Data payloads must remain opaque; only user-authored tasks may reach `natural-tools.ts` and the existing trusted tool allowlist. Dependencies require a successful prior part, and each part must have its own source IDs. New retrieval strategies may discover candidates without authorizing their acceptance. `answerability.ts` is a conservative evidence contract, not a probability or an entailment model. Preserve original exact matches before rewriting queries.
+
+Use optional output paths for evaluation scripts and `GAMMA_REPORT_DIR=docs/gamma4` for browser measurement/semantic scripts to preserve historical artifacts. `evaluate:gamma4` verifies its frozen fixture digest; after exposure, treat its cases as regression data. An independent untouched benchmark is still needed.
+
+`requirements.ts` classifies execution/freshness needs separately from explanatory knowledge. Route trusted commands and structured tool payloads before conversational fact extraction. Never infer a completed tool operation by matching prose; use the typed outcome returned by the executor. `evidence-selection.ts` may accept an otherwise weak lexical candidate only through independent, unambiguous support. Keep requested subjects central to the record and unknown content words as requirements. The `evidence-` reports record this follow-up; earlier Gamma 4 foundation results are historical.
+
+## Gamma 4.0 capabilities and source data
+
+New local operations belong in `data-tools.ts` behind `capabilities.ts` and `trusted-tools.ts`, with typed completed/rejected outcomes. Natural tool frames must be identified before splitting arbitrary data or extracting conversation facts. Preserve explicit limits and cancellation; never evaluate CSV cells or pass document instructions back to the dispatcher. Forward deductions are conditional on the supplied premises, not independently verified truths.
+
+Document indexing uses a packaged worker and a 15-second timeout, at most four 100,000-byte files. Keep chunks/source line offsets stable, cite matching lines and describe summary output as extracts. Original files remain tab-local; requested excerpts follow chat retention. A failed selection must not erase existing imports. The worker belongs in the offline shell and the extension package; optional pack/model assets stay lazy.
+
+`check-policy.ts` excludes persistent deletion/reset operations from reversible diagnostic checks. `french.ts` is an explicitly bounded authored path; do not advertise general multilingual support. Memory fields are allowlisted and explicitly saved. Research timestamps must originate in provider metadata; retrieval is not publication or freshness verification.
+
+Run `npm run evaluate:capabilities` for the 20-case developer acceptance suite (also run by CI). It is not independent evaluation. Write broader report updates to `docs/gamma4/final-*.json`, preserving historical baselines and frozen fixtures. See the current delivery for exact replay-score paths and actual runtime validation.

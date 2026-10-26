@@ -16,6 +16,9 @@ export type Evidence = {
     "Browser" | "Device" | "Display" | "Network" | "Storage" | "Permissions";
 };
 export type Context = {
+  comparison?: string[];
+  language?: "en" | "fr";
+  familiarity?: "beginner" | "technical";
   case?: CaseState;
   pausedCases?: CaseState[];
   authoredSources?: string[];
@@ -69,6 +72,13 @@ export type Knowledge = {
   confidence?: number;
 };
 export type Response = {
+  operation?: { name: string; status: "completed" | "rejected" };
+  tasks?: {
+    id: number;
+    intent: string;
+    status: "answered" | "needs-information" | "blocked";
+    sources: string[];
+  }[];
   sources?: Source[];
   text: string;
   context: Context;

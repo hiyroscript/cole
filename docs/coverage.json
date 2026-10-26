@@ -1,7 +1,7 @@
 {
-  "records": 804,
-  "uniqueExpressions": 3019,
-  "indexTokens": 2513,
+  "records": 828,
+  "uniqueExpressions": 3067,
+  "indexTokens": 2524,
   "categories": [
     "Browser",
     "Performance",
@@ -23,6 +23,8 @@
     "iOS",
     "Web technology",
     "Display",
+    "Computing and AI",
+    "Scientific foundations",
     "Programming",
     "Mathematics and science",
     "Computer systems",

@@ -1,0 +1,371 @@
+{
+  "scope": "Prospective one-shot evaluation authored by the implementer after development tests; frozen before running. Not an independently authored or unseen holdout. No thresholds are tuned on these outcomes.",
+  "fixtureSha256": "735c6f19e1e04ca7baf10a99d2d2b21d7041b8cea391249f2dddbb8e3b6126f0",
+  "passed": 6,
+  "total": 24,
+  "unapprovedNetworkRequests": 0,
+  "p50Ms": 1.0570619999999735,
+  "p95Ms": 6.109805999999935,
+  "results": [
+    {
+      "id": 1,
+      "category": "calculation",
+      "passed": false,
+      "checks": {
+        "requiredText": false,
+        "excludedText": true,
+        "sources": true,
+        "browser": true,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 69.748469
+    },
+    {
+      "id": 2,
+      "category": "calculation",
+      "passed": false,
+      "checks": {
+        "requiredText": false,
+        "excludedText": true,
+        "sources": true,
+        "browser": true,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 2.7304570000000012
+    },
+    {
+      "id": 3,
+      "category": "calculation",
+      "passed": false,
+      "checks": {
+        "requiredText": false,
+        "excludedText": true,
+        "sources": true,
+        "browser": true,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 0.40441499999997177
+    },
+    {
+      "id": 4,
+      "category": "calculation",
+      "passed": false,
+      "checks": {
+        "requiredText": false,
+        "excludedText": true,
+        "sources": true,
+        "browser": true,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 1.813645000000065
+    },
+    {
+      "id": 5,
+      "category": "paraphrase",
+      "passed": false,
+      "checks": {
+        "requiredText": true,
+        "excludedText": true,
+        "sources": false,
+        "browser": true,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 6.109805999999935
+    },
+    {
+      "id": 6,
+      "category": "paraphrase",
+      "passed": true,
+      "checks": {
+        "requiredText": true,
+        "excludedText": true,
+        "sources": true,
+        "browser": true,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 0.5848959999999579
+    },
+    {
+      "id": 7,
+      "category": "paraphrase",
+      "passed": false,
+      "checks": {
+        "requiredText": true,
+        "excludedText": true,
+        "sources": false,
+        "browser": true,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 1.1690099999999575
+    },
+    {
+      "id": 8,
+      "category": "compound",
+      "passed": false,
+      "checks": {
+        "requiredText": true,
+        "excludedText": true,
+        "sources": false,
+        "browser": true,
+        "platform": true,
+        "parts": false,
+        "safety": true
+      },
+      "ms": 0.3090220000000272
+    },
+    {
+      "id": 9,
+      "category": "compound",
+      "passed": false,
+      "checks": {
+        "requiredText": true,
+        "excludedText": true,
+        "sources": false,
+        "browser": true,
+        "platform": true,
+        "parts": false,
+        "safety": true
+      },
+      "ms": 2.71426299999996
+    },
+    {
+      "id": 10,
+      "category": "compound",
+      "passed": false,
+      "checks": {
+        "requiredText": false,
+        "excludedText": true,
+        "sources": false,
+        "browser": true,
+        "platform": true,
+        "parts": false,
+        "safety": true
+      },
+      "ms": 1.097613000000024
+    },
+    {
+      "id": 11,
+      "category": "reference",
+      "passed": true,
+      "checks": {
+        "requiredText": true,
+        "excludedText": true,
+        "sources": true,
+        "browser": true,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 0.5860069999999951
+    },
+    {
+      "id": 12,
+      "category": "reference",
+      "passed": true,
+      "checks": {
+        "requiredText": true,
+        "excludedText": true,
+        "sources": true,
+        "browser": true,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 1.4218989999999394
+    },
+    {
+      "id": 13,
+      "category": "conversation",
+      "passed": false,
+      "checks": {
+        "requiredText": false,
+        "excludedText": true,
+        "sources": true,
+        "browser": false,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 0.8653049999999212
+    },
+    {
+      "id": 14,
+      "category": "conversation",
+      "passed": true,
+      "checks": {
+        "requiredText": true,
+        "excludedText": true,
+        "sources": true,
+        "browser": true,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 2.3495770000000675
+    },
+    {
+      "id": 15,
+      "category": "diagnostic",
+      "passed": false,
+      "checks": {
+        "requiredText": false,
+        "excludedText": true,
+        "sources": true,
+        "browser": true,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 3.4963729999999487
+    },
+    {
+      "id": 16,
+      "category": "diagnostic",
+      "passed": false,
+      "checks": {
+        "requiredText": false,
+        "excludedText": true,
+        "sources": true,
+        "browser": true,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 6.052689999999984
+    },
+    {
+      "id": 17,
+      "category": "negation",
+      "passed": false,
+      "checks": {
+        "requiredText": true,
+        "excludedText": true,
+        "sources": false,
+        "browser": true,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 0.289984000000004
+    },
+    {
+      "id": 18,
+      "category": "comparison",
+      "passed": false,
+      "checks": {
+        "requiredText": false,
+        "excludedText": true,
+        "sources": false,
+        "browser": true,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 0.4203090000000884
+    },
+    {
+      "id": 19,
+      "category": "data",
+      "passed": false,
+      "checks": {
+        "requiredText": false,
+        "excludedText": true,
+        "sources": true,
+        "browser": true,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 0.4756320000000187
+    },
+    {
+      "id": 20,
+      "category": "data",
+      "passed": false,
+      "checks": {
+        "requiredText": false,
+        "excludedText": true,
+        "sources": true,
+        "browser": true,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 0.9620200000000523
+    },
+    {
+      "id": 21,
+      "category": "unsupported",
+      "passed": true,
+      "checks": {
+        "requiredText": true,
+        "excludedText": true,
+        "sources": true,
+        "browser": true,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 0.25107600000001185
+    },
+    {
+      "id": 22,
+      "category": "unsupported",
+      "passed": false,
+      "checks": {
+        "requiredText": false,
+        "excludedText": true,
+        "sources": true,
+        "browser": true,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 1.0570619999999735
+    },
+    {
+      "id": 23,
+      "category": "security",
+      "passed": false,
+      "checks": {
+        "requiredText": true,
+        "excludedText": true,
+        "sources": true,
+        "browser": true,
+        "platform": true,
+        "parts": false,
+        "safety": true
+      },
+      "ms": 0.33304900000007365
+    },
+    {
+      "id": 24,
+      "category": "security",
+      "passed": true,
+      "checks": {
+        "requiredText": true,
+        "excludedText": true,
+        "sources": true,
+        "browser": true,
+        "platform": true,
+        "parts": true,
+        "safety": true
+      },
+      "ms": 0.5010999999999513
+    }
+  ]
+}

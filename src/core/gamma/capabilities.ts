@@ -1,6 +1,13 @@
+import {
+  statisticsText,
+  csvAnalysis,
+  textAnalysis,
+  textDifference,
+  deduce,
+} from "./data-tools";
 import { calculate } from "./calculator";
 export type Capability = {
-  name: "calculate" | "analyze";
+  name: "calculate" | "analyze" | "stats" | "csv" | "text" | "diff" | "logic";
   description: string;
   environment: "both";
   permission: "none";
@@ -52,6 +59,29 @@ function analyze(input: string) {
   return `${header}\n\n${signals.length ? "Recognized technical identifiers (not a diagnosis):\n" + signals.join("\n") : "No supported technical identifiers found. Paste JSON or a short log containing browser errors, HTTP status codes or JavaScript errors."}`;
 }
 export const capabilities: readonly Capability[] = [
+  ...Object.entries({
+    stats: statisticsText,
+    csv: csvAnalysis,
+    text: textAnalysis,
+    diff: textDifference,
+    logic: deduce,
+  }).map(([name, execute]) => ({
+    name: name as Capability["name"],
+    description: {
+      stats: "Basic descriptive statistics",
+      csv: "CSV structure and numeric-column summaries",
+      text: "Unicode text counts",
+      diff: "Line-occurrence comparison",
+      logic: "Bounded deduction from explicit JSON premises",
+    }[name]!,
+    environment: "both" as const,
+    permission: "none" as const,
+    sideEffects: "none" as const,
+    consent: "explicit-request" as const,
+    maxCharacters: 16000,
+    execute,
+  })),
+
   {
     name: "calculate",
     description: "Bounded arithmetic, percentages and unit conversions",
@@ -74,24 +104,51 @@ export const capabilities: readonly Capability[] = [
     execute: analyze,
   },
 ];
+export type CapabilityResult = {
+  name: string;
+  status: "completed" | "rejected";
+  text: string;
+};
+export function executeCapability(
+  name: string,
+  input: string,
+  signal?: AbortSignal,
+): CapabilityResult {
+  signal?.throwIfAborted();
+  const capability = capabilities.find((c) => c.name === name);
+  const rejected = (text: string): CapabilityResult => ({
+    name,
+    status: "rejected",
+    text,
+  });
+  if (!capability) return rejected("Unsupported local capability.");
+  if (!input.trim() || input.length > capability.maxCharacters)
+    return rejected(
+      `Use /${name} with 1–${capability.maxCharacters} characters of explicit input.`,
+    );
+  try {
+    const output = capability.execute(input);
+    signal?.throwIfAborted();
+    return {
+      name,
+      status: "completed",
+      text:
+        name === "calculate"
+          ? `Calculated locally: **${output}**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.`
+          : output,
+    };
+  } catch (error) {
+    signal?.throwIfAborted();
+    return rejected(
+      `Cannot ${name}: ${error instanceof Error ? error.message : "invalid input"}.`,
+    );
+  }
+}
+// Compatibility adapter for existing commands and callers.
 export function runCapability(
   name: string,
   input: string,
   signal?: AbortSignal,
 ): string {
-  signal?.throwIfAborted();
-  const capability = capabilities.find((c) => c.name === name);
-  if (!capability) return "Unsupported local capability.";
-  if (!input.trim() || input.length > capability.maxCharacters)
-    return `Use /${name} with 1–${capability.maxCharacters} characters of explicit input.`;
-  try {
-    const output = capability.execute(input);
-    signal?.throwIfAborted();
-    return name === "calculate"
-      ? `Calculated locally: **${output}**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.`
-      : output;
-  } catch (error) {
-    signal?.throwIfAborted();
-    return `Cannot ${name}: ${error instanceof Error ? error.message : "invalid input"}.`;
-  }
+  return executeCapability(name, input, signal).text;
 }

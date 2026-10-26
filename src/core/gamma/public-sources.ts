@@ -101,9 +101,9 @@ export function sourceSynthesis(result: PublicResult, query: string) {
           .sort((a, b) => b.score - a.score || a.index - b.index)
           .slice(0, 3)
           .sort((a, b) => a.index - b.index);
-        return `### Source ${i + 1}: ${literal(s.title)}\n${selected.map((r) => literal(r.text)).join("\n\n")}\n\nAttribution: source ${i + 1}. This is a literal extract, not a generated conclusion.`;
+        return `### Source ${i + 1}: ${literal(s.title)}\nArticle revision: ${s.updatedAt ?? "not provided"}. Publication date: not provided. A revision date does not prove every statement is current.\n\n${selected.map((r) => literal(r.text)).join("\n\n")}\n\nAttribution: source ${i + 1}. This is a literal extract, not a generated conclusion.`;
       })
       .join("\n\n") +
-    "\n\nThe sources are presented separately so claims remain attributable. Agreement, causation and freshness beyond the retrieval time have not been established."
+    "\n\nThe sources are presented separately so claims remain attributable. Agreement and causation have not been established. Retrieval time records this lookup; article revision time records an edit, not publication or browser feature support. These extracts cannot establish what changed without comparable dated evidence."
   );
 }

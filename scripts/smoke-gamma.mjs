@@ -122,10 +122,10 @@ try {
   );
   await writeFile(
     extra
-      ? "docs/gamma3/semantic-extra-scores.json"
+      ? `${process.env.GAMMA_REPORT_DIR ?? "docs/gamma3"}/semantic-extra-scores.json`
       : heldout
-        ? "docs/gamma3/heldout-semantic-scores.json"
-        : "docs/gamma3/semantic-scores.json",
+        ? `${process.env.GAMMA_REPORT_DIR ?? "docs/gamma3"}/heldout-semantic-scores.json`
+        : `${process.env.GAMMA_REPORT_DIR ?? "docs/gamma3"}/semantic-scores.json`,
     JSON.stringify(
       cases.map((c, i) => ({ ...c, ...scores[i] })),
       null,
@@ -193,10 +193,10 @@ try {
   };
   await writeFile(
     extra
-      ? "docs/gamma3/semantic-extra-measurements.json"
+      ? `${process.env.GAMMA_REPORT_DIR ?? "docs/gamma3"}/semantic-extra-measurements.json`
       : heldout
-        ? "docs/gamma3/heldout-semantic-measurements.json"
-        : "docs/gamma3/semantic-after.json",
+        ? `${process.env.GAMMA_REPORT_DIR ?? "docs/gamma3"}/heldout-semantic-measurements.json`
+        : `${process.env.GAMMA_REPORT_DIR ?? "docs/gamma3"}/semantic-after.json`,
     JSON.stringify(report, null, 2) + "\n",
   );
   console.log(report);

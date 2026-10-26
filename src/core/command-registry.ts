@@ -1,4 +1,9 @@
 export const commands = [
+  ["stats", "Descriptive statistics for supplied numbers"],
+  ["csv", "Analyze supplied CSV rows and numeric columns"],
+  ["text", "Count words, Unicode characters, bytes and lines"],
+  ["diff", "Compare JSON {before, after} text"],
+  ["logic", "Deduce from JSON facts and if/then rules"],
   ["probe", "Explicit local capability operation: webgpu"],
   ["research", "Explicit public lookup; clear removes cached public extracts"],
   ["memory", "Review, save, disable or clear explicit local preferences"],
@@ -80,7 +85,16 @@ export function parseCommand(input: string) {
   if (!m) return null;
   return {
     name: m[1].toLowerCase(),
-    arg: ["calculate", "analyze", "document"].includes(m[1].toLowerCase())
+    arg: [
+      "calculate",
+      "analyze",
+      "document",
+      "stats",
+      "csv",
+      "text",
+      "diff",
+      "logic",
+    ].includes(m[1].toLowerCase())
       ? (m[2]?.trim() ?? "")
       : (m[2]?.trim().toLowerCase() ?? ""),
   };

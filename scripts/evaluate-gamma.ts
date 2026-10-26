@@ -20,12 +20,13 @@ const reports = Object.entries({ original, lexical: rank }).map(
       const first = candidates[0];
       const accepted =
         first &&
-        first.score >= 0.63 &&
-        !(
-          candidates[1] &&
-          first.score < 0.9 &&
-          first.score - candidates[1].score < 0.055
-        );
+        (("evidenceAccepted" in first && first.evidenceAccepted === true) ||
+          (first.score >= 0.63 &&
+            !(
+              candidates[1] &&
+              first.score < 0.9 &&
+              first.score - candidates[1].score < 0.055
+            )));
       if (c.expected) {
         if (accepted && first.record.id === c.expected) correct++;
         if (candidates.slice(0, 3).some((r) => r.record.id === c.expected))
@@ -75,7 +76,7 @@ const report = {
   reports,
 };
 writeFileSync(
-  "docs/gamma-evaluation.json",
+  process.argv[2] ?? "docs/gamma-evaluation.json",
   JSON.stringify(report, null, 2) + "\n",
 );
 console.log(JSON.stringify(report, null, 2));

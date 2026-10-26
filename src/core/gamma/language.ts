@@ -54,7 +54,8 @@ export function understand(input: string) {
       return " ";
     },
   );
-  if (/\bbut\b/.test(positive)) positive = positive.split(/\bbut\b/).at(-1)!;
+  // Contrast is evidence. Never discard the affected subject before “but”.
+  positive = positive.replace(/\b(?:but|however)\b/g, " ");
   const substitutions: [RegExp, string][] = [
     [/\b(crashes|crashing|quits unexpectedly|closes itself)\b/g, "crash"],
     [/\b(choppy|sluggish|laggy|lagging|unresponsive)\b/g, "slow"],

@@ -153,7 +153,8 @@ it("fails back to lexical retrieval on semantic failure and propagates abort", a
     emptyContext(),
     { ...options, enhanced: true },
   );
-  expect(response.text).toContain("reliable answer");
+  expect(response.context.intent).toBe("logout");
+  expect(response.text).toContain("Repeated logout");
   const controller = new AbortController();
   controller.abort();
   await expect(
@@ -202,7 +203,7 @@ it("checks platform applicability when a discovery suggestion is selected", asyn
   expect(result.text).toContain("different device");
   expect(result.context.intent).toBeUndefined();
 });
-it("accepts a strongly separated low-risk semantic candidate through the calibrated gate", async () => {
+it("requires independent evidence even for a strongly separated semantic candidate", async () => {
   vi.spyOn(semantic, "query").mockResolvedValue([
     { id: "slow", score: 0.82 },
     { id: "dns", score: 0.5 },
@@ -212,6 +213,6 @@ it("accepts a strongly separated low-risk semantic candidate through the calibra
     emptyContext(),
     { ...options, enhanced: true },
   );
-  expect(result.context.intent).toBe("slow");
-  expect(result.text).not.toContain("potentially related");
+  expect(result.context.intent).toBeUndefined();
+  expect(result.text).toContain("potentially related");
 });

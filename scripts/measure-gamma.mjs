@@ -90,7 +90,7 @@ const report = {
   note: "Initial payload includes the entry and all static manifest imports, excluding dynamic engine/domain/inference chunks. Core offline assets still precache in the background. CDP JS heap is a post-answer snapshot, not peak process or inference memory. Container measurements do not certify physical-device performance.",
 };
 await writeFile(
-  "docs/gamma3/performance-after.json",
+  `${process.env.GAMMA_REPORT_DIR ?? "docs/gamma3"}/performance-after.json`,
   JSON.stringify(report, null, 2) + "\n",
 );
 console.log(report);

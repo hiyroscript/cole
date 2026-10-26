@@ -1,5 +1,7 @@
 # Cole
 
+Gamma 4.0 adds source-separated tasks, evidence checks, statistics/CSV/text/deduction tools, cancellable multi-document analysis, comparison follow-ups, explicit preferences and a bounded French path. Broad intelligence quality targets remain unmet. See [measured results and remaining work](docs/GAMMA4-DELIVERY.md).
+
 Gamma 3.0 adds optional knowledge packs, local documents and calculations, evidence-based troubleshooting, explicit preference memory and experimental semantic acceptance. Startup is within budget; broader quality targets remain unmet. See the [implementation and measured release gates](docs/GAMMA3-DELIVERY.md).
 
 Cole is a browser-local diagnostic and knowledge assistant. **Gamma is a deterministic engine, not a large language model.** It combines authored explanations, indexed intent matching, conversation context, and actual browser APIs. No account, backend, hosted inference API, or API key is required. Madon is now an opt-in local Qwen3/WebLLM website preview with explicit setup, real token streaming, and optional Wikimedia retrieval. Real GPU inference remains unverified in this environment; see [Madon setup and validation](docs/MADON.md).
@@ -10,14 +12,14 @@ Cole uses the supplied two-part symbol, a scalable SVG master, and a neutral gra
 
 Gamma now has a modular lexical/context/diagnostic pipeline and an optional local MiniLM enhancement. See [Gamma architecture, migration, measurements and remaining release gates](docs/GAMMA.md). Madon remains a separate opt-in generative model.
 
-- **700** authored records and **2,811** distinct expressions across 20 categories.
+- **708 core + 120 optional records**, with **3,067** distinct expressions across the installed corpus.
 - **75** diagnostic workflows and **560** terminal branch paths.
 - **300** independently authored multi-turn scenarios, plus expression, safety, storage, graph and browser regression tests.
 - Technical entities, symptom exclusions, conservative BM25/phrase ranking, multi-choice diagnostic state, real feature checks, contextual browser references and four response depths.
 - Optional CPU/WASM sentence embeddings with explicit consent, progress, cache management and lexical fallback.
 - Explicit public Wikimedia lookup with literal extracts and source attribution.
 
-The validator verifies the Gamma coverage targets. The [delivery report](docs/GAMMA-DELIVERY.md) records implementation, measurements, verification and remaining limits. Semantic relevance is experimental; no broad benchmark or physical-device certification is claimed. Run `npm run validate:knowledge` for the generated [coverage report](docs/coverage.json).
+The validator checks coverage and expression ownership. The [current delivery report](docs/GAMMA4-DELIVERY.md) records actual benchmark results, verification and remaining limits. Semantic relevance remains experimental; physical-device certification is not claimed. Run `npm run validate:knowledge` for the generated [coverage report](docs/coverage.json).
 
 ## Run locally
 

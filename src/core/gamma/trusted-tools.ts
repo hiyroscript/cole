@@ -1,7 +1,7 @@
 import type { Context, Response } from "../types";
 import type { LocalDocument } from "./documents";
-import { documentAnswer } from "./documents";
-import { runCapability } from "./capabilities";
+import { documentOperation } from "./documents";
+import { executeCapability } from "./capabilities";
 import { plan, resumePlan, evidenceAnswer, caseSummary } from "./reasoning";
 import { knowledgeCommand } from "./packs";
 import { memoryCommand } from "./memory";
@@ -18,6 +18,12 @@ export type ToolSpec = {
   maxInput: number;
 };
 export const trustedTools: readonly ToolSpec[] = [
+  ...["stats", "csv", "text", "diff", "logic"].map((name) => ({
+    name,
+    description: "Bounded local data operation",
+    sideEffect: "none",
+    maxInput: 16000,
+  })),
   {
     name: "calculate",
     description: "Bounded arithmetic and conversions",
@@ -91,6 +97,7 @@ export async function executeTrustedTool(
   options: {
     signal?: AbortSignal;
     document?: LocalDocument;
+    documents?: LocalDocument[];
     webSources?: boolean;
   },
 ): Promise<Response | undefined> {
@@ -104,12 +111,27 @@ export async function executeTrustedTool(
     let response: Response;
     switch (name) {
       case "calculate":
-      case "analyze":
-        response = result(runCapability(name, arg, options.signal));
+      case "stats":
+      case "csv":
+      case "text":
+      case "diff":
+      case "logic":
+      case "analyze": {
+        const execution = executeCapability(name, arg, options.signal);
+        response = {
+          ...result(execution.text),
+          operation: { name: execution.name, status: execution.status },
+        };
         break;
-      case "document":
-        response = result(documentAnswer(options.document, arg));
+      }
+      case "document": {
+        const execution = documentOperation(
+          options.documents ?? (options.document ? [options.document] : []),
+          arg,
+        );
+        response = { ...result(execution.text), operation: execution };
         break;
+      }
       case "plan":
         response =
           arg === "resume" ? resumePlan(c) : plan(arg || c.goal || "", c);

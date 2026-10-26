@@ -1,5 +1,11 @@
 # Implementation status
 
+## Gamma 4.0 implementation (2026-10-26)
+
+Integrated request/evidence/task upgrades, statistics/CSV/text/deduction tools, diagnostic check policy, 708 core plus 120 optional records, cancellable multi-document indexing and comparisons, research revision metadata, explicit language/familiarity memory and a bounded French path. Validation includes 3,531 unit tests, 80 browser cases verified and 19 extension checks. Actual MiniLM WASM indexed the expanded corpus and reused it offline. The generation probe found no usable WebGPU adapter.
+
+The published regression has 0/100 unsupported false accepts, but broad acceptance, conversation and composition targets remain unmet. General generation, PDF/DOCX parsing, broader research and independent evaluation remain open. See [the full delivery, measured trade-offs and checklist](GAMMA4-DELIVERY.md). Historical entries below retain their original figures.
+
 Gamma 3.0 foundations: bounded multi-part requests, semantic candidate discovery, local calculations, JSON/log analysis and sourced comparisons are implemented. This is a partial milestone; see the [delivery report and remaining release gates](GAMMA3-DELIVERY.md).
 
 ## Cole rebrand (2026-10-25)

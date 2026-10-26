@@ -67,6 +67,30 @@ try {
     .getByRole("button", { name: "Switch to Gamma", exact: true })
     .click();
   checks++;
+  for (const [query, expected] of [
+    ["What is 18% of 475?", "85.5"],
+    ["/stats 2, 4, 6", "Calculated locally from 3 supplied values"],
+    [
+      'Deduce: {"facts":["a"],"rules":[{"if":["a"],"then":"b"}],"query":"b"}',
+      "Supported by the supplied premises/rules",
+    ],
+    ["Explique WebGPU", "calcul sur GPU"],
+    [
+      "Could WebAssembly grant unrestricted system access?",
+      "it does not grant unrestricted system access",
+    ],
+    ["Can you adjust my monitor brightness?", "No setting was changed"],
+  ]) {
+    await panel.getByRole("textbox", { name: "Message Gamma" }).fill(query);
+    await panel
+      .getByRole("button", { name: "Send message", exact: true })
+      .click();
+    await panel.getByText(expected, { exact: false }).waitFor();
+    await panel
+      .getByRole("button", { name: "Stop response", exact: true })
+      .waitFor({ state: "detached" });
+    checks++;
+  }
   const invalid = await panel.evaluate(() =>
     chrome.runtime.sendMessage({
       type: "VAREK_ACTION",

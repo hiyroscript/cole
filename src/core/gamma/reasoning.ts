@@ -1,3 +1,4 @@
+import { assessCheck, excludedCheck } from "./check-policy";
 import { knowledge } from "../../data/knowledge";
 import { rank, confidence } from "./retrieval";
 import { observe } from "./observations";
@@ -146,6 +147,10 @@ function target(query: string, c: Context) {
 export function plan(query: string, c: Context): Response {
   const u = observe(query),
     root = target(query, c);
+  if (!c.case || query !== c.case.goal) {
+    const platform = u.facts.findLast((f) => f.key === "platform");
+    if (platform) c.platform = platform.value;
+  }
   if (!root)
     return {
       text: "What symptom should I plan checks for? Include the affected application, what fails, and what still works.",
@@ -170,7 +175,7 @@ export function plan(query: string, c: Context): Response {
     checks: [],
     corrections: [],
   };
-  mergeFacts(state, u.facts);
+  if (!c.case) mergeFacts(state, u.facts);
   mergeFacts(
     state,
     u.constraints.map((constraint, i) => ({
@@ -179,7 +184,7 @@ export function plan(query: string, c: Context): Response {
       kind: "user" as const,
     })),
   );
-  if (u.affectedBrowser) c.browser = u.affectedBrowser;
+  if (!c.case && u.affectedBrowser) c.browser = u.affectedBrowser;
   for (const hypothesis of u.hypothesis)
     mergeFacts(state, [
       {
@@ -217,16 +222,11 @@ export function plan(query: string, c: Context): Response {
     .filter(
       (check) =>
         !already.has(check.id) &&
-        !state.facts.some(
-          (f) =>
-            !f.contradicted &&
-            f.key.startsWith("constraint:") &&
-            /without|avoid|dont|do not|cannot|cant/i.test(f.value) &&
-            ["clear", "delete", "reset", "install", "disable", "remove"].some(
-              (action) =>
-                f.value.toLowerCase().includes(action) &&
-                check.text.toLowerCase().includes(action),
-            ),
+        !excludedCheck(
+          check.text,
+          state.facts
+            .filter((f) => !f.contradicted && f.key.startsWith("constraint:"))
+            .map((f) => f.value),
         ) &&
         !/factory reset|delete all|bypass|format (?:the|your)|disable (?:security|antivirus)/i.test(
           check.text,
@@ -243,7 +243,17 @@ export function plan(query: string, c: Context): Response {
       source: root.id,
       score: 130,
     });
-  const best = checks.sort((a, b) => b.score - a.score)[0];
+  const best = checks
+    .filter(
+      (check) =>
+        !excludedCheck(
+          check.text,
+          state.facts
+            .filter((f) => !f.contradicted && f.key.startsWith("constraint:"))
+            .map((f) => f.value),
+        ),
+    )
+    .sort((a, b) => b.score - a.score)[0];
   c.case = state;
   c.goal = state.goal;
   c.intent = root.id;
@@ -259,7 +269,17 @@ export function plan(query: string, c: Context): Response {
   state.checks.push({ ...best, outcome: "suggested" });
   state.checks = state.checks.slice(-24);
   state.pending = best.id;
-  const text = `### Next reversible check\n${best.text}\n\nWhy this check: it compares the reported failure against a controlled condition before considering broader changes.\n\nEvidence: user-reported symptoms; authored guidance [${root.title}](${root.reference}), reviewed ${root.reviewed}. No system hardware measurements were taken.\n\nReport “that helped”, “that didn’t help”, or “skip that check”. A changed result updates the next recommendation; a failed test does not by itself prove the remaining cause.`;
+  const assessment = assessCheck(best.text);
+  const source = knowledge.find((k) => k.id === best.source) ?? root;
+  const hypotheses = sources
+    .filter((k) => k.id !== root.id)
+    .slice(0, 3)
+    .map(
+      (k) =>
+        `- ${k.title}: a relevant possibility to investigate, not a confirmed cause. [Guidance](${k.reference}).`,
+    )
+    .join("\n");
+  const text = `### Next reversible check\n${best.text}\n\nWhy this check: ${assessment.reason}\n\nPreparation (${assessment.risk}): ${assessment.preparation}\n\n${assessment.interpretation}${hypotheses ? `\n\n### Possible explanations to distinguish\n${hypotheses}` : ""}\n\nEvidence: user-reported symptoms; authored guidance [${source.title}](${source.reference}), reviewed ${source.reviewed}. No system hardware measurements were taken.\n\nReport “that helped”, “that didn’t help”, or “skip that check”. A changed result updates the next recommendation; a failed test does not by itself prove the remaining cause.`;
   return {
     text,
     context: c,

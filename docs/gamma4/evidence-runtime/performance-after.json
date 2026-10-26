@@ -1,0 +1,54 @@
+{
+  "environment": "Headless Chromium, Linux container, local production preview, fresh browser context for each of five samples, reduced motion; no network throttling or physical mobile measurement",
+  "baseline": {
+    "javascriptBytes": 815496,
+    "gzipBytes": 262048
+  },
+  "current": {
+    "javascriptBytes": 458441,
+    "gzipBytes": 142683,
+    "initialAssets": [
+      "assets/index-pijsHobD.js"
+    ]
+  },
+  "changePercent": -43.78378312094725,
+  "backgroundPrecacheBytes": 977120,
+  "budgets": {
+    "initialJavascriptBytes": 650000,
+    "initialGzipBytes": 210000
+  },
+  "budgetExceeded": false,
+  "median": {
+    "readyMs": 362.69999999925494,
+    "responseVisibleMs": 201.2000000011176,
+    "jsHeapUsedBytes": 9931968
+  },
+  "samples": [
+    {
+      "readyMs": 492.30000000074506,
+      "responseVisibleMs": 196,
+      "jsHeapUsedBytes": 9985776
+    },
+    {
+      "readyMs": 369.30000000074506,
+      "responseVisibleMs": 195.30000000074506,
+      "jsHeapUsedBytes": 9876244
+    },
+    {
+      "readyMs": 297.69999999925494,
+      "responseVisibleMs": 214.2999999988824,
+      "jsHeapUsedBytes": 9831260
+    },
+    {
+      "readyMs": 362.69999999925494,
+      "responseVisibleMs": 201.2000000011176,
+      "jsHeapUsedBytes": 9946028
+    },
+    {
+      "readyMs": 339.69999999925494,
+      "responseVisibleMs": 203.19999999925494,
+      "jsHeapUsedBytes": 9931968
+    }
+  ],
+  "note": "Initial payload includes the entry and all static manifest imports, excluding dynamic engine/domain/inference chunks. Core offline assets still precache in the background. CDP JS heap is a post-answer snapshot, not peak process or inference memory. Container measurements do not certify physical-device performance."
+}

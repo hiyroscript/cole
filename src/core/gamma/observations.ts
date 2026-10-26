@@ -4,6 +4,7 @@ import type { Fact } from "./case-state";
 export type Understanding = {
   facts: Fact[];
   affectedBrowser?: string;
+  statedBrowser?: string;
   workingBrowsers: string[];
   symptoms: string[];
   constraints: string[];
@@ -32,6 +33,15 @@ export function observe(input: string): Understanding {
     output: "standard",
     temporal: [],
   };
+  // Entity roles follow affirmative clauses, not the last browser token.
+  const affirmative = input.replace(
+    /\b(?:not|rather than)\s+(?:using\s+)?(?:chrome|firefox|safari|edge|brave|opera)\b/gi,
+    "",
+  );
+  if (/\b(?:using|use|actually|correction|it.s|it is)\b/i.test(input))
+    result.statedBrowser = entities(affirmative)
+      .filter((e) => e.kind === "browser")
+      .at(-1)?.value;
   const clauses = input
     .split(/(?<!\d)[.!?;](?!\d)|,|\b(?:but|however|actually)\b/i)
     .map((s) => s.trim())
