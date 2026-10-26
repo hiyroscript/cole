@@ -74,24 +74,51 @@ export const capabilities: readonly Capability[] = [
     execute: analyze,
   },
 ];
+export type CapabilityResult = {
+  name: string;
+  status: "completed" | "rejected";
+  text: string;
+};
+export function executeCapability(
+  name: string,
+  input: string,
+  signal?: AbortSignal,
+): CapabilityResult {
+  signal?.throwIfAborted();
+  const capability = capabilities.find((c) => c.name === name);
+  const rejected = (text: string): CapabilityResult => ({
+    name,
+    status: "rejected",
+    text,
+  });
+  if (!capability) return rejected("Unsupported local capability.");
+  if (!input.trim() || input.length > capability.maxCharacters)
+    return rejected(
+      `Use /${name} with 1–${capability.maxCharacters} characters of explicit input.`,
+    );
+  try {
+    const output = capability.execute(input);
+    signal?.throwIfAborted();
+    return {
+      name,
+      status: "completed",
+      text:
+        name === "calculate"
+          ? `Calculated locally: **${output}**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.`
+          : output,
+    };
+  } catch (error) {
+    signal?.throwIfAborted();
+    return rejected(
+      `Cannot ${name}: ${error instanceof Error ? error.message : "invalid input"}.`,
+    );
+  }
+}
+// Compatibility adapter for existing commands and callers.
 export function runCapability(
   name: string,
   input: string,
   signal?: AbortSignal,
 ): string {
-  signal?.throwIfAborted();
-  const capability = capabilities.find((c) => c.name === name);
-  if (!capability) return "Unsupported local capability.";
-  if (!input.trim() || input.length > capability.maxCharacters)
-    return `Use /${name} with 1–${capability.maxCharacters} characters of explicit input.`;
-  try {
-    const output = capability.execute(input);
-    signal?.throwIfAborted();
-    return name === "calculate"
-      ? `Calculated locally: **${output}**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.`
-      : output;
-  } catch (error) {
-    signal?.throwIfAborted();
-    return `Cannot ${name}: ${error instanceof Error ? error.message : "invalid input"}.`;
-  }
+  return executeCapability(name, input, signal).text;
 }

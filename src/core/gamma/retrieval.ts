@@ -1,3 +1,5 @@
+import { validateCandidates } from "./evidence-selection";
+import type { Answerability } from "./answerability";
 import { rewriteQuery } from "./query";
 import { knowledge } from "../../data/knowledge";
 import { normalize, tokens, distance } from "../text";
@@ -60,6 +62,8 @@ export type Candidate = {
   coverage: number;
   discovery?: boolean;
   semanticAccepted?: boolean;
+  evidenceAccepted?: boolean;
+  support?: Answerability;
   fusion?: number;
 };
 export function rank(input: string): Candidate[] {
@@ -111,7 +115,7 @@ export function rank(input: string): Candidate[] {
           : ["wifi", "offline-network"],
     ),
   );
-  return [...candidates]
+  const ranked = [...candidates]
     .filter((i) => !blocked.has(documents[i].record.id))
     .map((i) => {
       const d = documents[i];
@@ -165,10 +169,11 @@ export function rank(input: string): Candidate[] {
         Number(!!a.discovery) - Number(!!b.discovery) || b.score - a.score,
     )
     .slice(0, 24);
+  return validateCandidates(input, ranked);
 }
 export function confidence(candidates: Candidate[]) {
   const first = candidates[0];
-  if (first?.semanticAccepted) return "moderate";
+  if (first?.semanticAccepted || first?.evidenceAccepted) return "moderate";
   if (!first || first.discovery || first.score < 0.63) return "unsupported";
   if (
     candidates[1] &&

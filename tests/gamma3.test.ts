@@ -153,7 +153,8 @@ it("fails back to lexical retrieval on semantic failure and propagates abort", a
     emptyContext(),
     { ...options, enhanced: true },
   );
-  expect(response.text).toContain("reliable answer");
+  expect(response.context.intent).toBe("logout");
+  expect(response.text).toContain("Repeated logout");
   const controller = new AbortController();
   controller.abort();
   await expect(

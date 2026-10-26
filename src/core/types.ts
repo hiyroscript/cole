@@ -69,6 +69,7 @@ export type Knowledge = {
   confidence?: number;
 };
 export type Response = {
+  operation?: { name: string; status: "completed" | "rejected" };
   tasks?: {
     id: number;
     intent: string;

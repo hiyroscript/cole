@@ -125,6 +125,12 @@ const report = {
   scope:
     "356 frozen single-turn cases; real pinned MiniLM/WASM scores replayed into the full response engine. Full response routing and limitations are included. Multi-turn and compound cases remain in the separate default-mode report. This replay does not measure inference latency.",
   counts,
+  acceptedAnswerPrecisionOnSingleTurns:
+    counts.correctAccepted /
+    Math.max(
+      1,
+      counts.correctAccepted + counts.incorrectAccepted + counts.falseAccepted,
+    ),
   supportedAcceptanceAccuracy: counts.correctAccepted / counts.supported,
   unsupportedFalseAcceptRate: counts.falseAccepted / counts.unsupported,
   recallAt3: counts.recallAt3 / counts.supported,

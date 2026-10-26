@@ -1,3 +1,4 @@
+import { executionRequirement, unmetRequirement } from "./requirements";
 import { naturalTool } from "./natural-tools";
 import { assessAnswerability } from "./answerability";
 import { executeTrustedTool } from "./trusted-tools";
@@ -84,11 +85,6 @@ async function respondSingle(
   c.updated = Date.now();
   c.turns++;
   let n = normalize(input);
-  const statedPlatform = understand(input)
-    .entities.filter((e) => e.kind === "platform")
-    .at(-1);
-  if (statedPlatform && /\b(using|on|running|actually)\b/.test(n))
-    c.platform = statedPlatform.value;
   const answer = (text: string, rest: Partial<Response> = {}): Response => ({
     text,
     context: c,
@@ -128,6 +124,16 @@ async function respondSingle(
     return answer(
       "Use /help for supported commands. Arbitrary scripts and shell commands cannot be executed.",
     );
+  const natural = naturalTool(input);
+  if (natural) {
+    options.stage?.(`Running local ${natural.name}`);
+    return (await executeTrustedTool(natural.name, natural.input, c, options))!;
+  }
+  const statedPlatform = understand(input)
+    .entities.filter((e) => e.kind === "platform")
+    .at(-1);
+  if (statedPlatform && /\b(using|on|running|actually)\b/.test(n))
+    c.platform = statedPlatform.value;
   if (
     /^(?:please\s+)?(?:write|compose|invent|generate|draw|design)\b/i.test(
       input,
@@ -247,23 +253,6 @@ async function respondSingle(
         ),
       ),
     );
-  const natural = naturalTool(input);
-  if (natural) {
-    options.stage?.(`Running local ${natural.name}`);
-    return (await executeTrustedTool(natural.name, natural.input, c, options))!;
-  }
-  const computation = input.trim().match(/^(calculate|convert)\s+([\s\S]+)$/i);
-  if (computation)
-    return answer(
-      runCapability(
-        "calculate",
-        computation[2].replace(/[?]$/, ""),
-        options.signal,
-      ),
-    );
-  const supplied = input.trim().match(/^analyze\s+([\s\S]+)$/i);
-  if (supplied)
-    return answer(runCapability("analyze", supplied[1], options.signal));
   const web = await webResponse(
     input,
     c,
@@ -520,6 +509,8 @@ async function respondSingle(
     return answer(
       "Understood. What is happening instead? Describe the symptom you want to troubleshoot.",
     );
+  const requirement = executionRequirement(input);
+  if (requirement) return answer(unmetRequirement(requirement));
   let candidates = await retrieveCandidates(
     input,
     options.enhanced === true,
@@ -581,7 +572,9 @@ async function respondSingle(
   }
   if (
     !candidates.length ||
-    (!candidates[0].semanticAccepted && candidates[0].score < 0.63)
+    (!candidates[0].semanticAccepted &&
+      !candidates[0].evidenceAccepted &&
+      candidates[0].score < 0.63)
   )
     return answer(
       "I don’t have a reliable answer to that yet. I can help with browser settings, device information, performance, privacy, and troubleshooting. Could you describe the specific feature or symptom?",
@@ -599,6 +592,7 @@ async function respondSingle(
 
   if (
     !top.semanticAccepted &&
+    !top.evidenceAccepted &&
     candidates[1] &&
     top.score < 0.9 &&
     top.score - candidates[1].score < 0.055
@@ -785,9 +779,7 @@ export async function respond(
     }
     context = response.context;
     const sources = context.authoredSources ?? [];
-    const verifiedTool =
-      /^(?:Calculated locally:|Local analysis)/.test(response.text) &&
-      !/invalid JSON|No supported/.test(response.text);
+    const verifiedTool = response.operation?.status === "completed";
     results.push({
       id: task.id,
       intent: task.intent,

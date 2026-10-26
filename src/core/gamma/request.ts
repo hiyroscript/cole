@@ -1,3 +1,4 @@
+import { executionRequirement } from "./requirements";
 import { observe, type Understanding } from "./observations";
 import { entities, understand, type Entity } from "./language";
 import { naturalTool } from "./natural-tools";
@@ -124,9 +125,10 @@ export function analyzeRequest(input: string): StructuredRequest {
       dependsOn: reference && id ? [id - 1] : [],
       reference,
       requiredCapabilities: [
-        taskIntent === "calculate" || taskIntent === "analyze"
-          ? taskIntent
-          : "knowledge",
+        executionRequirement(text)?.kind ??
+          (taskIntent === "calculate" || taskIntent === "analyze"
+            ? taskIntent
+            : "knowledge"),
       ],
       missingInformation: reference && !id ? ["reference subject"] : [],
     };

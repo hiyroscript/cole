@@ -145,6 +145,14 @@ const report = {
   scope: fixture.scope,
   mode: "Lexical/default offline engine; optional packs are not installed, semantic inference is evaluated separately. Citation validity here is URL syntax, not source entailment.",
   counts: counters,
+  acceptedAnswerPrecisionOnSingleTurns:
+    counters.correctAccepted /
+    Math.max(
+      1,
+      counters.correctAccepted +
+        counters.incorrectAccepted +
+        counters.falseAccepted,
+    ),
   supportedAcceptanceAccuracy: counters.correctAccepted / counters.supported,
   unsupportedFalseAcceptRate: counters.falseAccepted / counters.unsupported,
   conversationSuccessRate:

@@ -146,6 +146,10 @@ function target(query: string, c: Context) {
 export function plan(query: string, c: Context): Response {
   const u = observe(query),
     root = target(query, c);
+  if (!c.case || query !== c.case.goal) {
+    const platform = u.facts.findLast((f) => f.key === "platform");
+    if (platform) c.platform = platform.value;
+  }
   if (!root)
     return {
       text: "What symptom should I plan checks for? Include the affected application, what fails, and what still works.",
