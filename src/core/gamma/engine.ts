@@ -126,6 +126,33 @@ async function respondSingle(
     return answer(
       "Use /help for supported commands. Arbitrary scripts and shell commands cannot be executed.",
     );
+  // Handle conversation openers before knowledge retrieval. They are not
+  // unsupported technical questions, and must not discard an active case.
+  if (
+    /^(?:(?:hey|hi|hello)[,!. ]+)?(?:i (?:have|got) (?:a |one |some )?questions?|can i ask (?:you )?(?:a |something|one )?questions?|can i ask you something|there(?:'s| is) something i (?:want to ask|have been wondering about)|can i run something by you)[?.! ]*$/i.test(input.trim())
+  )
+    return answer("Of course. What's your question?");
+
+  // "Google" can mean the Chrome browser, Search, or an installed app.
+  // Ask for the affected surface instead of claiming a diagnosis or falling
+  // back, but never infer a crash from an explicitly negated symptom.
+  const crashReport = /\\b(crash(?:es|ed|ing)?|keeps? clos(?:ing|es)|closes? (?:itself|unexpectedly)|quits? unexpectedly)\\b/i.test(input);
+  const negatedCrash = /\\b(?:not|never|isn['’]?t|doesn['’]?t|without)\\s+(?:actually\\s+)?crash(?:es|ed|ing)?\\b/i.test(input);
+  if (crashReport && !negatedCrash && /\\bgoogle\\b/i.test(input) && !/\\bchrome\\b/i.test(input))
+    return answer(
+      "When you say Google crashes, do you mean the Chrome browser closes, the Google Search website stops working, or the Google app closes? The next safe check depends on which one fails.",
+      { followups: ["Chrome closes", "Google Search website fails", "Google app closes"] },
+    );
+  if (crashReport && !negatedCrash && /\\b(?:chrome|firefox|safari|edge|brave|browser)\\b/i.test(input)) {
+    const record = get("crash");
+    if (record) {
+      c.intent = record.id;
+      c.topic = record.title;
+      c.goal = input.slice(0, 200);
+      c.authoredSources = [record.id];
+      return answer(compose(record.id, c), { followups: record.followups });
+    }
+  }
   if (
     /^(?:please\s+)?(?:write|compose|invent|generate|draw|design)\b/i.test(
       input,
