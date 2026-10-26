@@ -1,3 +1,4 @@
+import { gamma4Knowledge } from "./gamma4";
 import { webPlatformKnowledge } from "./web-platform";
 import { platformKnowledge } from "./platform-guidance";
 import { networkSecurityKnowledge } from "./network-security";
@@ -165,3 +166,5 @@ knowledge.push(...networkSecurityKnowledge);
 knowledge.push(...platformKnowledge);
 
 knowledge.push(...webPlatformKnowledge);
+
+knowledge.push(...gamma4Knowledge);

@@ -1,88 +1,99 @@
-# Gamma 4.0 — correctness foundations
+# Gamma 4.0 implementation and delivery
 
-This delivers a working subset of milestones A/B from `max`, not the full Gamma 4.0 release. The existing Gamma identity, separate Madon model, UI, storage schemas, commands, optional packs and permission boundaries remain compatible. See the [initial audit](GAMMA4-AUDIT.md).
+This branch delivers an integrated upgrade across request interpretation, evidence acceptance, task composition, local tools, diagnosis, knowledge, documents, research metadata and explicit personalization. It runs in the existing website/PWA and Chromium extension. The full ambition and numerical quality gates in `max` are **not all achieved**; remaining gaps are listed below. Gamma remains deterministic, and Madon remains separately selected.
 
-## Implemented architecture
+The [initial audit](GAMMA4-AUDIT.md) records original findings. Baseline: `1a30900`; earlier implementation commits: `cdb9611` and `2ed3a54`. Reports prefixed `final-` and `final-runtime/` describe this delivery. Earlier reports and historical Gamma 3 artifacts remain preserved. [Review PR #6](https://github.com/hiyroscript/cole/pull/6) is not merged or deployed.
 
-- `request.ts` creates at most six typed tasks with subjects, intent, entities, constraints, dependency references, required capabilities and missing information. It recognizes coordinated explanation subjects, polite question boundaries and comparisons without splitting ordinary comparison operands. Commands, JSON analysis, fenced data, quoted clauses and leading conditionals remain opaque. English rules remain bounded; this is not a learned parser or general multilingual understanding.
-- `query.ts` rewrites general question framing and technical abbreviations. `retrieval.ts` preserves original exact matches, retains contrasts, and adds answer-field candidates below the existing lexical acceptance threshold as discovery-only results. These candidates improve recall without automatically becoming answers. Cached term sets keep answer discovery bounded.
-- `evidence-terms.ts` normalizes grammatical framing and inflections while retaining unknown content words. `answerability.ts` separates direct term support, partial coverage, related evidence, conflicting applicability and unsupported identifiers. `evidence-selection.ts` can accept a single independently supported low-risk candidate without inflating its rank score: technical subjects must be central to the record, and the requested terms must be covered by a coherent passage or an authored expression with only a generic browser/site qualifier. Incidental mentions and unreconciled negative conditions cannot use this route. `rerank.ts` applies the same evidence contract to semantic candidates. No cosine or lexical utility is called a probability. This conservative contract cannot establish general semantic entailment and deliberately reduces acceptance of weakly grounded semantic answers.
-- `engine.ts` resolves dependencies only after the previous task was answered; source IDs are cleared between parts and aggregated afterward. Typed per-task outcomes expose answered, needs-information and blocked states. Analysis/stage labels describe real dispatched operations. Compound tasks cannot grant permissions, invoke commands, or initiate web retrieval, even when the global web toggle is on.
-- `natural-tools.ts` maps explicit user language to the existing allowlisted calculator and JSON/log analyzer. The same input limits, cancellation, error handling and non-executable parser apply. Tools return typed completed/rejected outcomes, so execution status no longer depends on response wording. Invalid JSON is a completed validation with an error finding; a failed arithmetic expression is rejected. Commands and structured tool payloads are routed before browser/platform/fact interpretation, preventing quoted corrections or outcomes from modifying an active case. Examples: “How much is 18% of 475?” and `Analyze this JSON: {"count":3}`. Source contents never re-enter task dispatch.
-- `requirements.ts` identifies requests for measurements, mutations and current sources. Authored explanations cannot fulfill these execution requirements. Unsupported operations receive an explicit limitation without an invented result or unauthorized network request; educational “how do I” questions still reach guidance.
-- `observations.ts` distinguishes affirmative browser statements from negated alternatives. Browser declarations no longer swallow a reported symptom. `reasoning.ts` avoids replaying obsolete facts after corrections; natural check explanations and task resumption preserve the pending check. Correcting Chrome to Edge retains the platform and issue. No system checks are claimed executed.
-- `compare.ts` supports two through four distinct sourced subjects, including table output. This is attributed juxtaposition, not a general trade-off or causal reasoner.
+## Implemented capabilities
 
-## Measurements
+| Area                        | Working implementation and boundaries                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Requests and composition    | At most six typed tasks with intents, entities, subjects, constraints, dependencies and capability requirements. Coordinated explanations/comparisons retain contrasts and corrections. Successful comparison sources resolve a subsequent “each” AI-use question. Quoted and structured payloads stay opaque, including polite tool requests. Each part has its own outcome and sources. Commands/public lookups in a compound message require separate invocation.                                                                                                                                                                  |
+| Retrieval and acceptance    | General framing/abbreviation normalization; original exact matches retained; cached answer-field discovery; independent checks for a central subject and coherent supporting passage. Similarity/utility are never probabilities. An unsupported measurement, mutation or current fact cannot be fulfilled by a related explanation.                                                                                                                                                                                                                                                                                                  |
+| Actual local operations     | Natural language and `/calc`, `/analyze`, `/stats`, `/csv`, `/text`, `/diff`, `/logic` share a bounded allowlist and typed outcomes. Statistics use Welford variance with population/sample deviations. CSV handles quoted commas/newlines/doubled quotes, shape, missingness and wholly numeric columns. Text counts distinguish Unicode points, UTF-16 and UTF-8. Diff compares line occurrences, not semantics or edit order. Logic performs bounded forward chaining with actual rule provenance from explicit JSON premises; no converse, contraposition, closed-world assumption or truth verification. No arbitrary execution. |
+| Diagnosis                   | Browser contrast, reported working network, corrections, platform and constraints survive continuation. Checks include risk, preparation, a reason and bounded outcome interpretation. Persistent deletion/reset steps are excluded from automatic reversible plans. References identify the selected check's source. Related explanations remain hypotheses; no root cause or hardware measurement is invented. Existing workflows remain compatible.                                                                                                                                                                                |
+| Knowledge                   | **708 core + 120 optional = 828 records; 3,067 expressions.** Eight distinct core records add CPU cache, SSD and browser AI concepts. A lazy 16-record `science` pack covers physical, chemical, biological and statistical reasoning. Existing 75 workflows/560 terminal paths remain. Installation/removal stays explicit; updates follow app versions without deleting a working pack. Counts, relationships and expression ownership pass validation.                                                                                                                                                                             |
+| Documents                   | Up to four TXT/Markdown/JSON/CSV/log files, each at most 100,000 bytes. A packaged cancellable worker creates section/line chunks; a cached inverted index ranks passages. Citations identify the matching line. Extractive summaries include opening material and selected findings/conclusions. Multi-document comparison identifies differing explicit key/value fields with filenames/lines, without claiming free-form contradiction detection. Imports stay tab-local; requested excerpts follow chat retention. Failed/excessive selection preserves existing documents. Offline import/removal is tested.                     |
+| Research                    | Explicit opt-in Wikimedia provider/public-only query filter remain. Results retain literal attribution, retrieval time, cache provenance and validated article-revision timestamps when supplied. Publication dates are unavailable. A recent retrieval/revision does not prove current support, agreement or version changes. Cached fallback and separately removable cache remain.                                                                                                                                                                                                                                                 |
+| Context and personalization | Scoped comparison follow-ups do not intercept unrelated diagnostic questions. Explicit memory adds bounded language/familiarity preferences and field-specific forgetting. Memory is off by default; no automatic freeform profile. Optional fields validate without a database migration; malformed optional state does not discard messages.                                                                                                                                                                                                                                                                                        |
+| French                      | Tested authored definitions for DNS, WebGPU, WebGL, WASM, cookies, CPU cache and SSD, plus explicit arithmetic/percentages. Unsupported requests receive a French scope explanation. This is a staged path, not a general translator or French diagnostic engine; other tools still need English.                                                                                                                                                                                                                                                                                                                                     |
+| Optional intelligence       | Real pinned MiniLM CPU/WASM retrieval works on the expanded corpus. Generation candidates and runtime constraints are documented in [the advanced-mode investigation](GAMMA4-ADVANCED-MODE.md). No unverified Gamma generation feature or silent Madon substitution is shipped.                                                                                                                                                                                                                                                                                                                                                       |
 
-Final follow-up reports use the `evidence-` prefix under `docs/gamma4/`; the earlier foundation reports remain preserved. Artifacts under `docs/gamma4/` are new; historical Gamma 3 artifacts remain intact. The published fixture is a regression benchmark, not a newly unseen holdout. Accepted-answer label correctness divides correct single-turn answers by all correct/incorrect accepted answers, including unsupported false accepts; it is separate from supported acceptance coverage and retrieval recall. This uses the fixture’s record labels, not an independent factuality review.
+Both multi-operation examples in `max` are tested: CPU cache + percentage + RAM/SSD, and WebGPU + three-technology comparison + each technology's AI role. Report summarization cites source sections. Imported instructions cannot dispatch tools. These demonstrate bounded capabilities, not unrestricted reasoning.
 
-| Published regression metric                     | Reproduced base |  This milestone |
-| ----------------------------------------------- | --------------: | --------------: |
-| Default supported acceptance                    |  91/256 (35.5%) |  93/256 (36.3%) |
-| Unsupported false acceptance                    |      3/100 (3%) |      0/100 (0%) |
-| Accepted-answer label correctness (single-turn) |  91/101 (90.1%) |  93/100 (93.0%) |
-| Correction/reference completion                 |    42/100 (42%) |    42/100 (42%) |
-| Complete two-topic answers                      |      8/100 (8%) |      9/100 (9%) |
-| Default Recall@10                               | 121/256 (47.3%) | 181/256 (70.7%) |
-| Adversarial no-effect completion                |           50/50 |           50/50 |
+## Architecture and source changes
 
-Published historical hybrid acceptance was 49.2%, false acceptance 4%, Recall@10 70.3%. Replay of the existing real MiniLM scores through this milestone gives 38.7% acceptance, 0/100 unsupported false accepts and 83.6% Recall@10, with zero missing score queries. **Hybrid acceptance regresses because similarity alone no longer authorizes an answer.** This is an explicit conservative trade-off, not a claim that all quality metrics improved. Replay is not new model execution or an inference latency measurement.
+`request.ts`, `query.ts`, `answerability.ts`, `evidence-selection.ts`, `requirements.ts` and `engine.ts` separate parsing, discovery, support and execution. `comparison.ts` projects authored dimensions over successfully selected subjects. `data-tools.ts` contains pure bounded operations; `capabilities.ts`, `trusted-tools.ts`, `natural-tools.ts` and the command registry expose one execution contract. `check-policy.ts` supplies safety/information criteria to `reasoning.ts`.
 
-The new frozen 24-case prospective set improves from 6/24 to 23/24, with zero unauthorized network requests. It covers natural calculations, explanations, coordinated tasks, references, corrections, diagnostics, comparisons, JSON and safety. It was authored by the implementer and frozen before execution, then run unchanged against the detached base and foundation implementation. The follow-up replays this now-exposed set as regression data in `evidence-known-cases.json`, still scoring 23/24. It is **not independently authored or unseen**, and its results were not used to tune the implementation. Its digest is checked by `evaluate:gamma4`; per-case checks are retained. This small targeted result must not be substituted for broad acceptance accuracy. A separate independent untouched final benchmark remains a release requirement. Source-ID checks and URL syntax do not constitute citation entailment measurement.
+`documents.ts` owns parsing, chunks, indexes, extracts and literal comparison. `document-worker.ts`/`document-runtime.ts` own indexing/cancellation; `DocumentImport.tsx` manages selection/progress/errors/removal. The engine accepts multiple documents while preserving the older single-document option. The extension uses the same packaged code without new permissions.
 
-The stretch acceptance, conversation and complete-composition goals in `max` remain unmet. The unsupported false-acceptance goal is met on this published regression set (0/100), not established on an independent unseen distribution. Improved discovery is not improved answer correctness; most of the broad paraphrase/semantic gap remains.
+`french.ts` contains bounded French responses. `memory.ts`, `types.ts`, `context.ts` and `storage.ts` validate optional preferences/comparison frames. `gamma4.ts` and `packs/science.ts` add knowledge. `public-sources.ts` and the shared Wikimedia client preserve actual freshness metadata. No account, telemetry, backend, new dependency, remote executable code or private-document upload was introduced.
 
-## Remaining roadmap and limits
+## Accuracy and safety measurements
 
-- A: broader robust NLU, typed conditional deduction, exclusion/applicability validation for every response path, meaningful calibration, French evaluation, multiple conversational reference frames and general option resolution remain incomplete. The new evidence contract gates expanded lexical acceptance, semantic acceptance and technical errors, not every legacy answer path. It is deterministic evidence coverage, not unrestricted logical entailment.
-- B: general evidence planning, complete AI-technology synthesis, CSV/statistical/text-comparison tools, diagnostic risk/precondition/outcome metadata, richer knowledge relationships and new domain content are not delivered here. Existing 700 + 104 records are unchanged.
-- C: section/chunk document indexes, multi-document comparisons, PDF/DOCX parsers, expanded research providers/freshness reconciliation, and additional persistent personalization are not delivered. Existing local text extraction, opted-in Wikimedia lookup and explicit memory remain available.
-- D: no optional Gamma generation model was added, downloaded or silently substituted. Existing Madon/Qwen preview is separate. A suitable Gamma generation model still needs quality, license, memory, runtime and real device evaluation. GPU, physical mobile, Firefox/Safari and MV3 inference certification remain outstanding.
-- Product: no redesign, new permissions, automatic model download, backend, accounts, analytics or private-data upload. New task metadata is response-local; existing analysis display shows operation outcomes. No new persisted schema needs migration.
+The published fixture is regression data, not an unseen final holdout. Accepted-answer label correctness measures expected record IDs among accepted answers, not independent factuality. Citation URL validity is not entailment.
+
+| Published default regression      | Reproduced base |           Final |
+| --------------------------------- | --------------: | --------------: |
+| Supported acceptance              |  91/256 (35.5%) |  93/256 (36.3%) |
+| Unsupported false acceptance      |           3/100 |           0/100 |
+| Accepted-answer label correctness |  91/101 (90.1%) |  93/100 (93.0%) |
+| Correction/reference completion   |          42/100 |          42/100 |
+| Complete two-topic answers        |           8/100 |           9/100 |
+| Recall@10                         | 121/256 (47.3%) | 181/256 (70.7%) |
+| Adversarial no-effect completion  |           50/50 |           50/50 |
+
+New real MiniLM scores on 708 records, plus all 14 engine subqueries, replayed into the final engine give **99/256 (38.7%) acceptance, 0/100 unsupported false accepts, 93.4% accepted label correctness, 83.6% Recall@10, zero missing score queries**. Historical hybrid acceptance was 49.2%, false acceptance 4%, Recall@10 70.3%. Requiring support beyond similarity improves false acceptance and recall but reduces accepted coverage. This regression is explicit; thresholds/fixture labels were not loosened. Replay does not measure inference latency.
+
+The earlier frozen 24-case implementer-authored set remains **23/24**, up from 6/24 at baseline. Its remaining failure is a part-count marker on a correctly blocked public-lookup part, with no unauthorized effect. It was prospective before first execution, is now exposed regression data, and was never independently authored.
+
+The new **20/20 capability acceptance suite** covers tools, invalid inputs, document grounding/conflicts/injection, missing documents, French and composed technical scenarios. It was developed with the implementation and is not an unseen benchmark. CI runs it. The previous 22-case development suite also passes. These results remain separate from broad intelligence accuracy.
+
+## Verification
+
+- TypeScript, branding, knowledge validation, website/MV3 builds and unchanged payload budgets pass. Historical reports/frozen digests remain intact.
+- **3,531 unit tests pass**, including 44 new capability cases in this stage. Existing storage, migration, Markdown, worker, permission and cancellation suites pass.
+- **80/80 production browser tests pass** on the final build in desktop/mobile Chromium viewports. Earlier attempts found a table-whitespace assertion mistake (corrected to check actual cells) and a navigation failure caused by rebuilding the shared preview during testing. The final full run used a stable build and passed; neither earlier attempt is counted as passing.
+- **19 extension checks pass**, including local statistics/deduction/French, shipping permission denial and the separate localhost extraction fixture. The fixture does not certify actual toolbar activeTab gestures.
+- Offline reload, document-worker import/comparison, inert source instructions, removal, selection failure recovery and mobile horizontal-overflow checks pass. No optional model downloads by default.
+- Actual MiniLM WASM indexed **708 records in 33,382 ms**; **356 queries**: median **11.6 ms**, P95 **57.6 ms**. Offline reuse and selective removal passed. A separate real 14-query run filled every engine subquery before final replay. These are container CPU results, not physical mobile measurements.
+- The real generation probe returned **no compatible GPU adapter**. No generation, GPU speed/memory or offline-generation result is claimed.
+
+Final startup JavaScript is **469,620 bytes raw / 146,757 gzip**; background shell precache is **1,008,374 bytes**. Five fresh production-browser samples measured median composer readiness **366.3 ms**, visible answer **202.3 ms**, and post-answer heap **10,322,572 bytes**, with full samples in [performance-after.json](gamma4/final-runtime/performance-after.json). Startup remains under **650,000 raw / 210,000 gzip bytes**. The report's old `baseline` field is Gamma 2, not this branch's base. This is not a controlled before/after speed experiment; heap snapshots are not peak process/model memory.
+
+New source links were checked for availability; one obsolete SSD URL was replaced. Accessibility is recorded separately from editorial accuracy. Scientific claims include assumptions/limitations, but independent source-claim review remains open.
+
+## Scope and remaining gates
+
+- [x] Shared request/evidence/tool/context upgrade, separate task outcomes and payload isolation.
+- [x] Statistics, CSV/text analysis, line comparison and explicit conditional deduction.
+- [x] Diagnostic safety/value assessment and retained outcomes/corrections.
+- [x] Computing/AI records, optional science content and validated ownership/relationships.
+- [x] Cancellable multi-document indexing, line/section citations, extractive findings and literal conflicts.
+- [x] Revision provenance, explicit bounded personalization and limited French path.
+- [x] Real CPU semantic runtime, release/security/performance checks and generation investigation.
+- [ ] Broad language semantics, general entailment, universal conditional/constraint handling and calibrated confidence. Legacy routes are not all proven under the new support contract.
+- [ ] Requested acceptance/conversation/composition targets; small capability tests do not close these gaps.
+- [ ] Independent untouched evaluation and source/citation entailment review; one implementer's fixtures cannot establish independence.
+- [ ] General document synthesis/semantic contradictions, OCR/PDF/DOCX, large-document persistence and archive security. Export to supported text formats is the working alternative; no misleading parser controls are shown.
+- [ ] Additional permitted research providers and version reconciliation. Arbitrary-site retrieval remains CORS constrained; no hidden proxy/backend is added.
+- [ ] Gamma generation, supported-GPU/CPU-generation quality/resource evaluation, physical mobile, Firefox/Safari and MV3 inference certification. The investigation documents the blocker and integration requirements.
+
+Implemented paths are complete within their tested bounds. These remaining items are unfinished parts of the larger `max` roadmap, not functionality hidden behind a cosmetic mode or a passing small benchmark.
 
 ## Reproduce
 
-Use `ONNXRUNTIME_NODE_INSTALL_CUDA=skip npm ci`, then the existing brand/type/knowledge/unit/build/payload/extension/browser checks. Final report destinations avoid overwriting baselines:
+Run `ONNXRUNTIME_NODE_INSTALL_CUDA=skip npm ci`, then `check:brand`, `typecheck`, `validate:knowledge`, `test`, `build`, `check:payload`, `build:extension`, `test:e2e` and `test:extension`. Use packaged Playwright Chromium for extension tests. Preserve baseline artifacts using explicit destinations:
 
 ```sh
-npm run evaluate:gamma -- docs/gamma4/evidence-lexical.json
-npm run evaluate:gamma3 -- docs/gamma4/evidence-development.json
-npm run evaluate:intelligence -- docs/gamma4/evidence-regression.json
-npm run evaluate:gamma4
-GAMMA_REPORT_DIR=docs/gamma4 npm run evaluate:semantic-heldout -- docs/gamma4/evidence-hybrid.json
-# With a running production preview on port 4173:
-GAMMA_REPORT_DIR=docs/gamma4 npm run test:gamma:real
-GAMMA_REPORT_DIR=docs/gamma4 npm run measure:gamma
+npm run evaluate:gamma -- docs/gamma4/final-lexical.json
+npm run evaluate:gamma3 -- docs/gamma4/final-development.json
+npm run evaluate:intelligence -- docs/gamma4/final-regression.json
+npm run evaluate:gamma4 -- docs/gamma4/final-known-cases.json
+npm run evaluate:capabilities
+# Production preview on port 4173; explicitly exercises optional assets:
+GAMMA_REPORT_DIR=docs/gamma4/final-runtime GAMMA_HELDOUT=1 npm run test:gamma:real
+GAMMA_REPORT_DIR=docs/gamma4/final-runtime GAMMA_EXTRA_QUERIES=docs/gamma4/final-runtime/heldout-semantic-missing.json npm run test:gamma:real
+GAMMA_REPORT_DIR=docs/gamma4/final-runtime GAMMA_SCORES=docs/gamma4/final-runtime/heldout-semantic-scores.json GAMMA_EXTRA_SCORES=docs/gamma4/final-runtime/semantic-extra-scores.json npm run evaluate:semantic-heldout -- docs/gamma4/final-hybrid.json
+GAMMA_REPORT_DIR=docs/gamma4/final-runtime npm run measure:gamma
 ```
-
-The new prospective baseline uses only the new evaluator/fixture copied into detached `1a30900`; no upgraded engine modules are copied. The old test that permitted high-cosine acceptance without support was strengthened to require clarification, and new regressions cover the changed boundary. No benchmark labels, lexical/semantic score thresholds or payload budgets were loosened. The added evidence route is evaluated independently of those scores. The prior test expecting an unsupported fallback for a repeated-logout phrase now verifies its correctly grounded lexical fallback; worker failure and cancellation remain tested.
-
-## Verification and performance
-
-- Dependency installation, branding audit, strict TypeScript and knowledge validation pass. Content remains 804 records / 3,019 expressions with all authored expressions ranking to their owner; `docs/coverage.json` is unchanged.
-- **3,470 unit tests pass** (3,424 original plus 46 new). The new cases cover dependency completeness, per-part sources, contrast, affirmative corrections, obsolete-fact replay, diagnostic resumption, constrained natural tool execution, inert JSON, cancellation and network denial. Existing Markdown, migration, storage, worker and extension-boundary regressions remain in the suites.
-- **74 production browser cases pass** in desktop/mobile Chromium viewports, including evidence-based acceptance and unsupported execution boundaries. The earlier foundation run corrected two persistence tests to reopen the saved thread after reload; the full follow-up suite passes. These are viewport emulations, not physical mobile certification.
-- **16 extension checks pass** with Playwright Chromium 156, including production permission denial and the separate localhost-permission extraction fixture. The first attempt with system Chromium timed out waiting for the extension worker; retrying with the packaged supported browser passed. This is not actual toolbar-gesture certification.
-- Website and MV3 builds pass. Startup JavaScript: **458,441 bytes raw / 142,683 gzip**, within the unchanged 650,000 / 210,000 limits. The final build’s background offline precache is 977,120 bytes, so lazy startup does not eliminate the larger offline transfer.
-- Five final-build production browser samples measured median composer readiness **362.7 ms**, first answer visibility **201.2 ms**, and post-answer CDP heap **9,931,968 bytes**. Full samples are retained in `evidence-runtime/performance-after.json`. The earlier foundation samples ran alongside other verification, so these are not a controlled before/after speed comparison. The first follow-up attempt found that the preview server had stopped; it was restarted and the measurement rerun successfully. The performance script's `baseline` field refers to the older Gamma 2 payload, not this turn's base. No new peak model/process memory, battery, physical-device or warm-start distribution measurement is claimed.
-- Actual pinned MiniLM WASM/CPU setup on the foundation build indexed 700 records in **34,613 ms**, reused cached assets offline, ran 38 development queries (median **10.6 ms**, P95 **61.1 ms**) and selectively removed its cache. This verifies the runtime, not broad semantic accuracy. The separate 356-case hybrid report replays previously measured model scores.
-- Final default-engine regression latency: P50 **2.72 ms**, P95 **7.98 ms**, excluding presentation streaming and model inference.
-- Production `/cole/` offline smoke passes; optional inference remains excluded from shell precache. Real GPU generation, cross-browser certification, large-pack stress, full document citation entailment and independent final holdout evaluation were not performed.
-
-The targeted prospective test's one failure is its expected part-count marker on a correctly blocked public-lookup part: the response labels that part “Separate action required” instead of `Part N of N`. It has no unauthorized effect. Its fixture/result are retained unchanged rather than tuning the implementation to obtain 24/24.
-
-## Development checklist
-
-- [x] Audit current implementation and reproduce existing default baseline.
-- [x] Integrated request/retrieval/evidence/tool/context improvements with unit and production browser coverage.
-- [x] Preserve historical reports, frozen checksums, storage, commands, offline behavior and security boundaries.
-- [x] Report actual improvements, unchanged metrics, semantic acceptance regression and limitations.
-- [ ] Complete all of milestone A; meet the requested broad quality gates.
-- [ ] Complete milestone B's general reasoning, tool and knowledge expansion.
-- [ ] Implement milestone C's advanced document/research/personalization capabilities.
-- [ ] Complete milestone D's optional Gamma generation evaluation and device hardening.
-- [ ] Obtain independent untouched evaluation and editorial/source entailment review.
-- [ ] Manual actual-toolbar activeTab gesture and physical hardware/browser validation.
-
-Prepared as a review branch; no merge or production deployment is performed.

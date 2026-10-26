@@ -26,6 +26,7 @@ jobs:
       - run: npm run validate:knowledge
       - run: git diff --exit-code docs/coverage.json
       - run: npm test
+      - run: npm run evaluate:capabilities -- /tmp/gamma4-capabilities.json
       - run: npm run build
       - run: npm run check:payload
       - run: npm run build:extension

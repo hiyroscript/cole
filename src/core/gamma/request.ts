@@ -46,6 +46,14 @@ const intent = (text: string): TaskIntent => {
   return "unknown";
 };
 function splitTasks(input: string): string[] {
+  const payloadTool = naturalTool(input);
+  if (
+    payloadTool &&
+    ((payloadTool.name !== "calculate" && payloadTool.name !== "stats") ||
+      (payloadTool.name === "stats" &&
+        /^[\d\s,.+eE?\-]+$/.test(payloadTool.input)))
+  )
+    return [input];
   // Preserve payloads, quotations and conditional/contrast clauses. A source's
   // instruction-looking text must never become another user task.
   if (
@@ -53,6 +61,12 @@ function splitTasks(input: string): string[] {
       input.trim(),
     ) ||
     /```/.test(input)
+  )
+    return [input];
+  if (
+    /^(?:count (?:the )?(?:words|characters|lines)|analyze text|compare texts|deduce|(?:analyze|summarize|check) (?:this )?csv)\b/i.test(
+      input.trim(),
+    )
   )
     return [input];
   const boundary = new RegExp(
@@ -103,7 +117,7 @@ export function analyzeRequest(input: string): StructuredRequest {
   const clauses = splitTasks(input);
   const tasks: RequestTask[] = clauses.slice(0, 6).map((text, id) => {
     const taskIntent = intent(text);
-    const reference = text.match(/\b(?:it|that|them|each)\b/i)?.[0];
+    const reference = text.match(/\b(?:it|that|them|they|each)\b/i)?.[0];
     const subject = text
       .replace(
         /^(?:explain|describe|define|what (?:is|are)|tell me about)\s+/i,
@@ -126,6 +140,7 @@ export function analyzeRequest(input: string): StructuredRequest {
       reference,
       requiredCapabilities: [
         executionRequirement(text)?.kind ??
+          naturalTool(text)?.name ??
           (taskIntent === "calculate" || taskIntent === "analyze"
             ? taskIntent
             : "knowledge"),

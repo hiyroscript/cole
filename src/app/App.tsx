@@ -328,7 +328,7 @@ export default function App() {
       notify("Could not delete the conversation.");
     }
   }
-  const [localDocument, setLocalDocument] = useState<LocalDocument>();
+  const [localDocuments, setLocalDocuments] = useState<LocalDocument[]>([]);
   async function send(value = input, retry = false) {
     if (!value.trim() || busy || !ready) return;
     const selected = activeModel(prefsRef.current.model);
@@ -387,7 +387,7 @@ export default function App() {
     persist(chat);
     try {
       const response = await selected.generate(value, base.context, {
-        document: selected.id === "gamma" ? localDocument : undefined,
+        documents: selected.id === "gamma" ? localDocuments : undefined,
         thinking: prefsRef.current.thinking,
         facts: diagnose,
         device: prefsRef.current.device,
@@ -938,8 +938,8 @@ export default function App() {
             />
             {model.id === "gamma" && (
               <DocumentImport
-                document={localDocument}
-                change={setLocalDocument}
+                documents={localDocuments}
+                change={setLocalDocuments}
                 disabled={busy}
               />
             )}
@@ -1259,7 +1259,7 @@ export default function App() {
                       localStorage.removeItem("varek.preferences.v1");
                       localStorage.removeItem("gamma.memory.v1");
                       localStorage.removeItem("gamma.knowledge.v1");
-                      setLocalDocument(undefined);
+                      setLocalDocuments([]);
                       const packs = await import("../core/gamma/packs");
                       for (const pack of packs.packCatalog)
                         await packs.removePack(pack.id);

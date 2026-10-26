@@ -1,10 +1,12 @@
 # Gamma architecture history and current delivery
 
-Gamma 3.0 adds optional knowledge packs, local documents and calculations, evidence-based troubleshooting, explicit preference memory and experimental semantic acceptance. Startup is within budget; broader quality targets remain unmet. See the [implementation and measured release gates](GAMMA3-DELIVERY.md).
+Current Gamma 4.0 architecture and measured results are in [GAMMA4-DELIVERY.md](GAMMA4-DELIVERY.md). The shared engine separates typed request frames, discovery, evidence acceptance and bounded tool execution. It now includes statistics/CSV/text/deduction, comparison dimensions, safer diagnostic checks, cancellable multi-document indexing with line/section citations, explicit preferences, article-revision provenance and a limited French path. Core/optional coverage is 708 + 120 records. Broad intelligence targets remain unmet; see the report for exact scope and [generation feasibility](GAMMA4-ADVANCED-MODE.md).
 
-Gamma is Cole’s default lightweight assistant: **Fast, private browser and device intelligence.** Madon remains the separate Qwen3-1.7B/WebLLM generative assistant. No request to Gamma initializes Madon. The Cole monochrome interface, project path `/varek/`, storage namespaces, and extension permissions are preserved.
+The following architecture sections retain earlier Gamma 2/3 measurements and limitations for historical context; the Gamma 4 report supersedes their current-state claims.
 
-The historical Gamma 2 implementation below describes the earlier rebrand and content targets; current `max` results are in the Gamma 3 delivery report. See [the delivery report](GAMMA-DELIVERY.md) for measured quality, regression results, payload growth and remaining release limits.
+Gamma is Cole’s default lightweight assistant: **Fast, private browser and device intelligence.** Madon remains the separate Qwen3-1.7B/WebLLM generative assistant. No request to Gamma initializes Madon. The Cole monochrome interface, project path `/cole/`, storage namespaces, and extension permissions are preserved.
+
+The historical Gamma 2 implementation below describes the earlier rebrand and content targets; current `max` results are in the Gamma 4 delivery report. See [the delivery report](GAMMA-DELIVERY.md) for measured quality, regression results, payload growth and remaining release limits.
 
 ## Execution architecture
 
@@ -92,7 +94,6 @@ The CUDA install flag avoids an unused native GPU download: production inference
 
 Production still builds for GitHub Pages at `/varek/`; extension assets are separate. A draft branch/PR is not deployment. No successful Pages deployment is claimed for this work. Madon’s real GPU inference remains subject to its existing hardware-validation gate in [MADON.md](MADON.md).
 
-
-## Gamma 4.0 foundations
+## Gamma 4.0 current contracts
 
 The new request/query/evidence contract, integration, measurements and remaining release gates are documented in [GAMMA4-DELIVERY.md](GAMMA4-DELIVERY.md). Discovery candidates are distinct from accepted answers. Semantic acceptance now also requires independent evidence coverage; older descriptions of cosine-only acceptance are historical.

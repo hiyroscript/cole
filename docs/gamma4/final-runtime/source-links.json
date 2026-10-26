@@ -1,0 +1,61 @@
+{
+  "scope": "URL availability only; not claim entailment or independent editorial review.",
+  "results": [
+    {
+      "url": "https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html",
+      "status": 200,
+      "finalURL": "https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html"
+    },
+    {
+      "url": "https://www.snia.org/education/what-is-a-ssd",
+      "error": "HTTP Error 404: Not Found",
+      "replacedBy": "https://www.ibm.com/think/topics/solid-state-drives"
+    },
+    {
+      "url": "https://developers.google.com/machine-learning/crash-course",
+      "status": 200,
+      "finalURL": "https://developers.google.com/machine-learning/crash-course"
+    },
+    {
+      "url": "https://huggingface.co/docs/optimum/concept_guides/quantization",
+      "status": 200,
+      "finalURL": "https://huggingface.co/docs/optimum/concept_guides/quantization"
+    },
+    {
+      "url": "https://www.sbert.net/docs/sentence_transformer/usage/semantic_textual_similarity.html",
+      "status": 200,
+      "finalURL": "https://www.sbert.net/docs/sentence_transformer/usage/semantic_textual_similarity.html"
+    },
+    {
+      "url": "https://onnxruntime.ai/docs/tutorials/web/",
+      "status": 200,
+      "finalURL": "https://onnxruntime.ai/docs/tutorials/web/"
+    },
+    {
+      "url": "https://huggingface.co/docs/transformers/main/en/llm_tutorial",
+      "status": 200,
+      "finalURL": "https://huggingface.co/docs/transformers/main/en/llm_tutorial"
+    },
+    {
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "status": 200,
+      "finalURL": "https://www.nist.gov/itl/ai-risk-management-framework"
+    },
+    {
+      "url": "https://openstax.org/subjects/science",
+      "status": 200,
+      "finalURL": "https://openstax.org/subjects/science"
+    },
+    {
+      "url": "https://www.itl.nist.gov/div898/handbook/",
+      "status": 200,
+      "finalURL": "https://www.itl.nist.gov/div898/handbook/"
+    },
+    {
+      "url": "https://www.ibm.com/think/topics/solid-state-drives",
+      "status": 200,
+      "finalURL": "https://www.ibm.com/think/topics/solid-state-drives",
+      "checkedText": "Semiconductor-based storage device, typically NAND flash memory, saves persistent data."
+    }
+  ]
+}

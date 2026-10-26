@@ -1,0 +1,674 @@
+[
+  {
+    "query": "The whole browser repeatedly closes unexpectedly",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "crash",
+        "score": 0.721434078334509
+      },
+      {
+        "id": "network-websocket-close",
+        "score": 0.5086973806907445
+      },
+      {
+        "id": "request-keepalive",
+        "score": 0.4897609345661476
+      },
+      {
+        "id": "ext-popup-lifetime",
+        "score": 0.48462422546430517
+      },
+      {
+        "id": "leak",
+        "score": 0.476834599751287
+      },
+      {
+        "id": "website",
+        "score": 0.4767039135411214
+      },
+      {
+        "id": "freeze",
+        "score": 0.46247720699150224
+      },
+      {
+        "id": "api-page-lifecycle",
+        "score": 0.44041398648304325
+      },
+      {
+        "id": "profile-lock",
+        "score": 0.4367320669116267
+      },
+      {
+        "id": "win-pagefile",
+        "score": 0.42327116340771737
+      }
+    ],
+    "ms": 233.9000000001397
+  },
+  {
+    "query": "what can I check?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "limits",
+        "score": 0.3885372602565725
+      },
+      {
+        "id": "ext-download-inspection",
+        "score": 0.37362501962257466
+      },
+      {
+        "id": "ram",
+        "score": 0.36172236915387923
+      },
+      {
+        "id": "privacy-crash-report",
+        "score": 0.3069161091613387
+      },
+      {
+        "id": "version",
+        "score": 0.30653352943188633
+      },
+      {
+        "id": "network-online-event",
+        "score": 0.30531217500533736
+      },
+      {
+        "id": "browser",
+        "score": 0.29657589137565554
+      },
+      {
+        "id": "gamma-health",
+        "score": 0.29606428608422636
+      },
+      {
+        "id": "hsts",
+        "score": 0.28843792279897196
+      },
+      {
+        "id": "website",
+        "score": 0.2874543808033613
+      }
+    ],
+    "ms": 38.0999999998603
+  },
+  {
+    "query": "Pages take a long time to finish loading",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "load",
+        "score": 0.7612568374561224
+      },
+      {
+        "id": "startup",
+        "score": 0.5145169291410083
+      },
+      {
+        "id": "long-tasks",
+        "score": 0.47332633937339075
+      },
+      {
+        "id": "win-disk-active",
+        "score": 0.4708807506423917
+      },
+      {
+        "id": "perf-ttfb",
+        "score": 0.4551888925230421
+      },
+      {
+        "id": "slow",
+        "score": 0.45047066267889113
+      },
+      {
+        "id": "mtu-upload",
+        "score": 0.4421409718008449
+      },
+      {
+        "id": "freeze",
+        "score": 0.4298398041083791
+      },
+      {
+        "id": "api-page-lifecycle",
+        "score": 0.4233466598060944
+      },
+      {
+        "id": "battery",
+        "score": 0.4128301658831402
+      }
+    ],
+    "ms": 71.9000000001397
+  },
+  {
+    "query": "What does HTTPS guarantee",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "https",
+        "score": 0.5674105438772425
+      },
+      {
+        "id": "https-only",
+        "score": 0.4984410421460327
+      },
+      {
+        "id": "tls-downgrade",
+        "score": 0.4672441515632418
+      },
+      {
+        "id": "doh-policy",
+        "score": 0.46212998461133425
+      },
+      {
+        "id": "mixed-content",
+        "score": 0.4207558944996297
+      },
+      {
+        "id": "secure-context",
+        "score": 0.40066798710356527
+      },
+      {
+        "id": "privacy-sync-encryption",
+        "score": 0.3947640962962646
+      },
+      {
+        "id": "tls-interception",
+        "score": 0.37672279929539326
+      },
+      {
+        "id": "hsts-preload",
+        "score": 0.3738616142787144
+      },
+      {
+        "id": "tls-chain",
+        "score": 0.37225175290932855
+      }
+    ],
+    "ms": 60.199999999953434
+  },
+  {
+    "query": "what does https not guarantee?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "https",
+        "score": 0.587552256399456
+      },
+      {
+        "id": "https-only",
+        "score": 0.49163879967164015
+      },
+      {
+        "id": "doh-policy",
+        "score": 0.47882072173842616
+      },
+      {
+        "id": "privacy-sync-encryption",
+        "score": 0.42067341513477713
+      },
+      {
+        "id": "secure-context",
+        "score": 0.420432096657795
+      },
+      {
+        "id": "mixed-content",
+        "score": 0.4171149149498482
+      },
+      {
+        "id": "tls-interception",
+        "score": 0.40437224702091196
+      },
+      {
+        "id": "tls-downgrade",
+        "score": 0.4029221882284556
+      },
+      {
+        "id": "hsts",
+        "score": 0.3894835721737613
+      },
+      {
+        "id": "network-port",
+        "score": 0.3866616217292789
+      }
+    ],
+    "ms": 33.5
+  },
+  {
+    "query": "An unfamiliar add-on can read all pages",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "ext-page-data-bounds",
+        "score": 0.45489590259537926
+      },
+      {
+        "id": "reader",
+        "score": 0.4479907840580334
+      },
+      {
+        "id": "accessible-link-text",
+        "score": 0.40695193736664076
+      },
+      {
+        "id": "iphone-reader",
+        "score": 0.3963746849623249
+      },
+      {
+        "id": "privacy-incognito-extension",
+        "score": 0.39617401789106377
+      },
+      {
+        "id": "heading-order",
+        "score": 0.3786417659030247
+      },
+      {
+        "id": "mac-accessibility-permission",
+        "score": 0.3750571362923395
+      },
+      {
+        "id": "ext-restricted-pages",
+        "score": 0.3676473653069164
+      },
+      {
+        "id": "zoom-reflow",
+        "score": 0.3642165272519946
+      },
+      {
+        "id": "malicious-extension",
+        "score": 0.3639798008429662
+      }
+    ],
+    "ms": 71.5
+  },
+  {
+    "query": "what should I do?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "update-browser",
+        "score": 0.14745804352812553
+      },
+      {
+        "id": "help",
+        "score": 0.1327370188844868
+      },
+      {
+        "id": "print-layout",
+        "score": 0.12000497798615889
+      },
+      {
+        "id": "slow",
+        "score": 0.11943006080748032
+      },
+      {
+        "id": "bookmarks",
+        "score": 0.11253735733722378
+      },
+      {
+        "id": "madon",
+        "score": 0.1112639151533866
+      },
+      {
+        "id": "notifications",
+        "score": 0.10330629369046221
+      },
+      {
+        "id": "pin-tab",
+        "score": 0.09746925849557414
+      },
+      {
+        "id": "delete",
+        "score": 0.09613482790918139
+      },
+      {
+        "id": "sw-waiting",
+        "score": 0.09587786664208442
+      }
+    ],
+    "ms": 38.800000000046566
+  },
+  {
+    "query": "A page returns status 404",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "404",
+        "score": 0.7030890449875029
+      },
+      {
+        "id": "fetch-status",
+        "score": 0.49144332649336264
+      },
+      {
+        "id": "blank",
+        "score": 0.47377530082598307
+      },
+      {
+        "id": "http302",
+        "score": 0.4710787387185186
+      },
+      {
+        "id": "website",
+        "score": 0.4026396088440756
+      },
+      {
+        "id": "403",
+        "score": 0.37959371346297555
+      },
+      {
+        "id": "cache304",
+        "score": 0.37658463689029853
+      },
+      {
+        "id": "http410",
+        "score": 0.37506508945622485
+      },
+      {
+        "id": "sw-navigation",
+        "score": 0.36710025966859844
+      },
+      {
+        "id": "layout",
+        "score": 0.3622644660083773
+      }
+    ],
+    "ms": 80.19999999995343
+  },
+  {
+    "query": "The server replies with HTTP status 403",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "403",
+        "score": 0.6667751698338816
+      },
+      {
+        "id": "http201",
+        "score": 0.49441359873340684
+      },
+      {
+        "id": "http451",
+        "score": 0.4939020160339661
+      },
+      {
+        "id": "http503",
+        "score": 0.4854395544303921
+      },
+      {
+        "id": "http425",
+        "score": 0.4437665727833584
+      },
+      {
+        "id": "http202",
+        "score": 0.4422850082826845
+      },
+      {
+        "id": "cache304",
+        "score": 0.4381305545205424
+      },
+      {
+        "id": "429",
+        "score": 0.4366382517807552
+      },
+      {
+        "id": "http401",
+        "score": 0.4357272126861521
+      },
+      {
+        "id": "http408",
+        "score": 0.42964233338695074
+      }
+    ],
+    "ms": 87.30000000004657
+  },
+  {
+    "query": "how should I interpret http?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "http2",
+        "score": 0.6074341387050366
+      },
+      {
+        "id": "http3",
+        "score": 0.5320011575048363
+      },
+      {
+        "id": "http206",
+        "score": 0.5071162984697007
+      },
+      {
+        "id": "network-port",
+        "score": 0.41799064138102787
+      },
+      {
+        "id": "429",
+        "score": 0.4168342617337213
+      },
+      {
+        "id": "https",
+        "score": 0.4130906270987495
+      },
+      {
+        "id": "origin",
+        "score": 0.3978100587378672
+      },
+      {
+        "id": "http416",
+        "score": 0.3966165948321564
+      },
+      {
+        "id": "http201",
+        "score": 0.3955458148819778
+      },
+      {
+        "id": "http421",
+        "score": 0.3920098316702632
+      }
+    ],
+    "ms": 32.5999999998603
+  },
+  {
+    "query": "The text on a site is too small",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "zoom",
+        "score": 0.7218757381045354
+      },
+      {
+        "id": "win-text-size",
+        "score": 0.622224236100841
+      },
+      {
+        "id": "android-screen-density",
+        "score": 0.5545892810539665
+      },
+      {
+        "id": "iphone-page-zoom",
+        "score": 0.4994978139470206
+      },
+      {
+        "id": "linux-fractional-scale",
+        "score": 0.45116051698541537
+      },
+      {
+        "id": "zoom-reflow",
+        "score": 0.44671331188426167
+      },
+      {
+        "id": "win-display",
+        "score": 0.44299457698376
+      },
+      {
+        "id": "font-loading",
+        "score": 0.4301979965406149
+      },
+      {
+        "id": "image-size",
+        "score": 0.42270476633501036
+      },
+      {
+        "id": "win-clear-type",
+        "score": 0.4081785618837433
+      }
+    ],
+    "ms": 71.10000000009313
+  },
+  {
+    "query": "My laptop becomes hot during browsing",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "heat",
+        "score": 0.7282946730579956
+      },
+      {
+        "id": "hardware-thermal-throttle",
+        "score": 0.6551193603146023
+      },
+      {
+        "id": "cpu",
+        "score": 0.4547304239767649
+      },
+      {
+        "id": "win-power-mode",
+        "score": 0.397296330001227
+      },
+      {
+        "id": "mac-temperature",
+        "score": 0.3949814591562635
+      },
+      {
+        "id": "mac-energy",
+        "score": 0.39141227150353897
+      },
+      {
+        "id": "battery",
+        "score": 0.38195294717106937
+      },
+      {
+        "id": "win-efficiency",
+        "score": 0.35973309443744506
+      },
+      {
+        "id": "leak",
+        "score": 0.3312983930886123
+      },
+      {
+        "id": "hardware-power-adapter",
+        "score": 0.3291139619303086
+      }
+    ],
+    "ms": 82.80000000004657
+  },
+  {
+    "query": "what can I check safely?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "limits",
+        "score": 0.3677496355793488
+      },
+      {
+        "id": "safe-browsing",
+        "score": 0.32308939789889424
+      },
+      {
+        "id": "win-security",
+        "score": 0.30803539233833893
+      },
+      {
+        "id": "webcam-light",
+        "score": 0.3051588123923634
+      },
+      {
+        "id": "privacy-crash-report",
+        "score": 0.3034699036422994
+      },
+      {
+        "id": "api-idle-detection",
+        "score": 0.2831161105226048
+      },
+      {
+        "id": "tracking",
+        "score": 0.2818887685416156
+      },
+      {
+        "id": "ram",
+        "score": 0.2816357875584669
+      },
+      {
+        "id": "gamma-health",
+        "score": 0.267283114169347
+      },
+      {
+        "id": "mac-temperature",
+        "score": 0.26712614313108113
+      }
+    ],
+    "ms": 57.89999999990687
+  },
+  {
+    "query": "My device is almost out of storage",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "disk",
+        "score": 0.6620221153272398
+      },
+      {
+        "id": "android-storage-pressure",
+        "score": 0.5562728011852255
+      },
+      {
+        "id": "quota",
+        "score": 0.4725543989064351
+      },
+      {
+        "id": "linux-disk-inodes",
+        "score": 0.45628192167706977
+      },
+      {
+        "id": "android-sd-card",
+        "score": 0.45398810650796806
+      },
+      {
+        "id": "storage-eviction",
+        "score": 0.417655409222278
+      },
+      {
+        "id": "persistent",
+        "score": 0.4103080705285538
+      },
+      {
+        "id": "iphone-private-tabs",
+        "score": 0.40138256308602216
+      },
+      {
+        "id": "android-clear-cache",
+        "score": 0.4004627533461672
+      },
+      {
+        "id": "storage-persist-request",
+        "score": 0.3996095650499609
+      }
+    ],
+    "ms": 84.5
+  }
+]

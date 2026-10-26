@@ -31,8 +31,16 @@ export function parseSources(data: unknown): Source[] {
     if (!p || typeof p !== "object") return [];
     const x = p as Record<string, unknown>;
     if (typeof x.title !== "string" || typeof x.extract !== "string") return [];
+    const revision = Array.isArray(x.revisions)
+      ? x.revisions[0]?.timestamp
+      : undefined;
     const source = {
       title: x.title,
+      ...(typeof revision === "string" &&
+      /^\d{4}-\d{2}-\d{2}T/.test(revision) &&
+      Number.isFinite(Date.parse(revision))
+        ? { updatedAt: revision }
+        : {}),
       text: x.extract.slice(0, 1400),
       url: `https://en.wikipedia.org/wiki/${encodeURIComponent(x.title.replaceAll(" ", "_"))}`,
     };
@@ -52,7 +60,8 @@ export async function retrieve(
     gsrsearch: query.slice(0, 120),
     gsrnamespace: "0",
     gsrlimit: "2",
-    prop: "extracts",
+    prop: "extracts|revisions",
+    rvprop: "timestamp",
     exintro: "1",
     explaintext: "1",
     exchars: "1400",

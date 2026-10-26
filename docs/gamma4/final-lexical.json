@@ -1,0 +1,85 @@
+{
+  "fullResponse": {
+    "medianMs": 1.2355830000000196,
+    "p95Ms": 21.626785999999925,
+    "scope": "Local engine routing, lexical retrieval, graph selection and composition; injected empty browser facts; excludes presentation streaming and optional model inference."
+  },
+  "note": "Algorithm comparison on the same expanded corpus; a small development set, not a representative production benchmark. Scores are ranking utilities, not probabilities. Hybrid relevance is not certified by this lexical evaluation.",
+  "reports": [
+    {
+      "name": "original",
+      "cases": 38,
+      "supported": 26,
+      "intentAccuracy": 0.7307692307692307,
+      "recallAt3": 0.7307692307692307,
+      "falsePositiveRate": 0.08333333333333333,
+      "medianMs": 2.584604000000013,
+      "p95Ms": 40.45160099999998,
+      "misses": [
+        {
+          "query": "Every time I have a bunch of pages open everything becomes choppy",
+          "expected": "slow",
+          "accepted": false
+        },
+        {
+          "query": "My browser isn’t slow, it just crashes",
+          "expected": "crash",
+          "accepted": false
+        },
+        {
+          "query": "My internet works but one website doesn’t",
+          "expected": "website",
+          "accepted": false
+        },
+        {
+          "query": "ERR_CERT_AUTHORITY_INVALID",
+          "expected": "certificate",
+          "actual": "cert-expired",
+          "score": 0.675,
+          "accepted": false
+        },
+        {
+          "query": "the update is stuck waiting in another tab",
+          "expected": "sw-waiting",
+          "accepted": false
+        },
+        {
+          "query": "A website asks me to run PowerShell to prove I am human",
+          "expected": "paste-command",
+          "accepted": false
+        },
+        {
+          "query": "Can clearing cookies sign me out?",
+          "expected": "cookies",
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "name": "lexical",
+      "cases": 38,
+      "supported": 26,
+      "intentAccuracy": 0.9230769230769231,
+      "recallAt3": 0.9615384615384616,
+      "falsePositiveRate": 0,
+      "medianMs": 1.0008619999999837,
+      "p95Ms": 26.232635999999957,
+      "misses": [
+        {
+          "query": "the update is stuck waiting in another tab",
+          "expected": "sw-waiting",
+          "actual": "freeze",
+          "score": 0.2966545456119422,
+          "accepted": false
+        },
+        {
+          "query": "A website asks me to run PowerShell to prove I am human",
+          "expected": "paste-command",
+          "actual": "paste-command",
+          "score": 0.49620901212496016,
+          "accepted": false
+        }
+      ]
+    }
+  ]
+}

@@ -2,6 +2,13 @@ import { knowledge } from "../../data/knowledge";
 import type { Knowledge } from "../types";
 export const packCatalog = [
   {
+    id: "science",
+    title: "Scientific foundations",
+    description:
+      "Physics, chemistry, biology, scientific inference and reproducibility",
+    load: () => import("../../data/packs/science"),
+  },
+  {
     id: "programming",
     title: "Programming",
     description:
@@ -118,7 +125,11 @@ export async function knowledgeCommand(arg: string, signal?: AbortSignal) {
   if (extra.length)
     return "Use /knowledge, /knowledge install PACK, or /knowledge remove PACK.";
   try {
-    if (action === "install" && id) {
+    if ((action === "install" || action === "update") && id) {
+      // Packs are versioned with the app. Reinstalling cannot fetch a newer
+      // module into an old running build, and must not delete a working pack.
+      if (action === "update")
+        return `Knowledge packs update with Cole. Reload after installing a newer app version, then use /knowledge install ${id}. Your current pack has not been removed.`;
       await loadPack(id, true, signal);
       return `Installed ${id} for local use. This explicit request loads the static pack from Cole's origin. No conversation is sent. Cached offline use depends on browser storage; /knowledge remove ${id} removes its selection and cached chunk.`;
     }
@@ -129,7 +140,7 @@ export async function knowledgeCommand(arg: string, signal?: AbortSignal) {
     if (arg.trim() && arg.trim() !== "status")
       return "Use /knowledge, /knowledge install PACK, or /knowledge remove PACK.";
     return (
-      `Built-in: 700 authored records. Loaded: ${knowledge.length}. Optional domain packs load only after your explicit install request.\n\n` +
+      `Built-in: ${knowledge.filter((k) => !k.pack).length} authored records. Loaded: ${knowledge.length}. Optional domain packs load only after your explicit install request.\n\n` +
       packCatalog
         .map(
           (p) =>

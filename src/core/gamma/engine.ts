@@ -1,10 +1,17 @@
+import { frenchAnswer } from "./french";
+import { comparisonAspect, comparisonFollowup } from "./comparison";
 import { executionRequirement, unmetRequirement } from "./requirements";
 import { naturalTool } from "./natural-tools";
 import { assessAnswerability } from "./answerability";
 import { executeTrustedTool } from "./trusted-tools";
 import { probe } from "./probe";
 import { clearPublicCache } from "./public-sources";
-import { documentAnswer, type LocalDocument } from "./documents";
+import {
+  documentAnswer,
+  documentOperation,
+  documentRequest,
+  type LocalDocument,
+} from "./documents";
 import { applyMemory } from "./memory";
 import { plan, continuePlan, evidenceAnswer } from "./reasoning";
 import { observe } from "./observations";
@@ -34,6 +41,7 @@ import { executeCommand, parseCommand } from "../commands";
 import { flows, flowReply } from "../flows";
 export type EngineOptions = {
   document?: LocalDocument;
+  documents?: LocalDocument[];
   thinking: Thinking;
   webSources?: boolean;
   enhanced?: boolean;
@@ -59,7 +67,11 @@ function compose(id: string, c: Context) {
         .slice(0, 2)
         .join(" ")
     );
-  if (c.depth === "steps" || c.depth === "detailed")
+  if (
+    c.depth === "steps" ||
+    c.depth === "detailed" ||
+    c.familiarity === "beginner"
+  )
     return (
       prefix +
       k.answer +
@@ -129,6 +141,16 @@ async function respondSingle(
     options.stage?.(`Running local ${natural.name}`);
     return (await executeTrustedTool(natural.name, natural.input, c, options))!;
   }
+  const documentQuery = documentRequest(input);
+  if (documentQuery !== undefined) {
+    const result = documentOperation(
+      options.documents ?? (options.document ? [options.document] : []),
+      documentQuery,
+    );
+    return answer(result.text, { operation: result });
+  }
+  const french = frenchAnswer(input, c, options.signal);
+  if (french) return french;
   const statedPlatform = understand(input)
     .entities.filter((e) => e.kind === "platform")
     .at(-1);
@@ -155,6 +177,9 @@ async function respondSingle(
     return evidenceAnswer("", c);
   const continuation = continuePlan(input, c);
   if (continuation) return continuation;
+  const followupComparison =
+    comparisonAspect(input, c) ?? comparisonFollowup(input, c);
+  if (followupComparison) return answer(followupComparison);
   const observed = observe(input);
   if (
     /^i prefer (?:short|brief|detailed|step by step) answers[.!]*$/i.test(input)
@@ -353,6 +378,7 @@ async function respondSingle(
   if (/compare|difference between/.test(n)) {
     if (/cache/.test(n) && /cookies/.test(n)) {
       c.topic = "compare cache cookies";
+      c.comparison = ["cache", "cookies"];
       return answer(
         "Cache stores reusable resources such as images and scripts. Cookies store small values sent with matching requests, often for sign-in or preferences. Clearing cache can force downloads; clearing cookies can sign you out. Neither action should be used as a universal fix.",
       );
@@ -360,6 +386,7 @@ async function respondSingle(
     if (/firefox/.test(n) && /chrome/.test(n)) {
       c.intent = "compare";
       c.topic = "compare chrome firefox";
+      c.comparison = ["chrome", "firefox"];
       return answer(compose("compare", c));
     }
   }
@@ -710,7 +737,8 @@ export async function respond(
   previous = applyMemory(previous);
   await restorePacks(options.signal);
   const request = analyzeRequest(input);
-  if (request.tasks.length < 2) return respondSingle(input, previous, options);
+  if (request.tasks.length < 2 || documentRequest(input) !== undefined)
+    return respondSingle(input, previous, options);
   let context = freshContext(previous);
   const authoredSources = new Set<string>();
   const results: NonNullable<Response["tasks"]> = [];
@@ -728,7 +756,12 @@ export async function respond(
               (e) => e.kind === "api" || e.kind === "browser",
             )?.value ?? prior.subjects[0])
           : undefined;
-      if (!subject) {
+      const plural = /^(?:each|them|they)$/i.test(task.reference);
+      const group =
+        plural &&
+        priorResult?.status === "answered" &&
+        (priorResult.sources.length ?? 0) >= 2;
+      if ((!plural && !subject) || (plural && !group)) {
         results.push({
           id: task.id,
           intent: task.intent,
@@ -740,7 +773,8 @@ export async function respond(
         );
         continue;
       }
-      text = text.replace(/\b(?:it|that)\b/i, subject);
+      if (group) context.comparison = priorResult!.sources;
+      else text = text.replace(/\b(?:it|that)\b/i, subject!);
     }
     // A compound request cannot grant permissions, issue commands, or send
     // a fragment of private material to a provider. Ask for a separate action.

@@ -82,6 +82,14 @@ function validContext(value: unknown): boolean {
         c.pausedCases.every(validCase))) &&
     (c.authoredSources === undefined ||
       (strings(c.authoredSources) && c.authoredSources.length <= 12)) &&
+    (c.language === undefined || ["en", "fr"].includes(String(c.language))) &&
+    (c.familiarity === undefined ||
+      ["beginner", "technical"].includes(String(c.familiarity))) &&
+    (c.comparison === undefined ||
+      (strings(c.comparison) &&
+        c.comparison.length >= 2 &&
+        c.comparison.length <= 4 &&
+        c.comparison.every((id) => id.length <= 100))) &&
     (c.intent === undefined || typeof c.intent === "string") &&
     (c.browser === undefined || typeof c.browser === "string") &&
     (c.pending === undefined || strings(c.pending)) &&
@@ -207,6 +215,24 @@ export function normalizeConversation(value: unknown): unknown {
       (!strings(next.authoredSources) || next.authoredSources.length > 12)
     )
       delete next.authoredSources;
+    if (
+      next.language !== undefined &&
+      !["en", "fr"].includes(String(next.language))
+    )
+      delete next.language;
+    if (
+      next.familiarity !== undefined &&
+      !["beginner", "technical"].includes(String(next.familiarity))
+    )
+      delete next.familiarity;
+    if (
+      next.comparison !== undefined &&
+      (!strings(next.comparison) ||
+        next.comparison.length < 2 ||
+        next.comparison.length > 4 ||
+        next.comparison.some((id) => id.length > 100))
+    )
+      delete next.comparison;
     return next;
   };
   return {

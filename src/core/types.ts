@@ -16,6 +16,9 @@ export type Evidence = {
     "Browser" | "Device" | "Display" | "Network" | "Storage" | "Permissions";
 };
 export type Context = {
+  comparison?: string[];
+  language?: "en" | "fr";
+  familiarity?: "beginner" | "technical";
   case?: CaseState;
   pausedCases?: CaseState[];
   authoredSources?: string[];

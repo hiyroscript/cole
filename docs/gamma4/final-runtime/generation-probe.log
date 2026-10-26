@@ -1,0 +1,16 @@
+
+> cole@0.1.0 test:madon:real
+> node scripts/smoke-madon.mjs
+
+{
+  "browser": "156.0.8078.4",
+  "model": "Qwen3-1.7B-q4f16_1-MLC",
+  "runtime": "0.2.86",
+  "generated": false,
+  "capabilities": {
+    "webgpu": true,
+    "adapter": false,
+    "shaderF16": false
+  },
+  "blocked": "No compatible WebGPU adapter; real model download/inference not tested."
+}
