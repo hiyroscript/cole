@@ -73,10 +73,12 @@ export class DeepRuntime {
       this.worker = new Worker(new URL("./deep-worker.ts", import.meta.url), {
         type: "module",
       });
-      this.worker.onerror = () =>
+      this.worker.onerror = () => {
+        if (session !== this.session) return;
         this.fail(
           "The local generation worker failed. Core remains available.",
         );
+      };
       this.worker.onmessage = ({ data }) => {
         if (session !== this.session) return;
         if (!data || typeof data !== "object") {

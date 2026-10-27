@@ -125,8 +125,14 @@ it("does not let a cancelled setup overwrite a newer session", async () => {
   const runtime = new DeepRuntime(),
     first = runtime.initialize(true);
   const rejection = expect(first).rejects.toThrow(/cancelled/);
+  const cancelledWorker = FakeWorker.latest;
   runtime.disable();
   const second = runtime.initialize(true);
+  cancelledWorker.onerror?.();
+  cancelledWorker.send({
+    type: "error",
+    detail: "Late failure from a stopped worker",
+  });
   await rejection;
   expect(runtime.getSnapshot().state).toBe("loading");
   FakeWorker.latest.send({ type: "ready", cacheComplete: false });

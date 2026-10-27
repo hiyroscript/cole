@@ -68,7 +68,7 @@ The five MDN topics passed actual provider retrieval; WebGPU also passed a produ
 
 The current MiniLM browser run indexed 708 records in 36,833 ms and measured all 70 new evaluation queries (median 16.1 ms, P95 65.3 ms); offline reuse and selective removal passed. Earlier real scores cover the entire published regression and its engine subqueries. Model-generation measurements and the rejected candidate's raw results are in the [advanced-mode report](GAMMA4-ADVANCED-MODE.md). These are container CPU measurements, not physical-device certification.
 
-Startup stays below the original **650,000 raw / 210,000 gzip JavaScript** limits. Final entry JavaScript is **478,321 raw / 149,197 gzip bytes**, and shell precache is **1,027,268 bytes**. Five fresh-browser samples measured median composer readiness **363.4 ms**, visible answer **197.6 ms**, and post-answer JavaScript heap **10,288,460 bytes**. All samples are in [performance-after.json](gamma4/completion-runtime/performance-after.json). Heap snapshots are not peak process or inference memory; this is not a controlled before/after speed experiment.
+Startup stays below the original **650,000 raw / 210,000 gzip JavaScript** limits. Final entry JavaScript is **478,341 raw / 149,202 gzip bytes**, and shell precache is **1,027,288 bytes**. Five fresh-browser samples measured median composer readiness **322.3 ms**, visible answer **196.4 ms**, and post-answer JavaScript heap **10,288,980 bytes**. All samples are in [performance-after.json](gamma4/completion-runtime/performance-after.json). Heap snapshots are not peak process or inference memory; this is not a controlled before/after speed experiment.
 
 ## Remaining scope
 
