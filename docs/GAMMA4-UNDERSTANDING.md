@@ -43,7 +43,7 @@ Real Chromium CPU/WASM MiniLM inference indexed 708 records in 26,582 ms and mea
 
 Startup JavaScript is **478,341 bytes raw / 149,199 gzip**, within the unchanged 650,000/210,000 limits. Shell precache is 1,030,519 bytes, 3,231 bytes above the previous stage. Five fresh-browser samples measured median composer readiness 336.3 ms, visible answer 252.1 ms and post-answer JavaScript heap 10,045,248 bytes. These are container observations, not a controlled before/after speed test or a peak-memory measurement. [All samples](gamma4/understanding-runtime/performance-after.json).
 
-Historical reports and checksums remain intact. CI browser installation has a ten-minute step timeout: the initial PR run stalled in dependency setup for more than ten minutes after every preceding check passed. A timeout fails setup rather than bypassing browser tests. No merge or deployment is part of this continuation.
+Historical reports and checksums remain intact. The initial [CI run](https://github.com/hiyroscript/cole/actions/runs/40546393622) spent 11 minutes 11 seconds downloading 25.9 MB from Ubuntu's Azure mirror; Chromium's own download was fast. CI now substitutes Ubuntu's official HTTPS archive in the ephemeral runner's mirror list and bounds browser installation to ten minutes. Signed-package verification remains in place; a timeout fails setup rather than bypassing browser tests. No merge or deployment is part of this continuation.
 
 ```sh
 npm run typecheck
