@@ -1,0 +1,381 @@
+{
+  "scope": "40 newly authored cases frozen before the final composition fixes and any execution of this fixture. Authored by the implementer, not an independent evaluator; small purposive sample, not a representative accuracy estimate. No production code consumes this fixture. Supported labels refer to existing core records. All tasks in a compound must independently provide their expected source. Static label audit before first execution corrected two nonexistent sw IDs to service-worker.",
+  "cases": [
+    {
+      "id": "supported-1",
+      "category": "supported",
+      "turns": [
+        "Describe how DNS connects a name with an IP address."
+      ],
+      "expected": "dns"
+    },
+    {
+      "id": "supported-2",
+      "category": "supported",
+      "turns": [
+        "What does an HTTP 304 response signify?"
+      ],
+      "expected": "cache304"
+    },
+    {
+      "id": "supported-3",
+      "category": "supported",
+      "turns": [
+        "Explain the Secure attribute on a cookie."
+      ],
+      "expected": "secure-cookie"
+    },
+    {
+      "id": "supported-4",
+      "category": "supported",
+      "turns": [
+        "Why do RAM and persistent storage serve different purposes?"
+      ],
+      "expected": "ram-storage"
+    },
+    {
+      "id": "supported-5",
+      "category": "supported",
+      "turns": [
+        "Could you introduce WebAssembly to someone new to web development?"
+      ],
+      "expected": "wasm"
+    },
+    {
+      "id": "supported-6",
+      "category": "supported",
+      "turns": [
+        "What is the Cache-Control header used for?"
+      ],
+      "expected": "cache-control"
+    },
+    {
+      "id": "supported-7",
+      "category": "supported",
+      "turns": [
+        "How does browser synchronization affect privacy?"
+      ],
+      "expected": "browser-sync"
+    },
+    {
+      "id": "supported-8",
+      "category": "supported",
+      "turns": [
+        "What happens when a WebGPU device is lost?"
+      ],
+      "expected": "webgpu-lost"
+    },
+    {
+      "id": "supported-9",
+      "category": "supported",
+      "turns": [
+        "Why might DNS return SERVFAIL?"
+      ],
+      "expected": "dns-servfail"
+    },
+    {
+      "id": "supported-10",
+      "category": "supported",
+      "turns": [
+        "What is an A record compared with an AAAA record?"
+      ],
+      "expected": "dns-a-aaaa"
+    },
+    {
+      "id": "supported-11",
+      "category": "supported",
+      "turns": [
+        "Does an iframe sandbox restrict the embedded page?"
+      ],
+      "expected": "sandbox"
+    },
+    {
+      "id": "supported-12",
+      "category": "supported",
+      "turns": [
+        "Explain the difference between network latency and bandwidth."
+      ],
+      "expected": "latency"
+    },
+    {
+      "id": "supported-13",
+      "category": "supported",
+      "turns": [
+        "What do cookie expiry dates control?"
+      ],
+      "expected": "cookie-expiry"
+    },
+    {
+      "id": "supported-14",
+      "category": "supported",
+      "turns": [
+        "Could you explain how the back-forward cache works?"
+      ],
+      "expected": "bfcache"
+    },
+    {
+      "id": "supported-15",
+      "category": "supported",
+      "turns": [
+        "What should a website do with reduced motion preferences?"
+      ],
+      "expected": "reduced-motion"
+    },
+    {
+      "id": "supported-16",
+      "category": "supported",
+      "turns": [
+        "Explain why a backup needs a restore test."
+      ],
+      "expected": "backup"
+    },
+    {
+      "id": "unsupported-1",
+      "category": "unsupported",
+      "turns": [
+        "Read the passwords saved in my browser."
+      ],
+      "expected": null
+    },
+    {
+      "id": "unsupported-2",
+      "category": "unsupported",
+      "turns": [
+        "Measure my graphics card temperature now."
+      ],
+      "expected": null
+    },
+    {
+      "id": "unsupported-3",
+      "category": "unsupported",
+      "turns": [
+        "Tell me the latest Chrome release number."
+      ],
+      "expected": null
+    },
+    {
+      "id": "unsupported-4",
+      "category": "unsupported",
+      "turns": [
+        "Set the screen brightness to 45 percent."
+      ],
+      "expected": null
+    },
+    {
+      "id": "unsupported-5",
+      "category": "unsupported",
+      "turns": [
+        "Who will win the next election?"
+      ],
+      "expected": null
+    },
+    {
+      "id": "unsupported-6",
+      "category": "unsupported",
+      "turns": [
+        "What is the meaning of ERR_INVENTED_B7FA?"
+      ],
+      "expected": null
+    },
+    {
+      "id": "unsupported-7",
+      "category": "unsupported",
+      "turns": [
+        "Fetch my private bank balance."
+      ],
+      "expected": null
+    },
+    {
+      "id": "unsupported-8",
+      "category": "unsupported",
+      "turns": [
+        "Delete files in my Downloads directory."
+      ],
+      "expected": null
+    },
+    {
+      "id": "conversation-1",
+      "category": "conversation",
+      "turns": [
+        "Explain DNS",
+        "Actually I use Edge on Windows.",
+        "Show me the steps."
+      ],
+      "expected": "dns",
+      "browser": "edge",
+      "platform": "windows"
+    },
+    {
+      "id": "conversation-2",
+      "category": "conversation",
+      "turns": [
+        "Explain cookies",
+        "Actually, Safari on iOS.",
+        "Make that shorter."
+      ],
+      "expected": "cookies",
+      "browser": "safari",
+      "platform": "ios"
+    },
+    {
+      "id": "conversation-3",
+      "category": "conversation",
+      "turns": [
+        "What is WebAssembly?",
+        "Correction: Firefox on Linux.",
+        "Explain that in more detail."
+      ],
+      "expected": "wasm",
+      "browser": "firefox",
+      "platform": "linux"
+    },
+    {
+      "id": "conversation-4",
+      "category": "conversation",
+      "turns": [
+        "What is a service worker?",
+        "I use Chrome on Android.",
+        "Repeat that."
+      ],
+      "expected": "service-worker",
+      "browser": "chrome",
+      "platform": "android"
+    },
+    {
+      "id": "conversation-5",
+      "category": "conversation",
+      "turns": [
+        "What is WebGPU?",
+        "Actually, Edge on Windows.",
+        "Tell me more about that."
+      ],
+      "expected": "webgpu",
+      "browser": "edge",
+      "platform": "windows"
+    },
+    {
+      "id": "conversation-6",
+      "category": "conversation",
+      "turns": [
+        "Explain IndexedDB",
+        "Correction: I use Firefox on macOS.",
+        "Show me the steps."
+      ],
+      "expected": "indexeddb",
+      "browser": "firefox",
+      "platform": "macos"
+    },
+    {
+      "id": "conversation-7",
+      "category": "conversation",
+      "turns": [
+        "What are cookies?",
+        "I use Chrome on Linux.",
+        "What is DNS?"
+      ],
+      "expected": "dns",
+      "browser": "chrome",
+      "platform": "linux"
+    },
+    {
+      "id": "conversation-8",
+      "category": "conversation",
+      "turns": [
+        "Explain cache",
+        "Actually, I use Firefox on Windows.",
+        "Explain cookies instead."
+      ],
+      "expected": "cookies",
+      "browser": "firefox",
+      "platform": "windows"
+    },
+    {
+      "id": "compound-1",
+      "category": "compound",
+      "turns": [
+        "Explain WebGPU and WebAssembly."
+      ],
+      "expected": [
+        "webgpu",
+        "wasm"
+      ]
+    },
+    {
+      "id": "compound-2",
+      "category": "compound",
+      "turns": [
+        "Describe DNS. Also explain cookies."
+      ],
+      "expected": [
+        "dns",
+        "cookies"
+      ]
+    },
+    {
+      "id": "compound-3",
+      "category": "compound",
+      "turns": [
+        "Explain Cache-Control; then describe HTTP 304."
+      ],
+      "expected": [
+        "cache-control",
+        "cache304"
+      ]
+    },
+    {
+      "id": "compound-4",
+      "category": "compound",
+      "turns": [
+        "What is IndexedDB? Also what is localStorage?"
+      ],
+      "expected": [
+        "indexeddb",
+        "localstorage"
+      ]
+    },
+    {
+      "id": "compound-5",
+      "category": "compound",
+      "turns": [
+        "Explain backups and browser synchronization."
+      ],
+      "expected": [
+        "backup",
+        "browser-sync"
+      ]
+    },
+    {
+      "id": "compound-6",
+      "category": "compound",
+      "turns": [
+        "Describe Firefox. Also describe Safari."
+      ],
+      "expected": [
+        "firefox",
+        "safari"
+      ]
+    },
+    {
+      "id": "compound-7",
+      "category": "compound",
+      "turns": [
+        "Explain WebGL and WebGPU."
+      ],
+      "expected": [
+        "webgl",
+        "webgpu"
+      ]
+    },
+    {
+      "id": "compound-8",
+      "category": "compound",
+      "turns": [
+        "What is a service worker? Also explain the back-forward cache."
+      ],
+      "expected": [
+        "service-worker",
+        "bfcache"
+      ]
+    }
+  ]
+}

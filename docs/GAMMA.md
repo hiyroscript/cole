@@ -1,6 +1,6 @@
 # Gamma architecture history and current delivery
 
-Current Gamma 4.0 architecture and measured results are in [GAMMA4-DELIVERY.md](GAMMA4-DELIVERY.md). The shared engine separates typed request frames, discovery, evidence acceptance and bounded tool execution. It now includes statistics/CSV/text/deduction, comparison dimensions, safer diagnostic checks, cancellable multi-document indexing with line/section citations, explicit preferences, article-revision provenance and a limited French path. Core/optional coverage is 708 + 120 records. Broad intelligence targets remain unmet; see the report for exact scope and [generation feasibility](GAMMA4-ADVANCED-MODE.md).
+Current Gamma 4.0 architecture and measured results are in [GAMMA4-DELIVERY.md](GAMMA4-DELIVERY.md). The shared engine separates typed request frames, discovery, evidence acceptance and bounded tool execution. It includes statistics/CSV/text/deduction, comparison dimensions, safer diagnostic checks, local text/PDF/DOCX indexing with line/page citations, explicit preferences, dated Wikimedia/MDN provenance and a limited French path. Core/optional coverage is 708 + 120 records. Experimental [Deep Mode](GAMMA4-ADVANCED-MODE.md) uses a separately downloaded CPU model for explicit, bounded evidence drafts. Broad intelligence targets remain unmet.
 
 The following architecture sections retain earlier Gamma 2/3 measurements and limitations for historical context; the Gamma 4 report supersedes their current-state claims.
 

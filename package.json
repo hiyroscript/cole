@@ -12,7 +12,8 @@
     "build": "tsc --noEmit && vite build && node scripts/semantic-assets.mjs && node scripts/service-worker.mjs",
     "build:extension": "vite build --mode extension && node scripts/extension.mjs",
     "preview": "vite preview --host 0.0.0.0",
-    "test:extension": "node tests/extension.mjs",
+    "test:extension": "node --import tsx tests/extension.mjs",
+    "test:deep:real": "node --import tsx scripts/smoke-deep.mjs",
     "format": "prettier --write src extension scripts tests *.ts *.json index.html .github/workflows/*.yml docs/*.md README.md",
     "test:madon:real": "node scripts/smoke-madon.mjs",
     "check:brand": "tsx scripts/check-brand.ts",
@@ -32,11 +33,14 @@
   "dependencies": {
     "@huggingface/transformers": "3.8.1",
     "@mlc-ai/web-llm": "0.2.86",
+    "fflate": "0.8.3",
     "lucide-react": "^0.468.0",
+    "pdfjs-dist": "6.4.299",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-markdown": "^10.1.0",
-    "remark-gfm": "4.0.1"
+    "remark-gfm": "4.0.1",
+    "saxes": "6.0.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0",
@@ -49,10 +53,13 @@
     "esbuild": "^0.28.2",
     "fake-indexeddb": "^6.0.0",
     "prettier": "^3.9.10",
-    "sharp": "^0.34.0",
+    "sharp": "0.35.5",
     "tsx": "^4.20.0",
     "typescript": "^5.9.0",
     "vite": "^7.1.0",
     "vitest": "^3.2.0"
+  },
+  "overrides": {
+    "sharp": "$sharp"
   }
 }

@@ -1,0 +1,367 @@
+{
+  "scope": "Linux ps sampling during real Qwen CPU generation after warm/offline setup. Browser descendants only; excludes unrelated test browsers and Node. Summed RSS double-counts shared pages. Sampling began after initialization: not a complete peak-memory measurement or mobile requirement.",
+  "samples": [
+    {
+      "at": "2026-10-27T00:17:05.643958+00:00",
+      "summedRssBytes": 3377442816,
+      "largestProcessRssBytes": 2142085120,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:06.658878+00:00",
+      "summedRssBytes": 3371687936,
+      "largestProcessRssBytes": 2136461312,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:07.670178+00:00",
+      "summedRssBytes": 3419803648,
+      "largestProcessRssBytes": 2184577024,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:08.726368+00:00",
+      "summedRssBytes": 3420790784,
+      "largestProcessRssBytes": 2185564160,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:09.745439+00:00",
+      "summedRssBytes": 3377565696,
+      "largestProcessRssBytes": 2142334976,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:10.763803+00:00",
+      "summedRssBytes": 3396517888,
+      "largestProcessRssBytes": 2161287168,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:11.827488+00:00",
+      "summedRssBytes": 3415638016,
+      "largestProcessRssBytes": 2180407296,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:12.849653+00:00",
+      "summedRssBytes": 3407147008,
+      "largestProcessRssBytes": 2171867136,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:13.888445+00:00",
+      "summedRssBytes": 3395133440,
+      "largestProcessRssBytes": 2159853568,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:14.897890+00:00",
+      "summedRssBytes": 3389747200,
+      "largestProcessRssBytes": 2154512384,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:15.933125+00:00",
+      "summedRssBytes": 3383369728,
+      "largestProcessRssBytes": 2148134912,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:16.946692+00:00",
+      "summedRssBytes": 3409272832,
+      "largestProcessRssBytes": 2174038016,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:17.964119+00:00",
+      "summedRssBytes": 3381825536,
+      "largestProcessRssBytes": 2146590720,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:18.975708+00:00",
+      "summedRssBytes": 3384549376,
+      "largestProcessRssBytes": 2149322752,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:20.015005+00:00",
+      "summedRssBytes": 3385200640,
+      "largestProcessRssBytes": 2149974016,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:21.029894+00:00",
+      "summedRssBytes": 3402563584,
+      "largestProcessRssBytes": 2167877632,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:22.054618+00:00",
+      "summedRssBytes": 3402760192,
+      "largestProcessRssBytes": 2168283136,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:23.064520+00:00",
+      "summedRssBytes": 3381907456,
+      "largestProcessRssBytes": 2147491840,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:24.099151+00:00",
+      "summedRssBytes": 3415482368,
+      "largestProcessRssBytes": 2181066752,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:25.108582+00:00",
+      "summedRssBytes": 3382710272,
+      "largestProcessRssBytes": 2148294656,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:26.126544+00:00",
+      "summedRssBytes": 3404898304,
+      "largestProcessRssBytes": 2170482688,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:27.154569+00:00",
+      "summedRssBytes": 3406209024,
+      "largestProcessRssBytes": 2171875328,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:28.173585+00:00",
+      "summedRssBytes": 3418423296,
+      "largestProcessRssBytes": 2184089600,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:29.228002+00:00",
+      "summedRssBytes": 3385446400,
+      "largestProcessRssBytes": 2151112704,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:30.259615+00:00",
+      "summedRssBytes": 3407908864,
+      "largestProcessRssBytes": 2173575168,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:31.274730+00:00",
+      "summedRssBytes": 3420508160,
+      "largestProcessRssBytes": 2186174464,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:32.290903+00:00",
+      "summedRssBytes": 3387916288,
+      "largestProcessRssBytes": 2153435136,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:33.334449+00:00",
+      "summedRssBytes": 3389046784,
+      "largestProcessRssBytes": 2153304064,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:34.351627+00:00",
+      "summedRssBytes": 3389050880,
+      "largestProcessRssBytes": 2153304064,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:35.372306+00:00",
+      "summedRssBytes": 3390140416,
+      "largestProcessRssBytes": 2153304064,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:36.388377+00:00",
+      "summedRssBytes": 3390197760,
+      "largestProcessRssBytes": 2153304064,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:37.427596+00:00",
+      "summedRssBytes": 3390197760,
+      "largestProcessRssBytes": 2153304064,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:38.436551+00:00",
+      "summedRssBytes": 3390197760,
+      "largestProcessRssBytes": 2153304064,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:39.445658+00:00",
+      "summedRssBytes": 3566694400,
+      "largestProcessRssBytes": 2329862144,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:40.454676+00:00",
+      "summedRssBytes": 3413778432,
+      "largestProcessRssBytes": 2176946176,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:41.463655+00:00",
+      "summedRssBytes": 3427241984,
+      "largestProcessRssBytes": 2190409728,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:42.472910+00:00",
+      "summedRssBytes": 3436216320,
+      "largestProcessRssBytes": 2199351296,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:43.481961+00:00",
+      "summedRssBytes": 3392163840,
+      "largestProcessRssBytes": 2155298816,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:44.490969+00:00",
+      "summedRssBytes": 3378307072,
+      "largestProcessRssBytes": 2141442048,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:45.503250+00:00",
+      "summedRssBytes": 3378307072,
+      "largestProcessRssBytes": 2141442048,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:46.515487+00:00",
+      "summedRssBytes": 3378249728,
+      "largestProcessRssBytes": 2141417472,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:47.527836+00:00",
+      "summedRssBytes": 3378249728,
+      "largestProcessRssBytes": 2141417472,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:48.537539+00:00",
+      "summedRssBytes": 3378249728,
+      "largestProcessRssBytes": 2141417472,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:49.547759+00:00",
+      "summedRssBytes": 3525750784,
+      "largestProcessRssBytes": 2288918528,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:50.559264+00:00",
+      "summedRssBytes": 3373088768,
+      "largestProcessRssBytes": 2135924736,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:51.570293+00:00",
+      "summedRssBytes": 3393830912,
+      "largestProcessRssBytes": 2156666880,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:52.580181+00:00",
+      "summedRssBytes": 3421499392,
+      "largestProcessRssBytes": 2179633152,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:53.593936+00:00",
+      "summedRssBytes": 3396526080,
+      "largestProcessRssBytes": 2154512384,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:54.603409+00:00",
+      "summedRssBytes": 3408089088,
+      "largestProcessRssBytes": 2166484992,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:55.613041+00:00",
+      "summedRssBytes": 3417141248,
+      "largestProcessRssBytes": 2175537152,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:56.622130+00:00",
+      "summedRssBytes": 3434930176,
+      "largestProcessRssBytes": 2193326080,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:57.631602+00:00",
+      "summedRssBytes": 3391934464,
+      "largestProcessRssBytes": 2154778624,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:58.640499+00:00",
+      "summedRssBytes": 3406876672,
+      "largestProcessRssBytes": 2169712640,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:17:59.649648+00:00",
+      "summedRssBytes": 3406876672,
+      "largestProcessRssBytes": 2169712640,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:18:00.658546+00:00",
+      "summedRssBytes": 3406618624,
+      "largestProcessRssBytes": 2169454592,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:18:01.667658+00:00",
+      "summedRssBytes": 3406618624,
+      "largestProcessRssBytes": 2169454592,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:18:02.676862+00:00",
+      "summedRssBytes": 3406618624,
+      "largestProcessRssBytes": 2169454592,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:18:03.687369+00:00",
+      "summedRssBytes": 3546796032,
+      "largestProcessRssBytes": 2309632000,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:18:04.700971+00:00",
+      "summedRssBytes": 3392364544,
+      "largestProcessRssBytes": 2155200512,
+      "processes": 20
+    },
+    {
+      "at": "2026-10-27T00:18:05.710298+00:00",
+      "summedRssBytes": 3386908672,
+      "largestProcessRssBytes": 2149744640,
+      "processes": 20
+    }
+  ],
+  "maximumSampledSummedRssBytes": 3566694400,
+  "maximumSampledProcessRssBytes": 2329862144
+}

@@ -2,6 +2,8 @@ import { DocumentImport } from "../components/DocumentImport";
 import type { LocalDocument } from "../core/gamma/documents";
 import { Welcome } from "../components/Welcome";
 import { GammaSetup } from "../components/GammaSetup";
+import { DeepSetup } from "../components/DeepSetup";
+import { deep } from "../core/gamma/deep-runtime";
 import { semantic } from "../core/gamma/semantic";
 import {
   useEffect,
@@ -369,7 +371,7 @@ export default function App() {
         role: "assistant",
         text: "",
         model: selected.id,
-        modelVersion: selected.id === "madon" ? MODEL_VERSION : "gamma-3.0",
+        modelVersion: selected.id === "madon" ? MODEL_VERSION : "gamma-4.0",
       };
     let chat: Conversation = {
       ...base,
@@ -1108,9 +1110,10 @@ export default function App() {
               />
             </label>
             <p className="fine-print">
-              Public topic queries go to Wikimedia. Gamma displays source
-              extracts; Madon can use them in locally generated answers. Chats
-              and diagnostics are not sent.
+              Public topics go to Wikimedia. Explicit /research mdn requests
+              retrieve MDN compatibility revisions from GitHub. Gamma displays
+              source extracts; Madon can use them in locally generated answers.
+              Chats and diagnostics are not sent.
             </p>
 
             <label>
@@ -1181,6 +1184,7 @@ export default function App() {
               }}
             />
 
+            <DeepSetup busy={busy} />
             <MadonSetup
               busy={busy}
               switchToGamma={() => selectModel("gamma")}
@@ -1255,6 +1259,7 @@ export default function App() {
                       if (!(await madon.remove()))
                         throw new Error("Model cache could not be cleared");
                       await semantic.remove();
+                      await deep.remove();
                       await clearConversations();
                       localStorage.removeItem("varek.preferences.v1");
                       localStorage.removeItem("gamma.memory.v1");

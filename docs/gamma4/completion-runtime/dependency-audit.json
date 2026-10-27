@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-27T00:27:36.040388+00:00",
+  "scope": "npm audit --omit=dev against the installed dependency graph. Advisory availability is time-dependent; zero findings is not a security proof.",
+  "before": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 2,
+    "critical": 0,
+    "total": 2
+  },
+  "after": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "change": "Pinned development Sharp and its Transformers.js transitive dependency to 0.35.5 via an npm override; retained Transformers.js 3.8.1 browser runtime.",
+  "advisories": [
+    "https://github.com/advisories/GHSA-f88m-g3jw-g9cj",
+    "https://github.com/advisories/GHSA-rgj7-g3m4-5g8c",
+    "https://github.com/advisories/GHSA-wq5f-xc86-pv6w"
+  ]
+}

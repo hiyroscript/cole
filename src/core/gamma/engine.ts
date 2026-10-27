@@ -492,11 +492,13 @@ async function respondSingle(
   }
   const depth = /shorter|brief|summarize that/.test(n)
     ? "brief"
-    : /give me (?:the )?(?:steps|instructions)|step by step|what should i try first|how do i fix (?:that|it)/.test(
+    : /(?:give|show) me (?:the )?(?:steps|instructions)|step by step|what should i try first|how do i fix (?:that|it)/.test(
           n,
         )
       ? "steps"
-      : /more detail|explain that more|what does that mean/.test(n)
+      : /more detail|explain that more|what does that mean|tell me more about (?:it|that)/.test(
+            n,
+          )
         ? "detailed"
         : undefined;
   if (depth) {

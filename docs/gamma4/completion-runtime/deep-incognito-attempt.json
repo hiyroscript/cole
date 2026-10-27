@@ -1,0 +1,11 @@
+{
+  "model": "HuggingFaceTB/SmolLM2-360M-Instruct",
+  "revision": "a10cc1512eabd3dde888204e902eca88bddb4951",
+  "weightBytes": 364564671,
+  "backend": "real browser CPU/WASM, single thread",
+  "startedAt": "2026-10-26T19:15:50.628Z",
+  "results": [],
+  "setupMs": 132088,
+  "cachedBytes": 2109298,
+  "error": "locator.waitFor: Timeout 120000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Gamma Deep Mode is ready (experimental CPU generation).', { exact: true }) to be visible\u001b[22m\n"
+}

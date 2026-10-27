@@ -60,7 +60,7 @@ export async function executeCommand(
     return result(`/${name} does not accept arguments.`);
   if (name === "gamma")
     return result(
-      "**Gamma 3.0** — Fast, private browser and device intelligence. Local authored guidance, bounded task planning, calculations, document analysis, optional domain packs and CPU embeddings. Madon is a separate generative model; Gamma never downloads or invokes it automatically.",
+      "**Gamma 4.0** — Local authored guidance, bounded task planning, calculations, data and document analysis, optional domain packs and CPU embeddings. Experimental Deep Mode generates local evidence-grounded drafts after separate setup and an explicit /deep request. Madon remains separately selected; Gamma never downloads or invokes it automatically.",
     );
   if (name === "health") return result(health(facts), { evidence: facts });
   if (name === "context")
@@ -98,7 +98,7 @@ export async function executeCommand(
   if (name === "web")
     return result(
       arg === "on"
-        ? "Public web retrieval enabled. Explicit lookup requests send a short public topic to Wikimedia. History and diagnostics are not sent. Use /web off to disable."
+        ? "Public web retrieval enabled. Explicit lookup requests send a short public topic to Wikimedia. Named /research mdn requests retrieve compatibility revisions from GitHub. History and diagnostics are not sent. Use /web off to disable."
         : arg === "off"
           ? "Web retrieval disabled. Bundled knowledge remains available."
           : `Web retrieval is ${preferences.webSources ? "on" : "off"}.`,

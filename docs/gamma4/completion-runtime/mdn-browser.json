@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-27T00:00:14.363Z",
+  "scope": "Actual production Chromium UI and cross-origin provider requests; no mocked fetch.",
+  "success": true,
+  "requests": [
+    {
+      "method": "GET",
+      "url": "https://api.github.com/repos/mdn/browser-compat-data/commits?path=api%2FGPU.json&per_page=2"
+    },
+    {
+      "method": "GET",
+      "url": "https://raw.githubusercontent.com/mdn/browser-compat-data/45854e0a80a5b9b2cabc407dbc5d6fa06972b685/api/GPU.json"
+    },
+    {
+      "method": "GET",
+      "url": "https://raw.githubusercontent.com/mdn/browser-compat-data/69c382b1903d966b089004cf7b97a02b61c82a47/api/GPU.json"
+    }
+  ],
+  "text": "Gamma\n\nNewly retrieved MDN browser-compat-data, community-maintained reference data. Retrieved 2026-10-27T00:00:13.320Z. Two immutable file revisions were requested from GitHub.\n\nSource 1: MDN webgpu compatibility — latest file revision\n\nFile revision date: 2026-07-10T12:40:50Z. Original publication date: not established.\n\nchrome: added 144; source includes qualifications / added 113; removed 144; partial implementation; source includes qualifications. firefox: added 141; partial implementation; source includes qualifications. safari: added 26. edge: data alias: mirror; inspect source. chrome_android: added 121. firefox_android: not supported. safari_ios: data alias: mirror; inspect source. webview_android: data alias: mirror; inspect source. Changed top-level support fields: chrome: added 113; partial implementation; source includes qualifications → added 144; source includes qualifications / added 113; removed 144; partial implementation; source includes qualifications Community-maintained compatibility evidence, not a successful feature probe on your device.\n\nOpen this exact source revision\n\nSource 2: MDN webgpu compatibility — previous file revision\n\nFile revision date: 2026-05-07T12:23:18Z. Original publication date: not established.\n\nchrome: added 113; partial implementation; source includes qualifications. firefox: added 141; partial implementation; source includes qualifications. safari: added 26. edge: data alias: mirror; inspect source. chrome_android: added 121. firefox_android: not supported. safari_ios: data alias: mirror; inspect source. webview_android: data alias: mirror; inspect source. Previous file revision for comparison. Community-maintained compatibility evidence, not a successful feature probe on your device.\n\nOpen this exact source revision\n\nOnly the displayed top-level browser-support fields were compared. A source edit is not necessarily a browser release; a version claim is not a test of this device. Subfeatures, notes and conditional qualifications may need further review.\n\nRetrieved sources\nMDN webgpu compatibility — latest file revision\nMDN webgpu compatibility — previous file revision"
+}

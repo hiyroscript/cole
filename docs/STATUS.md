@@ -1,10 +1,12 @@
 # Implementation status
 
-## Gamma 4.0 implementation (2026-10-26)
+## Gamma 4.0 implementation (2026-10-27)
 
-Integrated request/evidence/task upgrades, statistics/CSV/text/deduction tools, diagnostic check policy, 708 core plus 120 optional records, cancellable multi-document indexing and comparisons, research revision metadata, explicit language/familiarity memory and a bounded French path. Validation includes 3,531 unit tests, 80 browser cases verified and 19 extension checks. Actual MiniLM WASM indexed the expanded corpus and reused it offline. The generation probe found no usable WebGPU adapter.
+Integrated request/evidence/task upgrades, statistics/CSV/text/deduction tools, diagnostic check policy, 708 core plus 120 optional records, local text/PDF/DOCX import, MDN compatibility revision comparison, explicit preferences and bounded French support. Experimental website-only Deep Mode has separate consent, bounded evidence, local CPU generation, validation, cancellation and Core fallback. Madon remains separately selected.
 
-The published regression has 0/100 unsupported false accepts, but broad acceptance, conversation and composition targets remain unmet. General generation, PDF/DOCX parsing, broader research and independent evaluation remain open. See [the full delivery, measured trade-offs and checklist](GAMMA4-DELIVERY.md). Historical entries below retain their original figures.
+Validation includes 3,559 unit tests, 90 browser cases and 21 extension checks. Actual MiniLM inference, offline reuse, PDF/DOCX parsing in MV3 and live MDN browser retrieval were exercised. Generation quality and resource results are reported separately in [the advanced-mode report](GAMMA4-ADVANCED-MODE.md).
+
+The published default regression has 0/100 unsupported false accepts and 12/100 complete two-topic responses; broad intelligence targets remain unmet. General entailment, reliable general-purpose generation, independent evaluation and physical-device certification remain open. See [the delivery and remaining scope](GAMMA4-DELIVERY.md). Historical entries below retain their original figures.
 
 Gamma 3.0 foundations: bounded multi-part requests, semantic candidate discovery, local calculations, JSON/log analysis and sourced comparisons are implemented. This is a partial milestone; see the [delivery report and remaining release gates](GAMMA3-DELIVERY.md).
 

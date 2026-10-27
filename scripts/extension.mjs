@@ -18,6 +18,8 @@ console.log("Unpacked Chromium extension: dist-extension/");
 for (const file of await readdir("dist-extension/assets"))
   if (
     file.endsWith(".wasm") ||
-    /^(worker|transport|engine|semantic-worker|ort)-.*\.js$/.test(file)
+    /^(worker|transport|engine|semantic-worker|deep-worker|ort)-.*\.js$/.test(
+      file,
+    )
   )
     await rm("dist-extension/assets/" + file);

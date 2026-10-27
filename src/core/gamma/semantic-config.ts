@@ -5,7 +5,7 @@ export const SEMANTIC_WEIGHT_SHA256 =
   "afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1";
 export const DIMENSIONS = 384;
 export const SEMANTIC_CACHE = "gamma-semantic-v1";
-export const KNOWLEDGE_VERSION = "gamma-3.0-2026-10-25";
+export const KNOWLEDGE_VERSION = "gamma-4.0-2026-10-26";
 export type SemanticIndex = {
   version: 1;
   model: string;

@@ -16,7 +16,10 @@ const shell = files.filter(
   (f) =>
     !f.startsWith("ort-") &&
     !/\.wasm$/.test(f) &&
-    !/^assets\/(worker|transport|engine|semantic-worker|ort|pack)-/.test(f),
+    !/^assets\/(worker|transport|engine|semantic-worker|deep-worker|ort|pack|document-binary|document-pdf|document-docx)-/.test(
+      f,
+    ) &&
+    !/^assets\/pdf\.worker/.test(f),
 );
 const hash = createHash("sha256");
 for (const f of files) hash.update(await readFile("dist/" + f));

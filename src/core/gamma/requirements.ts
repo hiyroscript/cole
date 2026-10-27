@@ -1,5 +1,5 @@
 export type ExecutionRequirement = {
-  kind: "measurement" | "mutation" | "current-source";
+  kind: "measurement" | "mutation" | "current-source" | "access";
   target: string;
 };
 // Classify the requested operation before treating nearby knowledge as an
@@ -12,6 +12,10 @@ export function executionRequirement(
     .replace(/^(?:please\s+)?(?:(?:can|could|would) you\s+)?/i, "");
   const measure = text.match(/^(?:measure|monitor)\s+(.+)/i);
   if (measure) return { kind: "measurement", target: measure[1] };
+  const access = text.match(
+    /^(?:read(?!\s+about\b)|access|fetch|scan|upload|send|download)\s+(.+)/i,
+  );
+  if (access) return { kind: "access", target: access[1] };
   const mutate = text.match(
     /^(?:change|set|adjust|delete|erase|wipe|install|uninstall|disable|enable|restart|reboot|terminate)\s+(.+)/i,
   );
@@ -26,6 +30,8 @@ export function executionRequirement(
 }
 export function unmetRequirement(requirement: ExecutionRequirement): string {
   switch (requirement.kind) {
+    case "access":
+      return "I cannot perform that data-access operation from this request. Use a supported explicit command or select a local document for analysis. No private files, credentials or account data were accessed or transferred.";
     case "measurement":
       return "I cannot perform that measurement from this chat. Use /device, /screen, /storage or /network for the limited browser observations available here. System load, free graphics memory and hardware temperatures need an operating-system or vendor tool.";
     case "mutation":

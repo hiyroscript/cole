@@ -1,0 +1,82 @@
+{
+  "at": "2026-10-26T19:20:29.883Z",
+  "scope": "Actual public provider fetch in Node; browser CORS is checked separately.",
+  "report": [
+    {
+      "topic": "webgpu",
+      "valid": true,
+      "sources": [
+        {
+          "title": "MDN webgpu compatibility — latest file revision",
+          "url": "https://github.com/mdn/browser-compat-data/blob/45854e0a80a5b9b2cabc407dbc5d6fa06972b685/api/GPU.json",
+          "updatedAt": "2026-07-10T12:40:50Z",
+          "text": "chrome: added 144; source includes qualifications / added 113; removed 144; partial implementation; source includes qualifications.\nfirefox: added 141; partial implementation; source includes qualifications.\nsafari: added 26.\nedge: data alias: mirror; inspect source.\nchrome_android: added 121.\nfirefox_android: not supported.\nsafari_ios: data alias: mirror; inspect source.\nwebview_android: data alias: mirror; inspect source.\nChanged top-level support fields:\nchrome: added 113; partial implementation; source includes qualifications → added 144; source includes qualifications / added 113; removed 144; partial implementation; source includes qualifications\nCommunity-maintained compatibility evidence, not a successful feature probe on your device."
+        },
+        {
+          "title": "MDN webgpu compatibility — previous file revision",
+          "url": "https://github.com/mdn/browser-compat-data/blob/69c382b1903d966b089004cf7b97a02b61c82a47/api/GPU.json",
+          "updatedAt": "2026-05-07T12:23:18Z",
+          "text": "chrome: added 113; partial implementation; source includes qualifications.\nfirefox: added 141; partial implementation; source includes qualifications.\nsafari: added 26.\nedge: data alias: mirror; inspect source.\nchrome_android: added 121.\nfirefox_android: not supported.\nsafari_ios: data alias: mirror; inspect source.\nwebview_android: data alias: mirror; inspect source.\nPrevious file revision for comparison.\nCommunity-maintained compatibility evidence, not a successful feature probe on your device."
+        }
+      ]
+    },
+    {
+      "topic": "webgl",
+      "valid": true,
+      "sources": [
+        {
+          "title": "MDN webgl compatibility — latest file revision",
+          "url": "https://github.com/mdn/browser-compat-data/blob/4aaa93315e34faff83c82da04d1add347df26c88/api/WebGLRenderingContext.json",
+          "updatedAt": "2026-10-22T12:51:26Z",
+          "text": "chrome: added 9.\nfirefox: added 4.\nsafari: added 5.1.\nedge: added 12; source includes qualifications.\nchrome_android: added 25.\nfirefox_android: data alias: mirror; inspect source.\nsafari_ios: added 8.\nwebview_android: added 4.4.3.\nNo change in the checked top-level support fields between these two file revisions. Child APIs, notes and other fields were not compared.\nCommunity-maintained compatibility evidence, not a successful feature probe on your device."
+        },
+        {
+          "title": "MDN webgl compatibility — previous file revision",
+          "url": "https://github.com/mdn/browser-compat-data/blob/5bc4391ff265acf56f57149da9b5520f2ca04ab6/api/WebGLRenderingContext.json",
+          "updatedAt": "2026-05-15T15:54:34Z",
+          "text": "chrome: added 9.\nfirefox: added 4.\nsafari: added 5.1.\nedge: added 12; source includes qualifications.\nchrome_android: added 25.\nfirefox_android: data alias: mirror; inspect source.\nsafari_ios: added 8.\nwebview_android: added 4.4.3.\nPrevious file revision for comparison.\nCommunity-maintained compatibility evidence, not a successful feature probe on your device."
+        }
+      ]
+    },
+    {
+      "topic": "webassembly",
+      "error": "MDN compatibility provider unavailable (404)."
+    },
+    {
+      "topic": "service worker",
+      "valid": true,
+      "sources": [
+        {
+          "title": "MDN service worker compatibility — latest file revision",
+          "url": "https://github.com/mdn/browser-compat-data/blob/5da921db97989a173e1d94bd8de48dae268e5738/api/ServiceWorker.json",
+          "updatedAt": "2026-10-20T15:40:34Z",
+          "text": "chrome: added 40.\nfirefox: added 44.\nsafari: added 11.1.\nedge: added 17.\nchrome_android: data alias: mirror; inspect source.\nfirefox_android: data alias: mirror; inspect source.\nsafari_ios: data alias: mirror; inspect source.\nwebview_android: data alias: mirror; inspect source.\nNo change in the checked top-level support fields between these two file revisions. Child APIs, notes and other fields were not compared.\nCommunity-maintained compatibility evidence, not a successful feature probe on your device."
+        },
+        {
+          "title": "MDN service worker compatibility — previous file revision",
+          "url": "https://github.com/mdn/browser-compat-data/blob/69c382b1903d966b089004cf7b97a02b61c82a47/api/ServiceWorker.json",
+          "updatedAt": "2026-05-07T12:23:18Z",
+          "text": "chrome: added 40.\nfirefox: added 44.\nsafari: added 11.1.\nedge: added 17.\nchrome_android: data alias: mirror; inspect source.\nfirefox_android: data alias: mirror; inspect source.\nsafari_ios: data alias: mirror; inspect source.\nwebview_android: data alias: mirror; inspect source.\nPrevious file revision for comparison.\nCommunity-maintained compatibility evidence, not a successful feature probe on your device."
+        }
+      ]
+    },
+    {
+      "topic": "indexeddb",
+      "valid": true,
+      "sources": [
+        {
+          "title": "MDN indexeddb compatibility — latest file revision",
+          "url": "https://github.com/mdn/browser-compat-data/blob/69c382b1903d966b089004cf7b97a02b61c82a47/api/IDBFactory.json",
+          "updatedAt": "2026-05-07T12:23:18Z",
+          "text": "chrome: added 24 / added 23; removed 57; prefixed implementation.\nfirefox: added 16 / added 10; removed 16; prefixed implementation.\nsafari: added 8.\nedge: added 12.\nchrome_android: data alias: mirror; inspect source.\nfirefox_android: added 22.\nsafari_ios: data alias: mirror; inspect source.\nwebview_android: data alias: mirror; inspect source.\nNo change in the checked top-level support fields between these two file revisions. Child APIs, notes and other fields were not compared.\nCommunity-maintained compatibility evidence, not a successful feature probe on your device."
+        },
+        {
+          "title": "MDN indexeddb compatibility — previous file revision",
+          "url": "https://github.com/mdn/browser-compat-data/blob/b4b0de53d6feac5a2680c5b7867cba1ca30f4f7a/api/IDBFactory.json",
+          "updatedAt": "2025-06-12T11:18:13Z",
+          "text": "chrome: added 24 / added 23; removed 57; prefixed implementation.\nfirefox: added 16 / added 10; removed 16; prefixed implementation.\nsafari: added 8.\nedge: added 12.\nchrome_android: data alias: mirror; inspect source.\nfirefox_android: added 22.\nsafari_ios: data alias: mirror; inspect source.\nwebview_android: data alias: mirror; inspect source.\nPrevious file revision for comparison.\nCommunity-maintained compatibility evidence, not a successful feature probe on your device."
+        }
+      ]
+    }
+  ]
+}

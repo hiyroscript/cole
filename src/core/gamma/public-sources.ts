@@ -12,6 +12,11 @@ export type PublicProvider = {
 };
 export const providers: readonly PublicProvider[] = [
   { id: "wikimedia", fetch: retrieve },
+  {
+    id: "mdn-compat",
+    fetch: async (query, signal) =>
+      (await import("./mdn-provider")).retrieveCompatibility(query, signal),
+  },
 ];
 const CACHE = "gamma-public-v1";
 const cacheKey = (query: string) =>
@@ -30,7 +35,7 @@ function valid(value: unknown): value is PublicResult {
     x.sources.every(validSource) &&
     typeof x.retrievedAt === "string" &&
     Number.isFinite(Date.parse(x.retrievedAt)) &&
-    x.provider === "wikimedia"
+    providers.some((p) => p.id === x.provider)
   );
 }
 export async function lookupPublic(
@@ -38,9 +43,12 @@ export async function lookupPublic(
   signal: AbortSignal,
 ): Promise<PublicResult> {
   signal.throwIfAborted();
-  const provider = providers[0];
+  // The additional origin is selected only by an explicit named MDN request.
+  const provider = /^mdn\s/i.test(query) ? providers[1] : providers[0];
   try {
     const sources = await provider.fetch(query, signal);
+    if (sources.length > 2 || !sources.every(validSource))
+      throw Error("Provider returned invalid or excessive source evidence.");
     signal.throwIfAborted();
     const result = {
       sources,
@@ -78,6 +86,8 @@ export async function clearPublicCache() {
 }
 export function sourceSynthesis(result: PublicResult, query: string) {
   const literal = (s: string) => s.replace(/[\\`*_{}\[\]()<>#+.!|~-]/g, "\\$&");
+  if (result.provider === "mdn-compat")
+    return `${result.cached ? "Cached" : "Newly retrieved"} MDN browser-compat-data, community-maintained reference data. Retrieved ${result.retrievedAt}. ${result.cached ? "Live retrieval failed; this comparison may be stale." : "Two immutable file revisions were requested from GitHub."}\n\n${result.sources.map((s, i) => `### Source ${i + 1}: ${literal(s.title)}\nFile revision date: ${s.updatedAt ?? "not provided"}. Original publication date: not established.\n\n${literal(s.text)}\n\n[Open this exact source revision](${s.url})`).join("\n\n")}\n\nOnly the displayed top-level browser-support fields were compared. A source edit is not necessarily a browser release; a version claim is not a test of this device. Subfeatures, notes and conditional qualifications may need further review.`;
   const terms = new Set(
     query
       .toLowerCase()

@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { chromium } from "@playwright/test";
+import { pdfFixture, docxFixture } from "./document-fixtures.ts";
 import {
   cp,
   readFile,
@@ -34,7 +35,9 @@ async function launch(extensionPath) {
   return { context, id: worker.url().split("/")[2] };
 }
 assert.equal(
-  (await readdir(path + "/assets")).some((f) => /^(worker|transport)-/.test(f)),
+  (await readdir(path + "/assets")).some((f) =>
+    /^(worker|transport|deep-worker)-/.test(f),
+  ),
   false,
 );
 let checks = 4;
@@ -86,6 +89,43 @@ try {
       .getByRole("button", { name: "Send message", exact: true })
       .click();
     await panel.getByText(expected, { exact: false }).waitFor();
+    await panel
+      .getByRole("button", { name: "Stop response", exact: true })
+      .waitFor({ state: "detached" });
+    checks++;
+  }
+  for (const file of [
+    {
+      name: "extension.pdf",
+      mimeType: "application/pdf",
+      buffer: Buffer.from(pdfFixture(["Extension PDF evidence."])),
+    },
+    {
+      name: "extension.docx",
+      mimeType:
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      buffer: Buffer.from(
+        docxFixture(
+          "<w:p><w:r><w:t>Extension DOCX evidence.</w:t></w:r></w:p>",
+        ),
+      ),
+    },
+  ]) {
+    await panel.locator('input[type="file"]').setInputFiles(file);
+    await panel
+      .getByText(`${file.name} · local to this tab`, { exact: false })
+      .waitFor();
+    await panel
+      .getByRole("textbox", { name: "Message Gamma" })
+      .fill("Summarize this report");
+    await panel
+      .getByRole("button", { name: "Send message", exact: true })
+      .click();
+    await panel
+      .locator("article")
+      .last()
+      .getByText(/Extension (PDF|DOCX) evidence/, { exact: false })
+      .waitFor();
     await panel
       .getByRole("button", { name: "Stop response", exact: true })
       .waitFor({ state: "detached" });
