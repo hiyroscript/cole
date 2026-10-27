@@ -24,11 +24,14 @@ export function validSource(value: unknown): value is Source {
     const u = new URL(s.url);
     return (
       u.protocol === "https:" &&
-      u.hostname === "en.wikipedia.org" &&
+      ((u.hostname === "en.wikipedia.org" && u.pathname.startsWith("/wiki/")) ||
+        (u.hostname === "github.com" &&
+          /^\/mdn\/browser-compat-data\/blob\/[a-f0-9]{40}\/(?:api\/(?:GPU|WebGLRenderingContext|ServiceWorker|IDBFactory)|javascript\/builtins\/WebAssembly)\.json$/.test(
+            u.pathname,
+          ))) &&
       !u.username &&
       !u.password &&
-      !u.port &&
-      u.pathname.startsWith("/wiki/")
+      !u.port
     );
   } catch {
     return false;

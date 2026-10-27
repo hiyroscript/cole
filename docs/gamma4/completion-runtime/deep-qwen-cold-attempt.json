@@ -1,0 +1,33 @@
+{
+  "model": "onnx-community/Qwen2.5-0.5B-Instruct",
+  "revision": "22942cb7d7ba4cc81bb4673549ca4d4614469b5e",
+  "weightBytes": 512096557,
+  "backend": "real browser CPU/WASM, single thread",
+  "startedAt": "2026-10-27T00:09:57.833Z",
+  "results": [],
+  "setupMs": 246660,
+  "cache": [
+    {
+      "url": "https://huggingface.co/onnx-community/Qwen2.5-0.5B-Instruct/resolve/22942cb7d7ba4cc81bb4673549ca4d4614469b5e/config.json",
+      "bytes": 678
+    },
+    {
+      "url": "https://huggingface.co/onnx-community/Qwen2.5-0.5B-Instruct/resolve/22942cb7d7ba4cc81bb4673549ca4d4614469b5e/tokenizer_config.json",
+      "bytes": 7849
+    },
+    {
+      "url": "https://huggingface.co/onnx-community/Qwen2.5-0.5B-Instruct/resolve/22942cb7d7ba4cc81bb4673549ca4d4614469b5e/tokenizer.json",
+      "bytes": 7031673
+    },
+    {
+      "url": "https://huggingface.co/onnx-community/Qwen2.5-0.5B-Instruct/resolve/22942cb7d7ba4cc81bb4673549ca4d4614469b5e/generation_config.json",
+      "bytes": 242
+    },
+    {
+      "url": "https://huggingface.co/onnx-community/Qwen2.5-0.5B-Instruct/resolve/22942cb7d7ba4cc81bb4673549ca4d4614469b5e/onnx/model_quantized.onnx",
+      "bytes": 512096557
+    }
+  ],
+  "error": "page.reload: net::ERR_FAILED\nCall log:\n\u001b[2m  - waiting for navigation until \"load\"\u001b[22m\n",
+  "pageText": "This site can’t be reached\n\nThe webpage at http://127.0.0.1:4173/cole/ might be temporarily down or it may have moved permanently to a new web address.\n\nERR_FAILED"
+}

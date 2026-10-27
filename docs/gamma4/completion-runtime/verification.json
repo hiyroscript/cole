@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-27T00:29:59.053188+00:00",
+  "scope": "Local final verification; GitHub Actions independently checks the pushed commit. Mobile cases emulate a viewport in Chromium, not physical hardware.",
+  "baseCommit": "c6927f01913d8f2bcc2a551a1cc56b9806273201",
+  "unitTests": 3559,
+  "productionBrowserCases": 90,
+  "extensionChecks": 21,
+  "capabilityAcceptanceCases": 20,
+  "typecheck": true,
+  "brandCheck": true,
+  "knowledgeValidation": true,
+  "cleanInstall": true,
+  "websiteBuild": true,
+  "extensionBuild": true,
+  "sharpSvgPngSmoke": true,
+  "productionDependencyAuditFindings": 0,
+  "initialJavaScriptBytes": 478321,
+  "initialGzipBytes": 149197,
+  "backgroundPrecacheBytes": 1027268,
+  "shellVersion": "varek-ee27e061e5a5",
+  "note": "After the Sharp override, a clean install, typecheck, all unit tests and both builds passed; the entire built shell hash was unchanged from the final browser/extension-tested build."
+}

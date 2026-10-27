@@ -70,7 +70,7 @@ function splitTasks(input: string): string[] {
   )
     return [input];
   const boundary = new RegExp(
-    `(?:[?;]\\s+|\\.\\s+(?=[A-Z])|,?\\s+(?:and|also|then)\\s+|,\\s+)(?=(?:(?:also|then|and)\\s+)?(?:${verb})\\b)`,
+    `(?:[?.;]\\s+Also\\s+|(?:[?;]\\s+|\\.\\s+(?=[A-Z])|,?\\s+(?:and|also|then)\\s+|,\\s+)(?=(?:(?:also|then|and)\\s+)?(?:${verb})\\b))`,
     "gi",
   );
   const chunks: string[] = [];

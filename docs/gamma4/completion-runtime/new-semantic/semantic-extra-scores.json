@@ -1,0 +1,3362 @@
+[
+  {
+    "query": "Describe how DNS connects a name with an IP address.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "dns",
+        "score": 0.48628921457200963
+      },
+      {
+        "id": "network-private-ip",
+        "score": 0.45933233433611
+      },
+      {
+        "id": "dns-idn",
+        "score": 0.4301358467690312
+      },
+      {
+        "id": "doh-policy",
+        "score": 0.4136836154484532
+      },
+      {
+        "id": "privacy-dns-vpn",
+        "score": 0.3989847682544336
+      },
+      {
+        "id": "dns-split-horizon",
+        "score": 0.39359602203268096
+      },
+      {
+        "id": "dns-a-aaaa",
+        "score": 0.37226584224974585
+      },
+      {
+        "id": "webrtc-ice-privacy",
+        "score": 0.36566919554878086
+      },
+      {
+        "id": "http2",
+        "score": 0.3588647123203874
+      },
+      {
+        "id": "network-loopback",
+        "score": 0.35692613380320537
+      }
+    ],
+    "ms": 272.8999999985099
+  },
+  {
+    "query": "What does an HTTP 304 response signify?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "cache304",
+        "score": 0.6470409055811795
+      },
+      {
+        "id": "http206",
+        "score": 0.486760565718669
+      },
+      {
+        "id": "http307",
+        "score": 0.4752030017557177
+      },
+      {
+        "id": "http201",
+        "score": 0.4664377103386212
+      },
+      {
+        "id": "http3",
+        "score": 0.451219861318929
+      },
+      {
+        "id": "http425",
+        "score": 0.42855545341251533
+      },
+      {
+        "id": "http302",
+        "score": 0.4042519552711419
+      },
+      {
+        "id": "http202",
+        "score": 0.39966404341825557
+      },
+      {
+        "id": "http-stale-revalidate",
+        "score": 0.39677122368961093
+      },
+      {
+        "id": "http-age",
+        "score": 0.39056709763222536
+      }
+    ],
+    "ms": 24.299999997019768
+  },
+  {
+    "query": "Explain the Secure attribute on a cookie.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "secure-cookie",
+        "score": 0.815360842299232
+      },
+      {
+        "id": "cookie-prefix",
+        "score": 0.5888534004545669
+      },
+      {
+        "id": "cookies",
+        "score": 0.5269615286857382
+      },
+      {
+        "id": "cookie-consent",
+        "score": 0.5188599934701768
+      },
+      {
+        "id": "auth-cookie-vs-token",
+        "score": 0.5022445490122192
+      },
+      {
+        "id": "cookie-size",
+        "score": 0.4997702445404116
+      },
+      {
+        "id": "partitioned-cookies",
+        "score": 0.49972900777680274
+      },
+      {
+        "id": "cookie-domain",
+        "score": 0.4641281925498106
+      },
+      {
+        "id": "auth-csrf",
+        "score": 0.4600453779905707
+      },
+      {
+        "id": "third-party",
+        "score": 0.45458958689473367
+      }
+    ],
+    "ms": 62.20000000298023
+  },
+  {
+    "query": "Why do RAM and persistent storage serve different purposes?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "ram-storage",
+        "score": 0.6528621881882729
+      },
+      {
+        "id": "persistent",
+        "score": 0.6106434637219571
+      },
+      {
+        "id": "hardware-memory-bandwidth",
+        "score": 0.46737310069740673
+      },
+      {
+        "id": "partitioned-storage",
+        "score": 0.4430186886263605
+      },
+      {
+        "id": "ssd",
+        "score": 0.43313393681360923
+      },
+      {
+        "id": "android-clear-cache",
+        "score": 0.4106708369001246
+      },
+      {
+        "id": "linux-memory-available",
+        "score": 0.40459081615992554
+      },
+      {
+        "id": "sessionstorage",
+        "score": 0.39765321868478665
+      },
+      {
+        "id": "hardware-vram-shared",
+        "score": 0.394040960731177
+      },
+      {
+        "id": "hardware-storage-speed",
+        "score": 0.3881008845684921
+      }
+    ],
+    "ms": 25.69999999552965
+  },
+  {
+    "query": "Could you introduce WebAssembly to someone new to web development?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "wasm",
+        "score": 0.5727425580177097
+      },
+      {
+        "id": "wasm-memory",
+        "score": 0.42782230799090654
+      },
+      {
+        "id": "wasm-csp",
+        "score": 0.370096549889625
+      },
+      {
+        "id": "ext-webaccessible",
+        "score": 0.3206663401536985
+      },
+      {
+        "id": "perf-worker-start",
+        "score": 0.3194305681879925
+      },
+      {
+        "id": "wasm-threads",
+        "score": 0.284489777552739
+      },
+      {
+        "id": "engine",
+        "score": 0.2718111163605055
+      },
+      {
+        "id": "webgl",
+        "score": 0.27168068797110845
+      },
+      {
+        "id": "help",
+        "score": 0.2654606634635993
+      },
+      {
+        "id": "workers",
+        "score": 0.25860170098905905
+      }
+    ],
+    "ms": 65.30000000447035
+  },
+  {
+    "query": "What is the Cache-Control header used for?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "cache-control",
+        "score": 0.6367450985007796
+      },
+      {
+        "id": "http-cache-private",
+        "score": 0.5753612318421103
+      },
+      {
+        "id": "cpu-cache",
+        "score": 0.5730585294407571
+      },
+      {
+        "id": "http-no-store",
+        "score": 0.5432754570589985
+      },
+      {
+        "id": "cache-vary",
+        "score": 0.45903556066313267
+      },
+      {
+        "id": "bfcache",
+        "score": 0.41163117726629433
+      },
+      {
+        "id": "http-age",
+        "score": 0.4001932597633553
+      },
+      {
+        "id": "cache-storage",
+        "score": 0.3989528434591708
+      },
+      {
+        "id": "request-cache-mode",
+        "score": 0.3858697905808587
+      },
+      {
+        "id": "cookie-size",
+        "score": 0.3841482437305027
+      }
+    ],
+    "ms": 25.100000001490116
+  },
+  {
+    "query": "How does browser synchronization affect privacy?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "privacy-sync-encryption",
+        "score": 0.6616812791874047
+      },
+      {
+        "id": "browser-sync",
+        "score": 0.6194265467272426
+      },
+      {
+        "id": "privacy",
+        "score": 0.6129933519181721
+      },
+      {
+        "id": "perf-time-resolution",
+        "score": 0.5034619217107543
+      },
+      {
+        "id": "private",
+        "score": 0.49743194452335604
+      },
+      {
+        "id": "api-idle-detection",
+        "score": 0.49461336066708506
+      },
+      {
+        "id": "public-computer",
+        "score": 0.48862579580116816
+      },
+      {
+        "id": "http-cache-private",
+        "score": 0.4693579728612156
+      },
+      {
+        "id": "browser-channel",
+        "score": 0.4401417522015713
+      },
+      {
+        "id": "android-work-profile",
+        "score": 0.4385487705251234
+      }
+    ],
+    "ms": 25
+  },
+  {
+    "query": "What happens when a WebGPU device is lost?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "webgpu-lost",
+        "score": 0.7276166865631131
+      },
+      {
+        "id": "webgpu",
+        "score": 0.5476895739069652
+      },
+      {
+        "id": "webgpu-adapter",
+        "score": 0.5194222182174795
+      },
+      {
+        "id": "hardware-external-gpu",
+        "score": 0.4489672682331165
+      },
+      {
+        "id": "ai-browser-backends",
+        "score": 0.4431916879465609
+      },
+      {
+        "id": "hardware-gpu-driver",
+        "score": 0.41188086256178674
+      },
+      {
+        "id": "webgl",
+        "score": 0.40109744801592717
+      },
+      {
+        "id": "webgpu-f16",
+        "score": 0.3825618503168866
+      },
+      {
+        "id": "android-webview",
+        "score": 0.37261679528016084
+      },
+      {
+        "id": "iphone-storage",
+        "score": 0.3508211326225335
+      }
+    ],
+    "ms": 59
+  },
+  {
+    "query": "Why might DNS return SERVFAIL?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "dns-servfail",
+        "score": 0.6816635531711476
+      },
+      {
+        "id": "dns",
+        "score": 0.46528375128626176
+      },
+      {
+        "id": "dns-ttl",
+        "score": 0.4480711407767591
+      },
+      {
+        "id": "dns-negative",
+        "score": 0.4472826569423285
+      },
+      {
+        "id": "dns-refused",
+        "score": 0.4356293651957862
+      },
+      {
+        "id": "doh-policy",
+        "score": 0.4210985830745923
+      },
+      {
+        "id": "dns-split-horizon",
+        "score": 0.4039902122073347
+      },
+      {
+        "id": "dns-a-aaaa",
+        "score": 0.3764853308618153
+      },
+      {
+        "id": "dns-hosts-file",
+        "score": 0.37616612761827384
+      },
+      {
+        "id": "ipv6-path",
+        "score": 0.3708298709789868
+      }
+    ],
+    "ms": 32.099999994039536
+  },
+  {
+    "query": "What is an A record compared with an AAAA record?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "dns-a-aaaa",
+        "score": 0.5278617254991227
+      },
+      {
+        "id": "dns-cname",
+        "score": 0.20577903792400645
+      },
+      {
+        "id": "media-recorder-type",
+        "score": 0.18673566536328148
+      },
+      {
+        "id": "mac-storage-purgeable",
+        "score": 0.1816615941357964
+      },
+      {
+        "id": "ios",
+        "score": 0.1695679542665804
+      },
+      {
+        "id": "formats",
+        "score": 0.16932199704210532
+      },
+      {
+        "id": "ram-storage",
+        "score": 0.16839379116631648
+      },
+      {
+        "id": "sessionstorage",
+        "score": 0.16714505566626633
+      },
+      {
+        "id": "android",
+        "score": 0.16505179203307654
+      },
+      {
+        "id": "bits",
+        "score": 0.15724483910452522
+      }
+    ],
+    "ms": 76.40000000596046
+  },
+  {
+    "query": "Does an iframe sandbox restrict the embedded page?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "sandbox",
+        "score": 0.7447261964042275
+      },
+      {
+        "id": "auth-clickjacking",
+        "score": 0.5848824269989324
+      },
+      {
+        "id": "ext-scripting-frame",
+        "score": 0.5601971009144144
+      },
+      {
+        "id": "permission-policy",
+        "score": 0.5356344814667569
+      },
+      {
+        "id": "storage-access-api",
+        "score": 0.4482242895888415
+      },
+      {
+        "id": "ext-csp",
+        "score": 0.36456765787971757
+      },
+      {
+        "id": "ext-content-isolation",
+        "score": 0.35925230558838256
+      },
+      {
+        "id": "extension-site",
+        "score": 0.34412046936217655
+      },
+      {
+        "id": "auth-xss",
+        "score": 0.34177618042274993
+      },
+      {
+        "id": "ext-message-sender",
+        "score": 0.3286024741729729
+      }
+    ],
+    "ms": 43.599999994039536
+  },
+  {
+    "query": "Explain the difference between network latency and bandwidth.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "latency",
+        "score": 0.7908862320176655
+      },
+      {
+        "id": "hardware-network-adapter",
+        "score": 0.6171163389581672
+      },
+      {
+        "id": "hardware-memory-bandwidth",
+        "score": 0.47922924707574693
+      },
+      {
+        "id": "video-buffering",
+        "score": 0.4594763212661873
+      },
+      {
+        "id": "bits",
+        "score": 0.4318868618085393
+      },
+      {
+        "id": "video-playback-rate",
+        "score": 0.3857752233920685
+      },
+      {
+        "id": "win-disk-active",
+        "score": 0.376253807506648
+      },
+      {
+        "id": "http3",
+        "score": 0.3725123868780964
+      },
+      {
+        "id": "network-rtt",
+        "score": 0.36676612042894813
+      },
+      {
+        "id": "hardware-storage-speed",
+        "score": 0.3660293183957378
+      }
+    ],
+    "ms": 69.80000000447035
+  },
+  {
+    "query": "What do cookie expiry dates control?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "cookie-expiry",
+        "score": 0.6725314715245654
+      },
+      {
+        "id": "cookies",
+        "score": 0.5614382111785405
+      },
+      {
+        "id": "cookie-consent",
+        "score": 0.514506744801938
+      },
+      {
+        "id": "cookie-size",
+        "score": 0.5021764671471353
+      },
+      {
+        "id": "secure-cookie",
+        "score": 0.4813592335382979
+      },
+      {
+        "id": "cache-control",
+        "score": 0.4681053349475808
+      },
+      {
+        "id": "cookie-prefix",
+        "score": 0.4431922248747039
+      },
+      {
+        "id": "httponly",
+        "score": 0.429866039788899
+      },
+      {
+        "id": "third-party",
+        "score": 0.42222134204547024
+      },
+      {
+        "id": "auth-cookie-vs-token",
+        "score": 0.41807277114002417
+      }
+    ],
+    "ms": 24
+  },
+  {
+    "query": "Could you explain how the back-forward cache works?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "bfcache",
+        "score": 0.6228159405448641
+      },
+      {
+        "id": "cpu-cache",
+        "score": 0.5921731358641134
+      },
+      {
+        "id": "api-pagehide",
+        "score": 0.5258552663221825
+      },
+      {
+        "id": "http-cache-private",
+        "score": 0.49555143904804405
+      },
+      {
+        "id": "http-stale-revalidate",
+        "score": 0.4446027153822535
+      },
+      {
+        "id": "cache-vary",
+        "score": 0.42763852970450894
+      },
+      {
+        "id": "http-no-store",
+        "score": 0.4241759761090048
+      },
+      {
+        "id": "cache-storage",
+        "score": 0.4130016968396412
+      },
+      {
+        "id": "http-immutable",
+        "score": 0.3946795059808089
+      },
+      {
+        "id": "request-cache-mode",
+        "score": 0.386301467712456
+      }
+    ],
+    "ms": 53
+  },
+  {
+    "query": "What should a website do with reduced motion preferences?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "motion-site",
+        "score": 0.7106675045732709
+      },
+      {
+        "id": "reduced-motion",
+        "score": 0.6820253338383336
+      },
+      {
+        "id": "perf-content-visibility",
+        "score": 0.41258041992515726
+      },
+      {
+        "id": "contrast-preference",
+        "score": 0.36927845929367203
+      },
+      {
+        "id": "hardware-refresh-adaptive",
+        "score": 0.34458229057413003
+      },
+      {
+        "id": "acceleration",
+        "score": 0.34159322325509145
+      },
+      {
+        "id": "iphone-lowpower",
+        "score": 0.3337769429541781
+      },
+      {
+        "id": "tracking",
+        "score": 0.331461244544733
+      },
+      {
+        "id": "iphone-lowdata",
+        "score": 0.33075969920023146
+      },
+      {
+        "id": "zoom-reflow",
+        "score": 0.326265122250112
+      }
+    ],
+    "ms": 37.099999994039536
+  },
+  {
+    "query": "Explain why a backup needs a restore test.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "backup",
+        "score": 0.4107190106209623
+      },
+      {
+        "id": "auth-recovery-phishing",
+        "score": 0.3751659999901258
+      },
+      {
+        "id": "recovery-codes",
+        "score": 0.35845705898897695
+      },
+      {
+        "id": "profile-sync-conflict",
+        "score": 0.2566269497195317
+      },
+      {
+        "id": "passkey-lost",
+        "score": 0.2552284113850658
+      },
+      {
+        "id": "idb-durability",
+        "score": 0.2468738977331782
+      },
+      {
+        "id": "export",
+        "score": 0.24317930346608088
+      },
+      {
+        "id": "bfcache",
+        "score": 0.24243803896526467
+      },
+      {
+        "id": "http-stale-revalidate",
+        "score": 0.22462976704158547
+      },
+      {
+        "id": "restore-tab",
+        "score": 0.22154871981908553
+      }
+    ],
+    "ms": 62.400000005960464
+  },
+  {
+    "query": "Read the passwords saved in my browser.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "browser-sync",
+        "score": 0.5396082911835508
+      },
+      {
+        "id": "passwords",
+        "score": 0.519925409772739
+      },
+      {
+        "id": "auth-password-export",
+        "score": 0.49619683680738313
+      },
+      {
+        "id": "iphone-password-autofill",
+        "score": 0.48371675657652513
+      },
+      {
+        "id": "auth-password-reuse",
+        "score": 0.48285160934826526
+      },
+      {
+        "id": "linux-keyring",
+        "score": 0.4606293443892333
+      },
+      {
+        "id": "recovery-codes",
+        "score": 0.4510719852120355
+      },
+      {
+        "id": "passkeys",
+        "score": 0.4280224949804743
+      },
+      {
+        "id": "mac-keychain-prompt",
+        "score": 0.3921551692972293
+      },
+      {
+        "id": "tls-client-cert",
+        "score": 0.3535086477260299
+      }
+    ],
+    "ms": 40.29999999701977
+  },
+  {
+    "query": "Measure my graphics card temperature now.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "heat",
+        "score": 0.48182732662198813
+      },
+      {
+        "id": "mac-temperature",
+        "score": 0.419050115417513
+      },
+      {
+        "id": "hardware-thermal-throttle",
+        "score": 0.3946721916743626
+      },
+      {
+        "id": "limits",
+        "score": 0.3901299265444689
+      },
+      {
+        "id": "hardware-vram-shared",
+        "score": 0.353112660242335
+      },
+      {
+        "id": "webgpu-lost",
+        "score": 0.32177408546971953
+      },
+      {
+        "id": "ram",
+        "score": 0.3192075580588471
+      },
+      {
+        "id": "linux-gpu",
+        "score": 0.30580673630429017
+      },
+      {
+        "id": "gamma-health",
+        "score": 0.3016937430885882
+      },
+      {
+        "id": "win-graphics-preference",
+        "score": 0.2905984946597543
+      }
+    ],
+    "ms": 56.899999998509884
+  },
+  {
+    "query": "Tell me the latest Chrome release number.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "update-browser",
+        "score": 0.516316461511451
+      },
+      {
+        "id": "chrome",
+        "score": 0.49973135070833624
+      },
+      {
+        "id": "browser-channel",
+        "score": 0.43433855954295797
+      },
+      {
+        "id": "version",
+        "score": 0.41544871576549625
+      },
+      {
+        "id": "android-webview",
+        "score": 0.40727251712898405
+      },
+      {
+        "id": "compare",
+        "score": 0.4010209409111275
+      },
+      {
+        "id": "update-fail",
+        "score": 0.3913306657791832
+      },
+      {
+        "id": "linux-distro-support",
+        "score": 0.390170549771797
+      },
+      {
+        "id": "android-extension",
+        "score": 0.38967197851853785
+      },
+      {
+        "id": "linux-package",
+        "score": 0.37928476763686336
+      }
+    ],
+    "ms": 40.399999998509884
+  },
+  {
+    "query": "Set the screen brightness to 45 percent.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "win-display",
+        "score": 0.3937411262443429
+      },
+      {
+        "id": "contrast-preference",
+        "score": 0.3573451052550526
+      },
+      {
+        "id": "api-wake-lock",
+        "score": 0.3545396580190726
+      },
+      {
+        "id": "win-clear-type",
+        "score": 0.34082534143050175
+      },
+      {
+        "id": "refresh",
+        "score": 0.33798841903955323
+      },
+      {
+        "id": "linux-fractional-scale",
+        "score": 0.3304239236335749
+      },
+      {
+        "id": "api-eye-dropper",
+        "score": 0.32516103944669594
+      },
+      {
+        "id": "reduced-transparency",
+        "score": 0.31978110546557886
+      },
+      {
+        "id": "mac-external-display",
+        "score": 0.3195203624104762
+      },
+      {
+        "id": "iphone-lowpower",
+        "score": 0.31910061892202296
+      }
+    ],
+    "ms": 53.900000005960464
+  },
+  {
+    "query": "Who will win the next election?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "inp",
+        "score": 0.17741983600978886
+      },
+      {
+        "id": "compare",
+        "score": 0.17371949171528417
+      },
+      {
+        "id": "madon",
+        "score": 0.16596407288509124
+      },
+      {
+        "id": "browser",
+        "score": 0.15798642792087308
+      },
+      {
+        "id": "lcp",
+        "score": 0.15760178496196572
+      },
+      {
+        "id": "linux-gpu",
+        "score": 0.14021890941555348
+      },
+      {
+        "id": "brave",
+        "score": 0.1367676023738711
+      },
+      {
+        "id": "perf-font-display",
+        "score": 0.13105196665959218
+      },
+      {
+        "id": "chrome",
+        "score": 0.12497520094562226
+      },
+      {
+        "id": "image-decode",
+        "score": 0.12495340160437711
+      }
+    ],
+    "ms": 19.799999997019768
+  },
+  {
+    "query": "What is the meaning of ERR_INVENTED_B7FA?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "mfa",
+        "score": 0.29903120993151444
+      },
+      {
+        "id": "wasm",
+        "score": 0.2524124709993513
+      },
+      {
+        "id": "storage-access-api",
+        "score": 0.22854636619570415
+      },
+      {
+        "id": "safe-browsing",
+        "score": 0.22465280698740656
+      },
+      {
+        "id": "qr-phishing",
+        "score": 0.21922506202353553
+      },
+      {
+        "id": "wasm-memory",
+        "score": 0.21275184147796491
+      },
+      {
+        "id": "webbluetooth",
+        "score": 0.2032337277246297
+      },
+      {
+        "id": "js-prototype-data",
+        "score": 0.2028632921743338
+      },
+      {
+        "id": "js-error-boundary",
+        "score": 0.19762343754905615
+      },
+      {
+        "id": "perf-time-resolution",
+        "score": 0.1963508647439052
+      }
+    ],
+    "ms": 32.100000001490116
+  },
+  {
+    "query": "Fetch my private bank balance.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "auth-recovery-phishing",
+        "score": 0.3145770444608055
+      },
+      {
+        "id": "gpc",
+        "score": 0.26236079538334844
+      },
+      {
+        "id": "ram",
+        "score": 0.2500804307010476
+      },
+      {
+        "id": "public-computer",
+        "score": 0.24398857853005307
+      },
+      {
+        "id": "privacy-varek",
+        "score": 0.2374865480994684
+      },
+      {
+        "id": "privacy-autofill",
+        "score": 0.2340601273082563
+      },
+      {
+        "id": "network-private-ip",
+        "score": 0.23154008684251393
+      },
+      {
+        "id": "http-cache-private",
+        "score": 0.23059836540029993
+      },
+      {
+        "id": "privacy",
+        "score": 0.22441819660782106
+      },
+      {
+        "id": "iphone-private-tabs",
+        "score": 0.21759832570625806
+      }
+    ],
+    "ms": 58
+  },
+  {
+    "query": "Delete files in my Downloads directory.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "downloads",
+        "score": 0.6819451676344189
+      },
+      {
+        "id": "download-fail",
+        "score": 0.5095310546358109
+      },
+      {
+        "id": "privacy-private-downloads",
+        "score": 0.4899023420998184
+      },
+      {
+        "id": "win-download-folder",
+        "score": 0.48059001321047357
+      },
+      {
+        "id": "linux-download",
+        "score": 0.4278353176426569
+      },
+      {
+        "id": "android-download-notification",
+        "score": 0.42653355021508743
+      },
+      {
+        "id": "android-files",
+        "score": 0.4254176214799498
+      },
+      {
+        "id": "linux-disk-inodes",
+        "score": 0.4085035355398532
+      },
+      {
+        "id": "delete-site",
+        "score": 0.4050163373255816
+      },
+      {
+        "id": "android-sd-card",
+        "score": 0.3953343147012471
+      }
+    ],
+    "ms": 24.100000001490116
+  },
+  {
+    "query": "Explain DNS",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "dns",
+        "score": 0.6147224654147272
+      },
+      {
+        "id": "doh-policy",
+        "score": 0.5159375996137245
+      },
+      {
+        "id": "privacy-dns-vpn",
+        "score": 0.4721234558664033
+      },
+      {
+        "id": "dns-refused",
+        "score": 0.46267938035209816
+      },
+      {
+        "id": "dns-split-horizon",
+        "score": 0.4458189577931108
+      },
+      {
+        "id": "dns-ttl",
+        "score": 0.43831985524405026
+      },
+      {
+        "id": "dns-a-aaaa",
+        "score": 0.41248360953986984
+      },
+      {
+        "id": "dns-idn",
+        "score": 0.39719813543134747
+      },
+      {
+        "id": "perf-preconnect",
+        "score": 0.3900467245161531
+      },
+      {
+        "id": "dns-negative",
+        "score": 0.38844851955468
+      }
+    ],
+    "ms": 11.899999998509884
+  },
+  {
+    "query": "Actually I use Edge on Windows.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "edge",
+        "score": 0.7452188857989492
+      },
+      {
+        "id": "win-display",
+        "score": 0.37111728057245547
+      },
+      {
+        "id": "reduced-transparency",
+        "score": 0.34686779997784123
+      },
+      {
+        "id": "win-efficiency",
+        "score": 0.34256541849606936
+      },
+      {
+        "id": "win-graphics-preference",
+        "score": 0.3397020435719146
+      },
+      {
+        "id": "win-default-pdf",
+        "score": 0.33547366704795656
+      },
+      {
+        "id": "contrast-preference",
+        "score": 0.3320190616552908
+      },
+      {
+        "id": "safe-area",
+        "score": 0.3112148051200405
+      },
+      {
+        "id": "win-text-size",
+        "score": 0.3102249755378549
+      },
+      {
+        "id": "linux-gpu",
+        "score": 0.30740784493432377
+      }
+    ],
+    "ms": 55.19999999552965
+  },
+  {
+    "query": "Show me the steps.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "help",
+        "score": 0.32193368862015453
+      },
+      {
+        "id": "find-tab",
+        "score": 0.21067137523126578
+      },
+      {
+        "id": "delete-site",
+        "score": 0.19369067589687394
+      },
+      {
+        "id": "js-float",
+        "score": 0.1835848908840794
+      },
+      {
+        "id": "screen",
+        "score": 0.1767550446832533
+      },
+      {
+        "id": "http303",
+        "score": 0.17517110894090973
+      },
+      {
+        "id": "history",
+        "score": 0.1661751589802631
+      },
+      {
+        "id": "cache",
+        "score": 0.1640019451993461
+      },
+      {
+        "id": "pwa",
+        "score": 0.15137681174512138
+      },
+      {
+        "id": "inp",
+        "score": 0.14380108561584318
+      }
+    ],
+    "ms": 24.30000000447035
+  },
+  {
+    "query": "Explain cookies",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "cookies",
+        "score": 0.7570379467521724
+      },
+      {
+        "id": "cookie-size",
+        "score": 0.5979988448438008
+      },
+      {
+        "id": "cookie-prefix",
+        "score": 0.5566330192340513
+      },
+      {
+        "id": "cookie-consent",
+        "score": 0.5523922809614723
+      },
+      {
+        "id": "partitioned-cookies",
+        "score": 0.5363694013140684
+      },
+      {
+        "id": "cookie-domain",
+        "score": 0.5233412906340636
+      },
+      {
+        "id": "third-party",
+        "score": 0.518817369494742
+      },
+      {
+        "id": "cookie-expiry",
+        "score": 0.5178711705244073
+      },
+      {
+        "id": "secure-cookie",
+        "score": 0.5042302348972382
+      },
+      {
+        "id": "httponly",
+        "score": 0.47536637376734
+      }
+    ],
+    "ms": 17
+  },
+  {
+    "query": "Actually, Safari on iOS.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "safari",
+        "score": 0.6595382890042887
+      },
+      {
+        "id": "iphone-engine",
+        "score": 0.6566829027432258
+      },
+      {
+        "id": "iphone-pwa",
+        "score": 0.5805124891245296
+      },
+      {
+        "id": "iphone-storage",
+        "score": 0.5355872644898697
+      },
+      {
+        "id": "iphone-screen-share",
+        "score": 0.531836778964187
+      },
+      {
+        "id": "iphone-managed-settings",
+        "score": 0.52598479902557
+      },
+      {
+        "id": "iphone-default-browser",
+        "score": 0.5221872074804408
+      },
+      {
+        "id": "ipad-desktop",
+        "score": 0.5196624121398735
+      },
+      {
+        "id": "iphone-content-blocker",
+        "score": 0.5162004828377434
+      },
+      {
+        "id": "iphone-safari-profiles",
+        "score": 0.5112781006494931
+      }
+    ],
+    "ms": 16.100000001490116
+  },
+  {
+    "query": "Make that shorter.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "js-grapheme",
+        "score": 0.23265358432036254
+      },
+      {
+        "id": "reduced-motion",
+        "score": 0.22763638005993853
+      },
+      {
+        "id": "http-content-length",
+        "score": 0.22498617471062668
+      },
+      {
+        "id": "perf-long-animation",
+        "score": 0.21312057901137027
+      },
+      {
+        "id": "zoom",
+        "score": 0.21135750394367755
+      },
+      {
+        "id": "dns-search-suffix",
+        "score": 0.20727715974604397
+      },
+      {
+        "id": "win-text-size",
+        "score": 0.20650551508942486
+      },
+      {
+        "id": "text-spacing",
+        "score": 0.20383239083527296
+      },
+      {
+        "id": "image-size",
+        "score": 0.1962021213118957
+      },
+      {
+        "id": "print-layout",
+        "score": 0.19413963520748084
+      }
+    ],
+    "ms": 48.29999999701977
+  },
+  {
+    "query": "What is WebAssembly?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "wasm",
+        "score": 0.8381946956961998
+      },
+      {
+        "id": "wasm-memory",
+        "score": 0.6152160629718278
+      },
+      {
+        "id": "wasm-csp",
+        "score": 0.5257103793424412
+      },
+      {
+        "id": "ai-browser-backends",
+        "score": 0.4641341903834241
+      },
+      {
+        "id": "html",
+        "score": 0.447090068124212
+      },
+      {
+        "id": "wasm-threads",
+        "score": 0.4102150705553174
+      },
+      {
+        "id": "engine",
+        "score": 0.4049471503478815
+      },
+      {
+        "id": "ext-webaccessible",
+        "score": 0.4011977737328681
+      },
+      {
+        "id": "api-webcrypto",
+        "score": 0.38178842846835526
+      },
+      {
+        "id": "image-webp",
+        "score": 0.3722965875557949
+      }
+    ],
+    "ms": 7.799999997019768
+  },
+  {
+    "query": "Correction: Firefox on Linux.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "firefox",
+        "score": 0.5595496276867955
+      },
+      {
+        "id": "linux-fonts",
+        "score": 0.5457808879812708
+      },
+      {
+        "id": "linux-distro-support",
+        "score": 0.5434411956178528
+      },
+      {
+        "id": "linux-gpu",
+        "score": 0.5179521668678141
+      },
+      {
+        "id": "linux-default-browser",
+        "score": 0.5055498256392795
+      },
+      {
+        "id": "compare",
+        "score": 0.4856477175170597
+      },
+      {
+        "id": "linux-package",
+        "score": 0.4644134573974432
+      },
+      {
+        "id": "linux-memory-available",
+        "score": 0.4411815319240315
+      },
+      {
+        "id": "mac-rosetta",
+        "score": 0.4345113371630142
+      },
+      {
+        "id": "linux-fractional-scale",
+        "score": 0.43131880224560437
+      }
+    ],
+    "ms": 11.300000004470348
+  },
+  {
+    "query": "Explain that in more detail.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "gpc",
+        "score": 0.24678522975355174
+      },
+      {
+        "id": "perf-time-resolution",
+        "score": 0.23905802921303457
+      },
+      {
+        "id": "cpu-cache",
+        "score": 0.2350280616803428
+      },
+      {
+        "id": "ai-quantization",
+        "score": 0.21520688299698187
+      },
+      {
+        "id": "api-randomness",
+        "score": 0.2142915433440852
+      },
+      {
+        "id": "gamma-enhance",
+        "score": 0.21337661561747007
+      },
+      {
+        "id": "cpu-gpu",
+        "score": 0.20799871400630449
+      },
+      {
+        "id": "js",
+        "score": 0.20787337792363964
+      },
+      {
+        "id": "updates",
+        "score": 0.20628321013343182
+      },
+      {
+        "id": "tracking",
+        "score": 0.20410688236215174
+      }
+    ],
+    "ms": 6.600000001490116
+  },
+  {
+    "query": "What is a service worker?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "service-worker",
+        "score": 0.7387228764740841
+      },
+      {
+        "id": "workers",
+        "score": 0.5295963969120985
+      },
+      {
+        "id": "sw-cache-version",
+        "score": 0.46190832535426757
+      },
+      {
+        "id": "sw-scope",
+        "score": 0.40991945300959887
+      },
+      {
+        "id": "perf-worker-error",
+        "score": 0.4034932259803781
+      },
+      {
+        "id": "perf-worker-start",
+        "score": 0.3920979702221118
+      },
+      {
+        "id": "sw-install-fail",
+        "score": 0.3902177411252006
+      },
+      {
+        "id": "ext-service-worker",
+        "score": 0.38246966365777946
+      },
+      {
+        "id": "sw-first-load",
+        "score": 0.37876801491915324
+      },
+      {
+        "id": "sw-bypass",
+        "score": 0.37115670658419936
+      }
+    ],
+    "ms": 6.199999995529652
+  },
+  {
+    "query": "I use Chrome on Android.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "chrome",
+        "score": 0.592194618538586
+      },
+      {
+        "id": "android-extension",
+        "score": 0.5457203336816339
+      },
+      {
+        "id": "compare",
+        "score": 0.5361375639947441
+      },
+      {
+        "id": "android-app-links",
+        "score": 0.5063675320925873
+      },
+      {
+        "id": "android-custom-tabs",
+        "score": 0.48421751075853164
+      },
+      {
+        "id": "android-default-browser",
+        "score": 0.47104821689423604
+      },
+      {
+        "id": "browser",
+        "score": 0.4669743390410373
+      },
+      {
+        "id": "mobile",
+        "score": 0.46443708320708765
+      },
+      {
+        "id": "extension",
+        "score": 0.46330959682316375
+      },
+      {
+        "id": "ext-file-access",
+        "score": 0.4597983152568565
+      }
+    ],
+    "ms": 6.300000004470348
+  },
+  {
+    "query": "Repeat that.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "reader",
+        "score": 0.17173663346526707
+      },
+      {
+        "id": "screen-reader-live",
+        "score": 0.15544829486534362
+      },
+      {
+        "id": "connection-reset",
+        "score": 0.15241535399163553
+      },
+      {
+        "id": "http204",
+        "score": 0.14983515617538093
+      },
+      {
+        "id": "api-abort-listeners",
+        "score": 0.14622449257638606
+      },
+      {
+        "id": "http422",
+        "score": 0.14584473675294335
+      },
+      {
+        "id": "madon",
+        "score": 0.14400133481248095
+      },
+      {
+        "id": "logout",
+        "score": 0.1430415003638881
+      },
+      {
+        "id": "pwa-update",
+        "score": 0.14030254989447766
+      },
+      {
+        "id": "chrome",
+        "score": 0.14022150754770818
+      }
+    ],
+    "ms": 13.5
+  },
+  {
+    "query": "What is WebGPU?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "webgpu",
+        "score": 0.7227574050398351
+      },
+      {
+        "id": "ai-browser-backends",
+        "score": 0.6005857533185146
+      },
+      {
+        "id": "webgpu-lost",
+        "score": 0.5994132257249656
+      },
+      {
+        "id": "webgpu-adapter",
+        "score": 0.5657503252068709
+      },
+      {
+        "id": "webgpu-f16",
+        "score": 0.5007546068673736
+      },
+      {
+        "id": "webrtc",
+        "score": 0.48676235415020513
+      },
+      {
+        "id": "hardware-external-gpu",
+        "score": 0.47625233549396995
+      },
+      {
+        "id": "webrtc-ice-privacy",
+        "score": 0.40854188878064013
+      },
+      {
+        "id": "hardware-gpu-driver",
+        "score": 0.3840244157454442
+      },
+      {
+        "id": "win-graphics-preference",
+        "score": 0.3815484897752128
+      }
+    ],
+    "ms": 44.899999998509884
+  },
+  {
+    "query": "Actually, Edge on Windows.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "edge",
+        "score": 0.699216320296561
+      },
+      {
+        "id": "win-display",
+        "score": 0.33593555504610256
+      },
+      {
+        "id": "win-efficiency",
+        "score": 0.32988569334533563
+      },
+      {
+        "id": "safe-area",
+        "score": 0.3077963441881266
+      },
+      {
+        "id": "win-default-pdf",
+        "score": 0.30494680551774644
+      },
+      {
+        "id": "win-graphics-preference",
+        "score": 0.2985507317062312
+      },
+      {
+        "id": "perf-content-visibility",
+        "score": 0.28770560183027627
+      },
+      {
+        "id": "reduced-transparency",
+        "score": 0.2874273540676983
+      },
+      {
+        "id": "win-clear-type",
+        "score": 0.2779533385409738
+      },
+      {
+        "id": "perf-time-resolution",
+        "score": 0.27468368435369556
+      }
+    ],
+    "ms": 14.399999998509884
+  },
+  {
+    "query": "Tell me more about that.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "webgpu-f16",
+        "score": 0.21026458413352703
+      },
+      {
+        "id": "auth-recovery-phishing",
+        "score": 0.20202359445612406
+      },
+      {
+        "id": "perf-time-resolution",
+        "score": 0.19196631971787737
+      },
+      {
+        "id": "updates",
+        "score": 0.18632764164178342
+      },
+      {
+        "id": "js-csp-worker",
+        "score": 0.18256510757731545
+      },
+      {
+        "id": "screen-reader-live",
+        "score": 0.1824194453780834
+      },
+      {
+        "id": "qr-phishing",
+        "score": 0.17965212200186062
+      },
+      {
+        "id": "cpu",
+        "score": 0.17934833061288258
+      },
+      {
+        "id": "browser-flags",
+        "score": 0.17930933919943667
+      },
+      {
+        "id": "js-prototype-data",
+        "score": 0.17520966819248213
+      }
+    ],
+    "ms": 14.700000002980232
+  },
+  {
+    "query": "Explain IndexedDB",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "indexeddb",
+        "score": 0.7232980193349077
+      },
+      {
+        "id": "idb-index",
+        "score": 0.597983234217049
+      },
+      {
+        "id": "idb-keypath",
+        "score": 0.5295305477550444
+      },
+      {
+        "id": "idb-cursor",
+        "score": 0.520800450097036
+      },
+      {
+        "id": "idb-abort",
+        "score": 0.4631187956908476
+      },
+      {
+        "id": "private-storage",
+        "score": 0.4545908516867469
+      },
+      {
+        "id": "idb-durability",
+        "score": 0.44131600333444093
+      },
+      {
+        "id": "idb-clone",
+        "score": 0.42457310760421685
+      },
+      {
+        "id": "storage-denied",
+        "score": 0.4147432084650701
+      },
+      {
+        "id": "privacy-local-encryption",
+        "score": 0.4069203397986683
+      }
+    ],
+    "ms": 13.299999997019768
+  },
+  {
+    "query": "Correction: I use Firefox on macOS.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "firefox",
+        "score": 0.5553167757278537
+      },
+      {
+        "id": "compare",
+        "score": 0.5377563513560342
+      },
+      {
+        "id": "mac-default-browser",
+        "score": 0.5328878840483329
+      },
+      {
+        "id": "safari",
+        "score": 0.5168395670832716
+      },
+      {
+        "id": "browser",
+        "score": 0.4792710186414788
+      },
+      {
+        "id": "version",
+        "score": 0.4466660628993349
+      },
+      {
+        "id": "linux-fonts",
+        "score": 0.4442538886994919
+      },
+      {
+        "id": "mac-rosetta",
+        "score": 0.4412183485460067
+      },
+      {
+        "id": "slow",
+        "score": 0.4227677182685767
+      },
+      {
+        "id": "mac-process-memory",
+        "score": 0.41704672624264105
+      }
+    ],
+    "ms": 63.70000000298023
+  },
+  {
+    "query": "What are cookies?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "cookies",
+        "score": 0.726143583405268
+      },
+      {
+        "id": "cookie-prefix",
+        "score": 0.5505509077640643
+      },
+      {
+        "id": "cookie-size",
+        "score": 0.5454339138348848
+      },
+      {
+        "id": "partitioned-cookies",
+        "score": 0.5263719922933979
+      },
+      {
+        "id": "third-party",
+        "score": 0.5081785716262297
+      },
+      {
+        "id": "secure-cookie",
+        "score": 0.5072025771776405
+      },
+      {
+        "id": "cookie-domain",
+        "score": 0.49272687737942933
+      },
+      {
+        "id": "cookie-consent",
+        "score": 0.4877962096066509
+      },
+      {
+        "id": "httponly",
+        "score": 0.46527795068974653
+      },
+      {
+        "id": "cookie-expiry",
+        "score": 0.45884496165464644
+      }
+    ],
+    "ms": 9.299999997019768
+  },
+  {
+    "query": "I use Chrome on Linux.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "compare",
+        "score": 0.5347749348718116
+      },
+      {
+        "id": "chrome",
+        "score": 0.5342746573190686
+      },
+      {
+        "id": "ext-file-access",
+        "score": 0.4923903319218027
+      },
+      {
+        "id": "linux-gpu",
+        "score": 0.47894283460026
+      },
+      {
+        "id": "browser",
+        "score": 0.47738984237033194
+      },
+      {
+        "id": "extension",
+        "score": 0.46970252500646514
+      },
+      {
+        "id": "linux-fonts",
+        "score": 0.4613997880998221
+      },
+      {
+        "id": "version",
+        "score": 0.43967825572894437
+      },
+      {
+        "id": "android-extension",
+        "score": 0.4390145506109796
+      },
+      {
+        "id": "slow",
+        "score": 0.41790028671600943
+      }
+    ],
+    "ms": 22
+  },
+  {
+    "query": "What is DNS?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "dns",
+        "score": 0.6288798486962727
+      },
+      {
+        "id": "doh-policy",
+        "score": 0.48365254286586534
+      },
+      {
+        "id": "dns-refused",
+        "score": 0.4591817559402218
+      },
+      {
+        "id": "privacy-dns-vpn",
+        "score": 0.4174271503530348
+      },
+      {
+        "id": "dns-idn",
+        "score": 0.41367150181601886
+      },
+      {
+        "id": "dns-ttl",
+        "score": 0.40403546024800013
+      },
+      {
+        "id": "dns-negative",
+        "score": 0.3919091364537758
+      },
+      {
+        "id": "dns-split-horizon",
+        "score": 0.3878321630386742
+      },
+      {
+        "id": "dns-a-aaaa",
+        "score": 0.375803311815288
+      },
+      {
+        "id": "dns-servfail",
+        "score": 0.3726422486982029
+      }
+    ],
+    "ms": 9.100000001490116
+  },
+  {
+    "query": "Explain cache",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "cpu-cache",
+        "score": 0.7816948378179573
+      },
+      {
+        "id": "http-cache-private",
+        "score": 0.5941582396771192
+      },
+      {
+        "id": "cache-vary",
+        "score": 0.5405281412264062
+      },
+      {
+        "id": "cache-storage",
+        "score": 0.5295312713591959
+      },
+      {
+        "id": "cache-control",
+        "score": 0.5239569798781598
+      },
+      {
+        "id": "http-no-store",
+        "score": 0.5160000359256505
+      },
+      {
+        "id": "cache",
+        "score": 0.5108005979613137
+      },
+      {
+        "id": "request-cache-mode",
+        "score": 0.4947222538453913
+      },
+      {
+        "id": "android-clear-cache",
+        "score": 0.4890929942089749
+      },
+      {
+        "id": "linux-memory-available",
+        "score": 0.4664835785916514
+      }
+    ],
+    "ms": 4.799999997019768
+  },
+  {
+    "query": "Actually, I use Firefox on Windows.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "firefox",
+        "score": 0.5420945170063225
+      },
+      {
+        "id": "compare",
+        "score": 0.5235220094262658
+      },
+      {
+        "id": "browser",
+        "score": 0.48919894413776416
+      },
+      {
+        "id": "version",
+        "score": 0.446643460156384
+      },
+      {
+        "id": "slow",
+        "score": 0.42287337521036095
+      },
+      {
+        "id": "safari",
+        "score": 0.4222013052311454
+      },
+      {
+        "id": "secure",
+        "score": 0.4199433894394182
+      },
+      {
+        "id": "edge",
+        "score": 0.4002462593346253
+      },
+      {
+        "id": "browser-channel",
+        "score": 0.39458093574319425
+      },
+      {
+        "id": "win-security",
+        "score": 0.3938696614206616
+      }
+    ],
+    "ms": 8.200000002980232
+  },
+  {
+    "query": "Explain cookies instead.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "cookies",
+        "score": 0.6825509397737173
+      },
+      {
+        "id": "cookie-size",
+        "score": 0.5889372014394586
+      },
+      {
+        "id": "cookie-prefix",
+        "score": 0.5181819793925215
+      },
+      {
+        "id": "cookie-consent",
+        "score": 0.5165964124210968
+      },
+      {
+        "id": "third-party",
+        "score": 0.508513231215925
+      },
+      {
+        "id": "cookie-domain",
+        "score": 0.489789174015291
+      },
+      {
+        "id": "partitioned-cookies",
+        "score": 0.47333011358014965
+      },
+      {
+        "id": "secure-cookie",
+        "score": 0.47276308847142373
+      },
+      {
+        "id": "cookie-expiry",
+        "score": 0.4696524901431348
+      },
+      {
+        "id": "httponly",
+        "score": 0.4236319936230341
+      }
+    ],
+    "ms": 40
+  },
+  {
+    "query": "Explain WebGPU and WebAssembly.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "ai-browser-backends",
+        "score": 0.6713211769793677
+      },
+      {
+        "id": "webgpu",
+        "score": 0.6222654011109567
+      },
+      {
+        "id": "wasm",
+        "score": 0.6038313901748794
+      },
+      {
+        "id": "webgpu-lost",
+        "score": 0.4998066454704408
+      },
+      {
+        "id": "webgpu-adapter",
+        "score": 0.4760525300246718
+      },
+      {
+        "id": "wasm-memory",
+        "score": 0.460433731225032
+      },
+      {
+        "id": "webrtc",
+        "score": 0.43721946404761036
+      },
+      {
+        "id": "webgpu-f16",
+        "score": 0.43258302557341144
+      },
+      {
+        "id": "engine",
+        "score": 0.3974830369910778
+      },
+      {
+        "id": "wasm-csp",
+        "score": 0.39557050988853165
+      }
+    ],
+    "ms": 10.199999995529652
+  },
+  {
+    "query": "Explain WebGPU",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "webgpu",
+        "score": 0.6954872479379258
+      },
+      {
+        "id": "ai-browser-backends",
+        "score": 0.6271770300650628
+      },
+      {
+        "id": "webgpu-lost",
+        "score": 0.581435892202536
+      },
+      {
+        "id": "webgpu-adapter",
+        "score": 0.5336043602419409
+      },
+      {
+        "id": "webgpu-f16",
+        "score": 0.5045402555372345
+      },
+      {
+        "id": "webrtc",
+        "score": 0.4810274135898313
+      },
+      {
+        "id": "hardware-external-gpu",
+        "score": 0.4559169622659226
+      },
+      {
+        "id": "webrtc-ice-privacy",
+        "score": 0.4073495820456962
+      },
+      {
+        "id": "win-graphics-preference",
+        "score": 0.3910712419812144
+      },
+      {
+        "id": "cpu-gpu",
+        "score": 0.38052473737381076
+      }
+    ],
+    "ms": 5.700000002980232
+  },
+  {
+    "query": "Explain WebAssembly",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "wasm",
+        "score": 0.837129458631134
+      },
+      {
+        "id": "wasm-memory",
+        "score": 0.6162374216252384
+      },
+      {
+        "id": "wasm-csp",
+        "score": 0.5283386923914318
+      },
+      {
+        "id": "html",
+        "score": 0.4764340977850503
+      },
+      {
+        "id": "ai-browser-backends",
+        "score": 0.469331214231244
+      },
+      {
+        "id": "wasm-threads",
+        "score": 0.40512156703410385
+      },
+      {
+        "id": "engine",
+        "score": 0.3988243804408218
+      },
+      {
+        "id": "ext-webaccessible",
+        "score": 0.3915648209426101
+      },
+      {
+        "id": "js",
+        "score": 0.38410740997939263
+      },
+      {
+        "id": "api-webcrypto",
+        "score": 0.3632044090114916
+      }
+    ],
+    "ms": 5.799999997019768
+  },
+  {
+    "query": "Describe DNS. Also explain cookies.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "cookies",
+        "score": 0.6623487937544027
+      },
+      {
+        "id": "cookie-prefix",
+        "score": 0.6338243328895011
+      },
+      {
+        "id": "cookie-domain",
+        "score": 0.5460350107415293
+      },
+      {
+        "id": "cookie-size",
+        "score": 0.4951542703000017
+      },
+      {
+        "id": "third-party",
+        "score": 0.4771706498065155
+      },
+      {
+        "id": "cookie-consent",
+        "score": 0.44962274456080903
+      },
+      {
+        "id": "doh-policy",
+        "score": 0.44476546981111426
+      },
+      {
+        "id": "secure-cookie",
+        "score": 0.4413445269960722
+      },
+      {
+        "id": "perf-navigation",
+        "score": 0.4283127006080961
+      },
+      {
+        "id": "perf-preconnect",
+        "score": 0.4252652997584866
+      }
+    ],
+    "ms": 7.600000001490116
+  },
+  {
+    "query": "Describe DNS",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "dns",
+        "score": 0.6191191016393957
+      },
+      {
+        "id": "dns-refused",
+        "score": 0.4772964185545206
+      },
+      {
+        "id": "privacy-dns-vpn",
+        "score": 0.45938714637862965
+      },
+      {
+        "id": "doh-policy",
+        "score": 0.45673331926464455
+      },
+      {
+        "id": "dns-split-horizon",
+        "score": 0.4064156702289692
+      },
+      {
+        "id": "dns-servfail",
+        "score": 0.40036233397422655
+      },
+      {
+        "id": "dns-ttl",
+        "score": 0.39978019783909824
+      },
+      {
+        "id": "dns-idn",
+        "score": 0.3970449323762987
+      },
+      {
+        "id": "dns-negative",
+        "score": 0.3826953253950969
+      },
+      {
+        "id": "android-private-dns",
+        "score": 0.36854084360477174
+      }
+    ],
+    "ms": 5.100000001490116
+  },
+  {
+    "query": "explain cookies.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "cookies",
+        "score": 0.7044389286206312
+      },
+      {
+        "id": "cookie-size",
+        "score": 0.5700488824002692
+      },
+      {
+        "id": "cookie-prefix",
+        "score": 0.5257780477531737
+      },
+      {
+        "id": "partitioned-cookies",
+        "score": 0.515905865047829
+      },
+      {
+        "id": "cookie-consent",
+        "score": 0.5102671456651978
+      },
+      {
+        "id": "cookie-domain",
+        "score": 0.4974903281169412
+      },
+      {
+        "id": "cookie-expiry",
+        "score": 0.49587547599013126
+      },
+      {
+        "id": "third-party",
+        "score": 0.49563357774674865
+      },
+      {
+        "id": "secure-cookie",
+        "score": 0.4899134320268153
+      },
+      {
+        "id": "httponly",
+        "score": 0.44660961130132404
+      }
+    ],
+    "ms": 9.899999998509884
+  },
+  {
+    "query": "Explain Cache-Control; then describe HTTP 304.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "cache304",
+        "score": 0.6829723846370197
+      },
+      {
+        "id": "cache-control",
+        "score": 0.6248877349249161
+      },
+      {
+        "id": "http-no-store",
+        "score": 0.5849700839333494
+      },
+      {
+        "id": "http-cache-private",
+        "score": 0.5494227186888232
+      },
+      {
+        "id": "cache-vary",
+        "score": 0.5264969874188566
+      },
+      {
+        "id": "request-cache-mode",
+        "score": 0.5220059979600562
+      },
+      {
+        "id": "cpu-cache",
+        "score": 0.5209866704174982
+      },
+      {
+        "id": "cache",
+        "score": 0.4734624409792788
+      },
+      {
+        "id": "http-stale-revalidate",
+        "score": 0.47064287874022853
+      },
+      {
+        "id": "http-age",
+        "score": 0.46427143240505164
+      }
+    ],
+    "ms": 11.200000002980232
+  },
+  {
+    "query": "Explain Cache-Control",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "cpu-cache",
+        "score": 0.6938931954451125
+      },
+      {
+        "id": "http-cache-private",
+        "score": 0.643309584176989
+      },
+      {
+        "id": "http-no-store",
+        "score": 0.6220788207005907
+      },
+      {
+        "id": "cache-control",
+        "score": 0.5886381615886164
+      },
+      {
+        "id": "http-immutable",
+        "score": 0.48079510849083557
+      },
+      {
+        "id": "request-cache-mode",
+        "score": 0.45712296475205105
+      },
+      {
+        "id": "cache-vary",
+        "score": 0.4547541302654092
+      },
+      {
+        "id": "linux-memory-available",
+        "score": 0.4509622297088091
+      },
+      {
+        "id": "cache-storage",
+        "score": 0.44878814475010276
+      },
+      {
+        "id": "bfcache",
+        "score": 0.43715829072886375
+      }
+    ],
+    "ms": 46.29999999701977
+  },
+  {
+    "query": "describe HTTP 304.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "cache304",
+        "score": 0.6004929136375592
+      },
+      {
+        "id": "http206",
+        "score": 0.5603685963084664
+      },
+      {
+        "id": "http3",
+        "score": 0.5324439038510489
+      },
+      {
+        "id": "http307",
+        "score": 0.49267751958325623
+      },
+      {
+        "id": "http451",
+        "score": 0.45055543126320585
+      },
+      {
+        "id": "http425",
+        "score": 0.4433918220916167
+      },
+      {
+        "id": "429",
+        "score": 0.42788341910940275
+      },
+      {
+        "id": "http2",
+        "score": 0.4226639617994002
+      },
+      {
+        "id": "cache-vary",
+        "score": 0.40790229199866107
+      },
+      {
+        "id": "http201",
+        "score": 0.40786474187303345
+      }
+    ],
+    "ms": 6.800000004470348
+  },
+  {
+    "query": "What is IndexedDB? Also what is localStorage?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "indexeddb",
+        "score": 0.7653658184732055
+      },
+      {
+        "id": "storage-denied",
+        "score": 0.5953014386643765
+      },
+      {
+        "id": "private-storage",
+        "score": 0.5771730794141574
+      },
+      {
+        "id": "privacy-local-encryption",
+        "score": 0.5722088712626003
+      },
+      {
+        "id": "localstorage",
+        "score": 0.5671866827894952
+      },
+      {
+        "id": "idb-durability",
+        "score": 0.566211448615802
+      },
+      {
+        "id": "idb-cursor",
+        "score": 0.5503835529047747
+      },
+      {
+        "id": "idb-index",
+        "score": 0.5327106856695086
+      },
+      {
+        "id": "persistent",
+        "score": 0.4818276268893812
+      },
+      {
+        "id": "quota-write",
+        "score": 0.47681603217886903
+      }
+    ],
+    "ms": 10
+  },
+  {
+    "query": "What is IndexedDB",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "indexeddb",
+        "score": 0.7389761183737095
+      },
+      {
+        "id": "idb-index",
+        "score": 0.6268672104702029
+      },
+      {
+        "id": "idb-keypath",
+        "score": 0.5893169583495128
+      },
+      {
+        "id": "idb-cursor",
+        "score": 0.5770523323789849
+      },
+      {
+        "id": "idb-abort",
+        "score": 0.544121246423455
+      },
+      {
+        "id": "private-storage",
+        "score": 0.4857568970370134
+      },
+      {
+        "id": "idb-clone",
+        "score": 0.4789374612925149
+      },
+      {
+        "id": "idb-inactive",
+        "score": 0.4724733525704933
+      },
+      {
+        "id": "storage-denied",
+        "score": 0.4642853822727482
+      },
+      {
+        "id": "idb-durability",
+        "score": 0.45472482659509883
+      }
+    ],
+    "ms": 6.5999999940395355
+  },
+  {
+    "query": "what is localStorage?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "localstorage",
+        "score": 0.654400727023605
+      },
+      {
+        "id": "persistent",
+        "score": 0.5492882084691335
+      },
+      {
+        "id": "sessionstorage",
+        "score": 0.4417541126186417
+      },
+      {
+        "id": "storage-denied",
+        "score": 0.42612611063840505
+      },
+      {
+        "id": "storage-eviction",
+        "score": 0.4164141496362494
+      },
+      {
+        "id": "privacy-local-encryption",
+        "score": 0.3993478791287715
+      },
+      {
+        "id": "idb-durability",
+        "score": 0.3901135843155279
+      },
+      {
+        "id": "storage-persist-request",
+        "score": 0.3865981727198036
+      },
+      {
+        "id": "storage-access-api",
+        "score": 0.3851459842759408
+      },
+      {
+        "id": "partitioned-storage",
+        "score": 0.3850070247642702
+      }
+    ],
+    "ms": 7.300000004470348
+  },
+  {
+    "query": "Explain backups and browser synchronization.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "privacy-sync-encryption",
+        "score": 0.6123532490896935
+      },
+      {
+        "id": "browser-sync",
+        "score": 0.5958846467669768
+      },
+      {
+        "id": "profile-sync-conflict",
+        "score": 0.48924772784910847
+      },
+      {
+        "id": "android-data-saver",
+        "score": 0.47837688436939046
+      },
+      {
+        "id": "browser-channel",
+        "score": 0.4508147605373165
+      },
+      {
+        "id": "localstorage",
+        "score": 0.44222011487469925
+      },
+      {
+        "id": "fingerprint",
+        "score": 0.43910260738057394
+      },
+      {
+        "id": "backup",
+        "score": 0.4389370695813473
+      },
+      {
+        "id": "idb-durability",
+        "score": 0.43627970438052005
+      },
+      {
+        "id": "indexeddb",
+        "score": 0.4221608298336601
+      }
+    ],
+    "ms": 9.899999998509884
+  },
+  {
+    "query": "Explain backups",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "backup",
+        "score": 0.6018260120596153
+      },
+      {
+        "id": "recovery-codes",
+        "score": 0.4314424657490642
+      },
+      {
+        "id": "auth-recovery-phishing",
+        "score": 0.3958859024262983
+      },
+      {
+        "id": "persistent",
+        "score": 0.39186582779972673
+      },
+      {
+        "id": "idb-durability",
+        "score": 0.32816841942177255
+      },
+      {
+        "id": "export",
+        "score": 0.3193178168416161
+      },
+      {
+        "id": "partitioned-storage",
+        "score": 0.30000597391453293
+      },
+      {
+        "id": "disk",
+        "score": 0.29551753493538946
+      },
+      {
+        "id": "iphone-offload",
+        "score": 0.27642456976898255
+      },
+      {
+        "id": "mac-storage-purgeable",
+        "score": 0.2700840604394996
+      }
+    ],
+    "ms": 8.899999998509884
+  },
+  {
+    "query": "Explain browser synchronization",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "privacy-sync-encryption",
+        "score": 0.642401699888569
+      },
+      {
+        "id": "browser-sync",
+        "score": 0.5933929045631656
+      },
+      {
+        "id": "browser-channel",
+        "score": 0.48776323454637377
+      },
+      {
+        "id": "android-data-saver",
+        "score": 0.48257953457572283
+      },
+      {
+        "id": "fingerprint",
+        "score": 0.461377803311813
+      },
+      {
+        "id": "hardware-memory-bandwidth",
+        "score": 0.4541531613337443
+      },
+      {
+        "id": "browser",
+        "score": 0.4525000032975961
+      },
+      {
+        "id": "perf-memory-measure",
+        "score": 0.45033722726563696
+      },
+      {
+        "id": "api-idle-detection",
+        "score": 0.4439721579656619
+      },
+      {
+        "id": "js",
+        "score": 0.441485241181222
+      }
+    ],
+    "ms": 6.700000002980232
+  },
+  {
+    "query": "Describe Firefox. Also describe Safari.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "firefox",
+        "score": 0.7141276046354443
+      },
+      {
+        "id": "safari",
+        "score": 0.7136598104022545
+      },
+      {
+        "id": "compare",
+        "score": 0.6613561191274471
+      },
+      {
+        "id": "browser",
+        "score": 0.601677899369611
+      },
+      {
+        "id": "engine",
+        "score": 0.5681693204743317
+      },
+      {
+        "id": "iphone-engine",
+        "score": 0.5403451303151828
+      },
+      {
+        "id": "browser-channel",
+        "score": 0.5126879925038216
+      },
+      {
+        "id": "chrome",
+        "score": 0.4933800115147517
+      },
+      {
+        "id": "secure",
+        "score": 0.488433757970147
+      },
+      {
+        "id": "fingerprint",
+        "score": 0.4855974963031715
+      }
+    ],
+    "ms": 41.899999998509884
+  },
+  {
+    "query": "Describe Firefox",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "firefox",
+        "score": 0.7832672011723862
+      },
+      {
+        "id": "compare",
+        "score": 0.5948160390270313
+      },
+      {
+        "id": "engine",
+        "score": 0.4930664114303332
+      },
+      {
+        "id": "browser",
+        "score": 0.49140887720969506
+      },
+      {
+        "id": "browser-channel",
+        "score": 0.4903296199600674
+      },
+      {
+        "id": "secure",
+        "score": 0.47024290264058555
+      },
+      {
+        "id": "safari",
+        "score": 0.4060230895276291
+      },
+      {
+        "id": "linux-gpu",
+        "score": 0.3920909637465334
+      },
+      {
+        "id": "linux-distro-support",
+        "score": 0.3858048753097252
+      },
+      {
+        "id": "useragent",
+        "score": 0.38097257385475264
+      }
+    ],
+    "ms": 7.700000002980232
+  },
+  {
+    "query": "describe Safari.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "safari",
+        "score": 0.7142235116791287
+      },
+      {
+        "id": "mac-safari-site",
+        "score": 0.49459685470870257
+      },
+      {
+        "id": "iphone-engine",
+        "score": 0.48212301480410474
+      },
+      {
+        "id": "mac-safari-update",
+        "score": 0.4501913396269764
+      },
+      {
+        "id": "ipad-desktop",
+        "score": 0.43328979618228136
+      },
+      {
+        "id": "mac-safari-extensions",
+        "score": 0.4296482386797541
+      },
+      {
+        "id": "mac-energy",
+        "score": 0.4133270418750279
+      },
+      {
+        "id": "engine",
+        "score": 0.4054344412297076
+      },
+      {
+        "id": "mac-content-blocker",
+        "score": 0.39488780158785475
+      },
+      {
+        "id": "iphone-pwa",
+        "score": 0.38896696889385163
+      }
+    ],
+    "ms": 6
+  },
+  {
+    "query": "Explain WebGL and WebGPU.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "ai-browser-backends",
+        "score": 0.6857713824368563
+      },
+      {
+        "id": "webgpu",
+        "score": 0.6640784459933156
+      },
+      {
+        "id": "webgl",
+        "score": 0.5996400130551798
+      },
+      {
+        "id": "webgpu-lost",
+        "score": 0.5612557070221054
+      },
+      {
+        "id": "webgpu-f16",
+        "score": 0.5039283105344998
+      },
+      {
+        "id": "webgpu-adapter",
+        "score": 0.49271725382840736
+      },
+      {
+        "id": "win-graphics-preference",
+        "score": 0.4848785233914324
+      },
+      {
+        "id": "linux-gpu",
+        "score": 0.4634358130393529
+      },
+      {
+        "id": "hardware-vram-shared",
+        "score": 0.44921475508293623
+      },
+      {
+        "id": "cpu-gpu",
+        "score": 0.447979221279907
+      }
+    ],
+    "ms": 8.199999995529652
+  },
+  {
+    "query": "Explain WebGL",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "webgl",
+        "score": 0.6971677730509649
+      },
+      {
+        "id": "ai-browser-backends",
+        "score": 0.5790884009296607
+      },
+      {
+        "id": "webgpu",
+        "score": 0.4419777020834355
+      },
+      {
+        "id": "engine",
+        "score": 0.4103870369052945
+      },
+      {
+        "id": "linux-gpu",
+        "score": 0.40289042255123375
+      },
+      {
+        "id": "image-webp",
+        "score": 0.38719782349365106
+      },
+      {
+        "id": "api-webcodecs",
+        "score": 0.3855505558274742
+      },
+      {
+        "id": "wasm",
+        "score": 0.3771377880910097
+      },
+      {
+        "id": "js",
+        "score": 0.3728815096465598
+      },
+      {
+        "id": "webgpu-lost",
+        "score": 0.36284637349184634
+      }
+    ],
+    "ms": 5
+  },
+  {
+    "query": "What is a service worker? Also explain the back-forward cache.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "service-worker",
+        "score": 0.6992163624494219
+      },
+      {
+        "id": "cache-storage",
+        "score": 0.6044038799767548
+      },
+      {
+        "id": "sw-cache-version",
+        "score": 0.5648809013210895
+      },
+      {
+        "id": "workers",
+        "score": 0.5452766273683908
+      },
+      {
+        "id": "cpu-cache",
+        "score": 0.5354168108237055
+      },
+      {
+        "id": "perf-worker-start",
+        "score": 0.5087566872552798
+      },
+      {
+        "id": "sw-install-fail",
+        "score": 0.4111787828765818
+      },
+      {
+        "id": "http-cache-private",
+        "score": 0.3876979405565033
+      },
+      {
+        "id": "ext-service-worker",
+        "score": 0.3775451193986253
+      },
+      {
+        "id": "sw-background-sync",
+        "score": 0.37461727491598285
+      }
+    ],
+    "ms": 10.399999998509884
+  },
+  {
+    "query": "What is a service worker",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "service-worker",
+        "score": 0.7309838984559875
+      },
+      {
+        "id": "workers",
+        "score": 0.5370668189716689
+      },
+      {
+        "id": "sw-cache-version",
+        "score": 0.4917626941808986
+      },
+      {
+        "id": "sw-scope",
+        "score": 0.4275336611703489
+      },
+      {
+        "id": "perf-worker-error",
+        "score": 0.41993551465753365
+      },
+      {
+        "id": "sw-install-fail",
+        "score": 0.411211816559165
+      },
+      {
+        "id": "sw-first-load",
+        "score": 0.40406333665290745
+      },
+      {
+        "id": "sw-bypass",
+        "score": 0.4023983323638291
+      },
+      {
+        "id": "sw-waiting",
+        "score": 0.3879880215455138
+      },
+      {
+        "id": "ext-service-worker",
+        "score": 0.3847029504586708
+      }
+    ],
+    "ms": 6.100000001490116
+  },
+  {
+    "query": "explain the back-forward cache.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "bfcache",
+        "score": 0.6190644109215222
+      },
+      {
+        "id": "cpu-cache",
+        "score": 0.6189557162431326
+      },
+      {
+        "id": "http-cache-private",
+        "score": 0.5740633559567251
+      },
+      {
+        "id": "api-pagehide",
+        "score": 0.5478317189275697
+      },
+      {
+        "id": "http-no-store",
+        "score": 0.5121142911753446
+      },
+      {
+        "id": "http-immutable",
+        "score": 0.494386089629014
+      },
+      {
+        "id": "cache-vary",
+        "score": 0.4633674167531966
+      },
+      {
+        "id": "http-stale-revalidate",
+        "score": 0.46327928772505056
+      },
+      {
+        "id": "cache-control",
+        "score": 0.4485466577125624
+      },
+      {
+        "id": "cache-storage",
+        "score": 0.4430799921548925
+      }
+    ],
+    "ms": 6.700000002980232
+  }
+]

@@ -1,11 +1,15 @@
 import { importDocument, type LocalDocument } from "./documents";
 export async function indexLocalDocument(
   name: string,
-  text: string,
+  text: string | ArrayBuffer,
   signal?: AbortSignal,
 ): Promise<LocalDocument> {
   signal?.throwIfAborted();
-  if (typeof Worker === "undefined") return importDocument(name, text);
+  if (typeof Worker === "undefined") {
+    if (typeof text !== "string")
+      throw Error("Binary document parsing requires a browser worker.");
+    return importDocument(name, text);
+  }
   const worker = new Worker(new URL("./document-worker.ts", import.meta.url), {
     type: "module",
   });
@@ -33,8 +37,15 @@ export async function indexLocalDocument(
     worker.onmessage = ({ data }) => {
       finish();
       if (data.error) reject(Error(data.error));
-      else resolve(data.document);
+      else if (
+        data.document &&
+        typeof data.document.name === "string" &&
+        typeof data.document.text === "string" &&
+        Array.isArray(data.document.lines)
+      )
+        resolve(data.document);
+      else reject(Error("Invalid document worker response."));
     };
-    worker.postMessage({ name, text });
+    worker.postMessage({ name, text }, typeof text === "string" ? [] : [text]);
   });
 }

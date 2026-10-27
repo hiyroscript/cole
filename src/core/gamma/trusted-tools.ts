@@ -11,13 +11,19 @@ import { clearPublicCache } from "./public-sources";
 export type ToolSpec = {
   name: string;
   description: string;
-  environment: "website-and-extension";
-  permission: "none" | "web-opt-in";
+  environment: "website-and-extension" | "website-only";
+  permission: "none" | "web-opt-in" | "model-download-consent";
   sideEffect: "none" | "local-storage" | "network" | "device-query";
   consent: "explicit-user-request";
   maxInput: number;
 };
 export const trustedTools: readonly ToolSpec[] = [
+  {
+    name: "deep",
+    description: "Explicit experimental local draft from selected evidence",
+    sideEffect: "local-storage",
+    maxInput: 500,
+  },
   ...["stats", "csv", "text", "diff", "logic"].map((name) => ({
     name,
     description: "Bounded local data operation",
@@ -80,14 +86,20 @@ export const trustedTools: readonly ToolSpec[] = [
   },
   {
     name: "research",
-    description: "Public Wikimedia lookup or local cache removal",
+    description:
+      "Public Wikimedia or explicitly named MDN compatibility lookup; local cache removal",
     sideEffect: "network",
     maxInput: 160,
   },
 ].map((t) => ({
   ...t,
-  environment: "website-and-extension",
-  permission: t.name === "research" ? "web-opt-in" : "none",
+  environment: t.name === "deep" ? "website-only" : "website-and-extension",
+  permission:
+    t.name === "research"
+      ? "web-opt-in"
+      : t.name === "deep"
+        ? "model-download-consent"
+        : "none",
   consent: "explicit-user-request",
 })) as ToolSpec[];
 export async function executeTrustedTool(
@@ -110,6 +122,16 @@ export async function executeTrustedTool(
   try {
     let response: Response;
     switch (name) {
+      case "deep":
+        response = await (
+          await import("./deep-answer")
+        ).deepAnswer(
+          arg,
+          c,
+          options.documents ?? (options.document ? [options.document] : []),
+          options.signal,
+        );
+        break;
       case "calculate":
       case "stats":
       case "csv":

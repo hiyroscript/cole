@@ -1,0 +1,34 @@
+{
+  "model": "HuggingFaceTB/SmolLM2-360M-Instruct",
+  "revision": "a10cc1512eabd3dde888204e902eca88bddb4951",
+  "weightBytes": 364564671,
+  "backend": "real browser CPU/WASM, single thread",
+  "startedAt": "2026-10-26T23:58:23.711Z",
+  "results": [],
+  "setupMs": 190259,
+  "cache": [
+    {
+      "url": "https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct/resolve/a10cc1512eabd3dde888204e902eca88bddb4951/tokenizer.json",
+      "bytes": 2104556
+    },
+    {
+      "url": "https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct/resolve/a10cc1512eabd3dde888204e902eca88bddb4951/tokenizer_config.json",
+      "bytes": 3764
+    },
+    {
+      "url": "https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct/resolve/a10cc1512eabd3dde888204e902eca88bddb4951/config.json",
+      "bytes": 846
+    },
+    {
+      "url": "https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct/resolve/a10cc1512eabd3dde888204e902eca88bddb4951/generation_config.json",
+      "bytes": 132
+    },
+    {
+      "url": "https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct/resolve/a10cc1512eabd3dde888204e902eca88bddb4951/onnx/model_quantized.onnx",
+      "bytes": 364564671
+    }
+  ],
+  "offlineSetupMs": 3448,
+  "error": "page.evaluate: Error\n    at worker.onerror (eval at evaluate (:370:30), <anonymous>:3:180)",
+  "pageText": "Skip to composer\nCole\nNew conversation\n⌥ N\n\nYour conversations\n\nA little space for your next thought.\n\nBrowser & device\nSettings\nLocal by design. Yours to keep.\nGamma\nLocal intelligence\nOffline\n\nCLARITY, WITHOUT THE NOISE.\n\nWhere should we begin?\n\nUnderstand your browser. Get to know your device.\nA clearer answer starts with a question.\n\nYour browser\nGet to know your everyday tools\nYour device\nSee what your browser can tell you\nA smoother experience\nWork through a performance issue\nA little more privacy\nMake informed browsing choices\nMessage Gamma\nImport document\nCommands\nThinking\nAuto\nOn\nOff\n\nPrivate by design. Processed on your device.\n\nSettings\nPreferences\nPublic web retrieval\n\nPublic topics go to Wikimedia. Explicit /research mdn requests retrieve MDN compatibility revisions from GitHub. Gamma displays source extracts; Madon can use them in locally generated answers. Chats and diagnostics are not sent.\n\nAppearance\nLight\nDark\nFollow system\nYour name\nDevice notes\nClear device notes\nAssistant setup Gamma & Madon\nGamma · Enhanced understanding\n\nImprove question matching with a small local language-understanding model. Experimental; it retrieves guidance and does not generate answers.\n\nMiniLM quantized weights: 22,972,370 bytes (21.9 MiB), plus tokenizer and 20.6 MiB of runtime assets. Downloads contact Hugging Face. Processing stays local. CPU/WASM; no WebGPU required.\n\nOptional model not loaded. Lexical matching is available.\n\nEnable and download enhancement\nDisable enhancement\nRemove enhancement data\nClear temporary context\n\nKnowledge: gamma-3.0-2026-10-25. Built-in matching works without setup. Cached assets may be evicted; initialization always requires your action.\n\nGamma · Deep Mode\n\nExperimental local drafts from built-in evidence or selected documents. Use /deep followed by a supported topic, or /deep summarize documents. Quotations are checked; generated explanations can still be wrong.\n\nHuggingFaceTB/SmolLM2-360M-Instruct, Apache-2.0. Quantized weights: 364,564,671 bytes (347.7 MiB), plus tokenizer and runtime assets. Downloads contact Hugging Face. CPU/WASM; allow substantial memory and setup time. No conversations are uploaded. Core remains available without this model.\n\nGamma Deep Mode is off. Cached model data is retained.\n\nInitialize Deep Mode\nStop and disable Deep Mode\nRemove Deep Mode data\n\nSetup always requires your action. This small model is not a general reasoning upgrade. Drafts cannot execute tools or change settings; use the cited source text to verify them.\n\nSet up Madon\n\nMadon runs directly on your device. Download its language model to start using local AI.\n\nQwen3-1.7B · approximately 0.97 GB of weights, plus tokenizer and runtime files. About 2037 MB of GPU memory estimated; actual needs may be higher. Speed and compatibility depend on your device.\n\nModel\nQwen3-1.7B-q4f16_1-MLC\nState\nunsupported\nWebGPU\nAPI available; runtime verification still required\nAvailable origin storage\nNot exposed\nCached weights\nNot checked until setup\n\nNo WebGPU adapter is available. Check browser graphics settings or use Gamma.\n\nSetup may download missing files from Hugging Face and the WebLLM model library host. Chats stay on this device. Cached files can be evicted; every initialization is explicit. Model answers can be wrong.\n\nDownload and initialize\nUnload model\nRemove model data\nSwitch to Gamma\n\nPowered by Qwen3 (Apache-2.0) and WebLLM (Apache-2.0). Madon is a small local model, with limited factual reliability and context.\n\nYour local data\n\nChats are saved in this browser’s IndexedDB. Preferences stay in local storage. No accounts, analytics, or remote inference. Exports and local storage are not encrypted by Cole.\n\nExport all conversations\nDelete all conversations\nReset preferences\nClear all Cole data\nOffline & installation\n\nAfter a successful cached visit, Gamma works offline. Use your browser’s Install or Add to Home Screen control where supported. For the Chromium extension, download the build artifact from GitHub Actions and load its extracted folder through the extension manager.\n\nSource, documentation & extension builds ↗"
+}

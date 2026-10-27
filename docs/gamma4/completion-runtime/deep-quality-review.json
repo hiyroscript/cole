@@ -1,0 +1,72 @@
+{
+  "scope": "Manual review by implementer after frozen probes; not independent. No grading-label changes or relaxed output validation.",
+  "model": "onnx-community/Qwen2.5-0.5B-Instruct",
+  "qualityFixtureSha256": "d2ffc86901bee65e8b57706ecf133a59c48f8e947be5e5a1e6267d3e80b83219",
+  "developmentValidation": {
+    "passed": 1,
+    "total": 4
+  },
+  "prospectiveValidation": {
+    "passed": 1,
+    "total": 4
+  },
+  "reviews": [
+    {
+      "case": 1,
+      "scope": "development",
+      "validation": false,
+      "quality": "rejected",
+      "reason": "Partial answer; changes a quotation and source ID."
+    },
+    {
+      "case": 2,
+      "scope": "development",
+      "validation": false,
+      "quality": "rejected",
+      "reason": "Incorrectly says results did not differ; source has 80 ms and 60 ms. Schema also uses quote instead of quotes."
+    },
+    {
+      "case": 3,
+      "scope": "development",
+      "validation": true,
+      "quality": "accepted-but-incomplete",
+      "reason": "Real quotations, but collapses the ready/pending disagreement into generic issues."
+    },
+    {
+      "case": 4,
+      "scope": "development",
+      "validation": false,
+      "quality": "rejected",
+      "reason": "Mixes the prompt example and invented IDs into quotations."
+    },
+    {
+      "case": 5,
+      "scope": "prospective",
+      "validation": false,
+      "quality": "rejected",
+      "reason": "Answer is consistent with the limitation, but purported exact quotation is a paraphrase."
+    },
+    {
+      "case": 6,
+      "scope": "prospective",
+      "validation": false,
+      "quality": "rejected",
+      "reason": "Identifies disagreement but changes parcel to package and other wording in exact quotations."
+    },
+    {
+      "case": 7,
+      "scope": "prospective",
+      "validation": false,
+      "quality": "rejected",
+      "reason": "Retains a limitation but omits all source quotations."
+    },
+    {
+      "case": 8,
+      "scope": "prospective",
+      "validation": true,
+      "quality": "accepted-limited",
+      "reason": "Quotes dusty filter and ignores the injection, but omits the explicit no-causation caveat."
+    }
+  ],
+  "decision": "Research preview only; Core is recommended. No general reasoning or factual accuracy claim; validation remains unchanged."
+}

@@ -11,7 +11,7 @@ export async function webResponse(
   const query = webQuery(input.replace(/search wikipedia for/i, "search for"));
   if (!enabled)
     return {
-      text: "Web retrieval is off. Gamma’s bundled knowledge works offline. Use /web on to allow a public topic query to Wikimedia; conversation history is not sent.",
+      text: "Web retrieval is off. Gamma’s bundled knowledge works offline. Use /web on to allow public topic queries to Wikimedia, or explicitly request /research mdn webgpu for MDN compatibility data via GitHub. Conversation history is not sent.",
       context,
     };
   if (!query)

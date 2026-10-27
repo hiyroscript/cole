@@ -1,4 +1,8 @@
 export const commands = [
+  [
+    "deep",
+    "Experimental local draft: status, off, clear, or a supported topic",
+  ],
   ["stats", "Descriptive statistics for supplied numbers"],
   ["csv", "Analyze supplied CSV rows and numeric columns"],
   ["text", "Count words, Unicode characters, bytes and lines"],
@@ -21,7 +25,7 @@ export const commands = [
   ["explain", "Explain the last recommended check"],
   ["sources", "Authored references or actual public lookup sources"],
   ["enhance", "Optional local understanding: status, on, off"],
-  ["web", "Public Wikimedia lookup: status, on, off"],
+  ["web", "Public source lookup: status, on, off"],
   ["compare", "Compare Chrome and Firefox, or cache and cookies"],
   ["help", "Show available commands"],
   ["about", "About Cole and Gamma"],
@@ -94,6 +98,7 @@ export function parseCommand(input: string) {
       "text",
       "diff",
       "logic",
+      "deep",
     ].includes(m[1].toLowerCase())
       ? (m[2]?.trim() ?? "")
       : (m[2]?.trim().toLowerCase() ?? ""),

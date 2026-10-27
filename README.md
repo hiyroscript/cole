@@ -1,10 +1,10 @@
 # Cole
 
-Gamma 4.0 adds source-separated tasks, evidence checks, statistics/CSV/text/deduction tools, cancellable multi-document analysis, comparison follow-ups, explicit preferences and a bounded French path. Broad intelligence quality targets remain unmet. See [measured results and remaining work](docs/GAMMA4-DELIVERY.md).
+Gamma 4.0 adds source-separated tasks, evidence checks, statistics/CSV/text/deduction tools, local PDF/DOCX/text analysis, dated MDN compatibility research, comparison follow-ups, explicit preferences and a bounded French path. Experimental website-only Deep Mode can draft from selected evidence using an explicitly downloaded local CPU model. Broad intelligence quality targets remain unmet. See [measured results and remaining work](docs/GAMMA4-DELIVERY.md).
 
 Gamma 3.0 adds optional knowledge packs, local documents and calculations, evidence-based troubleshooting, explicit preference memory and experimental semantic acceptance. Startup is within budget; broader quality targets remain unmet. See the [implementation and measured release gates](docs/GAMMA3-DELIVERY.md).
 
-Cole is a browser-local diagnostic and knowledge assistant. **Gamma is a deterministic engine, not a large language model.** It combines authored explanations, indexed intent matching, conversation context, and actual browser APIs. No account, backend, hosted inference API, or API key is required. Madon is now an opt-in local Qwen3/WebLLM website preview with explicit setup, real token streaming, and optional Wikimedia retrieval. Real GPU inference remains unverified in this environment; see [Madon setup and validation](docs/MADON.md).
+Cole is a browser-local diagnostic and knowledge assistant. **Gamma Core is deterministic.** It combines authored explanations, indexed intent matching, conversation context, and actual browser APIs. Optional [Deep Mode](docs/GAMMA4-ADVANCED-MODE.md) is a separate, explicit local drafting path; it does not replace Core or select Madon. No account, backend, hosted inference API, or API key is required. Madon remains an opt-in local Qwen3/WebLLM website preview. Real GPU inference remains unverified in this environment; see [Madon setup and validation](docs/MADON.md).
 
 Cole uses the supplied two-part symbol, a scalable SVG master, and a neutral grayscale design system. Editorial headings pair with readable system UI typography. Light, dark, and system appearance are supported. See [the Cole delivery report](docs/COLE-DELIVERY.md).
 
@@ -14,10 +14,12 @@ Gamma now has a modular lexical/context/diagnostic pipeline and an optional loca
 
 - **708 core + 120 optional records**, with **3,067** distinct expressions across the installed corpus.
 - **75** diagnostic workflows and **560** terminal branch paths.
-- **300** independently authored multi-turn scenarios, plus expression, safety, storage, graph and browser regression tests.
+- **300** authored multi-turn test scenarios, plus expression, safety, storage, graph and browser regression tests.
 - Technical entities, symptom exclusions, conservative BM25/phrase ranking, multi-choice diagnostic state, real feature checks, contextual browser references and four response depths.
 - Optional CPU/WASM sentence embeddings with explicit consent, progress, cache management and lexical fallback.
-- Explicit public Wikimedia lookup with literal extracts and source attribution.
+- Explicit public Wikimedia lookup; `/research mdn webgpu` compares two immutable MDN compatibility revisions after `/web on`. Other supported MDN topics: `webgl`, `webassembly`, `service worker`, `indexeddb`.
+- Up to four local documents: TXT/MD/JSON/CSV/LOG (100,000 bytes each) or PDF/DOCX (2,000,000 bytes each, at most 100,000 extracted bytes; PDF maximum 40 pages). No OCR. Parsers load on first use and can then be reused offline.
+- Experimental `/deep` drafts after Settings → Assistant setup → Gamma Deep Mode. Qwen2.5-0.5B q8 uses 488.4 MiB of weights plus assets, on CPU. Exact quotations are checked; explanatory correctness is not guaranteed. Core evidence is returned if validation fails.
 
 The validator checks coverage and expression ownership. The [current delivery report](docs/GAMMA4-DELIVERY.md) records actual benchmark results, verification and remaining limits. Semantic relevance remains experimental; physical-device certification is not claimed. Run `npm run validate:knowledge` for the generated [coverage report](docs/coverage.json).
 
@@ -81,7 +83,7 @@ Commands that change preferences return typed effects. Destructive actions requi
 
 ## Privacy and data
 
-GitHub Pages serves static assets and receives normal HTTP asset requests. Conversation processing runs in the browser. Cole has no analytics, tracking pixels, remote inference calls, or automatic page inspection. Gamma enhancement explicitly downloads MiniLM from Hugging Face; its single-thread WASM runs locally. Madon setup downloads model assets from Hugging Face and the WebLLM library host. Optional web lookup sends minimized search terms to Wikimedia; it is off by default. Markdown cannot inject HTML, execute JavaScript URLs, or load remote images.
+GitHub Pages serves static assets and receives normal HTTP asset requests. Conversation processing runs in the browser. Cole has no analytics, tracking pixels, remote inference calls, or automatic page inspection. Gamma enhancement and Deep Mode explicitly download their respective models from Hugging Face; single-thread WASM runs locally. Madon setup downloads model assets from Hugging Face and the WebLLM library host. Optional web lookup sends minimized public search terms to Wikimedia; explicitly named MDN compatibility requests contact GitHub's API and raw-content host. Web lookup is off by default. Documents are not uploaded. Markdown cannot inject HTML, execute JavaScript URLs, or load remote images.
 
 Conversations are stored in IndexedDB database `varek`, schema version 1. Preferences and optional user-provided device notes are stored in `varek.preferences.v1` in local storage. Data is validated on load. Browser storage can be unavailable or evicted; errors are surfaced instead of claiming persistence succeeded. Cole does not encrypt local storage or exports.
 

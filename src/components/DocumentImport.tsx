@@ -22,7 +22,7 @@ export function DocumentImport({
         type="file"
         hidden
         multiple
-        accept=".txt,.md,.json,.csv,.log"
+        accept=".txt,.md,.json,.csv,.log,.pdf,.docx"
         onChange={async (e) => {
           const files = Array.from(e.target.files ?? []);
           e.target.value = "";
@@ -36,9 +36,16 @@ export function DocumentImport({
             if (files.length > 4) throw Error("Select at most four documents.");
             const next: LocalDocument[] = [];
             for (const file of files) {
-              if (file.size > DOCUMENT_LIMIT)
-                throw Error("Choose files no larger than 100,000 bytes each.");
-              const text = await file.text();
+              if (
+                file.size >
+                (/\.(pdf|docx)$/i.test(file.name) ? 2_000_000 : DOCUMENT_LIMIT)
+              )
+                throw Error(
+                  "Choose text files up to 100,000 bytes, or PDF/DOCX files up to 2,000,000 bytes.",
+                );
+              const text = /\.(pdf|docx)$/i.test(file.name)
+                ? await file.arrayBuffer()
+                : await file.text();
               controller.signal.throwIfAborted();
               next.push(
                 await indexLocalDocument(file.name, text, controller.signal),
