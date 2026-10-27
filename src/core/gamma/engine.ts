@@ -3,6 +3,7 @@ import { comparisonAspect, comparisonFollowup } from "./comparison";
 import { executionRequirement, unmetRequirement } from "./requirements";
 import { naturalTool } from "./natural-tools";
 import { assessAnswerability } from "./answerability";
+import { questionFrame } from "./question";
 import { executeTrustedTool } from "./trusted-tools";
 import { probe } from "./probe";
 import { clearPublicCache } from "./public-sources";
@@ -21,7 +22,7 @@ import { compareKnowledge } from "./compare";
 import { analyzeRequest } from "./request";
 import { runCapability } from "./capabilities";
 import { retrieveCandidates } from "./hybrid";
-import { freshContext, resolveReference } from "./context";
+import { clarificationChoice, freshContext, resolveReference } from "./context";
 export { freshContext } from "./context";
 import { begin, advance, workflow } from "./workflows";
 import { health } from "./diagnostics";
@@ -96,7 +97,9 @@ async function respondSingle(
   if (c.pending) c.pending = c.pending.filter((id) => !!get(id));
   c.updated = Date.now();
   c.turns++;
-  let n = normalize(input);
+  let n = normalize(input)
+    .replace(/[.?!]+$/, "")
+    .trim();
   const answer = (text: string, rest: Partial<Response> = {}): Response => ({
     text,
     context: c,
@@ -461,11 +464,21 @@ async function respondSingle(
       "Which check or question are you referring to? Tell me what you tried and what happened.",
     );
   }
+  const ordinal = clarificationChoice(input, c.pending ?? []);
+  if (ordinal === null)
+    return answer(
+      "I don’t have that clarification option. Please name the topic you mean.",
+      {
+        followups: c.pending?.map((id) => get(id)!.title),
+      },
+    );
   if (c.pending) {
-    const selected = c.pending.find((id) => {
-      const k = get(id)!;
-      return normalize(k.title) === n || id === n;
-    });
+    const selected =
+      ordinal ??
+      c.pending.find((id) => {
+        const k = get(id)!;
+        return normalize(k.title) === n || id === n;
+      });
     if (selected) {
       const platform = c.platform
         ?.toLowerCase()
@@ -490,17 +503,26 @@ async function respondSingle(
     }
     c.pending = undefined;
   }
-  const depth = /shorter|brief|summarize that/.test(n)
-    ? "brief"
-    : /(?:give|show) me (?:the )?(?:steps|instructions)|step by step|what should i try first|how do i fix (?:that|it)/.test(
-          n,
-        )
-      ? "steps"
-      : /more detail|explain that more|what does that mean|tell me more about (?:it|that)/.test(
-            n,
+  const frame = questionFrame(input);
+  if (frame?.style === "brief") c.depth = "brief";
+  const followup = n.replace(
+    /^(?:please\s+)?(?:(?:can|could|would) you\s+)?/,
+    "",
+  );
+  const depth =
+    /^(?:(?:make (?:it|that) )?(?:shorter|brief)|summarize (?:it|that))$/.test(
+      followup,
+    )
+      ? "brief"
+      : /^(?:(?:give|show) me (?:the )?(?:steps|instructions)|step by step|what should i try first|how do i fix (?:that|it))$/.test(
+            followup,
           )
-        ? "detailed"
-        : undefined;
+        ? "steps"
+        : /^(?:more detail|explain (?:that|it) more(?: simply)?|what does that mean|tell me more about (?:it|that))$/.test(
+              followup,
+            )
+          ? "detailed"
+          : undefined;
   if (depth) {
     c.depth = depth;
     if (c.intent && get(c.intent))
@@ -511,7 +533,7 @@ async function respondSingle(
       "What would you like me to explain? Name the browser feature or problem first.",
     );
   }
-  if (/^(repeat|say that again|repeat that)$/.test(n) && c.intent)
+  if (/^(repeat|say that again|repeat that)$/.test(followup) && c.intent)
     return answer(compose(c.intent, c));
   if (/quick check|check my (browser|device)|device information/.test(n)) {
     options.stage?.("Checking available browser information");
@@ -611,12 +633,9 @@ async function respondSingle(
     );
   const top = candidates[0];
   const support = assessAnswerability(input, top.record);
-  if (
-    support.status === "unsupported" &&
-    understand(input).entities.some((e) => e.kind === "error")
-  )
+  if (support.blocking)
     return answer(
-      "I don’t have a reliable answer for that exact technical identifier. Related guidance is not evidence of its meaning.",
+      `I don’t have a reliable answer for every requested detail. ${support.reasons.join(" ")} Related guidance is not evidence of the missing detail.`,
     );
 
   if (

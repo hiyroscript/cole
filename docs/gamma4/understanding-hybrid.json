@@ -1,0 +1,1915 @@
+{
+  "fixtureSha256": "1cd146c70004968097e788846ebc36c89fc700c87b8d3673325c2b5cc3f26d2b",
+  "scope": "356 frozen single-turn cases; real pinned MiniLM/WASM scores replayed into the full response engine. Full response routing and limitations are included. Multi-turn and compound cases remain in the separate default-mode report. This replay does not measure inference latency.",
+  "counts": {
+    "supported": 256,
+    "correctAccepted": 103,
+    "incorrectAccepted": 6,
+    "incorrectAbstentions": 147,
+    "unsupported": 100,
+    "correctAbstentions": 100,
+    "falseAccepted": 0,
+    "recallAt3": 230,
+    "recallAt10": 233,
+    "top1": 204
+  },
+  "acceptedAnswerPrecisionOnSingleTurns": 0.944954128440367,
+  "supportedAcceptanceAccuracy": 0.40234375,
+  "unsupportedFalseAcceptRate": 0,
+  "recallAt3": 0.8984375,
+  "recallAt10": 0.91015625,
+  "unapprovedNetworkRequests": 0,
+  "scoreFallbackQueries": 0,
+  "results": [
+    {
+      "id": "supported-1",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-2",
+      "passed": true,
+      "actual": "chrome",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-3",
+      "passed": true,
+      "actual": "firefox",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-4",
+      "passed": true,
+      "actual": "safari",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-5",
+      "passed": true,
+      "actual": "edge",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-6",
+      "passed": true,
+      "actual": "brave",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-7",
+      "passed": true,
+      "actual": "engine",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-8",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-9",
+      "passed": true,
+      "actual": "mobile",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-10",
+      "passed": true,
+      "actual": "update-browser",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-11",
+      "passed": true,
+      "actual": "compare",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-12",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-13",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-14",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-15",
+      "passed": true,
+      "actual": "ram",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-16",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-17",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-18",
+      "passed": true,
+      "actual": "acceleration",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-19",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-20",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-21",
+      "passed": true,
+      "actual": "leak",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-22",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-23",
+      "passed": true,
+      "actual": "privacy",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-24",
+      "passed": true,
+      "actual": "secure",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-25",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-26",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-27",
+      "passed": true,
+      "actual": "tracking",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-28",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-29",
+      "passed": true,
+      "actual": "notifications",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-30",
+      "passed": true,
+      "actual": "phishing",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-31",
+      "passed": true,
+      "actual": "passwords",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-32",
+      "passed": true,
+      "actual": "https",
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-33",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-34",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-35",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-36",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-37",
+      "passed": true,
+      "actual": "dns",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-38",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-39",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-40",
+      "passed": true,
+      "actual": "proxy",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-41",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-42",
+      "passed": true,
+      "actual": "404",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-43",
+      "passed": true,
+      "actual": "403",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-44",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-45",
+      "passed": true,
+      "actual": "429",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-46",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-47",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-48",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-49",
+      "passed": true,
+      "actual": "third-party",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-50",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-51",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-52",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-53",
+      "passed": true,
+      "actual": "quota",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-54",
+      "passed": true,
+      "actual": "persistent",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-55",
+      "passed": true,
+      "actual": "cache-storage",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-56",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-57",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-58",
+      "passed": true,
+      "actual": "pin-tab",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-59",
+      "passed": true,
+      "actual": "group-tabs",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-60",
+      "passed": false,
+      "actual": "group-tabs",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-61",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-62",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-63",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-64",
+      "passed": true,
+      "actual": "zoom",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-65",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-66",
+      "passed": true,
+      "actual": "search-engine",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-67",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-68",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-69",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-70",
+      "passed": true,
+      "actual": "video",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-71",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-72",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-73",
+      "passed": true,
+      "actual": "popups",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-74",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-75",
+      "passed": true,
+      "actual": "blank",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-76",
+      "passed": true,
+      "actual": "layout",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-77",
+      "passed": true,
+      "actual": "javascript-error",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-78",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-79",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-80",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-81",
+      "passed": true,
+      "actual": "heat",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-82",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-83",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-84",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-85",
+      "passed": true,
+      "actual": "linux",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-86",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-87",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-88",
+      "passed": true,
+      "actual": "screen",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-89",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-90",
+      "passed": true,
+      "actual": "language",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-91",
+      "passed": true,
+      "actual": "timezone",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-92",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-93",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-94",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-95",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-96",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-97",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-98",
+      "passed": false,
+      "actual": "screen",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-99",
+      "passed": true,
+      "actual": "refresh",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-100",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-101",
+      "passed": true,
+      "actual": "formats",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-102",
+      "passed": true,
+      "actual": "updates",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-103",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-104",
+      "passed": true,
+      "actual": "css",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-105",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-106",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-107",
+      "passed": true,
+      "actual": "wasm",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-108",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-109",
+      "passed": true,
+      "actual": "csp",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-110",
+      "passed": true,
+      "actual": "service-worker",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-111",
+      "passed": true,
+      "actual": "pwa",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-112",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-113",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-114",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-115",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-116",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-117",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-118",
+      "passed": true,
+      "actual": "extension",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-119",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-120",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-121",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-122",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-123",
+      "passed": true,
+      "actual": "recovery-codes",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-124",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-125",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-126",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-127",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-128",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-129",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-130",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-131",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-132",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-133",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-134",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-135",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-136",
+      "passed": true,
+      "actual": "browser-sync",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-137",
+      "passed": true,
+      "actual": "do-not-track",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-138",
+      "passed": true,
+      "actual": "gpc",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-139",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-140",
+      "passed": true,
+      "actual": "url-tracking",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-141",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-142",
+      "passed": true,
+      "actual": "webcam-light",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-143",
+      "passed": false,
+      "actual": "privacy-screen-share",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-144",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-145",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-146",
+      "passed": true,
+      "actual": "sse",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-147",
+      "passed": true,
+      "actual": "http2",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-148",
+      "passed": true,
+      "actual": "http3",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-149",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-150",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-151",
+      "passed": true,
+      "actual": "connection-reset",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-152",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-153",
+      "passed": true,
+      "actual": "http401",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-154",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-155",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-156",
+      "passed": true,
+      "actual": "http413",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-157",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-158",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-159",
+      "passed": true,
+      "actual": "cache304",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-160",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-161",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-162",
+      "passed": true,
+      "actual": "samesite",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-163",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-164",
+      "passed": true,
+      "actual": "secure-cookie",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-165",
+      "passed": false,
+      "actual": "network-port",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-166",
+      "passed": true,
+      "actual": "sandbox",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-167",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-168",
+      "passed": true,
+      "actual": "workers",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-169",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-170",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-171",
+      "passed": true,
+      "actual": "lcp",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-172",
+      "passed": true,
+      "actual": "inp",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-173",
+      "passed": true,
+      "actual": "image-size",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-174",
+      "passed": true,
+      "actual": "lazy-images",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-175",
+      "passed": true,
+      "actual": "font-loading",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-176",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-177",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-178",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-179",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-180",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-181",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-182",
+      "passed": true,
+      "actual": "filesystem-api",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-183",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-184",
+      "passed": true,
+      "actual": "webbluetooth",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-185",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-186",
+      "passed": true,
+      "actual": "gamepad",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-187",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-188",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-189",
+      "passed": true,
+      "actual": "wasm-memory",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-190",
+      "passed": true,
+      "actual": "secure-context",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-191",
+      "passed": true,
+      "actual": "permission-policy",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-192",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-193",
+      "passed": true,
+      "actual": "pwa-update",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-194",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-195",
+      "passed": false,
+      "actual": "profile",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-196",
+      "passed": true,
+      "actual": "private-storage",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-197",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-198",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-199",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-200",
+      "passed": true,
+      "actual": "print-pdf",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-201",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-202",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-203",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-204",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-205",
+      "passed": true,
+      "actual": "win-memory",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-206",
+      "passed": true,
+      "actual": "win-display",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-207",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-208",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-209",
+      "passed": true,
+      "actual": "win-update-restart",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-210",
+      "passed": true,
+      "actual": "win-efficiency",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-211",
+      "passed": true,
+      "actual": "mac-pressure",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-212",
+      "passed": true,
+      "actual": "mac-energy",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-213",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-214",
+      "passed": true,
+      "actual": "mac-safari-site",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-215",
+      "passed": true,
+      "actual": "mac-rosetta",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-216",
+      "passed": true,
+      "actual": "mac-screen-share",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-217",
+      "passed": true,
+      "actual": "linux-package",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-218",
+      "passed": true,
+      "actual": "linux-wayland",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-219",
+      "passed": true,
+      "actual": "linux-sandbox",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-220",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-221",
+      "passed": true,
+      "actual": "linux-gpu",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-222",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-223",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-224",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-225",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-226",
+      "passed": false,
+      "actual": "downloads",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-227",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-228",
+      "passed": true,
+      "actual": "android-battery",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-229",
+      "passed": true,
+      "actual": "iphone-storage",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-230",
+      "passed": true,
+      "actual": "iphone-camera",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-231",
+      "passed": true,
+      "actual": "iphone-pwa",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-232",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-233",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-234",
+      "passed": true,
+      "actual": "iphone-lowpower",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-235",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-236",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-237",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-238",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-239",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-240",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-241",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-242",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-243",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-244",
+      "passed": true,
+      "actual": "doh-policy",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-245",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-246",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-247",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-248",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-249",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-250",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-251",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-252",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-253",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-254",
+      "passed": false,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "supported-255",
+      "passed": true,
+      "actual": "idb-abort",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "supported-256",
+      "passed": true,
+      "actual": "idb-inactive",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "unsupported-1",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-2",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-3",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-4",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-5",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-6",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-7",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-8",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-9",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-10",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-11",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-12",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-13",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-14",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-15",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-16",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-17",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-18",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-19",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-20",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-21",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-22",
+      "passed": true,
+      "actual": "heat",
+      "retrievalAccepted": true
+    },
+    {
+      "id": "unsupported-23",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-24",
+      "passed": true,
+      "retrievalAccepted": true
+    },
+    {
+      "id": "unsupported-25",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-26",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-27",
+      "passed": true,
+      "retrievalAccepted": true
+    },
+    {
+      "id": "unsupported-28",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-29",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-30",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-31",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-32",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-33",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-34",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-35",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-36",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-37",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-38",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-39",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-40",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-41",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-42",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-43",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-44",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-45",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-46",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-47",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-48",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-49",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-50",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-51",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-52",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-53",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-54",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-55",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-56",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-57",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-58",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-59",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-60",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-61",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-62",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-63",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-64",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-65",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-66",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-67",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-68",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-69",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-70",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-71",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-72",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-73",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-74",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-75",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-76",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-77",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-78",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-79",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-80",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-81",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-82",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-83",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-84",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-85",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-86",
+      "passed": true,
+      "retrievalAccepted": true
+    },
+    {
+      "id": "unsupported-87",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-88",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-89",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-90",
+      "passed": true,
+      "retrievalAccepted": true
+    },
+    {
+      "id": "unsupported-91",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-92",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-93",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-94",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-95",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-96",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-97",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-98",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-99",
+      "passed": true,
+      "retrievalAccepted": false
+    },
+    {
+      "id": "unsupported-100",
+      "passed": true,
+      "retrievalAccepted": false
+    }
+  ]
+}

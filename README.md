@@ -1,6 +1,6 @@
 # Cole
 
-Gamma 4.0 adds source-separated tasks, evidence checks, statistics/CSV/text/deduction tools, local PDF/DOCX/text analysis, dated MDN compatibility research, comparison follow-ups, explicit preferences and a bounded French path. Experimental website-only Deep Mode can draft from selected evidence using an explicitly downloaded local CPU model. Broad intelligence quality targets remain unmet. See [measured results and remaining work](docs/GAMMA4-DELIVERY.md).
+Gamma 4.0 adds typed educational question frames, source-separated tasks, indexed evidence checks, statistics/CSV/text/deduction tools, local PDF/DOCX/text analysis, dated MDN compatibility research, comparison follow-ups, explicit preferences and a bounded French path. Experimental website-only Deep Mode can draft from selected evidence using an explicitly downloaded local CPU model. Broad intelligence quality targets remain unmet. See [measured results and remaining work](docs/GAMMA4-DELIVERY.md) and the latest [Core understanding results](docs/GAMMA4-UNDERSTANDING.md).
 
 Gamma 3.0 adds optional knowledge packs, local documents and calculations, evidence-based troubleshooting, explicit preference memory and experimental semantic acceptance. Startup is within budget; broader quality targets remain unmet. See the [implementation and measured release gates](docs/GAMMA3-DELIVERY.md).
 

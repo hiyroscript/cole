@@ -2,6 +2,7 @@ import { executionRequirement } from "./requirements";
 import { observe, type Understanding } from "./observations";
 import { entities, understand, type Entity } from "./language";
 import { naturalTool } from "./natural-tools";
+import { questionFrame, type QuestionFrame } from "./question";
 export type TaskIntent =
   | "explain"
   | "observe"
@@ -21,6 +22,7 @@ export type RequestTask = {
   reference?: string;
   requiredCapabilities: string[];
   missingInformation: string[];
+  question?: QuestionFrame;
 };
 export type StructuredRequest = {
   locale: "en";
@@ -37,6 +39,7 @@ const verb =
 const intent = (text: string): TaskIntent => {
   const tool = naturalTool(text);
   if (tool) return tool.name === "calculate" ? "calculate" : "analyze";
+  if (questionFrame(text)) return "explain";
   if (/^(?:check|detect|inspect)\b/i.test(text)) return "observe";
   if (/^(?:compare|difference between)\b/i.test(text)) return "compare";
   if (/troubleshoot|diagnose|what should i (?:try|test)/i.test(text))
@@ -116,6 +119,7 @@ export function analyzeRequest(input: string): StructuredRequest {
   const understanding = observe(input);
   const clauses = splitTasks(input);
   const tasks: RequestTask[] = clauses.slice(0, 6).map((text, id) => {
+    const question = questionFrame(text);
     const taskIntent = intent(text);
     const reference = text.match(/\b(?:it|that|them|they|each)\b/i)?.[0];
     const subject = text
@@ -130,7 +134,7 @@ export function analyzeRequest(input: string): StructuredRequest {
       intent: taskIntent,
       subjects:
         taskIntent === "explain"
-          ? [subject]
+          ? [question?.subject ?? subject]
           : entities(text)
               .filter((e) => ["api", "browser"].includes(e.kind))
               .map((e) => e.value),
@@ -146,6 +150,7 @@ export function analyzeRequest(input: string): StructuredRequest {
             : "knowledge"),
       ],
       missingInformation: reference && !id ? ["reference subject"] : [],
+      question,
     };
   });
   return {

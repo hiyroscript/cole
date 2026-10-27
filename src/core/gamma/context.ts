@@ -32,3 +32,22 @@ export function resolveReference(input: string, context: Context) {
     return input.replace(/\b(it|that browser)\b/i, browser);
   return input;
 }
+
+// Ordinals refer only to the most recent explicit clarification choices.
+// Selecting a topic never executes an action suggested by its explanation.
+export function clarificationChoice(input: string, choices: string[]) {
+  const match = input
+    .trim()
+    .match(
+      /^(?:(?:I mean|tell me about|explain)\s+)?(?:the\s+)?(first|second|third|last|[1-3])(?:\s+(?:one|option|topic))?(?:,?\s+please)?[.!?]*$/i,
+    );
+  if (!match) return undefined;
+  const value = match[1].toLowerCase();
+  const index =
+    value === "last"
+      ? choices.length - 1
+      : ["first", "second", "third"].includes(value)
+        ? ["first", "second", "third"].indexOf(value)
+        : Number(value) - 1;
+  return choices[index] ?? null;
+}

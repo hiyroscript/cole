@@ -10,15 +10,22 @@ const framing = new Set(
 );
 export function evidenceTerms(text: string): string[] {
   const canonical = rewriteQuery(text)
+    .replace(/\b([A-Z]{2,})s\b/g, "$1")
     .replace(/\b(?:log(?:ging|ged)?[ -]?out|sign(?:ing|ed)? out)\b/gi, "logout")
     .replace(/\b(?:clear(?:ing|ed)?|delet(?:e|ing|ed))\b/gi, "delete");
-  const words = normalize(canonical).replace(/-/g, " ").split(/\s+/);
+  const words = normalize(canonical).replace(/[.-]/g, " ").split(/\s+/);
   return [
     ...new Set(
       words
         .filter((w) => w && !framing.has(w))
         .map((word) => {
-          if (word.length <= 4) return word;
+          if (word.length <= 4)
+            return word.length === 4 &&
+              /s$/.test(word) &&
+              !/(ss|us|is)$/.test(word) &&
+              word !== "news"
+              ? word.slice(0, -1)
+              : word;
           if (/ies$/.test(word) && word !== "cookies")
             return word.slice(0, -3) + "y";
           let stem = word.replace(/(?:ing|ed)$/, "");

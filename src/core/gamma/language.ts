@@ -16,13 +16,22 @@ const groups: [Entity["kind"], RegExp][] = [
     "api",
     /\b(webgpu|webgl|webassembly|indexeddb|service worker|cache storage|dns|dhcp|https?|cors|csp|vpn|proxy|cookies|passkeys|webrtc|avif|webp|vram|ram|cpu|gpu)\b/gi,
   ],
-  ["error", /\b(?:ERR_[A-Z_]+|DNS_PROBE_[A-Z_]+|HTTP\s+[45]\d\d)\b/gi],
+  [
+    "error",
+    /\b(?:ERR_[A-Z_]+|DNS_PROBE_[A-Z_]+|(?:HTTP(?:\s+status)?|status(?:\s+code)?|error\s+code)\s+[45]\d\d)\b/gi,
+  ],
   ["version", /\b\d+\.\d+(?:\.\d+)*\b/g],
   ["display", /\b\d{3,5}\s*[x×]\s*\d{3,5}\b/gi],
 ];
 export function entities(input: string): Entity[] {
   return groups.flatMap(([kind, re]) =>
-    [...input.matchAll(re)].map((m) => ({ kind, value: m[0].toLowerCase() })),
+    [...input.matchAll(re)].map((m) => ({
+      kind,
+      value:
+        kind === "error" && /\b[45]\d\d$/.test(m[0])
+          ? `http ${m[0].match(/[45]\d\d$/)![0]}`
+          : m[0].toLowerCase(),
+    })),
   );
 }
 export function understand(input: string) {

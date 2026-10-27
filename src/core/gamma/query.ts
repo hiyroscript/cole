@@ -1,7 +1,10 @@
+import { questionFrame } from "./question";
+
 // Query rewrites preserve the original request for independent answer validation.
 // This vocabulary expands abbreviations, not aliases for evaluation questions.
 export function rewriteQuery(input: string): string {
-  let text = input.trim().replace(/[?.!]$/, "");
+  let text =
+    questionFrame(input)?.subject ?? input.trim().replace(/[?.!]$/, "");
   text = text.replace(
     /^(?:please\s+)?(?:(?:can|could|would) you\s+)?(?:help me\s+)?(?:explain|describe|define|tell me about|give me (?:an? )?(?:overview|explanation) of)\s+/i,
     "",
@@ -11,6 +14,10 @@ export function rewriteQuery(input: string): string {
   text = text.replace(
     /\s+(?:in (?:plain|simple) (?:english|terms)|without jargon|for (?:a )?beginner)$/i,
     "",
+  );
+  text = text.replace(
+    /\b(?:HTTP\s+status|status(?:\s+code)?|error\s+code)\s+([45]\d\d)\b/gi,
+    "HTTP $1",
   );
   const concepts: [RegExp, string][] = [
     [/\bcentral processing unit\b/gi, "CPU"],
