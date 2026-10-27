@@ -20,6 +20,7 @@ export function validateCandidates(
   const first = candidates[0];
   const lexicalAccepted =
     first &&
+    !validated[0].support.blocking &&
     !first.discovery &&
     first.score >= 0.63 &&
     !(

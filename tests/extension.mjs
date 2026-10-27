@@ -83,6 +83,9 @@ try {
       "it does not grant unrestricted system access",
     ],
     ["Can you adjust my monitor brightness?", "No setting was changed"],
+    ["Could you give me a brief explanation of ETags?", "opaque validator"],
+    ["What is the purpose of WebSockets?", "two-way connection"],
+    ["What does status code 499 mean?", "reliable answer"],
   ]) {
     await panel.getByRole("textbox", { name: "Message Gamma" }).fill(query);
     await panel

@@ -28,10 +28,13 @@ if (process.env.GAMMA_COMPLETION_SCORES) {
     return byQuery.get(input) ?? [];
   };
 }
-const bytes = readFileSync("tests/evaluation/completion.json", "utf8"),
+const fixturePath =
+  process.env.GAMMA_EVALUATION_FIXTURE ?? "tests/evaluation/completion.json";
+const bytes = readFileSync(fixturePath, "utf8"),
   digest = createHash("sha256").update(bytes).digest("hex");
 if (
-  digest !== readFileSync("tests/evaluation/completion.sha256", "utf8").trim()
+  digest !==
+  readFileSync(fixturePath.replace(/\.json$/, ".sha256"), "utf8").trim()
 )
   throw Error("Frozen fixture changed");
 type Result = {
@@ -139,7 +142,7 @@ const report = {
   categories,
   recallAt10:
     results.filter((r) => r.category === "supported" && r.recallAt10).length /
-    16,
+    Math.max(1, results.filter((r) => r.category === "supported").length),
   unapprovedNetworkRequests: network,
   results,
 };

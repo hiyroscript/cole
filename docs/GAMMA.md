@@ -1,5 +1,7 @@
 # Gamma architecture history and current delivery
 
+The [Core understanding follow-up](GAMMA4-UNDERSTANDING.md) documents typed educational frames shared by task planning and query rewriting, a canonical evidence inverted index, stronger identifier/applicability/subject guards, and scoped clarification/follow-up handling. It includes current default and real-score hybrid results; greater retrieval coverage has not yet produced the broad answer-completion targets in `max`.
+
 Current Gamma 4.0 architecture and measured results are in [GAMMA4-DELIVERY.md](GAMMA4-DELIVERY.md). The shared engine separates typed request frames, discovery, evidence acceptance and bounded tool execution. It includes statistics/CSV/text/deduction, comparison dimensions, safer diagnostic checks, local text/PDF/DOCX indexing with line/page citations, explicit preferences, dated Wikimedia/MDN provenance and a limited French path. Core/optional coverage is 708 + 120 records. Experimental [Deep Mode](GAMMA4-ADVANCED-MODE.md) uses a separately downloaded CPU model for explicit, bounded evidence drafts. Broad intelligence targets remain unmet.
 
 The following architecture sections retain earlier Gamma 2/3 measurements and limitations for historical context; the Gamma 4 report supersedes their current-state claims.

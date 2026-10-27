@@ -1,0 +1,1031 @@
+{
+  "mode": "Real MiniLM score replay; latency excludes inference.",
+  "semanticMissing": [],
+  "scope": "40 newly authored cases frozen before the final composition fixes and any execution of this fixture. Authored by the implementer, not an independent evaluator; small purposive sample, not a representative accuracy estimate. No production code consumes this fixture. Supported labels refer to existing core records. All tasks in a compound must independently provide their expected source. Static label audit before first execution corrected two nonexistent sw IDs to service-worker.",
+  "fixtureSha256": "2deeb3f55af7bc9937275f50b9682d64821c7efe55194f6d45bed047a0c7ba97",
+  "date": "2026-10-27T16:59:07.140Z",
+  "categories": {
+    "supported": {
+      "passed": 9,
+      "total": 16
+    },
+    "unsupported": {
+      "passed": 8,
+      "total": 8
+    },
+    "conversation": {
+      "passed": 8,
+      "total": 8
+    },
+    "compound": {
+      "passed": 8,
+      "total": 8
+    }
+  },
+  "recallAt10": 0.875,
+  "unapprovedNetworkRequests": 0,
+  "results": [
+    {
+      "id": "supported-1",
+      "category": "supported",
+      "passed": false,
+      "actual": null,
+      "recallAt10": true,
+      "ms": 21.418307,
+      "turns": [
+        {
+          "text": "I found potentially related local guidance. Are you asking about dns or private ip addresses or different internal and public dns? Semantic similarity alone does not establish the answer.",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-2",
+      "category": "supported",
+      "passed": true,
+      "actual": "cache304",
+      "recallAt10": true,
+      "ms": 9.007326999999975,
+      "turns": [
+        {
+          "text": "A 304 response tells a client its cached representation is still valid for a conditional request. It is normally part of successful caching, not a missing page.",
+          "intent": "cache304",
+          "effect": null,
+          "sources": [
+            "cache304"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-3",
+      "category": "supported",
+      "passed": true,
+      "actual": "secure-cookie",
+      "recallAt10": true,
+      "ms": 7.6125769999999875,
+      "turns": [
+        {
+          "text": "The Secure attribute restricts a cookie to secure transport under browser rules. It does not encrypt cookie storage or replace access controls.",
+          "intent": "secure-cookie",
+          "effect": null,
+          "sources": [
+            "secure-cookie"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-4",
+      "category": "supported",
+      "passed": false,
+      "actual": null,
+      "recallAt10": true,
+      "ms": 15.40682000000001,
+      "turns": [
+        {
+          "text": "I don’t have a reliable answer for every requested detail. Requested technical subject is only incidental to this record. Related guidance is not evidence of the missing detail.",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-5",
+      "category": "supported",
+      "passed": false,
+      "actual": null,
+      "recallAt10": false,
+      "ms": 8.317289000000017,
+      "turns": [
+        {
+          "text": "I don’t have a reliable answer to that yet. I can help with browser settings, device information, performance, privacy, and troubleshooting. Could you describe the specific feature or symptom?",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-6",
+      "category": "supported",
+      "passed": true,
+      "actual": "cache-control",
+      "recallAt10": true,
+      "ms": 4.633954000000017,
+      "turns": [
+        {
+          "text": "Cache-Control defines caching rules. No-cache permits storage but requires validation; no-store asks caches not to store the response. They are not interchangeable.",
+          "intent": "cache-control",
+          "effect": null,
+          "sources": [
+            "cache-control"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-7",
+      "category": "supported",
+      "passed": false,
+      "actual": null,
+      "recallAt10": true,
+      "ms": 15.478347000000042,
+      "turns": [
+        {
+          "text": "Do you mean browser synchronization or improve browser privacy?",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-8",
+      "category": "supported",
+      "passed": true,
+      "actual": "webgpu-lost",
+      "recallAt10": true,
+      "ms": 4.771202000000017,
+      "turns": [
+        {
+          "text": "A WebGPU device can be lost because of driver changes, resource limits, or shutdown. Resources created on that device cannot simply be reused.",
+          "intent": "webgpu-lost",
+          "effect": null,
+          "sources": [
+            "webgpu-lost"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-9",
+      "category": "supported",
+      "passed": true,
+      "actual": "dns-servfail",
+      "recallAt10": true,
+      "ms": 3.273477000000014,
+      "turns": [
+        {
+          "text": "SERVFAIL indicates a resolver could not complete a query successfully. DNSSEC validation, upstream failures and authoritative-server problems are possible causes.",
+          "intent": "dns-servfail",
+          "effect": null,
+          "sources": [
+            "dns-servfail"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-10",
+      "category": "supported",
+      "passed": false,
+      "actual": null,
+      "recallAt10": true,
+      "ms": 1.5967430000000036,
+      "turns": [
+        {
+          "text": "I found potentially related local guidance. Are you asking about a and aaaa records? Semantic similarity alone does not establish the answer.",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-11",
+      "category": "supported",
+      "passed": true,
+      "actual": "sandbox",
+      "recallAt10": true,
+      "ms": 4.763689999999997,
+      "turns": [
+        {
+          "text": "The iframe sandbox attribute restricts embedded content. Individual allowance tokens relax restrictions; combinations must be evaluated carefully.",
+          "intent": "sandbox",
+          "effect": null,
+          "sources": [
+            "sandbox"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-12",
+      "category": "supported",
+      "passed": true,
+      "actual": "latency",
+      "recallAt10": true,
+      "ms": 12.515676999999982,
+      "turns": [
+        {
+          "text": "Bandwidth is how much data a connection can carry per second; latency is the time for a round trip. Video downloads and interactive calls can respond differently to these limits.",
+          "intent": "latency",
+          "effect": null,
+          "sources": [
+            "latency"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-13",
+      "category": "supported",
+      "passed": false,
+      "actual": null,
+      "recallAt10": true,
+      "ms": 2.8417670000000044,
+      "turns": [
+        {
+          "text": "I found potentially related local guidance. Are you asking about cookie expiry and sessions or secure cookie attribute or samesite cookies? Semantic similarity alone does not establish the answer.",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-14",
+      "category": "supported",
+      "passed": true,
+      "actual": "bfcache",
+      "recallAt10": true,
+      "ms": 3.7168740000000184,
+      "turns": [
+        {
+          "text": "The back-forward cache can preserve a page for fast history navigation. It differs from the HTTP cache and is subject to eligibility and eviction.",
+          "intent": "bfcache",
+          "effect": null,
+          "sources": [
+            "bfcache"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-15",
+      "category": "supported",
+      "passed": true,
+      "actual": "reduced-motion",
+      "recallAt10": true,
+      "ms": 7.767310000000009,
+      "turns": [
+        {
+          "text": "The prefers-reduced-motion media query lets a site respect an operating-system preference. Cole reduces animations and presents answers without progressive motion when this is enabled.",
+          "intent": "reduced-motion",
+          "effect": null,
+          "sources": [
+            "reduced-motion"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-16",
+      "category": "supported",
+      "passed": false,
+      "actual": null,
+      "recallAt10": false,
+      "ms": 1.2804370000000063,
+      "turns": [
+        {
+          "text": "I found potentially related local guidance. Are you asking about skipping offscreen rendering? Semantic similarity alone does not establish the answer.",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "unsupported-1",
+      "category": "unsupported",
+      "passed": true,
+      "actual": null,
+      "recallAt10": false,
+      "ms": 0.3432759999999462,
+      "turns": [
+        {
+          "text": "I cannot perform that data-access operation from this request. Use a supported explicit command or select a local document for analysis. No private files, credentials or account data were accessed or transferred.",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "unsupported-2",
+      "category": "unsupported",
+      "passed": true,
+      "actual": null,
+      "recallAt10": false,
+      "ms": 0.23692599999998265,
+      "turns": [
+        {
+          "text": "I cannot perform that measurement from this chat. Use /device, /screen, /storage or /network for the limited browser observations available here. System load, free graphics memory and hardware temperatures need an operating-system or vendor tool.",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "unsupported-3",
+      "category": "unsupported",
+      "passed": true,
+      "actual": null,
+      "recallAt10": false,
+      "ms": 0.21796800000004168,
+      "turns": [
+        {
+          "text": "I cannot verify current information from offline authored guidance. Use an official current source, or explicitly enable web sources and request /research with a short public topic. Wikimedia may not cover the latest technical releases; a retrieval date alone does not prove freshness.",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "unsupported-4",
+      "category": "unsupported",
+      "passed": true,
+      "actual": null,
+      "recallAt10": false,
+      "ms": 0.13409100000001217,
+      "turns": [
+        {
+          "text": "I cannot change device or browser settings directly from this conversation. Use /help for the supported explicit commands, or ask how to make the specific change yourself. No setting was changed.",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "unsupported-5",
+      "category": "unsupported",
+      "passed": true,
+      "actual": null,
+      "recallAt10": false,
+      "ms": 0.9281469999999672,
+      "turns": [
+        {
+          "text": "I don’t have a reliable answer to that yet. I can help with browser settings, device information, performance, privacy, and troubleshooting. Could you describe the specific feature or symptom?",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "unsupported-6",
+      "category": "unsupported",
+      "passed": true,
+      "actual": null,
+      "recallAt10": false,
+      "ms": 1.5382360000000403,
+      "turns": [
+        {
+          "text": "I don’t have a reliable answer to that yet. I can help with browser settings, device information, performance, privacy, and troubleshooting. Could you describe the specific feature or symptom?",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "unsupported-7",
+      "category": "unsupported",
+      "passed": true,
+      "actual": null,
+      "recallAt10": false,
+      "ms": 0.13666599999999107,
+      "turns": [
+        {
+          "text": "I cannot perform that data-access operation from this request. Use a supported explicit command or select a local document for analysis. No private files, credentials or account data were accessed or transferred.",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "unsupported-8",
+      "category": "unsupported",
+      "passed": true,
+      "actual": null,
+      "recallAt10": false,
+      "ms": 0.10593000000000075,
+      "turns": [
+        {
+          "text": "I cannot change device or browser settings directly from this conversation. Use /help for the supported explicit commands, or ask how to make the specific change yourself. No setting was changed.",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "conversation-1",
+      "category": "conversation",
+      "passed": true,
+      "actual": "dns",
+      "recallAt10": false,
+      "ms": 0.9736859999999865,
+      "turns": [
+        {
+          "text": "DNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.",
+          "intent": "dns",
+          "effect": null,
+          "sources": [
+            "dns"
+          ]
+        },
+        {
+          "text": "I’ll use edge as your stated browser for this conversation. That is user-provided information, separate from automatic detection.",
+          "intent": "dns",
+          "effect": null,
+          "sources": [
+            "dns"
+          ]
+        },
+        {
+          "text": "DNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.\n\n1. Check the spelling of the domain.\n2. Try another website.\n3. Restart your network connection before changing resolver settings.\n4. Record existing DNS settings before any deliberate change.",
+          "intent": "dns",
+          "effect": null,
+          "sources": [
+            "dns"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "conversation-2",
+      "category": "conversation",
+      "passed": true,
+      "actual": "cookies",
+      "recallAt10": false,
+      "ms": 0.7431490000000167,
+      "turns": [
+        {
+          "text": "Cookies are small values attached to requests under browser rules. Sites use them for sessions and preferences; third parties can use them for tracking. Deleting session cookies commonly signs you out.",
+          "intent": "cookies",
+          "effect": null,
+          "sources": [
+            "cookies"
+          ]
+        },
+        {
+          "text": "I’ll use safari as your stated browser for this conversation. That is user-provided information, separate from automatic detection.",
+          "intent": "cookies",
+          "effect": null,
+          "sources": [
+            "cookies"
+          ]
+        },
+        {
+          "text": "Cookies are small values attached to requests under browser rules. Sites use them for sessions and preferences; third parties can use them for tracking.",
+          "intent": "cookies",
+          "effect": null,
+          "sources": [
+            "cookies"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "conversation-3",
+      "category": "conversation",
+      "passed": true,
+      "actual": "wasm",
+      "recallAt10": false,
+      "ms": 1.4322460000000206,
+      "turns": [
+        {
+          "text": "WebAssembly is a compact code format designed for portable execution. In a browser it operates within sandbox and API constraints; it does not grant unrestricted system access.",
+          "intent": "wasm",
+          "effect": null,
+          "sources": [
+            "wasm"
+          ]
+        },
+        {
+          "text": "I’ll use firefox as your stated browser for this conversation. That is user-provided information, separate from automatic detection.",
+          "intent": "wasm",
+          "effect": null,
+          "sources": [
+            "wasm"
+          ]
+        },
+        {
+          "text": "I don’t have a reliable answer to that yet. I can help with browser settings, device information, performance, privacy, and troubleshooting. Could you describe the specific feature or symptom?",
+          "intent": "wasm",
+          "effect": null,
+          "sources": [
+            "wasm"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "conversation-4",
+      "category": "conversation",
+      "passed": true,
+      "actual": "service-worker",
+      "recallAt10": false,
+      "ms": 2.726414000000034,
+      "turns": [
+        {
+          "text": "A service worker can intercept requests within its scope and provide cached resources offline. It has a separate lifecycle and cannot directly access the DOM.",
+          "intent": "service-worker",
+          "effect": null,
+          "sources": [
+            "service-worker"
+          ]
+        },
+        {
+          "text": "I’ll use chrome as your stated browser for this conversation. That is user-provided information, separate from automatic detection.",
+          "intent": "service-worker",
+          "effect": null,
+          "sources": [
+            "service-worker"
+          ]
+        },
+        {
+          "text": "A service worker can intercept requests within its scope and provide cached resources offline. It has a separate lifecycle and cannot directly access the DOM.",
+          "intent": "service-worker",
+          "effect": null,
+          "sources": [
+            "service-worker"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "conversation-5",
+      "category": "conversation",
+      "passed": true,
+      "actual": "webgpu",
+      "recallAt10": false,
+      "ms": 0.6776800000000094,
+      "turns": [
+        {
+          "text": "WebGPU supports graphics and compute workloads in compatible secure contexts. Adapter availability depends on browser, operating system, and device policy; it is not a system GPU-utilization monitor.",
+          "intent": "webgpu",
+          "effect": null,
+          "sources": [
+            "webgpu"
+          ]
+        },
+        {
+          "text": "I’ll use edge as your stated browser for this conversation. That is user-provided information, separate from automatic detection.",
+          "intent": "webgpu",
+          "effect": null,
+          "sources": [
+            "webgpu"
+          ]
+        },
+        {
+          "text": "WebGPU supports graphics and compute workloads in compatible secure contexts. Adapter availability depends on browser, operating system, and device policy; it is not a system GPU-utilization monitor.\n\n1. Detect support and adapter availability at runtime and handle failure without inventing hardware details.\n\nReference: [Web platform documentation](https://developer.mozilla.org/en-US/docs/Web).",
+          "intent": "webgpu",
+          "effect": null,
+          "sources": [
+            "webgpu"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "conversation-6",
+      "category": "conversation",
+      "passed": true,
+      "actual": "indexeddb",
+      "recallAt10": false,
+      "ms": 0.8096479999999815,
+      "turns": [
+        {
+          "text": "IndexedDB is an asynchronous, transactional browser database. Cole uses it for conversations. Browser storage is local to the origin and profile, and users or the browser can remove it.",
+          "intent": "indexeddb",
+          "effect": null,
+          "sources": [
+            "indexeddb"
+          ]
+        },
+        {
+          "text": "I’ll use firefox as your stated browser for this conversation. That is user-provided information, separate from automatic detection.",
+          "intent": "indexeddb",
+          "effect": null,
+          "sources": [
+            "indexeddb"
+          ]
+        },
+        {
+          "text": "IndexedDB is an asynchronous, transactional browser database. Cole uses it for conversations. Browser storage is local to the origin and profile, and users or the browser can remove it.\n\n1. Export important conversations as a separate backup.\n2. Use a versioned schema when changing stored record formats.",
+          "intent": "indexeddb",
+          "effect": null,
+          "sources": [
+            "indexeddb"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "conversation-7",
+      "category": "conversation",
+      "passed": true,
+      "actual": "dns",
+      "recallAt10": false,
+      "ms": 0.7806850000000054,
+      "turns": [
+        {
+          "text": "Cookies are small values attached to requests under browser rules. Sites use them for sessions and preferences; third parties can use them for tracking. Deleting session cookies commonly signs you out.",
+          "intent": "cookies",
+          "effect": null,
+          "sources": [
+            "cookies"
+          ]
+        },
+        {
+          "text": "I’ll use chrome as your stated browser for this conversation. That is user-provided information, separate from automatic detection.",
+          "intent": "cookies",
+          "effect": null,
+          "sources": [
+            "cookies"
+          ]
+        },
+        {
+          "text": "DNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.",
+          "intent": "dns",
+          "effect": null,
+          "sources": [
+            "dns"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "conversation-8",
+      "category": "conversation",
+      "passed": true,
+      "actual": "cookies",
+      "recallAt10": false,
+      "ms": 6.170886999999993,
+      "turns": [
+        {
+          "text": "A CPU cache is small, fast memory near processor cores that keeps copies of recently or nearby used data and instructions. Locality can reduce slower RAM accesses. L1 is typically smaller and closer than L2 or L3; sizes and sharing vary by processor. A cache miss costs time, but cache size alone does not predict application speed.",
+          "intent": "cpu-cache",
+          "effect": null,
+          "sources": [
+            "cpu-cache"
+          ]
+        },
+        {
+          "text": "I’ll use firefox as your stated browser for this conversation. That is user-provided information, separate from automatic detection.",
+          "intent": "cpu-cache",
+          "effect": null,
+          "sources": [
+            "cpu-cache"
+          ]
+        },
+        {
+          "text": "Cookies are small values attached to requests under browser rules. Sites use them for sessions and preferences; third parties can use them for tracking. Deleting session cookies commonly signs you out.",
+          "intent": "cookies",
+          "effect": null,
+          "sources": [
+            "cookies"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "compound-1",
+      "category": "compound",
+      "passed": true,
+      "actual": "wasm",
+      "recallAt10": false,
+      "ms": 1.2649230000000102,
+      "turns": [
+        {
+          "text": "### WebGPU\nPart 1 of 2\n\nWebGPU supports graphics and compute workloads in compatible secure contexts. Adapter availability depends on browser, operating system, and device policy; it is not a system GPU-utilization monitor.\n\n### WebAssembly\nPart 2 of 2\n\nWebAssembly is a compact code format designed for portable execution. In a browser it operates within sandbox and API constraints; it does not grant unrestricted system access.",
+          "intent": "wasm",
+          "effect": null,
+          "sources": [
+            "webgpu",
+            "wasm"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "webgpu"
+          ]
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "wasm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "compound-2",
+      "category": "compound",
+      "passed": true,
+      "actual": "cookies",
+      "recallAt10": false,
+      "ms": 0.7662229999999681,
+      "turns": [
+        {
+          "text": "### DNS\nPart 1 of 2\n\nDNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.\n\n### Cookies\nPart 2 of 2\n\nCookies are small values attached to requests under browser rules. Sites use them for sessions and preferences; third parties can use them for tracking. Deleting session cookies commonly signs you out.",
+          "intent": "cookies",
+          "effect": null,
+          "sources": [
+            "dns",
+            "cookies"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "dns"
+          ]
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "cookies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "compound-3",
+      "category": "compound",
+      "passed": true,
+      "actual": "cache304",
+      "recallAt10": false,
+      "ms": 0.6834590000000276,
+      "turns": [
+        {
+          "text": "### Cache-Control\nPart 1 of 2\n\nCache-Control defines caching rules. No-cache permits storage but requires validation; no-store asks caches not to store the response. They are not interchangeable.\n\n### HTTP 304\nPart 2 of 2\n\nA 304 response tells a client its cached representation is still valid for a conditional request. It is normally part of successful caching, not a missing page.",
+          "intent": "cache304",
+          "effect": null,
+          "sources": [
+            "cache-control",
+            "cache304"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "cache-control"
+          ]
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "cache304"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "compound-4",
+      "category": "compound",
+      "passed": true,
+      "actual": "localstorage",
+      "recallAt10": false,
+      "ms": 0.5683559999999943,
+      "turns": [
+        {
+          "text": "### IndexedDB\nPart 1 of 2\n\nIndexedDB is an asynchronous, transactional browser database. Cole uses it for conversations. Browser storage is local to the origin and profile, and users or the browser can remove it.\n\n### Local storage\nPart 2 of 2\n\nlocalStorage holds string key-value data for an origin and is synchronous. It can be cleared by the user and may be unavailable or restricted. It is not an appropriate place for secrets that must be hidden from site scripts.",
+          "intent": "localstorage",
+          "effect": null,
+          "sources": [
+            "indexeddb",
+            "localstorage"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "indexeddb"
+          ]
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "localstorage"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "compound-5",
+      "category": "compound",
+      "passed": true,
+      "actual": "browser-sync",
+      "recallAt10": false,
+      "ms": 0.7087369999999851,
+      "turns": [
+        {
+          "text": "### Backups\nPart 1 of 2\n\nA backup is an independent recoverable copy, not merely another folder on the same failing device. Sync can propagate deletion, so version history and offline copies matter.\n\n### Browser synchronization\nPart 2 of 2\n\nBrowser sync may send selected bookmarks, passwords, tabs, or settings to the account provider. It is separate from Cole’s local storage.",
+          "intent": "browser-sync",
+          "effect": null,
+          "sources": [
+            "backup",
+            "browser-sync"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "backup"
+          ]
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "browser-sync"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "compound-6",
+      "category": "compound",
+      "passed": true,
+      "actual": "safari",
+      "recallAt10": false,
+      "ms": 7.04056700000001,
+      "turns": [
+        {
+          "text": "### Mozilla Firefox\nPart 1 of 2\n\nFirefox uses Gecko rather than Chromium’s Blink. Enhanced Tracking Protection reduces some cross-site tracking. Site compatibility and extension behavior can differ from Chromium browsers.\n\n### Apple Safari\nPart 2 of 2\n\nSafari uses WebKit and integrates with Apple’s operating systems. Updates generally arrive through system updates. Some web APIs and extension formats differ from Chromium.",
+          "intent": "safari",
+          "effect": null,
+          "sources": [
+            "firefox",
+            "safari"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "firefox"
+          ]
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "safari"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "compound-7",
+      "category": "compound",
+      "passed": true,
+      "actual": "webgpu",
+      "recallAt10": false,
+      "ms": 0.6138439999999719,
+      "turns": [
+        {
+          "text": "### WebGL\nPart 1 of 2\n\nWebGL provides GPU-accelerated graphics through a browser-managed context. Contexts may be lost because of resource pressure, resets, or policy.\n\n### WebGPU\nPart 2 of 2\n\nWebGPU supports graphics and compute workloads in compatible secure contexts. Adapter availability depends on browser, operating system, and device policy; it is not a system GPU-utilization monitor.",
+          "intent": "webgpu",
+          "effect": null,
+          "sources": [
+            "webgl",
+            "webgpu"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "webgl"
+          ]
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "webgpu"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "compound-8",
+      "category": "compound",
+      "passed": true,
+      "actual": "bfcache",
+      "recallAt10": false,
+      "ms": 2.781827000000021,
+      "turns": [
+        {
+          "text": "### Service workers\nPart 1 of 2\n\nA service worker can intercept requests within its scope and provide cached resources offline. It has a separate lifecycle and cannot directly access the DOM.\n\n### Back-forward cache\nPart 2 of 2\n\nThe back-forward cache can preserve a page for fast history navigation. It differs from the HTTP cache and is subject to eligibility and eviction.",
+          "intent": "bfcache",
+          "effect": null,
+          "sources": [
+            "service-worker",
+            "bfcache"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "service-worker"
+          ]
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "bfcache"
+          ]
+        }
+      ]
+    }
+  ]
+}

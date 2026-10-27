@@ -1,0 +1,269 @@
+{
+  "scope": "32 implementer-authored prospective Core question-frame probes, frozen before implementation. Narrow purposive coverage, not an independent holdout or a general intelligence estimate. Mixed execution requests require no unauthorized effect and partial completion is checked separately.",
+  "cases": [
+    {
+      "id": "supported-1",
+      "category": "supported",
+      "turns": [
+        "Could you give me a brief explanation of ETags?"
+      ],
+      "expected": "etag"
+    },
+    {
+      "id": "supported-2",
+      "category": "supported",
+      "turns": [
+        "What is the purpose of WebSockets?"
+      ],
+      "expected": "websocket"
+    },
+    {
+      "id": "supported-3",
+      "category": "supported",
+      "turns": [
+        "What are passkeys used for?"
+      ],
+      "expected": "passkeys"
+    },
+    {
+      "id": "supported-4",
+      "category": "supported",
+      "turns": [
+        "What does the DOM do?"
+      ],
+      "expected": "dom"
+    },
+    {
+      "id": "supported-5",
+      "category": "supported",
+      "turns": [
+        "What is Cache-Control for?"
+      ],
+      "expected": "cache-control"
+    },
+    {
+      "id": "supported-6",
+      "category": "supported",
+      "turns": [
+        "Tell me what HTML means, in everyday language."
+      ],
+      "expected": "html"
+    },
+    {
+      "id": "supported-7",
+      "category": "supported",
+      "turns": [
+        "What does HTTP 415 mean?"
+      ],
+      "expected": "http415"
+    },
+    {
+      "id": "supported-8",
+      "category": "supported",
+      "turns": [
+        "Could you describe WebAssembly without assuming technical expertise?"
+      ],
+      "expected": "wasm"
+    },
+    {
+      "id": "supported-9",
+      "category": "supported",
+      "turns": [
+        "What does a web app manifest provide?"
+      ],
+      "expected": "web-manifest"
+    },
+    {
+      "id": "supported-10",
+      "category": "supported",
+      "turns": [
+        "Please explain the role of JavaScript."
+      ],
+      "expected": "js"
+    },
+    {
+      "id": "supported-11",
+      "category": "supported",
+      "turns": [
+        "What is Content Security Policy used for?"
+      ],
+      "expected": "csp"
+    },
+    {
+      "id": "supported-12",
+      "category": "supported",
+      "turns": [
+        "What does DNS do?"
+      ],
+      "expected": "dns"
+    },
+    {
+      "id": "supported-13",
+      "category": "supported",
+      "turns": [
+        "What is sessionStorage used for?"
+      ],
+      "expected": "sessionstorage"
+    },
+    {
+      "id": "supported-14",
+      "category": "supported",
+      "turns": [
+        "What is the function of WebGL?"
+      ],
+      "expected": "webgl"
+    },
+    {
+      "id": "supported-15",
+      "category": "supported",
+      "turns": [
+        "Could you explain what localStorage is?"
+      ],
+      "expected": "localstorage"
+    },
+    {
+      "id": "supported-16",
+      "category": "supported",
+      "turns": [
+        "What does HTTP 410 signify?"
+      ],
+      "expected": "http410"
+    },
+    {
+      "id": "unsupported-1",
+      "category": "unsupported",
+      "turns": [
+        "What does HTTP 499 mean?"
+      ]
+    },
+    {
+      "id": "unsupported-2",
+      "category": "unsupported",
+      "turns": [
+        "What is the purpose of WebGL in curing epilepsy?"
+      ]
+    },
+    {
+      "id": "unsupported-3",
+      "category": "unsupported",
+      "turns": [
+        "What does WebAssembly do to grant me unrestricted disk access?"
+      ]
+    },
+    {
+      "id": "unsupported-4",
+      "category": "unsupported",
+      "turns": [
+        "Explain why DNS encrypts every page."
+      ]
+    },
+    {
+      "id": "unsupported-5",
+      "category": "unsupported",
+      "turns": [
+        "Could you explain WebGPU without an adapter or a GPU?"
+      ]
+    },
+    {
+      "id": "unsupported-6",
+      "category": "unsupported",
+      "turns": [
+        "What is localStorage used for on a quantum computer?"
+      ]
+    },
+    {
+      "id": "unsupported-7",
+      "category": "unsupported",
+      "turns": [
+        "What does Content Security Policy do to guarantee that code is safe?"
+      ]
+    },
+    {
+      "id": "unsupported-8",
+      "category": "unsupported",
+      "turns": [
+        "What does DNS do? Also read my private password file."
+      ]
+    },
+    {
+      "id": "conversation-1",
+      "category": "conversation",
+      "turns": [
+        "What is the purpose of WebSockets?",
+        "Tell me more about that."
+      ],
+      "expected": "websocket"
+    },
+    {
+      "id": "conversation-2",
+      "category": "conversation",
+      "turns": [
+        "What does DNS do?",
+        "Explain that more simply."
+      ],
+      "expected": "dns"
+    },
+    {
+      "id": "conversation-3",
+      "category": "conversation",
+      "turns": [
+        "What does HTTP 415 mean?",
+        "Show me the steps."
+      ],
+      "expected": "http415"
+    },
+    {
+      "id": "conversation-4",
+      "category": "conversation",
+      "turns": [
+        "What is Content Security Policy used for?",
+        "Repeat that."
+      ],
+      "expected": "csp"
+    },
+    {
+      "id": "compound-1",
+      "category": "compound",
+      "turns": [
+        "What is the purpose of WebGL? Also what does DNS do?"
+      ],
+      "expected": [
+        "webgl",
+        "dns"
+      ]
+    },
+    {
+      "id": "compound-2",
+      "category": "compound",
+      "turns": [
+        "Explain ETags and Cache-Control."
+      ],
+      "expected": [
+        "etag",
+        "cache-control"
+      ]
+    },
+    {
+      "id": "compound-3",
+      "category": "compound",
+      "turns": [
+        "What does the DOM do? Also what is JavaScript used for?"
+      ],
+      "expected": [
+        "dom",
+        "js"
+      ]
+    },
+    {
+      "id": "compound-4",
+      "category": "compound",
+      "turns": [
+        "What does HTTP 410 mean? Also what does HTTP 415 mean?"
+      ],
+      "expected": [
+        "http410",
+        "http415"
+      ]
+    }
+  ]
+}

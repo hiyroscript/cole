@@ -30,7 +30,15 @@ jobs:
       - run: npm run build
       - run: npm run check:payload
       - run: npm run build:extension
-      - run: npx playwright install --with-deps chromium
+      - name: Install Chromium
+        timeout-minutes: 10
+        run: |
+          # The Azure mirror stalled during CI package downloads. Keep Ubuntu's
+          # signed packages and use its official HTTPS archive on this runner.
+          if [ -f /etc/apt/apt-mirrors.txt ]; then
+            sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/apt-mirrors.txt
+          fi
+          npx playwright install --with-deps chromium
       - name: Browser tests
         run: |
           export CHROMIUM_PATH="$(node --input-type=module -e 'import {chromium} from "@playwright/test"; process.stdout.write(chromium.executablePath())')"

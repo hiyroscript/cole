@@ -1,4 +1,5 @@
 import { validateCandidates } from "./evidence-selection";
+import { evidenceTerms } from "./evidence-terms";
 import type { Answerability } from "./answerability";
 import { rewriteQuery } from "./query";
 import { knowledge } from "../../data/knowledge";
@@ -20,6 +21,7 @@ const makeDocuments = () =>
     return {
       record,
       answerTerms: new Set(tokens(record.answer)),
+      evidenceTerms: new Set(evidenceTerms(`${record.title} ${record.answer}`)),
       terms,
       frequencies,
       entities: entities(record.title + " " + record.phrases.join(" ")).map(
@@ -34,6 +36,7 @@ const makeDocuments = () =>
 let documents = makeDocuments();
 const inverted = new Map<string, Set<number>>();
 const exact = new Map<string, number>();
+const evidenceIndex = new Map<string, Set<number>>();
 let average = 0;
 let signature = "";
 function refreshIndex() {
@@ -43,6 +46,7 @@ function refreshIndex() {
   documents = makeDocuments();
   inverted.clear();
   exact.clear();
+  evidenceIndex.clear();
   average =
     documents.reduce((s, d) => s + d.terms.length, 0) /
     Math.max(1, documents.length);
@@ -52,6 +56,10 @@ function refreshIndex() {
       inverted.get(term)!.add(i);
     }
     for (const p of doc.phrases) if (!exact.has(p.text)) exact.set(p.text, i);
+    for (const term of doc.evidenceTerms) {
+      if (!evidenceIndex.has(term)) evidenceIndex.set(term, new Set());
+      evidenceIndex.get(term)!.add(i);
+    }
   }
 }
 refreshIndex();
@@ -95,6 +103,23 @@ export function rank(input: string): Candidate[] {
   );
   const candidates = new Set<number>();
   const evidenceHits = new Set<string>();
+  const canonical = evidenceTerms(request.positive);
+  const canonicalHits = new Map<number, number>();
+  for (const term of canonical)
+    evidenceIndex
+      .get(term)
+      ?.forEach((i) => canonicalHits.set(i, (canonicalHits.get(i) ?? 0) + 1));
+  // Morphology-aware evidence discovery is independent of alias rank. It
+  // never raises the lexical utility; passage validation decides acceptance.
+  const evidenceCandidates = [...canonicalHits]
+    .filter(([, hits]) => canonical.length >= 2 && hits >= 2)
+    .sort((a, b) => b[1] - a[1] || a[0] - b[0])
+    .slice(0, 12)
+    .map(([i]) => i);
+  for (const i of evidenceCandidates) {
+    candidates.add(i);
+    evidenceHits.add(documents[i].record.id);
+  }
   for (const t of query) inverted.get(t)?.forEach((i) => candidates.add(i));
   // A second retrieval strategy finds explanatory evidence absent from aliases.
   // Discovery-only results cannot bypass the independent acceptance decision.
@@ -169,10 +194,25 @@ export function rank(input: string): Candidate[] {
         Number(!!a.discovery) - Number(!!b.discovery) || b.score - a.score,
     )
     .slice(0, 24);
+  for (const i of evidenceCandidates) {
+    const record = documents[i].record;
+    if (
+      !blocked.has(record.id) &&
+      !ranked.some((c) => c.record.id === record.id)
+    )
+      ranked.push({
+        record,
+        score: 0,
+        lexical: 0,
+        coverage: 0,
+        discovery: true,
+      });
+  }
   return validateCandidates(input, ranked);
 }
 export function confidence(candidates: Candidate[]) {
   const first = candidates[0];
+  if (first?.support?.blocking) return "unsupported";
   if (first?.semanticAccepted || first?.evidenceAccepted) return "moderate";
   if (!first || first.discovery || first.score < 0.63) return "unsupported";
   if (

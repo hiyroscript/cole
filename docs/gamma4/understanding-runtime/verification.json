@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-27T16:59:23.524583+00:00",
+  "baseCommit": "1b302b031bc1227634c9ce2c1e0f3703f49b2952",
+  "scope": "Core understanding continuation; no deployment or merge. CI results belong to the pushed PR commit, not this local record.",
+  "unitTests": 3588,
+  "productionBrowserTests": 96,
+  "extensionChecks": 24,
+  "capabilityChecks": 20,
+  "checks": {
+    "typescript": true,
+    "branding": true,
+    "knowledgeValidation": true,
+    "unchangedKnowledgeCounts": true,
+    "websiteBuild": true,
+    "extensionBuild": true,
+    "startupBudget": true,
+    "fixtureChecksums": true
+  },
+  "initialJavaScriptBytes": 478341,
+  "initialGzipBytes": 149199,
+  "shellPrecacheBytes": 1030519,
+  "serviceWorkerSha256": "2be25191399aeb80b3f5abea070a5bdfb1f2fefd85ecc8c7033638edb9ed331f",
+  "newFixtureSha256": "54071c957369f94fb3f01a1340f8117fd34c9570f1b69c4d8414b013e0bd87ba",
+  "modelSmoke": {
+    "records": 708,
+    "queries": 42,
+    "cpuWasm": true,
+    "offlineReuse": true,
+    "selectiveCacheRemoval": true
+  },
+  "limitations": [
+    "Implementer-authored exposed evaluation; no independent holdout.",
+    "Published broad acceptance, conversation and composition targets remain unmet.",
+    "No physical-device certification or general semantic entailment.",
+    "Performance samples are container measurements, not a controlled speed comparison."
+  ]
+}

@@ -1,0 +1,2018 @@
+[
+  {
+    "query": "Could you give me a brief explanation of ETags?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "etag",
+        "score": 0.6087043398425013
+      },
+      {
+        "id": "html",
+        "score": 0.30591149508337995
+      },
+      {
+        "id": "http412",
+        "score": 0.2968999948620331
+      },
+      {
+        "id": "gamma-enhance",
+        "score": 0.2948163968207195
+      },
+      {
+        "id": "tracking",
+        "score": 0.2741797790998904
+      },
+      {
+        "id": "js",
+        "score": 0.24969868010485508
+      },
+      {
+        "id": "accessible-link-text",
+        "score": 0.23612011282044962
+      },
+      {
+        "id": "gamma-cache",
+        "score": 0.23465627751770826
+      },
+      {
+        "id": "http2",
+        "score": 0.2340493354057566
+      },
+      {
+        "id": "http3",
+        "score": 0.2326538214669279
+      }
+    ],
+    "ms": 119.80000000074506
+  },
+  {
+    "query": "What is the purpose of WebSockets?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "websocket",
+        "score": 0.5199710822894595
+      },
+      {
+        "id": "api-webtransport",
+        "score": 0.5161220210113474
+      },
+      {
+        "id": "network-websocket-close",
+        "score": 0.4649792678152445
+      },
+      {
+        "id": "webrtc",
+        "score": 0.4368259488248897
+      },
+      {
+        "id": "http2",
+        "score": 0.39031020048977766
+      },
+      {
+        "id": "js",
+        "score": 0.36368861559388066
+      },
+      {
+        "id": "tracking",
+        "score": 0.3588281232010497
+      },
+      {
+        "id": "http3",
+        "score": 0.35232429787361286
+      },
+      {
+        "id": "engine",
+        "score": 0.3513614584441604
+      },
+      {
+        "id": "webrtc-ice-privacy",
+        "score": 0.35046586473213215
+      }
+    ],
+    "ms": 14.199999999254942
+  },
+  {
+    "query": "What are passkeys used for?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "passkeys",
+        "score": 0.7527041304027678
+      },
+      {
+        "id": "passkey-device",
+        "score": 0.4851544289258562
+      },
+      {
+        "id": "auth-passkey-origin",
+        "score": 0.45633523113114477
+      },
+      {
+        "id": "passwords",
+        "score": 0.4031969218890955
+      },
+      {
+        "id": "android-external-keyboard",
+        "score": 0.40303256629914935
+      },
+      {
+        "id": "passkey-lost",
+        "score": 0.38116744471636893
+      },
+      {
+        "id": "keyboard",
+        "score": 0.3771206809988278
+      },
+      {
+        "id": "security-key",
+        "score": 0.36572786640844124
+      },
+      {
+        "id": "api-webcrypto",
+        "score": 0.3539080952100503
+      },
+      {
+        "id": "iphone-password-autofill",
+        "score": 0.33801014925951534
+      }
+    ],
+    "ms": 11.800000000745058
+  },
+  {
+    "query": "What does the DOM do?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "dom",
+        "score": 0.5529213378129912
+      },
+      {
+        "id": "perf-memory-leak",
+        "score": 0.37888089982212025
+      },
+      {
+        "id": "ext-content-isolation",
+        "score": 0.32674766630428187
+      },
+      {
+        "id": "html",
+        "score": 0.3102704573216938
+      },
+      {
+        "id": "js",
+        "score": 0.3077366329890677
+      },
+      {
+        "id": "js-safe-html",
+        "score": 0.30112523373473504
+      },
+      {
+        "id": "perf-layout-thrashing",
+        "score": 0.27960360759681924
+      },
+      {
+        "id": "auth-xss",
+        "score": 0.272891215220498
+      },
+      {
+        "id": "js-trusted-types",
+        "score": 0.2697765583500725
+      },
+      {
+        "id": "useragent",
+        "score": 0.25404339674079923
+      }
+    ],
+    "ms": 42.400000002235174
+  },
+  {
+    "query": "What is Cache-Control for?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "http-cache-private",
+        "score": 0.6253597644558482
+      },
+      {
+        "id": "http-no-store",
+        "score": 0.6235363182084167
+      },
+      {
+        "id": "cpu-cache",
+        "score": 0.6169761575276209
+      },
+      {
+        "id": "cache-control",
+        "score": 0.5735165257536432
+      },
+      {
+        "id": "http-immutable",
+        "score": 0.47627078982078025
+      },
+      {
+        "id": "cache-storage",
+        "score": 0.4597012287322929
+      },
+      {
+        "id": "bfcache",
+        "score": 0.43945082610470915
+      },
+      {
+        "id": "request-cache-mode",
+        "score": 0.4384059760805862
+      },
+      {
+        "id": "android-clear-cache",
+        "score": 0.41192781127802364
+      },
+      {
+        "id": "perf-memory-measure",
+        "score": 0.40936261365764565
+      }
+    ],
+    "ms": 12.100000001490116
+  },
+  {
+    "query": "Tell me what HTML means, in everyday language.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "html",
+        "score": 0.7464008598853306
+      },
+      {
+        "id": "js-safe-html",
+        "score": 0.42818709667362775
+      },
+      {
+        "id": "dom",
+        "score": 0.38315967023052344
+      },
+      {
+        "id": "css",
+        "score": 0.3755552416964685
+      },
+      {
+        "id": "js",
+        "score": 0.3706437724056114
+      },
+      {
+        "id": "accessible-link-text",
+        "score": 0.362481244330633
+      },
+      {
+        "id": "wasm",
+        "score": 0.3407040010441768
+      },
+      {
+        "id": "linux-fonts",
+        "score": 0.3339090228849008
+      },
+      {
+        "id": "font-loading",
+        "score": 0.33086455146193205
+      },
+      {
+        "id": "engine",
+        "score": 0.32838641011989167
+      }
+    ],
+    "ms": 12.800000000745058
+  },
+  {
+    "query": "What does HTTP 415 mean?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "429",
+        "score": 0.5308792377287066
+      },
+      {
+        "id": "http2",
+        "score": 0.5198328649641805
+      },
+      {
+        "id": "http206",
+        "score": 0.5175742717499855
+      },
+      {
+        "id": "http451",
+        "score": 0.5033140365221817
+      },
+      {
+        "id": "http201",
+        "score": 0.49274217183325897
+      },
+      {
+        "id": "http415",
+        "score": 0.48769214197303545
+      },
+      {
+        "id": "http400",
+        "score": 0.4696369370701704
+      },
+      {
+        "id": "http408",
+        "score": 0.46422396602512345
+      },
+      {
+        "id": "http425",
+        "score": 0.45124443919041546
+      },
+      {
+        "id": "http410",
+        "score": 0.4441755096123876
+      }
+    ],
+    "ms": 10.799999997019768
+  },
+  {
+    "query": "Could you describe WebAssembly without assuming technical expertise?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "wasm",
+        "score": 0.6829729050694552
+      },
+      {
+        "id": "wasm-memory",
+        "score": 0.5039788661862674
+      },
+      {
+        "id": "wasm-csp",
+        "score": 0.4109924320932567
+      },
+      {
+        "id": "engine",
+        "score": 0.37269164506921126
+      },
+      {
+        "id": "html",
+        "score": 0.3710953343400015
+      },
+      {
+        "id": "ext-webaccessible",
+        "score": 0.36345336287717844
+      },
+      {
+        "id": "ai-browser-backends",
+        "score": 0.36161875536947463
+      },
+      {
+        "id": "perf-worker-start",
+        "score": 0.35759878119182975
+      },
+      {
+        "id": "js",
+        "score": 0.3493566488723815
+      },
+      {
+        "id": "wasm-threads",
+        "score": 0.3359546560247762
+      }
+    ],
+    "ms": 52.5
+  },
+  {
+    "query": "What does a web app manifest provide?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "web-manifest",
+        "score": 0.5800725213398986
+      },
+      {
+        "id": "ext-webaccessible",
+        "score": 0.5033711105533935
+      },
+      {
+        "id": "pwa-shortcuts",
+        "score": 0.46972146804347276
+      },
+      {
+        "id": "ext-host-permissions",
+        "score": 0.4636944729748631
+      },
+      {
+        "id": "android-battery-unrestricted",
+        "score": 0.44847161941778085
+      },
+      {
+        "id": "pwa-display-mode",
+        "score": 0.4392858815320359
+      },
+      {
+        "id": "iphone-pwa",
+        "score": 0.43863867455481526
+      },
+      {
+        "id": "android-custom-tabs",
+        "score": 0.437941742557384
+      },
+      {
+        "id": "pwa-icon",
+        "score": 0.42073810729827815
+      },
+      {
+        "id": "ext-download-inspection",
+        "score": 0.4160483587951193
+      }
+    ],
+    "ms": 12.400000002235174
+  },
+  {
+    "query": "Please explain the role of JavaScript.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "js",
+        "score": 0.8464724252875656
+      },
+      {
+        "id": "dom",
+        "score": 0.5357286926342353
+      },
+      {
+        "id": "html",
+        "score": 0.45988981581061184
+      },
+      {
+        "id": "engine",
+        "score": 0.4098198202200705
+      },
+      {
+        "id": "javascript-error",
+        "score": 0.38243434396560944
+      },
+      {
+        "id": "ai-browser-backends",
+        "score": 0.375016644170275
+      },
+      {
+        "id": "perf-memory-measure",
+        "score": 0.36333234721264024
+      },
+      {
+        "id": "self-xss",
+        "score": 0.3587371018328055
+      },
+      {
+        "id": "css",
+        "score": 0.35238378227170847
+      },
+      {
+        "id": "perf-third-party",
+        "score": 0.35058062240922766
+      }
+    ],
+    "ms": 13.599999997764826
+  },
+  {
+    "query": "What is Content Security Policy used for?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "csp",
+        "score": 0.5961264380494405
+      },
+      {
+        "id": "tracking",
+        "score": 0.4905297625314061
+      },
+      {
+        "id": "managed-browser",
+        "score": 0.4412953119093782
+      },
+      {
+        "id": "ext-csp",
+        "score": 0.4382623316169242
+      },
+      {
+        "id": "secure",
+        "score": 0.42615832869810966
+      },
+      {
+        "id": "https",
+        "score": 0.41843725355861633
+      },
+      {
+        "id": "js-csp-report",
+        "score": 0.4183854297011587
+      },
+      {
+        "id": "sw-push",
+        "score": 0.4100118921255276
+      },
+      {
+        "id": "api-webcrypto",
+        "score": 0.4002532796491933
+      },
+      {
+        "id": "win-screen-capture",
+        "score": 0.38929786942622013
+      }
+    ],
+    "ms": 11
+  },
+  {
+    "query": "What does DNS do?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "dns",
+        "score": 0.5423237470727603
+      },
+      {
+        "id": "doh-policy",
+        "score": 0.4624761904876248
+      },
+      {
+        "id": "privacy-dns-vpn",
+        "score": 0.4296344086655401
+      },
+      {
+        "id": "dns-refused",
+        "score": 0.41295882987391497
+      },
+      {
+        "id": "dns-ttl",
+        "score": 0.3967643273036954
+      },
+      {
+        "id": "dns-a-aaaa",
+        "score": 0.38074917423954935
+      },
+      {
+        "id": "dns-idn",
+        "score": 0.3709441488666223
+      },
+      {
+        "id": "dns-split-horizon",
+        "score": 0.3609315404537121
+      },
+      {
+        "id": "dns-negative",
+        "score": 0.3523816509031955
+      },
+      {
+        "id": "dns-dnssec",
+        "score": 0.33337301459023466
+      }
+    ],
+    "ms": 10.300000000745058
+  },
+  {
+    "query": "What is sessionStorage used for?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "sessionstorage",
+        "score": 0.6756153653542882
+      },
+      {
+        "id": "session-hijack",
+        "score": 0.40774101891031667
+      },
+      {
+        "id": "auth-cookie-vs-token",
+        "score": 0.40470724774705913
+      },
+      {
+        "id": "logout",
+        "score": 0.40353077028301054
+      },
+      {
+        "id": "auth-logout-scope",
+        "score": 0.3861826421833784
+      },
+      {
+        "id": "cookie-expiry",
+        "score": 0.3596890335390338
+      },
+      {
+        "id": "storage-access-api",
+        "score": 0.3552791808316438
+      },
+      {
+        "id": "cookies",
+        "score": 0.3386551231806876
+      },
+      {
+        "id": "perf-memory-measure",
+        "score": 0.3326281869580476
+      },
+      {
+        "id": "cookie-size",
+        "score": 0.3310190344242623
+      }
+    ],
+    "ms": 11.400000002235174
+  },
+  {
+    "query": "What is the function of WebGL?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "webgl",
+        "score": 0.6347180125239542
+      },
+      {
+        "id": "ai-browser-backends",
+        "score": 0.5787177143779362
+      },
+      {
+        "id": "js",
+        "score": 0.434548378349346
+      },
+      {
+        "id": "engine",
+        "score": 0.42551024366838835
+      },
+      {
+        "id": "wasm",
+        "score": 0.4091406875601245
+      },
+      {
+        "id": "webgpu",
+        "score": 0.3947049688387301
+      },
+      {
+        "id": "html",
+        "score": 0.3923010756923936
+      },
+      {
+        "id": "api-webcodecs",
+        "score": 0.38769219339575145
+      },
+      {
+        "id": "linux-gpu",
+        "score": 0.3853135838642896
+      },
+      {
+        "id": "webrtc",
+        "score": 0.3710702265973891
+      }
+    ],
+    "ms": 38.5
+  },
+  {
+    "query": "Could you explain what localStorage is?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "localstorage",
+        "score": 0.6267004581081778
+      },
+      {
+        "id": "persistent",
+        "score": 0.48932538673225406
+      },
+      {
+        "id": "sessionstorage",
+        "score": 0.4390221830333283
+      },
+      {
+        "id": "partitioned-storage",
+        "score": 0.39090146423099337
+      },
+      {
+        "id": "privacy-local-encryption",
+        "score": 0.3757530624274233
+      },
+      {
+        "id": "storage-denied",
+        "score": 0.3711498666490032
+      },
+      {
+        "id": "perf-memory-measure",
+        "score": 0.36245482707841437
+      },
+      {
+        "id": "storage-eviction",
+        "score": 0.3620008603612293
+      },
+      {
+        "id": "storage-event",
+        "score": 0.3527814255398024
+      },
+      {
+        "id": "storage-access-api",
+        "score": 0.3526432193479581
+      }
+    ],
+    "ms": 15.099999997764826
+  },
+  {
+    "query": "What does HTTP 410 signify?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "http410",
+        "score": 0.6541458344624858
+      },
+      {
+        "id": "429",
+        "score": 0.4718508749822244
+      },
+      {
+        "id": "http2",
+        "score": 0.4561684526224742
+      },
+      {
+        "id": "http206",
+        "score": 0.4555005675200059
+      },
+      {
+        "id": "http408",
+        "score": 0.4423827701424352
+      },
+      {
+        "id": "http451",
+        "score": 0.43888628311637773
+      },
+      {
+        "id": "http425",
+        "score": 0.4217847156327378
+      },
+      {
+        "id": "http400",
+        "score": 0.41992732530960086
+      },
+      {
+        "id": "http3",
+        "score": 0.41578108108237666
+      },
+      {
+        "id": "http204",
+        "score": 0.41384593601404074
+      }
+    ],
+    "ms": 10.5
+  },
+  {
+    "query": "What does HTTP 499 mean?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "429",
+        "score": 0.5150844073993424
+      },
+      {
+        "id": "http2",
+        "score": 0.4805713863835707
+      },
+      {
+        "id": "http451",
+        "score": 0.45894127848255195
+      },
+      {
+        "id": "http3",
+        "score": 0.45271968386492106
+      },
+      {
+        "id": "http206",
+        "score": 0.4422978176011623
+      },
+      {
+        "id": "http416",
+        "score": 0.3926377087781237
+      },
+      {
+        "id": "webrtc-ice-privacy",
+        "score": 0.374151388217134
+      },
+      {
+        "id": "http408",
+        "score": 0.37370477551472525
+      },
+      {
+        "id": "hsts",
+        "score": 0.372518261484669
+      },
+      {
+        "id": "webrtc",
+        "score": 0.371299954755969
+      }
+    ],
+    "ms": 10.400000002235174
+  },
+  {
+    "query": "What is the purpose of WebGL in curing epilepsy?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "webgl",
+        "score": 0.4697811591210629
+      },
+      {
+        "id": "ai-browser-backends",
+        "score": 0.37118920979093695
+      },
+      {
+        "id": "engine",
+        "score": 0.2617585184131902
+      },
+      {
+        "id": "api-webcrypto",
+        "score": 0.25660497068688926
+      },
+      {
+        "id": "gamma-health",
+        "score": 0.24988515120793953
+      },
+      {
+        "id": "api-webcodecs",
+        "score": 0.24250962165038709
+      },
+      {
+        "id": "pointer-coarse",
+        "score": 0.2399562454892357
+      },
+      {
+        "id": "image-webp",
+        "score": 0.2393085242887286
+      },
+      {
+        "id": "html",
+        "score": 0.239032636234983
+      },
+      {
+        "id": "js",
+        "score": 0.2354469378061551
+      }
+    ],
+    "ms": 14.5
+  },
+  {
+    "query": "What does WebAssembly do to grant me unrestricted disk access?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "wasm",
+        "score": 0.5456412776049213
+      },
+      {
+        "id": "wasm-memory",
+        "score": 0.49836856477448255
+      },
+      {
+        "id": "storage-access-api",
+        "score": 0.45278424081678015
+      },
+      {
+        "id": "api-midi",
+        "score": 0.4299113216669267
+      },
+      {
+        "id": "wasm-csp",
+        "score": 0.4258803989566927
+      },
+      {
+        "id": "ext-webaccessible",
+        "score": 0.41857506143831225
+      },
+      {
+        "id": "webusb",
+        "score": 0.399544249192739
+      },
+      {
+        "id": "local-files",
+        "score": 0.3993829704001592
+      },
+      {
+        "id": "ext-host-permissions",
+        "score": 0.38465023483289495
+      },
+      {
+        "id": "api-webcrypto",
+        "score": 0.3815782441854282
+      }
+    ],
+    "ms": 52
+  },
+  {
+    "query": "Explain why DNS encrypts every page.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "doh-policy",
+        "score": 0.6104403430139869
+      },
+      {
+        "id": "dns-dnssec",
+        "score": 0.5063411604603466
+      },
+      {
+        "id": "privacy-dns-vpn",
+        "score": 0.4944886581463753
+      },
+      {
+        "id": "https",
+        "score": 0.41168137441487884
+      },
+      {
+        "id": "dns-ttl",
+        "score": 0.39433150642533144
+      },
+      {
+        "id": "https-only",
+        "score": 0.3911336151531477
+      },
+      {
+        "id": "dns",
+        "score": 0.37475429202408395
+      },
+      {
+        "id": "dns-split-horizon",
+        "score": 0.3678809845756784
+      },
+      {
+        "id": "api-webcrypto",
+        "score": 0.3613633451359475
+      },
+      {
+        "id": "privacy-local-encryption",
+        "score": 0.35678526684834583
+      }
+    ],
+    "ms": 36.099999997764826
+  },
+  {
+    "query": "Could you explain WebGPU without an adapter or a GPU?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "webgpu-adapter",
+        "score": 0.6773202680686503
+      },
+      {
+        "id": "webgpu",
+        "score": 0.6680065024717263
+      },
+      {
+        "id": "ai-browser-backends",
+        "score": 0.5807094090278735
+      },
+      {
+        "id": "webgpu-lost",
+        "score": 0.5718576911914481
+      },
+      {
+        "id": "webgpu-f16",
+        "score": 0.5031897889547619
+      },
+      {
+        "id": "hardware-external-gpu",
+        "score": 0.500383036122314
+      },
+      {
+        "id": "hardware-vram-shared",
+        "score": 0.45130370436553063
+      },
+      {
+        "id": "linux-gpu",
+        "score": 0.42495759493863966
+      },
+      {
+        "id": "cpu-gpu",
+        "score": 0.4247513932150875
+      },
+      {
+        "id": "webgl",
+        "score": 0.41050112968224706
+      }
+    ],
+    "ms": 33
+  },
+  {
+    "query": "What is localStorage used for on a quantum computer?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "localstorage",
+        "score": 0.5180815193995977
+      },
+      {
+        "id": "persistent",
+        "score": 0.43113941464270866
+      },
+      {
+        "id": "sessionstorage",
+        "score": 0.38463050765617374
+      },
+      {
+        "id": "hardware-memory-bandwidth",
+        "score": 0.36739412759231843
+      },
+      {
+        "id": "perf-memory-measure",
+        "score": 0.35957126292145736
+      },
+      {
+        "id": "hardware-storage-speed",
+        "score": 0.3587608336262428
+      },
+      {
+        "id": "http-no-store",
+        "score": 0.35300543957756103
+      },
+      {
+        "id": "storage-access-api",
+        "score": 0.34522566041010505
+      },
+      {
+        "id": "private-storage",
+        "score": 0.3396517967186211
+      },
+      {
+        "id": "ssd",
+        "score": 0.33893601774180604
+      }
+    ],
+    "ms": 40.399999998509884
+  },
+  {
+    "query": "What does Content Security Policy do to guarantee that code is safe?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "csp",
+        "score": 0.5645463070793256
+      },
+      {
+        "id": "auth-xss",
+        "score": 0.45372037605443294
+      },
+      {
+        "id": "image-svg-security",
+        "score": 0.45252862594140697
+      },
+      {
+        "id": "ext-csp",
+        "score": 0.44650049945363235
+      },
+      {
+        "id": "js-csp-nonce",
+        "score": 0.437239137691834
+      },
+      {
+        "id": "ext-message-sender",
+        "score": 0.43620220061458037
+      },
+      {
+        "id": "js-safe-html",
+        "score": 0.43092514518650277
+      },
+      {
+        "id": "secure",
+        "score": 0.4211829431735561
+      },
+      {
+        "id": "js-trusted-types",
+        "score": 0.40413274938298616
+      },
+      {
+        "id": "js-csp-report",
+        "score": 0.40291597213159236
+      }
+    ],
+    "ms": 15
+  },
+  {
+    "query": "What does DNS do? Also read my private password file.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "dns",
+        "score": 0.48070782779974497
+      },
+      {
+        "id": "vpn",
+        "score": 0.45853361405499454
+      },
+      {
+        "id": "privacy-dns-vpn",
+        "score": 0.4527290328037218
+      },
+      {
+        "id": "network-private-ip",
+        "score": 0.44078343145737464
+      },
+      {
+        "id": "dns-split-horizon",
+        "score": 0.43479307002506146
+      },
+      {
+        "id": "doh-policy",
+        "score": 0.4312772800365166
+      },
+      {
+        "id": "android-private-dns",
+        "score": 0.40508307073461547
+      },
+      {
+        "id": "dns-refused",
+        "score": 0.37895020269210067
+      },
+      {
+        "id": "private",
+        "score": 0.3691207426719375
+      },
+      {
+        "id": "certificate",
+        "score": 0.3553729489402122
+      }
+    ],
+    "ms": 15.5
+  },
+  {
+    "query": "What does DNS do",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "dns",
+        "score": 0.5872892962132764
+      },
+      {
+        "id": "doh-policy",
+        "score": 0.4726942535579744
+      },
+      {
+        "id": "dns-refused",
+        "score": 0.4570921389110035
+      },
+      {
+        "id": "privacy-dns-vpn",
+        "score": 0.43437075438147893
+      },
+      {
+        "id": "dns-negative",
+        "score": 0.4126353036448641
+      },
+      {
+        "id": "dns-ttl",
+        "score": 0.4094645282893098
+      },
+      {
+        "id": "dns-a-aaaa",
+        "score": 0.3871729981043495
+      },
+      {
+        "id": "dns-dnssec",
+        "score": 0.381117140297398
+      },
+      {
+        "id": "dns-split-horizon",
+        "score": 0.36117829977426985
+      },
+      {
+        "id": "dns-servfail",
+        "score": 0.35346775734394364
+      }
+    ],
+    "ms": 9.5
+  },
+  {
+    "query": "read my private password file.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "auth-password-export",
+        "score": 0.46543723019129896
+      },
+      {
+        "id": "passwords",
+        "score": 0.438126036373058
+      },
+      {
+        "id": "auth-recovery-phishing",
+        "score": 0.42014908525448746
+      },
+      {
+        "id": "browser-sync",
+        "score": 0.4084988759720407
+      },
+      {
+        "id": "public-computer",
+        "score": 0.4072194055156923
+      },
+      {
+        "id": "private",
+        "score": 0.4067561897368008
+      },
+      {
+        "id": "privacy-private-downloads",
+        "score": 0.3988452580378864
+      },
+      {
+        "id": "local-files",
+        "score": 0.39725805185056795
+      },
+      {
+        "id": "passkeys",
+        "score": 0.3902856393125887
+      },
+      {
+        "id": "recovery-codes",
+        "score": 0.38517932471194
+      }
+    ],
+    "ms": 46.400000002235174
+  },
+  {
+    "query": "Tell me more about that.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "webgpu-f16",
+        "score": 0.21026458413352703
+      },
+      {
+        "id": "auth-recovery-phishing",
+        "score": 0.20202359445612406
+      },
+      {
+        "id": "perf-time-resolution",
+        "score": 0.19196631971787737
+      },
+      {
+        "id": "updates",
+        "score": 0.18632764164178342
+      },
+      {
+        "id": "js-csp-worker",
+        "score": 0.18256510757731545
+      },
+      {
+        "id": "screen-reader-live",
+        "score": 0.1824194453780834
+      },
+      {
+        "id": "qr-phishing",
+        "score": 0.17965212200186062
+      },
+      {
+        "id": "cpu",
+        "score": 0.17934833061288258
+      },
+      {
+        "id": "browser-flags",
+        "score": 0.17930933919943667
+      },
+      {
+        "id": "js-prototype-data",
+        "score": 0.17520966819248213
+      }
+    ],
+    "ms": 19
+  },
+  {
+    "query": "Explain that more simply.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "gamma-enhance",
+        "score": 0.24950919228688986
+      },
+      {
+        "id": "mac-storage-purgeable",
+        "score": 0.2164656271447978
+      },
+      {
+        "id": "bits",
+        "score": 0.19926564117125425
+      },
+      {
+        "id": "gpc",
+        "score": 0.19593680987862203
+      },
+      {
+        "id": "ram-storage",
+        "score": 0.19302181928507853
+      },
+      {
+        "id": "js",
+        "score": 0.19143330973032177
+      },
+      {
+        "id": "disk",
+        "score": 0.18896810103628772
+      },
+      {
+        "id": "hardware-memory-bandwidth",
+        "score": 0.1888692224111599
+      },
+      {
+        "id": "ai-quantization",
+        "score": 0.18858409170607499
+      },
+      {
+        "id": "reader",
+        "score": 0.18660972823293265
+      }
+    ],
+    "ms": 16.799999997019768
+  },
+  {
+    "query": "Show me the steps.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "help",
+        "score": 0.32193368862015453
+      },
+      {
+        "id": "find-tab",
+        "score": 0.21067137523126578
+      },
+      {
+        "id": "delete-site",
+        "score": 0.19369067589687394
+      },
+      {
+        "id": "js-float",
+        "score": 0.1835848908840794
+      },
+      {
+        "id": "screen",
+        "score": 0.1767550446832533
+      },
+      {
+        "id": "http303",
+        "score": 0.17517110894090973
+      },
+      {
+        "id": "history",
+        "score": 0.1661751589802631
+      },
+      {
+        "id": "cache",
+        "score": 0.1640019451993461
+      },
+      {
+        "id": "pwa",
+        "score": 0.15137681174512138
+      },
+      {
+        "id": "inp",
+        "score": 0.14380108561584318
+      }
+    ],
+    "ms": 16.600000001490116
+  },
+  {
+    "query": "Repeat that.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "reader",
+        "score": 0.17173663346526707
+      },
+      {
+        "id": "screen-reader-live",
+        "score": 0.15544829486534362
+      },
+      {
+        "id": "connection-reset",
+        "score": 0.15241535399163553
+      },
+      {
+        "id": "http204",
+        "score": 0.14983515617538093
+      },
+      {
+        "id": "api-abort-listeners",
+        "score": 0.14622449257638606
+      },
+      {
+        "id": "http422",
+        "score": 0.14584473675294335
+      },
+      {
+        "id": "madon",
+        "score": 0.14400133481248095
+      },
+      {
+        "id": "logout",
+        "score": 0.1430415003638881
+      },
+      {
+        "id": "pwa-update",
+        "score": 0.14030254989447766
+      },
+      {
+        "id": "chrome",
+        "score": 0.14022150754770818
+      }
+    ],
+    "ms": 7.399999998509884
+  },
+  {
+    "query": "What is the purpose of WebGL? Also what does DNS do?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "webgl",
+        "score": 0.5053303741679135
+      },
+      {
+        "id": "ai-browser-backends",
+        "score": 0.49690362604700483
+      },
+      {
+        "id": "js",
+        "score": 0.39793098471633803
+      },
+      {
+        "id": "origin",
+        "score": 0.39236702921078964
+      },
+      {
+        "id": "webrtc",
+        "score": 0.3911274306494675
+      },
+      {
+        "id": "engine",
+        "score": 0.3752281319931364
+      },
+      {
+        "id": "api-webcodecs",
+        "score": 0.3676085011719307
+      },
+      {
+        "id": "perf-navigation",
+        "score": 0.3664433981470319
+      },
+      {
+        "id": "http2",
+        "score": 0.3430374579308364
+      },
+      {
+        "id": "http3",
+        "score": 0.3360687473132052
+      }
+    ],
+    "ms": 48.70000000298023
+  },
+  {
+    "query": "What is the purpose of WebGL",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "webgl",
+        "score": 0.6484512917471787
+      },
+      {
+        "id": "ai-browser-backends",
+        "score": 0.5574520119571222
+      },
+      {
+        "id": "engine",
+        "score": 0.4002094205940727
+      },
+      {
+        "id": "webgpu",
+        "score": 0.38041392952826103
+      },
+      {
+        "id": "api-webcodecs",
+        "score": 0.3743519104638298
+      },
+      {
+        "id": "js",
+        "score": 0.36358863301366745
+      },
+      {
+        "id": "linux-gpu",
+        "score": 0.3560274740403225
+      },
+      {
+        "id": "wasm",
+        "score": 0.35152776271496955
+      },
+      {
+        "id": "image-webp",
+        "score": 0.3490667182592378
+      },
+      {
+        "id": "html",
+        "score": 0.33770580376068693
+      }
+    ],
+    "ms": 7.199999999254942
+  },
+  {
+    "query": "what does DNS do?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "dns",
+        "score": 0.5423237470727603
+      },
+      {
+        "id": "doh-policy",
+        "score": 0.4624761904876248
+      },
+      {
+        "id": "privacy-dns-vpn",
+        "score": 0.4296344086655401
+      },
+      {
+        "id": "dns-refused",
+        "score": 0.41295882987391497
+      },
+      {
+        "id": "dns-ttl",
+        "score": 0.3967643273036954
+      },
+      {
+        "id": "dns-a-aaaa",
+        "score": 0.38074917423954935
+      },
+      {
+        "id": "dns-idn",
+        "score": 0.3709441488666223
+      },
+      {
+        "id": "dns-split-horizon",
+        "score": 0.3609315404537121
+      },
+      {
+        "id": "dns-negative",
+        "score": 0.3523816509031955
+      },
+      {
+        "id": "dns-dnssec",
+        "score": 0.33337301459023466
+      }
+    ],
+    "ms": 6.699999999254942
+  },
+  {
+    "query": "Explain ETags and Cache-Control.",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "etag",
+        "score": 0.6459440586549564
+      },
+      {
+        "id": "cpu-cache",
+        "score": 0.5462579803854164
+      },
+      {
+        "id": "http-immutable",
+        "score": 0.4632712059922982
+      },
+      {
+        "id": "http-cache-private",
+        "score": 0.45347218737645617
+      },
+      {
+        "id": "cache-control",
+        "score": 0.44683611085572095
+      },
+      {
+        "id": "gamma-cache",
+        "score": 0.43149320927485163
+      },
+      {
+        "id": "http-no-store",
+        "score": 0.4238086897073301
+      },
+      {
+        "id": "perf-memory-measure",
+        "score": 0.37731730173756245
+      },
+      {
+        "id": "cache-vary",
+        "score": 0.36729644069714174
+      },
+      {
+        "id": "perf-benchmark-variance",
+        "score": 0.36465873351219413
+      }
+    ],
+    "ms": 9.100000001490116
+  },
+  {
+    "query": "Explain ETags",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "etag",
+        "score": 0.6654340888460842
+      },
+      {
+        "id": "http412",
+        "score": 0.3244135971960824
+      },
+      {
+        "id": "gamma-enhance",
+        "score": 0.3026471221949321
+      },
+      {
+        "id": "html",
+        "score": 0.27833889937322753
+      },
+      {
+        "id": "gamma-cache",
+        "score": 0.2648311668563571
+      },
+      {
+        "id": "tracking",
+        "score": 0.2292856814685672
+      },
+      {
+        "id": "js",
+        "score": 0.21706173907199916
+      },
+      {
+        "id": "ai-inference",
+        "score": 0.21030614973347353
+      },
+      {
+        "id": "http3",
+        "score": 0.1974290916621009
+      },
+      {
+        "id": "http2",
+        "score": 0.19374776237100935
+      }
+    ],
+    "ms": 5.5
+  },
+  {
+    "query": "Explain Cache-Control",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "cpu-cache",
+        "score": 0.6938931954451125
+      },
+      {
+        "id": "http-cache-private",
+        "score": 0.643309584176989
+      },
+      {
+        "id": "http-no-store",
+        "score": 0.6220788207005907
+      },
+      {
+        "id": "cache-control",
+        "score": 0.5886381615886164
+      },
+      {
+        "id": "http-immutable",
+        "score": 0.48079510849083557
+      },
+      {
+        "id": "request-cache-mode",
+        "score": 0.45712296475205105
+      },
+      {
+        "id": "cache-vary",
+        "score": 0.4547541302654092
+      },
+      {
+        "id": "linux-memory-available",
+        "score": 0.4509622297088091
+      },
+      {
+        "id": "cache-storage",
+        "score": 0.44878814475010276
+      },
+      {
+        "id": "bfcache",
+        "score": 0.43715829072886375
+      }
+    ],
+    "ms": 6
+  },
+  {
+    "query": "What does the DOM do? Also what is JavaScript used for?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "js",
+        "score": 0.7499644800784782
+      },
+      {
+        "id": "dom",
+        "score": 0.6816465480581289
+      },
+      {
+        "id": "html",
+        "score": 0.5434252771379239
+      },
+      {
+        "id": "engine",
+        "score": 0.44866823315434345
+      },
+      {
+        "id": "ext-content-isolation",
+        "score": 0.4233750464471146
+      },
+      {
+        "id": "css",
+        "score": 0.3914073483118686
+      },
+      {
+        "id": "perf-memory-measure",
+        "score": 0.38935911036142806
+      },
+      {
+        "id": "auth-xss",
+        "score": 0.3783656039275582
+      },
+      {
+        "id": "self-xss",
+        "score": 0.3731023448673456
+      },
+      {
+        "id": "js-safe-html",
+        "score": 0.36097431299712185
+      }
+    ],
+    "ms": 11
+  },
+  {
+    "query": "What does the DOM do",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "dom",
+        "score": 0.5634626341660683
+      },
+      {
+        "id": "perf-memory-leak",
+        "score": 0.37145901987089325
+      },
+      {
+        "id": "ext-content-isolation",
+        "score": 0.333307980945712
+      },
+      {
+        "id": "html",
+        "score": 0.30390569806368667
+      },
+      {
+        "id": "js",
+        "score": 0.3019716934858796
+      },
+      {
+        "id": "js-safe-html",
+        "score": 0.2901369414205309
+      },
+      {
+        "id": "perf-layout-thrashing",
+        "score": 0.284459112547603
+      },
+      {
+        "id": "auth-xss",
+        "score": 0.27754242150977987
+      },
+      {
+        "id": "js-trusted-types",
+        "score": 0.2753682244571472
+      },
+      {
+        "id": "self-xss",
+        "score": 0.2574021161861611
+      }
+    ],
+    "ms": 6
+  },
+  {
+    "query": "what is JavaScript used for?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "js",
+        "score": 0.815105259989148
+      },
+      {
+        "id": "dom",
+        "score": 0.5216722979451972
+      },
+      {
+        "id": "html",
+        "score": 0.4390655664284513
+      },
+      {
+        "id": "engine",
+        "score": 0.4171021050388002
+      },
+      {
+        "id": "perf-memory-measure",
+        "score": 0.4017690464854921
+      },
+      {
+        "id": "javascript-error",
+        "score": 0.40058215424465904
+      },
+      {
+        "id": "perf-third-party",
+        "score": 0.38683983869188376
+      },
+      {
+        "id": "api-compression",
+        "score": 0.37147307480988656
+      },
+      {
+        "id": "self-xss",
+        "score": 0.3689126329981488
+      },
+      {
+        "id": "ext-content-isolation",
+        "score": 0.34693575566133206
+      }
+    ],
+    "ms": 40
+  },
+  {
+    "query": "What does HTTP 410 mean? Also what does HTTP 415 mean?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "http410",
+        "score": 0.6323376943120453
+      },
+      {
+        "id": "429",
+        "score": 0.5210402951076996
+      },
+      {
+        "id": "http451",
+        "score": 0.5096941617685915
+      },
+      {
+        "id": "http206",
+        "score": 0.4922897161887464
+      },
+      {
+        "id": "http408",
+        "score": 0.491703799435193
+      },
+      {
+        "id": "http2",
+        "score": 0.45987325756485503
+      },
+      {
+        "id": "http400",
+        "score": 0.4549883704826099
+      },
+      {
+        "id": "http425",
+        "score": 0.44746717228569943
+      },
+      {
+        "id": "http204",
+        "score": 0.4368707118382881
+      },
+      {
+        "id": "http201",
+        "score": 0.4302924656635279
+      }
+    ],
+    "ms": 10.199999999254942
+  },
+  {
+    "query": "What does HTTP 410 mean",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "http410",
+        "score": 0.6808310636407015
+      },
+      {
+        "id": "429",
+        "score": 0.47246786831894866
+      },
+      {
+        "id": "http408",
+        "score": 0.45306778232110495
+      },
+      {
+        "id": "http204",
+        "score": 0.4428635685624384
+      },
+      {
+        "id": "http425",
+        "score": 0.43814370173037126
+      },
+      {
+        "id": "http206",
+        "score": 0.43163437227327045
+      },
+      {
+        "id": "http400",
+        "score": 0.4244088210802065
+      },
+      {
+        "id": "http451",
+        "score": 0.4209365582293283
+      },
+      {
+        "id": "http2",
+        "score": 0.40495177025338547
+      },
+      {
+        "id": "http409",
+        "score": 0.4009947592759976
+      }
+    ],
+    "ms": 6.099999997764826
+  },
+  {
+    "query": "what does HTTP 415 mean?",
+    "expected": null,
+    "kind": "engine-subquery",
+    "scores": [
+      {
+        "id": "429",
+        "score": 0.5308792377287066
+      },
+      {
+        "id": "http2",
+        "score": 0.5198328649641805
+      },
+      {
+        "id": "http206",
+        "score": 0.5175742717499855
+      },
+      {
+        "id": "http451",
+        "score": 0.5033140365221817
+      },
+      {
+        "id": "http201",
+        "score": 0.49274217183325897
+      },
+      {
+        "id": "http415",
+        "score": 0.48769214197303545
+      },
+      {
+        "id": "http400",
+        "score": 0.4696369370701704
+      },
+      {
+        "id": "http408",
+        "score": 0.46422396602512345
+      },
+      {
+        "id": "http425",
+        "score": 0.45124443919041546
+      },
+      {
+        "id": "http410",
+        "score": 0.4441755096123876
+      }
+    ],
+    "ms": 6.400000002235174
+  }
+]

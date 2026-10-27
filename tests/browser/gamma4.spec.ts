@@ -8,6 +8,65 @@ async function ask(page: Page, text: string) {
     page.getByRole("button", { name: "Stop response", exact: true }),
   ).toHaveCount(0);
 }
+test("educational frames change topics and punctuated follow-ups keep the selected topic", async ({
+  page,
+}) => {
+  await page.goto("./");
+  await ask(page, "Explain DNS");
+  await ask(page, "Could you give me a brief explanation of ETags?");
+  await expect(page.locator("article").last()).toContainText(
+    "opaque validator",
+  );
+  await ask(page, "Can you repeat that?");
+  await expect(page.locator("article").last()).toContainText(
+    "opaque validator",
+  );
+});
+
+test("purpose questions compose offline while unsupported details remain unresolved", async ({
+  page,
+  context,
+}) => {
+  await page.goto("./");
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready;
+  });
+  await page.reload();
+  await context.setOffline(true);
+  await ask(
+    page,
+    "What is the purpose of WebSockets? Also what does HTTP 415 mean?",
+  );
+  await expect(page.locator("article").last()).toContainText(
+    "two-way connection",
+  );
+  await expect(page.locator("article").last()).toContainText(
+    "submitted media type",
+  );
+  await ask(page, "What does status code 499 mean?");
+  await expect(page.locator("article").last()).not.toContainText(
+    "HTTP 404 means",
+  );
+  await expect(page.locator("article").last()).toContainText("reliable answer");
+});
+
+test("a guaranteed outcome cannot be established by an adjacent topic explanation", async ({
+  page,
+}) => {
+  await page.goto("./");
+  await ask(
+    page,
+    "What does Content Security Policy do to guarantee that code is safe?",
+  );
+  await expect(page.locator("article").last()).toContainText("reliable answer");
+  await ask(page, "What does DNS do? Also read my private password file.");
+  await expect(page.locator("article").last()).toContainText(
+    "translates domain names",
+  );
+  await expect(page.locator("article").last()).toContainText(
+    "No private files",
+  );
+});
 test("Gamma executes a multi-part local request after offline reload", async ({
   page,
   context,

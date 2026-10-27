@@ -1,8 +1,10 @@
 # Gamma 4.0 delivery
 
+The latest [Core understanding continuation](GAMMA4-UNDERSTANDING.md), based on merged PR #8 (`1b302b0`), adds typed educational question frames, canonical evidence indexing, stricter technical-identifier/subject checks and clarification/follow-up fixes. Published default supported acceptance is now **97/256 (37.9%)**, Recall@10 **220/256 (85.9%)**, unsupported false acceptance **0/100**, conversation completion **43/100**, and complete composed responses **12/100**. Real MiniLM replay yields **103/256 (40.2%)** supported acceptance and **91.0% Recall@10**, with no missing score queries. See that report and `gamma4/understanding-*` for current verification and limitations. The sections below retain the preceding document/research/Deep Mode stage's measurements.
+
 Gamma now has a shared request/evidence/tool pipeline, additional local operations, bounded document and research analysis, and an explicit website-only local drafting mode. The numerical intelligence targets in `max` are **not all achieved**. Core remains deterministic and usable without model setup; Deep Mode and Madon have separate identities, setup and execution.
 
-The earlier [PR #6](https://github.com/hiyroscript/cole/pull/6) was merged into `main`; this continuation is on `feat/gamma4-documents-deep`, based on merge commit `c6927f0`. No merge or deployment is performed by this continuation. The [initial audit](GAMMA4-AUDIT.md) describes the original weaknesses. Baseline: `1a30900`; the previous implemented stage is `ab81293`. Current reports use `completion-*` and `completion-runtime/`. Earlier `final-*`, Gamma 3 reports and frozen fixtures remain preserved.
+The document/research/Deep Mode stage was delivered in [PR #8](https://github.com/hiyroscript/cole/pull/8), after merged [PR #6](https://github.com/hiyroscript/cole/pull/6). The [initial audit](GAMMA4-AUDIT.md) describes the original weaknesses. Baseline: `1a30900`; the preceding implementation was `ab81293`. That stage's reports use `completion-*` and `completion-runtime/`. Earlier `final-*`, Gamma 3 reports and frozen fixtures remain preserved. No merge or deployment is performed automatically.
 
 ## Working implementation
 
