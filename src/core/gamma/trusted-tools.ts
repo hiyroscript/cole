@@ -8,6 +8,7 @@ import { memoryCommand } from "./memory";
 import { probe } from "./probe";
 import { webResponse } from "./web";
 import { clearPublicCache } from "./public-sources";
+import type { NumericValue } from "./calculator";
 export type ToolSpec = {
   name: string;
   description: string;
@@ -111,6 +112,7 @@ export async function executeTrustedTool(
     document?: LocalDocument;
     documents?: LocalDocument[];
     webSources?: boolean;
+    calculationInput?: NumericValue;
   },
 ): Promise<Response | undefined> {
   const tool = trustedTools.find((t) => t.name === name);
@@ -139,10 +141,19 @@ export async function executeTrustedTool(
       case "diff":
       case "logic":
       case "analyze": {
-        const execution = executeCapability(name, arg, options.signal);
+        const execution = executeCapability(
+          name,
+          arg,
+          options.signal,
+          options.calculationInput,
+        );
         response = {
           ...result(execution.text),
-          operation: { name: execution.name, status: execution.status },
+          operation: {
+            name: execution.name,
+            status: execution.status,
+            value: execution.value,
+          },
         };
         break;
       }

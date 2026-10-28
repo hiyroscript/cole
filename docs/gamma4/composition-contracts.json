@@ -1,0 +1,1458 @@
+{
+  "mode": "Default local engine",
+  "semanticMissing": [],
+  "scope": "36 implementer-authored composition contracts frozen before implementation. Prospective development evaluation, not an independently authored or untouched holdout. Exact task statuses, source sets, result text, and no-effect checks; no claim of general factuality.",
+  "fixtureSha256": "f84856f3a160a4ab828f552e6c5a5c821c7f704c9228c93b9722ca8d45c29b28",
+  "date": "2026-10-28T02:32:36.685Z",
+  "passed": 36,
+  "total": 36,
+  "unapprovedNetworkRequests": 0,
+  "categories": {
+    "reference": {
+      "passed": 8,
+      "total": 8
+    },
+    "independent": {
+      "passed": 6,
+      "total": 6
+    },
+    "arithmetic": {
+      "passed": 10,
+      "total": 10
+    },
+    "isolation": {
+      "passed": 6,
+      "total": 6
+    },
+    "payload": {
+      "passed": 6,
+      "total": 6
+    }
+  },
+  "results": [
+    {
+      "id": "reference-1",
+      "category": "reference",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 48.56359299999997,
+      "text": "### CPU cache\nPart 1 of 2\n\nA CPU cache is small, fast memory near processor cores that keeps copies of recently or nearby used data and instructions. Locality can reduce slower RAM accesses. L1 is typically smaller and closer than L2 or L3; sizes and sharing vary by processor. A cache miss costs time, but cache size alone does not predict application speed.\n\n### compare\nPart 2 of 2\n\nComparison from built-in authored guidance; references were not checked live.\n\n### CPU cache\nA CPU cache is small, fast memory near processor cores that keeps copies of recently or nearby used data and instructions. Locality can reduce slower RAM accesses. L1 is typically smaller and closer than L2 or L3; sizes and sharing vary by processor. A cache miss costs time, but cache size alone does not predict application speed.\n\nReference: [CPU cache](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html). Reviewed 2026-10-26.\n\n### SSD storage\nAn SSD is nonvolatile storage: it retains files when power is removed. RAM holds active program data and is normally volatile. SSD latency is much higher than RAM latency, so adding SSD capacity does not replace adequate RAM. Flash write endurance and interface speed vary; an SSD is not a backup.\n\nReference: [SSD storage](https://www.ibm.com/think/topics/solid-state-drives). Reviewed 2026-10-26.\n\n### Functional comparison\n| Subject | Role | Execution / storage | Relevance to AI |\n| --- | --- | --- | --- |\n| CPU cache | Small fast copies near processor cores | Automatic hardware\\-managed locality | Can reduce repeated CPU data\\-access costs; workload and access patterns matter\\. |\n| SSD storage | Persistent file storage | Nonvolatile flash with higher access latency than RAM | Stores model files and caches; loading still requires working memory\\. |\n\nA backend API does not establish successful model execution. Choose using the runtime’s operator support, measured latency and memory on the actual device; retain a supported fallback.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "cpu-cache"
+          ],
+          "subjects": [
+            "cpu-cache"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "compare",
+          "status": "answered",
+          "sources": [
+            "cpu-cache",
+            "ssd"
+          ],
+          "subjects": [
+            "cpu-cache",
+            "ssd"
+          ],
+          "dependsOn": [
+            0
+          ]
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "reference-2",
+      "category": "reference",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 10.625628000000006,
+      "text": "### WebGPU\nPart 1 of 2\n\nWebGPU supports graphics and compute workloads in compatible secure contexts. Adapter availability depends on browser, operating system, and device policy; it is not a system GPU-utilization monitor.\n\n### WebGPU\nPart 2 of 2\n\nWebGPU supports graphics and compute workloads in compatible secure contexts. Adapter availability depends on browser, operating system, and device policy; it is not a system GPU-utilization monitor.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "webgpu"
+          ],
+          "subjects": [
+            "webgpu"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "webgpu"
+          ],
+          "subjects": [
+            "webgpu"
+          ],
+          "dependsOn": [
+            0
+          ]
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "reference-3",
+      "category": "reference",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 40.724403999999936,
+      "text": "### WebGL\nPart 1 of 2\n\nWebGL provides GPU-accelerated graphics through a browser-managed context. Contexts may be lost because of resource pressure, resets, or policy.\n\n### compare\nPart 2 of 2\n\nComparison from built-in authored guidance; references were not checked live.\n\n### WebGL\nWebGL provides GPU-accelerated graphics through a browser-managed context. Contexts may be lost because of resource pressure, resets, or policy.\n\nReference: [WebGL](https://developer.mozilla.org/en-US/docs/Web). Reviewed 2026-10-24.\n\n### WebAssembly\nWebAssembly is a compact code format designed for portable execution. In a browser it operates within sandbox and API constraints; it does not grant unrestricted system access.\n\nReference: [WebAssembly](https://developer.mozilla.org/en-US/docs/Web). Reviewed 2026-10-24.\n\n### Functional comparison\n| Subject | Role | Execution / storage | Relevance to AI |\n| --- | --- | --- | --- |\n| WebGL | Browser graphics API | GPU rendering pipeline and shaders | Some runtimes encode numerical work in graphics operations; restrictions differ from general compute\\. |\n| WebAssembly | Portable sandboxed code format | Usually CPU, with optional SIMD/threads when supported | Runs CPU inference kernels and supports fallback when GPU execution is unavailable\\. |\n\nA backend API does not establish successful model execution. Choose using the runtime’s operator support, measured latency and memory on the actual device; retain a supported fallback.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "webgl"
+          ],
+          "subjects": [
+            "webgl"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "compare",
+          "status": "answered",
+          "sources": [
+            "webgl",
+            "wasm"
+          ],
+          "subjects": [
+            "webgl",
+            "wasm"
+          ],
+          "dependsOn": [
+            0
+          ]
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "reference-4",
+      "category": "reference",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 1.6853360000000066,
+      "text": "### DNS\nPart 1 of 2\n\nDNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.\n\n### explain\nPart 2 of 2\n\nDNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.\n\n1. Check the spelling of the domain.\n2. Try another website.\n3. Restart your network connection before changing resolver settings.\n4. Record existing DNS settings before any deliberate change.\n\nReference: [Web platform documentation](https://developer.mozilla.org/en-US/docs/Web).",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "dns"
+          ],
+          "subjects": [
+            "dns"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "dns"
+          ],
+          "subjects": [
+            "dns"
+          ],
+          "dependsOn": [
+            0
+          ]
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "reference-5",
+      "category": "reference",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 3.054456000000073,
+      "text": "### WebGPU\nPart 1 of 3\n\nWebGPU supports graphics and compute workloads in compatible secure contexts. Adapter availability depends on browser, operating system, and device policy; it is not a system GPU-utilization monitor.\n\n### WebGL\nPart 2 of 3\n\nWebGL provides GPU-accelerated graphics through a browser-managed context. Contexts may be lost because of resource pressure, resets, or policy.\n\n### compare\nPart 3 of 3\n\nCompare the roles and constraints below against the workload you care about.\n\n### WebGPU\nWebGPU supports graphics and compute workloads in compatible secure contexts. Adapter availability depends on browser, operating system, and device policy; it is not a system GPU-utilization monitor.\n\n[Reference](https://developer.mozilla.org/en-US/docs/Web); reviewed 2026-10-24.\n\n### WebGL\nWebGL provides GPU-accelerated graphics through a browser-managed context. Contexts may be lost because of resource pressure, resets, or policy.\n\n[Reference](https://developer.mozilla.org/en-US/docs/Web); reviewed 2026-10-24.\n\n### Functional comparison\n| Subject | Role | Execution / storage | Relevance to AI |\n| --- | --- | --- | --- |\n| WebGPU | Graphics and general compute API | GPU through a supported adapter and runtime | Supports compute shaders used by compatible inference runtimes; operator and device support must be tested\\. |\n| WebGL | Browser graphics API | GPU rendering pipeline and shaders | Some runtimes encode numerical work in graphics operations; restrictions differ from general compute\\. |\n\nA backend API does not establish successful model execution. Choose using the runtime’s operator support, measured latency and memory on the actual device; retain a supported fallback.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "webgpu"
+          ],
+          "subjects": [
+            "webgpu"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "webgl"
+          ],
+          "subjects": [
+            "webgl"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 2,
+          "intent": "compare",
+          "status": "answered",
+          "sources": [
+            "webgpu",
+            "webgl"
+          ],
+          "subjects": [
+            "webgpu",
+            "webgl"
+          ],
+          "dependsOn": [
+            0,
+            1
+          ]
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "reference-6",
+      "category": "reference",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 6.722595000000069,
+      "text": "### WebGPU\nPart 1 of 3\n\nWebGPU supports graphics and compute workloads in compatible secure contexts. Adapter availability depends on browser, operating system, and device policy; it is not a system GPU-utilization monitor.\n\n### WebAssembly\nPart 2 of 3\n\nWebAssembly is a compact code format designed for portable execution. In a browser it operates within sandbox and API constraints; it does not grant unrestricted system access.\n\n### explain\nPart 3 of 3\n\n### WebGPU: AI use\nSupports compute shaders used by compatible inference runtimes; operator and device support must be tested.\n\n[Reference](https://developer.mozilla.org/en-US/docs/Web); reviewed 2026-10-24.\n\n### WebAssembly: AI use\nRuns CPU inference kernels and supports fallback when GPU execution is unavailable.\n\n[Reference](https://developer.mozilla.org/en-US/docs/Web); reviewed 2026-10-24.\n\nThese are functional roles, not measurements. Model compatibility, available memory and measured performance determine which backend is suitable.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "webgpu"
+          ],
+          "subjects": [
+            "webgpu"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "wasm"
+          ],
+          "subjects": [
+            "wasm"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 2,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "webgpu",
+            "wasm"
+          ],
+          "subjects": [
+            "webgpu",
+            "wasm"
+          ],
+          "dependsOn": [
+            0,
+            1
+          ]
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "reference-7",
+      "category": "reference",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 2.621894999999995,
+      "text": "### compare\nPart 1 of 2\n\nComparison from built-in authored guidance; references were not checked live.\n\n### WebGPU\nWebGPU supports graphics and compute workloads in compatible secure contexts. Adapter availability depends on browser, operating system, and device policy; it is not a system GPU-utilization monitor.\n\nReference: [WebGPU](https://developer.mozilla.org/en-US/docs/Web). Reviewed 2026-10-24.\n\n### WebAssembly\nWebAssembly is a compact code format designed for portable execution. In a browser it operates within sandbox and API constraints; it does not grant unrestricted system access.\n\nReference: [WebAssembly](https://developer.mozilla.org/en-US/docs/Web). Reviewed 2026-10-24.\n\n### Functional comparison\n| Subject | Role | Execution / storage | Relevance to AI |\n| --- | --- | --- | --- |\n| WebGPU | Graphics and general compute API | GPU through a supported adapter and runtime | Supports compute shaders used by compatible inference runtimes; operator and device support must be tested\\. |\n| WebAssembly | Portable sandboxed code format | Usually CPU, with optional SIMD/threads when supported | Runs CPU inference kernels and supports fallback when GPU execution is unavailable\\. |\n\nA backend API does not establish successful model execution. Choose using the runtime’s operator support, measured latency and memory on the actual device; retain a supported fallback.\n\n### explain\nPart 2 of 2\n\n### WebGPU: AI use\nSupports compute shaders used by compatible inference runtimes; operator and device support must be tested.\n\n[Reference](https://developer.mozilla.org/en-US/docs/Web); reviewed 2026-10-24.\n\n### WebAssembly: AI use\nRuns CPU inference kernels and supports fallback when GPU execution is unavailable.\n\n[Reference](https://developer.mozilla.org/en-US/docs/Web); reviewed 2026-10-24.\n\nThese are functional roles, not measurements. Model compatibility, available memory and measured performance determine which backend is suitable.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "compare",
+          "status": "answered",
+          "sources": [
+            "webgpu",
+            "wasm"
+          ],
+          "subjects": [
+            "webgpu",
+            "wasm"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "webgpu",
+            "wasm"
+          ],
+          "subjects": [
+            "webgpu",
+            "wasm"
+          ],
+          "dependsOn": [
+            0
+          ]
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "reference-8",
+      "category": "reference",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 6.753471999999988,
+      "text": "### DNS\nPart 1 of 3\n\nDNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.\n\n### explain\nPart 2 of 3\n\nI don’t have a reliable answer to that yet. I can help with browser settings, device information, performance, privacy, and troubleshooting. Could you describe the specific feature or symptom?\n\n### 3. Clarification needed\nWhich subject does “it” refer to? This part needs a completed, unambiguous answer from its preceding part.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "dns"
+          ],
+          "subjects": [
+            "dns"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "needs-information",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": []
+        },
+        {
+          "id": 2,
+          "intent": "compare",
+          "status": "needs-information",
+          "sources": [],
+          "dependsOn": [
+            1
+          ]
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "independent-1",
+      "category": "independent",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 83.0280499999999,
+      "text": "### Microsoft Edge\nPart 1 of 2\n\nCurrent Microsoft Edge uses Chromium. Sleeping tabs can reduce background activity, but a sleeping tab may pause work. Review sync and diagnostic preferences separately.\n\n### Brave identification\nPart 2 of 2\n\nBrave is Chromium-based and may present a Chrome-like user-agent. A website cannot always distinguish it reliably. Shields can affect site scripts and storage; adjust only the affected site after understanding the tradeoff.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "edge"
+          ],
+          "subjects": [
+            "edge"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "unknown",
+          "status": "answered",
+          "sources": [
+            "brave"
+          ],
+          "subjects": [
+            "brave"
+          ],
+          "dependsOn": []
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "independent-2",
+      "category": "independent",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 17.194872000000032,
+      "text": "### WebGL\nPart 1 of 2\n\nWebGL provides GPU-accelerated graphics through a browser-managed context. Contexts may be lost because of resource pressure, resets, or policy.\n\n### Recognize phishing\nPart 2 of 2\n\nPhishing impersonates a trusted service to obtain passwords, money, or security codes. HTTPS only protects a connection; it does not establish that a business is legitimate.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "webgl"
+          ],
+          "subjects": [
+            "webgl"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "phishing"
+          ],
+          "subjects": [
+            "phishing"
+          ],
+          "dependsOn": []
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "independent-3",
+      "category": "independent",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 10.178604999999948,
+      "text": "### ETags\nPart 1 of 2\n\nAn ETag identifies a particular representation so a client can ask whether it changed. It is an opaque validator, not necessarily a content hash.\n\n### DOM\nPart 2 of 2\n\nThe DOM is an object representation of a document. Scripts can read and modify it, causing changes to layout or behavior.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "etag"
+          ],
+          "subjects": [
+            "etag"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "dom"
+          ],
+          "subjects": [
+            "dom"
+          ],
+          "dependsOn": []
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "independent-4",
+      "category": "independent",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 2.241041999999993,
+      "text": "### DNS\nPart 1 of 2\n\nDNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.\n\n### WebSockets\nPart 2 of 2\n\nWebSockets maintain a two-way connection between a browser and server. Idle timeouts, proxies, or server restarts can disconnect them.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "dns"
+          ],
+          "subjects": [
+            "dns"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "websocket"
+          ],
+          "subjects": [
+            "websocket"
+          ],
+          "dependsOn": []
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "independent-5",
+      "category": "independent",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 2.0398389999998017,
+      "text": "### WebGPU\nPart 1 of 3\n\nWebGPU supports graphics and compute workloads in compatible secure contexts. Adapter availability depends on browser, operating system, and device policy; it is not a system GPU-utilization monitor.\n\n### WebGL\nPart 2 of 3\n\nWebGL provides GPU-accelerated graphics through a browser-managed context. Contexts may be lost because of resource pressure, resets, or policy.\n\n### WebAssembly\nPart 3 of 3\n\nWebAssembly is a compact code format designed for portable execution. In a browser it operates within sandbox and API constraints; it does not grant unrestricted system access.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "webgpu"
+          ],
+          "subjects": [
+            "webgpu"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "webgl"
+          ],
+          "subjects": [
+            "webgl"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 2,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "wasm"
+          ],
+          "subjects": [
+            "wasm"
+          ],
+          "dependsOn": []
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "independent-6",
+      "category": "independent",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 4.099337999999989,
+      "text": "### DNS\nPart 1 of 3\n\nDNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.\n\n### calculate\nPart 2 of 3\n\nCalculated locally: **72**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.\n\n### compare\nPart 3 of 3\n\nCache stores reusable resources such as images and scripts. Cookies store small values sent with matching requests, often for sign-in or preferences. Clearing cache can force downloads; clearing cookies can sign you out. Neither action should be used as a universal fix.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "dns"
+          ],
+          "subjects": [
+            "dns"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "calculate",
+          "status": "answered",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [],
+          "value": {
+            "kind": "number",
+            "value": 72
+          }
+        },
+        {
+          "id": 2,
+          "intent": "compare",
+          "status": "answered",
+          "sources": [
+            "cache",
+            "cookies"
+          ],
+          "subjects": [
+            "cache",
+            "cookies"
+          ],
+          "dependsOn": []
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "arithmetic-1",
+      "category": "arithmetic",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 2.7168280000000777,
+      "text": "### calculate\nPart 1 of 2\n\nCalculated locally: **85.5**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.\n\n### calculate\nPart 2 of 2\n\nCalculated locally: **171**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "calculate",
+          "status": "answered",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [],
+          "value": {
+            "kind": "number",
+            "value": 85.5
+          }
+        },
+        {
+          "id": 1,
+          "intent": "calculate",
+          "status": "answered",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [
+            0
+          ],
+          "value": {
+            "kind": "number",
+            "value": 171
+          }
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "arithmetic-2",
+      "category": "arithmetic",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 0.5023759999999129,
+      "text": "### calculate\nPart 1 of 3\n\nCalculated locally: **72**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.\n\n### calculate\nPart 2 of 3\n\nCalculated locally: **77**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.\n\n### calculate\nPart 3 of 3\n\nCalculated locally: **11**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "calculate",
+          "status": "answered",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [],
+          "value": {
+            "kind": "number",
+            "value": 72
+          }
+        },
+        {
+          "id": 1,
+          "intent": "calculate",
+          "status": "answered",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [
+            0
+          ],
+          "value": {
+            "kind": "number",
+            "value": 77
+          }
+        },
+        {
+          "id": 2,
+          "intent": "calculate",
+          "status": "answered",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [
+            1
+          ],
+          "value": {
+            "kind": "number",
+            "value": 11
+          }
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "arithmetic-3",
+      "category": "arithmetic",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 0.34831400000007307,
+      "text": "### calculate\nPart 1 of 2\n\nCalculated locally: **21**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.\n\n### calculate\nPart 2 of 2\n\nCalculated locally: **12**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "calculate",
+          "status": "answered",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [],
+          "value": {
+            "kind": "number",
+            "value": 21
+          }
+        },
+        {
+          "id": 1,
+          "intent": "calculate",
+          "status": "answered",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [
+            0
+          ],
+          "value": {
+            "kind": "number",
+            "value": 12
+          }
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "arithmetic-4",
+      "category": "arithmetic",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 0.3463009999998121,
+      "text": "### calculate\nPart 1 of 2\n\nCalculated locally: **0.333333333333**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.\n\n### calculate\nPart 2 of 2\n\nCalculated locally: **1**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "calculate",
+          "status": "answered",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [],
+          "value": {
+            "kind": "number",
+            "value": 0.3333333333333333
+          }
+        },
+        {
+          "id": 1,
+          "intent": "calculate",
+          "status": "answered",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [
+            0
+          ],
+          "value": {
+            "kind": "number",
+            "value": 1
+          }
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "arithmetic-5",
+      "category": "arithmetic",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 0.40339700000004086,
+      "text": "### calculate\nPart 1 of 2\n\nCalculated locally: **1 seconds**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.\n\n### calculate\nPart 2 of 2\n\nCalculated locally: **0.0166666666667 minutes**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "calculate",
+          "status": "answered",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [],
+          "value": {
+            "kind": "number",
+            "value": 1,
+            "unit": "seconds"
+          }
+        },
+        {
+          "id": 1,
+          "intent": "calculate",
+          "status": "answered",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [
+            0
+          ],
+          "value": {
+            "kind": "number",
+            "value": 0.016666666666666666,
+            "unit": "minutes"
+          }
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "arithmetic-6",
+      "category": "arithmetic",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 0.39702699999998003,
+      "text": "### calculate\nPart 1 of 2\n\nCalculated locally: **4**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.\n\n### calculate\nPart 2 of 2\n\nCalculated locally: **5**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "calculate",
+          "status": "answered",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [],
+          "value": {
+            "kind": "number",
+            "value": 4
+          }
+        },
+        {
+          "id": 1,
+          "intent": "calculate",
+          "status": "answered",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [
+            0
+          ],
+          "value": {
+            "kind": "number",
+            "value": 5
+          }
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "arithmetic-7",
+      "category": "arithmetic",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 0.8940749999999298,
+      "text": "### calculate\nPart 1 of 2\n\nCannot calculate: division by zero is undefined.\n\n### 2. Clarification needed\nWhich calculation result does “the result” refer to? This part needs a completed, unambiguous calculation from its preceding part.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "calculate",
+          "status": "needs-information",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "calculate",
+          "status": "needs-information",
+          "sources": [],
+          "dependsOn": [
+            0
+          ]
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "arithmetic-8",
+      "category": "arithmetic",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 1.3807569999999032,
+      "text": "### DNS\nPart 1 of 2\n\nDNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.\n\n### 2. Clarification needed\nWhich calculation result does “the result” refer to? This part needs a completed, unambiguous calculation from its preceding part.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "dns"
+          ],
+          "subjects": [
+            "dns"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "calculate",
+          "status": "needs-information",
+          "sources": [],
+          "dependsOn": [
+            0
+          ]
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "arithmetic-9",
+      "category": "arithmetic",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 0.719733000000133,
+      "text": "### calculate\nPart 1 of 2\n\nCalculated locally: **2000000 B**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.\n\n### calculate\nPart 2 of 2\n\nCannot calculate: arithmetic on a unit-bearing result is not supported; use an explicit unit conversion.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "calculate",
+          "status": "answered",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [],
+          "value": {
+            "kind": "number",
+            "value": 2000000,
+            "unit": "B"
+          }
+        },
+        {
+          "id": 1,
+          "intent": "calculate",
+          "status": "needs-information",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [
+            0
+          ]
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "arithmetic-10",
+      "category": "arithmetic",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 0.4548339999998916,
+      "text": "### calculate\nPart 1 of 3\n\nCalculated locally: **6**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.\n\n### calculate\nPart 2 of 3\n\nCalculated locally: **20**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.\n\n### calculate\nPart 3 of 3\n\nCalculated locally: **22**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "calculate",
+          "status": "answered",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [],
+          "value": {
+            "kind": "number",
+            "value": 6
+          }
+        },
+        {
+          "id": 1,
+          "intent": "calculate",
+          "status": "answered",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [],
+          "value": {
+            "kind": "number",
+            "value": 20
+          }
+        },
+        {
+          "id": 2,
+          "intent": "calculate",
+          "status": "answered",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [
+            1
+          ],
+          "value": {
+            "kind": "number",
+            "value": 22
+          }
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "isolation-1",
+      "category": "isolation",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 0.6523009999998521,
+      "text": "### DNS\nPart 1 of 2\n\nDNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.\n\n### 2. Separate action required\nSend this command or public lookup as a separate explicit request.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "dns"
+          ],
+          "subjects": [
+            "dns"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "unknown",
+          "status": "blocked",
+          "sources": []
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "isolation-2",
+      "category": "isolation",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 0.6032069999998839,
+      "text": "### WebGPU\nPart 1 of 2\n\nWebGPU supports graphics and compute workloads in compatible secure contexts. Adapter availability depends on browser, operating system, and device policy; it is not a system GPU-utilization monitor.\n\n### 2. Separate action required\nSend this command or public lookup as a separate explicit request.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "webgpu"
+          ],
+          "subjects": [
+            "webgpu"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "unknown",
+          "status": "blocked",
+          "sources": []
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "isolation-3",
+      "category": "isolation",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 0.8963889999999992,
+      "text": "### DNS\nPart 1 of 2\n\nDNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.\n\n### Request\nPart 2 of 2\n\nI cannot perform that data-access operation from this request. Use a supported explicit command or select a local document for analysis. No private files, credentials or account data were accessed or transferred.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "dns"
+          ],
+          "subjects": [
+            "dns"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "unknown",
+          "status": "needs-information",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": []
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "isolation-4",
+      "category": "isolation",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 4.019026999999824,
+      "text": "### WebGPU\nPart 1 of 2\n\nWebGPU supports graphics and compute workloads in compatible secure contexts. Adapter availability depends on browser, operating system, and device policy; it is not a system GPU-utilization monitor.\n\n### compare\nPart 2 of 2\n\nI need two clearly supported subjects for a sourced comparison. Try /compare WebGPU | WebGL.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "webgpu"
+          ],
+          "subjects": [
+            "webgpu"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "compare",
+          "status": "needs-information",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [
+            0
+          ]
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "isolation-5",
+      "category": "isolation",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 2.947063999999955,
+      "text": "### WebGPU\nPart 1 of 2\n\nWebGPU supports graphics and compute workloads in compatible secure contexts. Adapter availability depends on browser, operating system, and device policy; it is not a system GPU-utilization monitor.\n\n### compare\nPart 2 of 2\n\nI need two clearly supported subjects for a sourced comparison. Try /compare WebGPU | WebGL.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "webgpu"
+          ],
+          "subjects": [
+            "webgpu"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "compare",
+          "status": "needs-information",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [
+            0
+          ]
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "isolation-6",
+      "category": "isolation",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 4.23054500000012,
+      "text": "### DNS\nPart 1 of 2\n\nDNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.\n\n### compare\nPart 2 of 2\n\nI need two clearly supported subjects for a sourced comparison. Try /compare WebGPU | WebGL.",
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "dns"
+          ],
+          "subjects": [
+            "dns"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "compare",
+          "status": "needs-information",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": [
+            0
+          ]
+        }
+      ],
+      "operation": null
+    },
+    {
+      "id": "payload-1",
+      "category": "payload",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 1.5942479999998795,
+      "text": "Local text counts: 6 words; 36 Unicode code points; 36 UTF-16 code units; 36 UTF-8 bytes; 1 lines.\n\nWords use letter/number groups. Code points are not necessarily displayed grapheme clusters.",
+      "tasks": [],
+      "operation": {
+        "name": "text",
+        "status": "completed"
+      }
+    },
+    {
+      "id": "payload-2",
+      "category": "payload",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 0.7438489999999547,
+      "text": "Local analysis of user-provided, untrusted text (44 characters, 1 lines); no commands were executed.\n\nStructurally valid JSON. This does not validate an application schema.\n\n```json\n{\n  \"note\": \"Explain DNS, then calculate 7 * 8\"\n}\n```",
+      "tasks": [],
+      "operation": {
+        "name": "analyze",
+        "status": "completed"
+      }
+    },
+    {
+      "id": "payload-3",
+      "category": "payload",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 44.091449999999895,
+      "text": "I don’t have a reliable answer to that yet. I can help with browser settings, device information, performance, privacy, and troubleshooting. Could you describe the specific feature or symptom?",
+      "tasks": [],
+      "operation": null
+    },
+    {
+      "id": "payload-4",
+      "category": "payload",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 12.974110999999994,
+      "text": "I don’t have a reliable answer to that yet. I can help with browser settings, device information, performance, privacy, and troubleshooting. Could you describe the specific feature or symptom?",
+      "tasks": [],
+      "operation": null
+    },
+    {
+      "id": "payload-5",
+      "category": "payload",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 7.842239999999947,
+      "text": "I don’t have a reliable answer to that yet. I can help with browser settings, device information, performance, privacy, and troubleshooting. Could you describe the specific feature or symptom?",
+      "tasks": [],
+      "operation": null
+    },
+    {
+      "id": "payload-6",
+      "category": "payload",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "excludes": true,
+        "operation": true,
+        "tasks": true,
+        "safety": true
+      },
+      "ms": 0.8475860000000921,
+      "text": "WebGPU: unavailable.\n\nAPI presence is not a successful operation or an installation guarantee.",
+      "tasks": [],
+      "operation": null
+    }
+  ]
+}

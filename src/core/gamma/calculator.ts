@@ -36,36 +36,80 @@ function finite(value: number) {
   return value;
 }
 const display = (n: number) => String(Number(n.toPrecision(12)));
-export function calculate(input: string): string {
+export type NumericValue = { kind: "number"; value: number; unit?: string };
+export const displayValue = (result: NumericValue): string =>
+  `${display(result.value)}${result.unit ? ` ${result.unit}` : ""}`;
+export function calculateValue(
+  input: string,
+  previous?: NumericValue,
+): NumericValue {
   if (!input.trim() || input.length > 500)
     throw new Error("provide an expression of 1–500 characters");
-  const conversion = input
-    .trim()
-    .match(
-      new RegExp(`^([+-]?${number})\\s*([A-Za-z]+)\\s+to\\s+([A-Za-z]+)$`),
-    );
-  if (conversion) {
-    const [, raw, from, to] = conversion,
-      a = units[from],
+  const boundValue = () => {
+    if (!previous || previous.kind !== "number")
+      throw new Error(
+        "the result requires a completed prior calculation in this request",
+      );
+    return finite(previous.value);
+  };
+  const scalar = (raw: string) => {
+    if (raw.toLowerCase() !== "result") return finite(Number(raw));
+    const value = boundValue();
+    if (previous!.unit)
+      throw new Error(
+        "arithmetic on a unit-bearing result is not supported; use an explicit unit conversion",
+      );
+    return value;
+  };
+  const convert = (value: number, from: string, to: string): NumericValue => {
+    const a = units[from],
       b = units[to];
     if (!a || !b)
       throw new Error(
         "unsupported unit; use exact units such as MB, MiB, hours, minutes, C or F",
       );
     if (a[0] !== b[0]) throw new Error("incompatible unit dimensions");
-    const base = finite(Number(raw) * a[1] + (a[2] ?? 0));
+    const base = finite(value * a[1] + (a[2] ?? 0));
     if (a[0] === "temperature" && base < 0)
       throw new Error("temperature is below absolute zero");
-    return `${display(finite((base - (b[2] ?? 0)) / b[1]))} ${to}`;
+    return {
+      kind: "number",
+      value: finite((base - (b[2] ?? 0)) / b[1]),
+      unit: to,
+    };
+  };
+  const boundConversion = input.trim().match(/^result\s+to\s+([A-Za-z]+)$/i);
+  if (boundConversion) {
+    const value = boundValue();
+    if (!previous!.unit)
+      throw new Error("the prior result has no unit to convert");
+    return convert(value, previous!.unit, boundConversion[1]);
+  }
+  const conversion = input
+    .trim()
+    .match(
+      new RegExp(`^([+-]?${number})\\s*([A-Za-z]+)\\s+to\\s+([A-Za-z]+)$`),
+    );
+  if (conversion) {
+    const [, raw, from, to] = conversion;
+    return convert(finite(Number(raw)), from, to);
   }
   const percent = input
     .trim()
-    .match(new RegExp(`^([+-]?${number})%\\s+of\\s+([+-]?${number})$`));
+    .match(
+      new RegExp(
+        `^([+-]?${number}|result)%\\s+of\\s+([+-]?${number}|result)$`,
+        "i",
+      ),
+    );
   if (percent)
-    return display(finite((Number(percent[1]) / 100) * Number(percent[2])));
+    return {
+      kind: "number",
+      value: finite((scalar(percent[1]) / 100) * scalar(percent[2])),
+    };
   if (/\d\s+\d/.test(input)) throw new Error("unsupported adjacent numbers");
   const raw = input.replace(/\s+/g, "");
-  const tokens = raw.match(/\d+(?:\.\d*)?|\.\d+|[()+\-*/%]/g) ?? [];
+  const tokens = raw.match(/result|\d+(?:\.\d*)?|\.\d+|[()+\-*/%]/gi) ?? [];
   if (tokens.join("") !== raw || tokens.length > 150)
     throw new Error(
       "unsupported expression; use numbers, parentheses, +, -, *, / and postfix %",
@@ -86,9 +130,9 @@ export function calculate(input: string): string {
         throw new Error("missing closing parenthesis");
     } else {
       const token = tokens[index++];
-      if (!token || !/^\d|^\.\d/.test(token))
+      if (!token || !/^\d|^\.\d|^result$/i.test(token))
         throw new Error("expected a number");
-      value = finite(Number(token));
+      value = scalar(token);
     }
     if (peek() === "%") {
       index++;
@@ -120,5 +164,8 @@ export function calculate(input: string): string {
   const result = expression();
   if (index !== tokens.length)
     throw new Error("unsupported or incomplete expression");
-  return display(result);
+  return { kind: "number", value: result };
+}
+export function calculate(input: string): string {
+  return displayValue(calculateValue(input));
 }

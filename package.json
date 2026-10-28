@@ -28,7 +28,8 @@
     "check:payload": "node scripts/check-payload.mjs",
     "evaluate:semantic-heldout": "tsx scripts/evaluate-semantic-heldout.ts",
     "evaluate:gamma4": "tsx scripts/evaluate-gamma4.ts",
-    "evaluate:capabilities": "tsx scripts/evaluate-capabilities.ts"
+    "evaluate:capabilities": "tsx scripts/evaluate-capabilities.ts",
+    "evaluate:composition": "tsx scripts/evaluate-composition.ts"
   },
   "dependencies": {
     "@huggingface/transformers": "3.8.1",

@@ -1,0 +1,249 @@
+{
+  "scope": "Implementer-authored capability acceptance checks, developed with the implementation. Regression coverage, not an independent or unseen intelligence benchmark.",
+  "fixtureSha256": "6b1564106a87e927cf7efb66c43da762e10da533602ed6d9f35537986d1cf5dc",
+  "total": 20,
+  "passed": 20,
+  "unauthorizedNetworkRequests": 0,
+  "results": [
+    {
+      "id": "statistics",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    },
+    {
+      "id": "statistics-singleton",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    },
+    {
+      "id": "statistics-rejection",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    },
+    {
+      "id": "csv-quoted",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    },
+    {
+      "id": "csv-formulas",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    },
+    {
+      "id": "csv-invalid",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    },
+    {
+      "id": "unicode-text",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    },
+    {
+      "id": "text-difference",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    },
+    {
+      "id": "deduction",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    },
+    {
+      "id": "no-converse",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    },
+    {
+      "id": "document-citation",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    },
+    {
+      "id": "document-summary",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    },
+    {
+      "id": "document-conflict",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    },
+    {
+      "id": "document-injection",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    },
+    {
+      "id": "missing-document",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    },
+    {
+      "id": "french-definition",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    },
+    {
+      "id": "french-calculation",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    },
+    {
+      "id": "french-unsupported",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    },
+    {
+      "id": "multi-operation",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    },
+    {
+      "id": "multi-evidence",
+      "passed": true,
+      "checks": {
+        "text": true,
+        "operation": true,
+        "status": true,
+        "sources": true,
+        "parts": true,
+        "safety": true
+      }
+    }
+  ]
+}

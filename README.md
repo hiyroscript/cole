@@ -1,6 +1,6 @@
 # Cole
 
-Gamma 4.0 adds typed educational question frames, source-separated tasks, indexed evidence checks, statistics/CSV/text/deduction tools, local PDF/DOCX/text analysis, dated MDN compatibility research, comparison follow-ups, explicit preferences and a bounded French path. Experimental website-only Deep Mode can draft from selected evidence using an explicitly downloaded local CPU model. Broad intelligence quality targets remain unmet. See [measured results and remaining work](docs/GAMMA4-DELIVERY.md) and the latest [Core understanding results](docs/GAMMA4-UNDERSTANDING.md).
+Gamma 4.0 adds typed educational question frames, scoped subject/group references, dependent calculations, indexed evidence checks, statistics/CSV/text/deduction tools, local PDF/DOCX/text analysis, dated MDN compatibility research, comparison follow-ups, explicit preferences and a bounded French path. Experimental website-only Deep Mode can draft from selected evidence using an explicitly downloaded local CPU model. Broad intelligence quality targets remain unmet. See [measured results and remaining work](docs/GAMMA4-DELIVERY.md) and the latest [composition results](docs/GAMMA4-COMPOSITION.md).
 
 Gamma 3.0 adds optional knowledge packs, local documents and calculations, evidence-based troubleshooting, explicit preference memory and experimental semantic acceptance. Startup is within budget; broader quality targets remain unmet. See the [implementation and measured release gates](docs/GAMMA3-DELIVERY.md).
 
@@ -15,6 +15,7 @@ Gamma now has a modular lexical/context/diagnostic pipeline and an optional loca
 - **708 core + 120 optional records**, with **3,067** distinct expressions across the installed corpus.
 - **75** diagnostic workflows and **560** terminal branch paths.
 - **300** authored multi-turn test scenarios, plus expression, safety, storage, graph and browser regression tests.
+- Up to six tasks per request, including dependent calculations such as “Calculate 18% of 475, then multiply the result by 2.” Numeric results are retained only within that request; unit conversions preserve dimensions.
 - Technical entities, symptom exclusions, conservative BM25/phrase ranking, multi-choice diagnostic state, real feature checks, contextual browser references and four response depths.
 - Optional CPU/WASM sentence embeddings with explicit consent, progress, cache management and lexical fallback.
 - Explicit public Wikimedia lookup; `/research mdn webgpu` compares two immutable MDN compatibility revisions after `/web on`. Other supported MDN topics: `webgl`, `webassembly`, `service worker`, `indexeddb`.

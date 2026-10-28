@@ -1,6 +1,7 @@
 import type { CaseState } from "./gamma/case-state";
 import type { ModelId } from "./models";
 import type { Source } from "./madon/sources";
+import type { NumericValue } from "./gamma/calculator";
 export type Depth = "brief" | "standard" | "detailed" | "steps";
 export type Thinking = "auto" | "on" | "off";
 export type Evidence = {
@@ -72,12 +73,19 @@ export type Knowledge = {
   confidence?: number;
 };
 export type Response = {
-  operation?: { name: string; status: "completed" | "rejected" };
+  operation?: {
+    name: string;
+    status: "completed" | "rejected";
+    value?: NumericValue;
+  };
   tasks?: {
     id: number;
     intent: string;
     status: "answered" | "needs-information" | "blocked";
     sources: string[];
+    subjects?: string[];
+    dependsOn?: number[];
+    value?: NumericValue;
   }[];
   sources?: Source[];
   text: string;

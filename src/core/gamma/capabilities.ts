@@ -5,7 +5,12 @@ import {
   textDifference,
   deduce,
 } from "./data-tools";
-import { calculate } from "./calculator";
+import {
+  calculate,
+  calculateValue,
+  displayValue,
+  type NumericValue,
+} from "./calculator";
 export type Capability = {
   name: "calculate" | "analyze" | "stats" | "csv" | "text" | "diff" | "logic";
   description: string;
@@ -108,11 +113,13 @@ export type CapabilityResult = {
   name: string;
   status: "completed" | "rejected";
   text: string;
+  value?: NumericValue;
 };
 export function executeCapability(
   name: string,
   input: string,
   signal?: AbortSignal,
+  previous?: NumericValue,
 ): CapabilityResult {
   signal?.throwIfAborted();
   const capability = capabilities.find((c) => c.name === name);
@@ -127,11 +134,14 @@ export function executeCapability(
       `Use /${name} with 1–${capability.maxCharacters} characters of explicit input.`,
     );
   try {
-    const output = capability.execute(input);
+    const value =
+      name === "calculate" ? calculateValue(input, previous) : undefined;
+    const output = value ? displayValue(value) : capability.execute(input);
     signal?.throwIfAborted();
     return {
       name,
       status: "completed",
+      value,
       text:
         name === "calculate"
           ? `Calculated locally: **${output}**\n\nDeterministic arithmetic, rounded to 12 significant digits. Percent means division by 100; unit names are case-sensitive.`

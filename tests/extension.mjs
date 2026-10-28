@@ -86,6 +86,9 @@ try {
     ["Could you give me a brief explanation of ETags?", "opaque validator"],
     ["What is the purpose of WebSockets?", "two-way connection"],
     ["What does status code 499 mean?", "reliable answer"],
+    ["Calculate 18% of 475, then multiply the result by 2.", "171"],
+    ["Explain WebGPU and WebGL, then compare them.", "Part 3 of 3"],
+    ["Calculate 1 / 0, then multiply the result by 2.", "Clarification needed"],
   ]) {
     await panel.getByRole("textbox", { name: "Message Gamma" }).fill(query);
     await panel

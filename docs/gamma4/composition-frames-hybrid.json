@@ -1,0 +1,780 @@
+{
+  "mode": "Real MiniLM score replay; latency excludes inference.",
+  "semanticMissing": [],
+  "scope": "32 implementer-authored prospective Core question-frame probes, frozen before implementation. Narrow purposive coverage, not an independent holdout or a general intelligence estimate. Mixed execution requests require no unauthorized effect and partial completion is checked separately.",
+  "fixtureSha256": "54071c957369f94fb3f01a1340f8117fd34c9570f1b69c4d8414b013e0bd87ba",
+  "date": "2026-10-28T14:41:16.412Z",
+  "categories": {
+    "supported": {
+      "passed": 16,
+      "total": 16
+    },
+    "unsupported": {
+      "passed": 7,
+      "total": 8
+    },
+    "conversation": {
+      "passed": 4,
+      "total": 4
+    },
+    "compound": {
+      "passed": 4,
+      "total": 4
+    }
+  },
+  "recallAt10": 1,
+  "unapprovedNetworkRequests": 0,
+  "results": [
+    {
+      "id": "supported-1",
+      "category": "supported",
+      "passed": true,
+      "actual": "etag",
+      "recallAt10": true,
+      "ms": 13.944491000000028,
+      "turns": [
+        {
+          "text": "An ETag identifies a particular representation so a client can ask whether it changed. It is an opaque validator, not necessarily a content hash.",
+          "intent": "etag",
+          "effect": null,
+          "sources": [
+            "etag"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-2",
+      "category": "supported",
+      "passed": true,
+      "actual": "websocket",
+      "recallAt10": true,
+      "ms": 2.9007139999999936,
+      "turns": [
+        {
+          "text": "WebSockets maintain a two-way connection between a browser and server. Idle timeouts, proxies, or server restarts can disconnect them.",
+          "intent": "websocket",
+          "effect": null,
+          "sources": [
+            "websocket"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-3",
+      "category": "supported",
+      "passed": true,
+      "actual": "passkeys",
+      "recallAt10": true,
+      "ms": 0.8807749999999714,
+      "turns": [
+        {
+          "text": "Passkeys use public-key authentication tied to the website’s identity. They resist phishing better than passwords, but recovery and device synchronization depend on the provider.",
+          "intent": "passkeys",
+          "effect": null,
+          "sources": [
+            "passkeys"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-4",
+      "category": "supported",
+      "passed": true,
+      "actual": "dom",
+      "recallAt10": true,
+      "ms": 0.8389129999999909,
+      "turns": [
+        {
+          "text": "The DOM is an object representation of a document. Scripts can read and modify it, causing changes to layout or behavior.",
+          "intent": "dom",
+          "effect": null,
+          "sources": [
+            "dom"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-5",
+      "category": "supported",
+      "passed": true,
+      "actual": "cache-control",
+      "recallAt10": true,
+      "ms": 1.169569000000024,
+      "turns": [
+        {
+          "text": "Cache-Control defines caching rules. No-cache permits storage but requires validation; no-store asks caches not to store the response. They are not interchangeable.",
+          "intent": "cache-control",
+          "effect": null,
+          "sources": [
+            "cache-control"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-6",
+      "category": "supported",
+      "passed": true,
+      "actual": "html",
+      "recallAt10": true,
+      "ms": 0.8504989999999566,
+      "turns": [
+        {
+          "text": "HTML describes the structure and semantics of a web document. Semantic elements help browsers, assistive technologies, and search systems understand content roles.",
+          "intent": "html",
+          "effect": null,
+          "sources": [
+            "html"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-7",
+      "category": "supported",
+      "passed": true,
+      "actual": "http415",
+      "recallAt10": true,
+      "ms": 4.908025000000009,
+      "turns": [
+        {
+          "text": "HTTP 415 means the server does not support the submitted media type or encoding for that endpoint.",
+          "intent": "http415",
+          "effect": null,
+          "sources": [
+            "http415"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-8",
+      "category": "supported",
+      "passed": true,
+      "actual": "wasm",
+      "recallAt10": true,
+      "ms": 0.6640790000000152,
+      "turns": [
+        {
+          "text": "WebAssembly is a compact code format designed for portable execution. In a browser it operates within sandbox and API constraints; it does not grant unrestricted system access.",
+          "intent": "wasm",
+          "effect": null,
+          "sources": [
+            "wasm"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-9",
+      "category": "supported",
+      "passed": true,
+      "actual": "web-manifest",
+      "recallAt10": true,
+      "ms": 15.661174000000017,
+      "turns": [
+        {
+          "text": "A web app manifest supplies installation metadata such as name, icons, start URL, and scope. It does not itself implement offline caching.",
+          "intent": "web-manifest",
+          "effect": null,
+          "sources": [
+            "web-manifest"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-10",
+      "category": "supported",
+      "passed": true,
+      "actual": "js",
+      "recallAt10": true,
+      "ms": 0.6750059999999962,
+      "turns": [
+        {
+          "text": "JavaScript supplies behavior to web pages and can use browser APIs within security boundaries. It is not the same language as Java.",
+          "intent": "js",
+          "effect": null,
+          "sources": [
+            "js"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-11",
+      "category": "supported",
+      "passed": true,
+      "actual": "csp",
+      "recallAt10": true,
+      "ms": 0.5580700000000434,
+      "turns": [
+        {
+          "text": "CSP restricts which resources a page may execute or load. It can reduce injection impact but does not replace safe rendering and input handling.",
+          "intent": "csp",
+          "effect": null,
+          "sources": [
+            "csp"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-12",
+      "category": "supported",
+      "passed": true,
+      "actual": "dns",
+      "recallAt10": true,
+      "ms": 0.7559469999999919,
+      "turns": [
+        {
+          "text": "DNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.",
+          "intent": "dns",
+          "effect": null,
+          "sources": [
+            "dns"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-13",
+      "category": "supported",
+      "passed": true,
+      "actual": "sessionstorage",
+      "recallAt10": true,
+      "ms": 0.48779400000000805,
+      "turns": [
+        {
+          "text": "sessionStorage stores per-origin data in a browsing session associated with a tab. Reloads usually preserve it; closing the tab ends the session. It is distinct from session cookies.",
+          "intent": "sessionstorage",
+          "effect": null,
+          "sources": [
+            "sessionstorage"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-14",
+      "category": "supported",
+      "passed": true,
+      "actual": "webgl",
+      "recallAt10": true,
+      "ms": 0.4673530000000028,
+      "turns": [
+        {
+          "text": "WebGL provides GPU-accelerated graphics through a browser-managed context. Contexts may be lost because of resource pressure, resets, or policy.",
+          "intent": "webgl",
+          "effect": null,
+          "sources": [
+            "webgl"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-15",
+      "category": "supported",
+      "passed": true,
+      "actual": "localstorage",
+      "recallAt10": true,
+      "ms": 0.5976890000000026,
+      "turns": [
+        {
+          "text": "localStorage holds string key-value data for an origin and is synchronous. It can be cleared by the user and may be unavailable or restricted. It is not an appropriate place for secrets that must be hidden from site scripts.",
+          "intent": "localstorage",
+          "effect": null,
+          "sources": [
+            "localstorage"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "supported-16",
+      "category": "supported",
+      "passed": true,
+      "actual": "http410",
+      "recallAt10": true,
+      "ms": 0.596006999999986,
+      "turns": [
+        {
+          "text": "HTTP 410 indicates that the server considers the resource no longer available, often permanently. A local cache reset is unlikely to restore it.",
+          "intent": "http410",
+          "effect": null,
+          "sources": [
+            "http410"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "unsupported-1",
+      "category": "unsupported",
+      "passed": true,
+      "actual": null,
+      "recallAt10": false,
+      "ms": 1.104442000000006,
+      "turns": [
+        {
+          "text": "I don’t have a reliable answer to that yet. I can help with browser settings, device information, performance, privacy, and troubleshooting. Could you describe the specific feature or symptom?",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "unsupported-2",
+      "category": "unsupported",
+      "passed": true,
+      "actual": null,
+      "recallAt10": false,
+      "ms": 4.56486799999999,
+      "turns": [
+        {
+          "text": "I don’t have a reliable answer to that yet. I can help with browser settings, device information, performance, privacy, and troubleshooting. Could you describe the specific feature or symptom?",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "unsupported-3",
+      "category": "unsupported",
+      "passed": true,
+      "actual": null,
+      "recallAt10": false,
+      "ms": 2.40476799999999,
+      "turns": [
+        {
+          "text": "I found potentially related local guidance. Are you asking about webassembly or choosing local files or extension host permissions? Semantic similarity alone does not establish the answer.",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "unsupported-4",
+      "category": "unsupported",
+      "passed": true,
+      "actual": null,
+      "recallAt10": false,
+      "ms": 2.8040090000000077,
+      "turns": [
+        {
+          "text": "I found potentially related local guidance. Are you asking about secure dns and managed networks or dnssec scope or find text on a page? Semantic similarity alone does not establish the answer.",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "unsupported-5",
+      "category": "unsupported",
+      "passed": true,
+      "actual": null,
+      "recallAt10": false,
+      "ms": 1.7554509999999937,
+      "turns": [
+        {
+          "text": "I don’t have a reliable answer for every requested detail. Negated conditions need explicit reconciliation before expanded acceptance. Related guidance is not evidence of the missing detail.",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "unsupported-6",
+      "category": "unsupported",
+      "passed": true,
+      "actual": null,
+      "recallAt10": false,
+      "ms": 32.01687399999997,
+      "turns": [
+        {
+          "text": "I don’t have a reliable answer to that yet. I can help with browser settings, device information, performance, privacy, and troubleshooting. Could you describe the specific feature or symptom?",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "unsupported-7",
+      "category": "unsupported",
+      "passed": true,
+      "actual": null,
+      "recallAt10": false,
+      "ms": 6.628242999999998,
+      "turns": [
+        {
+          "text": "I don’t have a reliable answer for every requested detail. The record does not establish every requested detail. Related guidance is not evidence of the missing detail.",
+          "intent": null,
+          "effect": null,
+          "sources": []
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "unsupported-8",
+      "category": "unsupported",
+      "passed": false,
+      "actual": "dns",
+      "recallAt10": false,
+      "ms": 1.1596149999999739,
+      "turns": [
+        {
+          "text": "### DNS\nPart 1 of 2\n\nDNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.\n\n### Request\nPart 2 of 2\n\nI cannot perform that data-access operation from this request. Use a supported explicit command or select a local document for analysis. No private files, credentials or account data were accessed or transferred.",
+          "intent": "dns",
+          "effect": null,
+          "sources": [
+            "dns"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "dns"
+          ],
+          "subjects": [
+            "dns"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "unknown",
+          "status": "needs-information",
+          "sources": [],
+          "subjects": [],
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "conversation-1",
+      "category": "conversation",
+      "passed": true,
+      "actual": "websocket",
+      "recallAt10": false,
+      "ms": 0.5982300000000009,
+      "turns": [
+        {
+          "text": "WebSockets maintain a two-way connection between a browser and server. Idle timeouts, proxies, or server restarts can disconnect them.",
+          "intent": "websocket",
+          "effect": null,
+          "sources": [
+            "websocket"
+          ]
+        },
+        {
+          "text": "WebSockets maintain a two-way connection between a browser and server. Idle timeouts, proxies, or server restarts can disconnect them.\n\n1. Applications should reconnect with backoff and restore state rather than retrying in a tight loop.\n\nReference: [Web platform documentation](https://developer.mozilla.org/en-US/docs/Web).",
+          "intent": "websocket",
+          "effect": null,
+          "sources": [
+            "websocket"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "conversation-2",
+      "category": "conversation",
+      "passed": true,
+      "actual": "dns",
+      "recallAt10": false,
+      "ms": 0.518039999999985,
+      "turns": [
+        {
+          "text": "DNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.",
+          "intent": "dns",
+          "effect": null,
+          "sources": [
+            "dns"
+          ]
+        },
+        {
+          "text": "DNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.\n\n1. Check the spelling of the domain.\n2. Try another website.\n3. Restart your network connection before changing resolver settings.\n4. Record existing DNS settings before any deliberate change.\n\nReference: [Web platform documentation](https://developer.mozilla.org/en-US/docs/Web).",
+          "intent": "dns",
+          "effect": null,
+          "sources": [
+            "dns"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "conversation-3",
+      "category": "conversation",
+      "passed": true,
+      "actual": "http415",
+      "recallAt10": false,
+      "ms": 0.5369079999999826,
+      "turns": [
+        {
+          "text": "HTTP 415 means the server does not support the submitted media type or encoding for that endpoint.",
+          "intent": "http415",
+          "effect": null,
+          "sources": [
+            "http415"
+          ]
+        },
+        {
+          "text": "HTTP 415 means the server does not support the submitted media type or encoding for that endpoint.\n\n1. Use an accepted file format or correct the Content-Type when developing the client.",
+          "intent": "http415",
+          "effect": null,
+          "sources": [
+            "http415"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "conversation-4",
+      "category": "conversation",
+      "passed": true,
+      "actual": "csp",
+      "recallAt10": false,
+      "ms": 0.45694700000001376,
+      "turns": [
+        {
+          "text": "CSP restricts which resources a page may execute or load. It can reduce injection impact but does not replace safe rendering and input handling.",
+          "intent": "csp",
+          "effect": null,
+          "sources": [
+            "csp"
+          ]
+        },
+        {
+          "text": "CSP restricts which resources a page may execute or load. It can reduce injection impact but does not replace safe rendering and input handling.",
+          "intent": "csp",
+          "effect": null,
+          "sources": [
+            "csp"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "compound-1",
+      "category": "compound",
+      "passed": true,
+      "actual": "dns",
+      "recallAt10": false,
+      "ms": 0.8661639999999693,
+      "turns": [
+        {
+          "text": "### WebGL\nPart 1 of 2\n\nWebGL provides GPU-accelerated graphics through a browser-managed context. Contexts may be lost because of resource pressure, resets, or policy.\n\n### DNS\nPart 2 of 2\n\nDNS translates domain names into network addresses. A DNS error can come from a typo, a local resolver, or the domain’s configuration.",
+          "intent": "dns",
+          "effect": null,
+          "sources": [
+            "webgl",
+            "dns"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "webgl"
+          ],
+          "subjects": [
+            "webgl"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "dns"
+          ],
+          "subjects": [
+            "dns"
+          ],
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "compound-2",
+      "category": "compound",
+      "passed": true,
+      "actual": "cache-control",
+      "recallAt10": false,
+      "ms": 0.9692880000000059,
+      "turns": [
+        {
+          "text": "### ETags\nPart 1 of 2\n\nAn ETag identifies a particular representation so a client can ask whether it changed. It is an opaque validator, not necessarily a content hash.\n\n### Cache-Control\nPart 2 of 2\n\nCache-Control defines caching rules. No-cache permits storage but requires validation; no-store asks caches not to store the response. They are not interchangeable.",
+          "intent": "cache-control",
+          "effect": null,
+          "sources": [
+            "etag",
+            "cache-control"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "etag"
+          ],
+          "subjects": [
+            "etag"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "cache-control"
+          ],
+          "subjects": [
+            "cache-control"
+          ],
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "compound-3",
+      "category": "compound",
+      "passed": true,
+      "actual": "js",
+      "recallAt10": false,
+      "ms": 0.8228679999999713,
+      "turns": [
+        {
+          "text": "### DOM\nPart 1 of 2\n\nThe DOM is an object representation of a document. Scripts can read and modify it, causing changes to layout or behavior.\n\n### JavaScript\nPart 2 of 2\n\nJavaScript supplies behavior to web pages and can use browser APIs within security boundaries. It is not the same language as Java.",
+          "intent": "js",
+          "effect": null,
+          "sources": [
+            "dom",
+            "js"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "dom"
+          ],
+          "subjects": [
+            "dom"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "js"
+          ],
+          "subjects": [
+            "js"
+          ],
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "compound-4",
+      "category": "compound",
+      "passed": true,
+      "actual": "http415",
+      "recallAt10": false,
+      "ms": 0.9774610000000052,
+      "turns": [
+        {
+          "text": "### HTTP 410\nPart 1 of 2\n\nHTTP 410 indicates that the server considers the resource no longer available, often permanently. A local cache reset is unlikely to restore it.\n\n### HTTP 415\nPart 2 of 2\n\nHTTP 415 means the server does not support the submitted media type or encoding for that endpoint.",
+          "intent": "http415",
+          "effect": null,
+          "sources": [
+            "http410",
+            "http415"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "id": 0,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "http410"
+          ],
+          "subjects": [
+            "http410"
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": 1,
+          "intent": "explain",
+          "status": "answered",
+          "sources": [
+            "http415"
+          ],
+          "subjects": [
+            "http415"
+          ],
+          "dependsOn": []
+        }
+      ]
+    }
+  ]
+}
