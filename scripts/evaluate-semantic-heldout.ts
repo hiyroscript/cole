@@ -27,6 +27,15 @@ const extraPath =
 if (existsSync(extraPath))
   scores.push(...JSON.parse(readFileSync(extraPath, "utf8")));
 const byQuery = new Map(scores.map((c) => [c.query, c]));
+// Supplement newly exposed engine subqueries without replacing the frozen
+// single-turn fixture's labelled measurements or existing measured queries.
+if (process.env.GAMMA_ADDITIONAL_SCORES) {
+  const additional = JSON.parse(
+    readFileSync(process.env.GAMMA_ADDITIONAL_SCORES, "utf8"),
+  ) as typeof scores;
+  for (const entry of additional)
+    if (!byQuery.has(entry.query)) byQuery.set(entry.query, entry);
+}
 if (
   cases.some(
     (c) =>

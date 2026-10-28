@@ -1,0 +1,3891 @@
+{
+  "date": "2026-10-28T02:32:45.007Z",
+  "fixtureSha256": "1cd146c70004968097e788846ebc36c89fc700c87b8d3673325c2b5cc3f26d2b",
+  "scope": "256 independent supported paraphrases, 100 unsupported requests, 100 composed correction/reference conversations, 100 composed two-topic requests and 50 adversarial data variations. Composed cases are not claimed to be independently authored conversations. No production code consumes this fixture.",
+  "mode": "Lexical/default offline engine; optional packs are not installed, semantic inference is evaluated separately. Citation validity here is URL syntax, not source entailment.",
+  "counts": {
+    "supported": 256,
+    "correctAccepted": 96,
+    "incorrectAccepted": 6,
+    "incorrectAbstentions": 154,
+    "unsupported": 100,
+    "correctAbstentions": 100,
+    "falseAccepted": 0,
+    "recallAt3": 211,
+    "recallAt10": 220,
+    "top1": 181,
+    "conversations": 100,
+    "conversationSuccess": 42,
+    "compound": 100,
+    "compoundComplete": 14,
+    "safety": 50,
+    "safetyPassed": 50,
+    "citations": 0,
+    "validCitations": 0
+  },
+  "acceptedAnswerPrecisionOnSingleTurns": 0.9411764705882353,
+  "supportedAcceptanceAccuracy": 0.375,
+  "unsupportedFalseAcceptRate": 0,
+  "conversationSuccessRate": 0.42,
+  "compoundCompleteRate": 0.14,
+  "recallAt3": 0.82421875,
+  "recallAt10": 0.859375,
+  "p50Ms": 4.933588000000782,
+  "p95Ms": 40.476426000000174,
+  "unapprovedNetworkRequests": 0,
+  "results": [
+    {
+      "id": "supported-1",
+      "category": "supported",
+      "passed": false,
+      "ms": 73.081479
+    },
+    {
+      "id": "supported-2",
+      "category": "supported",
+      "passed": true,
+      "actual": "chrome",
+      "ms": 12.886908999999946
+    },
+    {
+      "id": "supported-3",
+      "category": "supported",
+      "passed": true,
+      "actual": "firefox",
+      "ms": 11.161012999999912
+    },
+    {
+      "id": "supported-4",
+      "category": "supported",
+      "passed": true,
+      "actual": "safari",
+      "ms": 4.6264999999999645
+    },
+    {
+      "id": "supported-5",
+      "category": "supported",
+      "passed": true,
+      "actual": "edge",
+      "ms": 8.755213000000026
+    },
+    {
+      "id": "supported-6",
+      "category": "supported",
+      "passed": true,
+      "actual": "brave",
+      "ms": 4.453890999999999
+    },
+    {
+      "id": "supported-7",
+      "category": "supported",
+      "passed": true,
+      "actual": "engine",
+      "ms": 11.39040799999998
+    },
+    {
+      "id": "supported-8",
+      "category": "supported",
+      "passed": false,
+      "ms": 7.510520999999926
+    },
+    {
+      "id": "supported-9",
+      "category": "supported",
+      "passed": true,
+      "actual": "mobile",
+      "ms": 3.3284580000000688
+    },
+    {
+      "id": "supported-10",
+      "category": "supported",
+      "passed": true,
+      "actual": "update-browser",
+      "ms": 12.95458199999996
+    },
+    {
+      "id": "supported-11",
+      "category": "supported",
+      "passed": true,
+      "actual": "compare",
+      "ms": 0.5720209999999497
+    },
+    {
+      "id": "supported-12",
+      "category": "supported",
+      "passed": false,
+      "ms": 8.310144000000037
+    },
+    {
+      "id": "supported-13",
+      "category": "supported",
+      "passed": false,
+      "ms": 50.87658899999997
+    },
+    {
+      "id": "supported-14",
+      "category": "supported",
+      "passed": false,
+      "ms": 10.787161000000083
+    },
+    {
+      "id": "supported-15",
+      "category": "supported",
+      "passed": true,
+      "actual": "ram",
+      "ms": 3.274126000000024
+    },
+    {
+      "id": "supported-16",
+      "category": "supported",
+      "passed": false,
+      "ms": 9.014853000000016
+    },
+    {
+      "id": "supported-17",
+      "category": "supported",
+      "passed": false,
+      "ms": 42.78198100000009
+    },
+    {
+      "id": "supported-18",
+      "category": "supported",
+      "passed": true,
+      "actual": "acceleration",
+      "ms": 3.0328530000000455
+    },
+    {
+      "id": "supported-19",
+      "category": "supported",
+      "passed": false,
+      "ms": 6.452408999999989
+    },
+    {
+      "id": "supported-20",
+      "category": "supported",
+      "passed": false,
+      "ms": 14.660127999999986
+    },
+    {
+      "id": "supported-21",
+      "category": "supported",
+      "passed": true,
+      "actual": "leak",
+      "ms": 14.841672000000017
+    },
+    {
+      "id": "supported-22",
+      "category": "supported",
+      "passed": false,
+      "ms": 19.629555999999866
+    },
+    {
+      "id": "supported-23",
+      "category": "supported",
+      "passed": true,
+      "actual": "privacy",
+      "ms": 49.584460000000036
+    },
+    {
+      "id": "supported-24",
+      "category": "supported",
+      "passed": true,
+      "actual": "secure",
+      "ms": 12.744876000000204
+    },
+    {
+      "id": "supported-25",
+      "category": "supported",
+      "passed": false,
+      "ms": 2.7091159999999945
+    },
+    {
+      "id": "supported-26",
+      "category": "supported",
+      "passed": false,
+      "ms": 8.073908999999958
+    },
+    {
+      "id": "supported-27",
+      "category": "supported",
+      "passed": true,
+      "actual": "tracking",
+      "ms": 7.694197000000031
+    },
+    {
+      "id": "supported-28",
+      "category": "supported",
+      "passed": false,
+      "ms": 21.739739999999983
+    },
+    {
+      "id": "supported-29",
+      "category": "supported",
+      "passed": true,
+      "actual": "notifications",
+      "ms": 4.636175000000094
+    },
+    {
+      "id": "supported-30",
+      "category": "supported",
+      "passed": true,
+      "actual": "phishing",
+      "ms": 2.601034000000027
+    },
+    {
+      "id": "supported-31",
+      "category": "supported",
+      "passed": true,
+      "actual": "passwords",
+      "ms": 31.153368
+    },
+    {
+      "id": "supported-32",
+      "category": "supported",
+      "passed": false,
+      "ms": 6.58156299999996
+    },
+    {
+      "id": "supported-33",
+      "category": "supported",
+      "passed": false,
+      "ms": 5.366804999999886
+    },
+    {
+      "id": "supported-34",
+      "category": "supported",
+      "passed": false,
+      "ms": 14.99123499999996
+    },
+    {
+      "id": "supported-35",
+      "category": "supported",
+      "passed": false,
+      "ms": 49.14657699999998
+    },
+    {
+      "id": "supported-36",
+      "category": "supported",
+      "passed": false,
+      "ms": 11.069551000000047
+    },
+    {
+      "id": "supported-37",
+      "category": "supported",
+      "passed": true,
+      "actual": "dns",
+      "ms": 41.2802200000001
+    },
+    {
+      "id": "supported-38",
+      "category": "supported",
+      "passed": false,
+      "ms": 7.778935000000047
+    },
+    {
+      "id": "supported-39",
+      "category": "supported",
+      "passed": false,
+      "ms": 1.6274490000000696
+    },
+    {
+      "id": "supported-40",
+      "category": "supported",
+      "passed": true,
+      "actual": "proxy",
+      "ms": 4.814975000000004
+    },
+    {
+      "id": "supported-41",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.551674000000048
+    },
+    {
+      "id": "supported-42",
+      "category": "supported",
+      "passed": true,
+      "actual": "404",
+      "ms": 2.7788909999999305
+    },
+    {
+      "id": "supported-43",
+      "category": "supported",
+      "passed": true,
+      "actual": "403",
+      "ms": 7.020864000000074
+    },
+    {
+      "id": "supported-44",
+      "category": "supported",
+      "passed": false,
+      "ms": 25.864495999999917
+    },
+    {
+      "id": "supported-45",
+      "category": "supported",
+      "passed": true,
+      "actual": "429",
+      "ms": 6.111916000000065
+    },
+    {
+      "id": "supported-46",
+      "category": "supported",
+      "passed": false,
+      "ms": 43.043644000000086
+    },
+    {
+      "id": "supported-47",
+      "category": "supported",
+      "passed": false,
+      "ms": 12.639357000000018
+    },
+    {
+      "id": "supported-48",
+      "category": "supported",
+      "passed": false,
+      "ms": 16.154375999999957
+    },
+    {
+      "id": "supported-49",
+      "category": "supported",
+      "passed": true,
+      "actual": "third-party",
+      "ms": 3.1201840000001084
+    },
+    {
+      "id": "supported-50",
+      "category": "supported",
+      "passed": false,
+      "ms": 7.812605000000076
+    },
+    {
+      "id": "supported-51",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.8484809999999925
+    },
+    {
+      "id": "supported-52",
+      "category": "supported",
+      "passed": false,
+      "ms": 7.186672999999928
+    },
+    {
+      "id": "supported-53",
+      "category": "supported",
+      "passed": true,
+      "actual": "quota",
+      "ms": 11.472050999999965
+    },
+    {
+      "id": "supported-54",
+      "category": "supported",
+      "passed": true,
+      "actual": "persistent",
+      "ms": 45.45252800000003
+    },
+    {
+      "id": "supported-55",
+      "category": "supported",
+      "passed": true,
+      "actual": "cache-storage",
+      "ms": 0.5843790000001263
+    },
+    {
+      "id": "supported-56",
+      "category": "supported",
+      "passed": false,
+      "ms": 20.004889999999932
+    },
+    {
+      "id": "supported-57",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.5469170000001213
+    },
+    {
+      "id": "supported-58",
+      "category": "supported",
+      "passed": true,
+      "actual": "pin-tab",
+      "ms": 10.96595000000002
+    },
+    {
+      "id": "supported-59",
+      "category": "supported",
+      "passed": true,
+      "actual": "group-tabs",
+      "ms": 6.236182999999983
+    },
+    {
+      "id": "supported-60",
+      "category": "supported",
+      "passed": false,
+      "actual": "group-tabs",
+      "ms": 14.715191000000004
+    },
+    {
+      "id": "supported-61",
+      "category": "supported",
+      "passed": false,
+      "ms": 2.62314699999979
+    },
+    {
+      "id": "supported-62",
+      "category": "supported",
+      "passed": false,
+      "ms": 15.009863999999652
+    },
+    {
+      "id": "supported-63",
+      "category": "supported",
+      "passed": false,
+      "ms": 54.85321299999987
+    },
+    {
+      "id": "supported-64",
+      "category": "supported",
+      "passed": true,
+      "actual": "zoom",
+      "ms": 4.626952000000074
+    },
+    {
+      "id": "supported-65",
+      "category": "supported",
+      "passed": false,
+      "ms": 8.867052000000058
+    },
+    {
+      "id": "supported-66",
+      "category": "supported",
+      "passed": true,
+      "actual": "search-engine",
+      "ms": 2.914354000000003
+    },
+    {
+      "id": "supported-67",
+      "category": "supported",
+      "passed": false,
+      "ms": 44.85528000000022
+    },
+    {
+      "id": "supported-68",
+      "category": "supported",
+      "passed": false,
+      "ms": 9.312843000000157
+    },
+    {
+      "id": "supported-69",
+      "category": "supported",
+      "passed": false,
+      "ms": 5.306724999999915
+    },
+    {
+      "id": "supported-70",
+      "category": "supported",
+      "passed": true,
+      "actual": "video",
+      "ms": 7.672634000000016
+    },
+    {
+      "id": "supported-71",
+      "category": "supported",
+      "passed": false,
+      "ms": 7.470561000000089
+    },
+    {
+      "id": "supported-72",
+      "category": "supported",
+      "passed": false,
+      "ms": 49.777348000000075
+    },
+    {
+      "id": "supported-73",
+      "category": "supported",
+      "passed": true,
+      "actual": "popups",
+      "ms": 10.10723599999983
+    },
+    {
+      "id": "supported-74",
+      "category": "supported",
+      "passed": false,
+      "ms": 4.879956999999649
+    },
+    {
+      "id": "supported-75",
+      "category": "supported",
+      "passed": true,
+      "actual": "blank",
+      "ms": 7.691163999999844
+    },
+    {
+      "id": "supported-76",
+      "category": "supported",
+      "passed": true,
+      "actual": "layout",
+      "ms": 11.176904999999806
+    },
+    {
+      "id": "supported-77",
+      "category": "supported",
+      "passed": true,
+      "actual": "javascript-error",
+      "ms": 4.53837300000032
+    },
+    {
+      "id": "supported-78",
+      "category": "supported",
+      "passed": false,
+      "ms": 7.598705000000336
+    },
+    {
+      "id": "supported-79",
+      "category": "supported",
+      "passed": false,
+      "ms": 11.644566999999824
+    },
+    {
+      "id": "supported-80",
+      "category": "supported",
+      "passed": false,
+      "ms": 6.0834060000001955
+    },
+    {
+      "id": "supported-81",
+      "category": "supported",
+      "passed": true,
+      "actual": "heat",
+      "ms": 1.3277470000002722
+    },
+    {
+      "id": "supported-82",
+      "category": "supported",
+      "passed": false,
+      "ms": 5.6744009999997616
+    },
+    {
+      "id": "supported-83",
+      "category": "supported",
+      "passed": false,
+      "ms": 0.6724009999998088
+    },
+    {
+      "id": "supported-84",
+      "category": "supported",
+      "passed": false,
+      "ms": 5.34519599999976
+    },
+    {
+      "id": "supported-85",
+      "category": "supported",
+      "passed": true,
+      "actual": "linux",
+      "ms": 3.911149999999907
+    },
+    {
+      "id": "supported-86",
+      "category": "supported",
+      "passed": false,
+      "ms": 40.34767300000021
+    },
+    {
+      "id": "supported-87",
+      "category": "supported",
+      "passed": false,
+      "ms": 9.668908000000101
+    },
+    {
+      "id": "supported-88",
+      "category": "supported",
+      "passed": true,
+      "actual": "screen",
+      "ms": 5.0366320000002816
+    },
+    {
+      "id": "supported-89",
+      "category": "supported",
+      "passed": false,
+      "ms": 11.742533999999978
+    },
+    {
+      "id": "supported-90",
+      "category": "supported",
+      "passed": true,
+      "actual": "language",
+      "ms": 52.36486100000002
+    },
+    {
+      "id": "supported-91",
+      "category": "supported",
+      "passed": true,
+      "actual": "timezone",
+      "ms": 19.695631999999932
+    },
+    {
+      "id": "supported-92",
+      "category": "supported",
+      "passed": false,
+      "ms": 38.691699999999855
+    },
+    {
+      "id": "supported-93",
+      "category": "supported",
+      "passed": false,
+      "ms": 4.773317000000134
+    },
+    {
+      "id": "supported-94",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.5934729999999035
+    },
+    {
+      "id": "supported-95",
+      "category": "supported",
+      "passed": false,
+      "ms": 10.75668399999995
+    },
+    {
+      "id": "supported-96",
+      "category": "supported",
+      "passed": false,
+      "ms": 6.087042999999994
+    },
+    {
+      "id": "supported-97",
+      "category": "supported",
+      "passed": false,
+      "ms": 6.202506000000085
+    },
+    {
+      "id": "supported-98",
+      "category": "supported",
+      "passed": false,
+      "actual": "screen",
+      "ms": 2.271896000000197
+    },
+    {
+      "id": "supported-99",
+      "category": "supported",
+      "passed": true,
+      "actual": "refresh",
+      "ms": 3.3918000000003303
+    },
+    {
+      "id": "supported-100",
+      "category": "supported",
+      "passed": false,
+      "ms": 38.48766599999999
+    },
+    {
+      "id": "supported-101",
+      "category": "supported",
+      "passed": true,
+      "actual": "formats",
+      "ms": 6.738631000000169
+    },
+    {
+      "id": "supported-102",
+      "category": "supported",
+      "passed": true,
+      "actual": "updates",
+      "ms": 6.860215000000153
+    },
+    {
+      "id": "supported-103",
+      "category": "supported",
+      "passed": false,
+      "ms": 8.237215000000106
+    },
+    {
+      "id": "supported-104",
+      "category": "supported",
+      "passed": true,
+      "actual": "css",
+      "ms": 3.2181789999999637
+    },
+    {
+      "id": "supported-105",
+      "category": "supported",
+      "passed": false,
+      "ms": 0.6920009999998911
+    },
+    {
+      "id": "supported-106",
+      "category": "supported",
+      "passed": false,
+      "ms": 36.43004299999984
+    },
+    {
+      "id": "supported-107",
+      "category": "supported",
+      "passed": true,
+      "actual": "wasm",
+      "ms": 0.4630560000000514
+    },
+    {
+      "id": "supported-108",
+      "category": "supported",
+      "passed": false,
+      "ms": 8.823284999999942
+    },
+    {
+      "id": "supported-109",
+      "category": "supported",
+      "passed": true,
+      "actual": "csp",
+      "ms": 6.128484000000299
+    },
+    {
+      "id": "supported-110",
+      "category": "supported",
+      "passed": true,
+      "actual": "service-worker",
+      "ms": 4.213944999999967
+    },
+    {
+      "id": "supported-111",
+      "category": "supported",
+      "passed": true,
+      "actual": "pwa",
+      "ms": 6.37753900000007
+    },
+    {
+      "id": "supported-112",
+      "category": "supported",
+      "passed": false,
+      "ms": 34.889684000000216
+    },
+    {
+      "id": "supported-113",
+      "category": "supported",
+      "passed": false,
+      "ms": 9.881906999999956
+    },
+    {
+      "id": "supported-114",
+      "category": "supported",
+      "passed": false,
+      "ms": 8.179307999999764
+    },
+    {
+      "id": "supported-115",
+      "category": "supported",
+      "passed": false,
+      "ms": 12.193693000000167
+    },
+    {
+      "id": "supported-116",
+      "category": "supported",
+      "passed": false,
+      "ms": 9.371559000000161
+    },
+    {
+      "id": "supported-117",
+      "category": "supported",
+      "passed": false,
+      "ms": 6.403517000000193
+    },
+    {
+      "id": "supported-118",
+      "category": "supported",
+      "passed": true,
+      "actual": "extension",
+      "ms": 7.735119999999824
+    },
+    {
+      "id": "supported-119",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.392761000000064
+    },
+    {
+      "id": "supported-120",
+      "category": "supported",
+      "passed": false,
+      "ms": 4.865135000000009
+    },
+    {
+      "id": "supported-121",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.397747999999865
+    },
+    {
+      "id": "supported-122",
+      "category": "supported",
+      "passed": false,
+      "ms": 2.5626930000003085
+    },
+    {
+      "id": "supported-123",
+      "category": "supported",
+      "passed": true,
+      "actual": "recovery-codes",
+      "ms": 36.67317800000001
+    },
+    {
+      "id": "supported-124",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.1703859999997803
+    },
+    {
+      "id": "supported-125",
+      "category": "supported",
+      "passed": false,
+      "ms": 4.158120999999937
+    },
+    {
+      "id": "supported-126",
+      "category": "supported",
+      "passed": false,
+      "ms": 4.088616000000002
+    },
+    {
+      "id": "supported-127",
+      "category": "supported",
+      "passed": false,
+      "ms": 4.151812999999947
+    },
+    {
+      "id": "supported-128",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.087000999999873
+    },
+    {
+      "id": "supported-129",
+      "category": "supported",
+      "passed": false,
+      "ms": 6.765561000000162
+    },
+    {
+      "id": "supported-130",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.852452000000085
+    },
+    {
+      "id": "supported-131",
+      "category": "supported",
+      "passed": false,
+      "ms": 9.765202000000045
+    },
+    {
+      "id": "supported-132",
+      "category": "supported",
+      "passed": false,
+      "ms": 5.893822
+    },
+    {
+      "id": "supported-133",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.8502189999999246
+    },
+    {
+      "id": "supported-134",
+      "category": "supported",
+      "passed": false,
+      "ms": 2.5646960000003673
+    },
+    {
+      "id": "supported-135",
+      "category": "supported",
+      "passed": false,
+      "ms": 2.604957000000013
+    },
+    {
+      "id": "supported-136",
+      "category": "supported",
+      "passed": true,
+      "actual": "browser-sync",
+      "ms": 13.919096999999965
+    },
+    {
+      "id": "supported-137",
+      "category": "supported",
+      "passed": true,
+      "actual": "do-not-track",
+      "ms": 35.53692100000035
+    },
+    {
+      "id": "supported-138",
+      "category": "supported",
+      "passed": true,
+      "actual": "gpc",
+      "ms": 2.6541500000002998
+    },
+    {
+      "id": "supported-139",
+      "category": "supported",
+      "passed": false,
+      "ms": 4.74511399999983
+    },
+    {
+      "id": "supported-140",
+      "category": "supported",
+      "passed": true,
+      "actual": "url-tracking",
+      "ms": 2.2766120000001138
+    },
+    {
+      "id": "supported-141",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.985302000000047
+    },
+    {
+      "id": "supported-142",
+      "category": "supported",
+      "passed": true,
+      "actual": "webcam-light",
+      "ms": 7.44012500000008
+    },
+    {
+      "id": "supported-143",
+      "category": "supported",
+      "passed": false,
+      "actual": "privacy-screen-share",
+      "ms": 7.163380999999845
+    },
+    {
+      "id": "supported-144",
+      "category": "supported",
+      "passed": false,
+      "ms": 1.5162199999999757
+    },
+    {
+      "id": "supported-145",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.7363279999999577
+    },
+    {
+      "id": "supported-146",
+      "category": "supported",
+      "passed": true,
+      "actual": "sse",
+      "ms": 36.38397299999997
+    },
+    {
+      "id": "supported-147",
+      "category": "supported",
+      "passed": true,
+      "actual": "http2",
+      "ms": 2.6386170000000675
+    },
+    {
+      "id": "supported-148",
+      "category": "supported",
+      "passed": true,
+      "actual": "http3",
+      "ms": 1.200554000000011
+    },
+    {
+      "id": "supported-149",
+      "category": "supported",
+      "passed": false,
+      "ms": 4.706356000000142
+    },
+    {
+      "id": "supported-150",
+      "category": "supported",
+      "passed": false,
+      "ms": 4.07783100000006
+    },
+    {
+      "id": "supported-151",
+      "category": "supported",
+      "passed": true,
+      "actual": "connection-reset",
+      "ms": 4.450280000000021
+    },
+    {
+      "id": "supported-152",
+      "category": "supported",
+      "passed": false,
+      "ms": 6.052390000000287
+    },
+    {
+      "id": "supported-153",
+      "category": "supported",
+      "passed": true,
+      "actual": "http401",
+      "ms": 2.0383849999998347
+    },
+    {
+      "id": "supported-154",
+      "category": "supported",
+      "passed": false,
+      "ms": 2.7323880000003555
+    },
+    {
+      "id": "supported-155",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.1191100000000915
+    },
+    {
+      "id": "supported-156",
+      "category": "supported",
+      "passed": true,
+      "actual": "http413",
+      "ms": 2.504856000000018
+    },
+    {
+      "id": "supported-157",
+      "category": "supported",
+      "passed": false,
+      "ms": 36.44974299999967
+    },
+    {
+      "id": "supported-158",
+      "category": "supported",
+      "passed": false,
+      "ms": 2.3106440000001385
+    },
+    {
+      "id": "supported-159",
+      "category": "supported",
+      "passed": true,
+      "actual": "cache304",
+      "ms": 4.083028000000013
+    },
+    {
+      "id": "supported-160",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.273001000000022
+    },
+    {
+      "id": "supported-161",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.5944439999998394
+    },
+    {
+      "id": "supported-162",
+      "category": "supported",
+      "passed": true,
+      "actual": "samesite",
+      "ms": 1.6085680000001048
+    },
+    {
+      "id": "supported-163",
+      "category": "supported",
+      "passed": false,
+      "ms": 1.7833010000003924
+    },
+    {
+      "id": "supported-164",
+      "category": "supported",
+      "passed": true,
+      "actual": "secure-cookie",
+      "ms": 2.6328389999998763
+    },
+    {
+      "id": "supported-165",
+      "category": "supported",
+      "passed": false,
+      "actual": "network-port",
+      "ms": 10.234447000000273
+    },
+    {
+      "id": "supported-166",
+      "category": "supported",
+      "passed": true,
+      "actual": "sandbox",
+      "ms": 0.7483150000002752
+    },
+    {
+      "id": "supported-167",
+      "category": "supported",
+      "passed": false,
+      "ms": 42.224514
+    },
+    {
+      "id": "supported-168",
+      "category": "supported",
+      "passed": true,
+      "actual": "workers",
+      "ms": 4.22466200000008
+    },
+    {
+      "id": "supported-169",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.214622999999847
+    },
+    {
+      "id": "supported-170",
+      "category": "supported",
+      "passed": false,
+      "ms": 4.175598000000264
+    },
+    {
+      "id": "supported-171",
+      "category": "supported",
+      "passed": true,
+      "actual": "lcp",
+      "ms": 2.17149500000005
+    },
+    {
+      "id": "supported-172",
+      "category": "supported",
+      "passed": true,
+      "actual": "inp",
+      "ms": 1.9394659999998112
+    },
+    {
+      "id": "supported-173",
+      "category": "supported",
+      "passed": true,
+      "actual": "image-size",
+      "ms": 5.011474999999791
+    },
+    {
+      "id": "supported-174",
+      "category": "supported",
+      "passed": true,
+      "actual": "lazy-images",
+      "ms": 5.250634999999875
+    },
+    {
+      "id": "supported-175",
+      "category": "supported",
+      "passed": true,
+      "actual": "font-loading",
+      "ms": 45.94577900000013
+    },
+    {
+      "id": "supported-176",
+      "category": "supported",
+      "passed": false,
+      "ms": 2.273819000000003
+    },
+    {
+      "id": "supported-177",
+      "category": "supported",
+      "passed": false,
+      "ms": 6.318831000000046
+    },
+    {
+      "id": "supported-178",
+      "category": "supported",
+      "passed": false,
+      "ms": 4.61052299999983
+    },
+    {
+      "id": "supported-179",
+      "category": "supported",
+      "passed": false,
+      "ms": 1.223058999999921
+    },
+    {
+      "id": "supported-180",
+      "category": "supported",
+      "passed": false,
+      "ms": 1.1509800000003452
+    },
+    {
+      "id": "supported-181",
+      "category": "supported",
+      "passed": false,
+      "ms": 2.877636000000166
+    },
+    {
+      "id": "supported-182",
+      "category": "supported",
+      "passed": true,
+      "actual": "filesystem-api",
+      "ms": 6.372981999999865
+    },
+    {
+      "id": "supported-183",
+      "category": "supported",
+      "passed": false,
+      "ms": 38.87942599999997
+    },
+    {
+      "id": "supported-184",
+      "category": "supported",
+      "passed": true,
+      "actual": "webbluetooth",
+      "ms": 6.03635499999973
+    },
+    {
+      "id": "supported-185",
+      "category": "supported",
+      "passed": false,
+      "ms": 4.150209999999788
+    },
+    {
+      "id": "supported-186",
+      "category": "supported",
+      "passed": true,
+      "actual": "gamepad",
+      "ms": 3.1014530000002196
+    },
+    {
+      "id": "supported-187",
+      "category": "supported",
+      "passed": false,
+      "ms": 4.639927000000171
+    },
+    {
+      "id": "supported-188",
+      "category": "supported",
+      "passed": false,
+      "ms": 1.4985829999995985
+    },
+    {
+      "id": "supported-189",
+      "category": "supported",
+      "passed": true,
+      "actual": "wasm-memory",
+      "ms": 2.2287710000000516
+    },
+    {
+      "id": "supported-190",
+      "category": "supported",
+      "passed": true,
+      "actual": "secure-context",
+      "ms": 3.9286259999998947
+    },
+    {
+      "id": "supported-191",
+      "category": "supported",
+      "passed": true,
+      "actual": "permission-policy",
+      "ms": 4.094606000000567
+    },
+    {
+      "id": "supported-192",
+      "category": "supported",
+      "passed": false,
+      "ms": 35.515776999999616
+    },
+    {
+      "id": "supported-193",
+      "category": "supported",
+      "passed": true,
+      "actual": "pwa-update",
+      "ms": 6.858141000000614
+    },
+    {
+      "id": "supported-194",
+      "category": "supported",
+      "passed": false,
+      "ms": 6.347823000000062
+    },
+    {
+      "id": "supported-195",
+      "category": "supported",
+      "passed": false,
+      "actual": "profile",
+      "ms": 7.222279000000526
+    },
+    {
+      "id": "supported-196",
+      "category": "supported",
+      "passed": false,
+      "ms": 5.405377000000044
+    },
+    {
+      "id": "supported-197",
+      "category": "supported",
+      "passed": false,
+      "ms": 8.41608400000041
+    },
+    {
+      "id": "supported-198",
+      "category": "supported",
+      "passed": false,
+      "ms": 6.029915999999503
+    },
+    {
+      "id": "supported-199",
+      "category": "supported",
+      "passed": false,
+      "ms": 1.9697220000007292
+    },
+    {
+      "id": "supported-200",
+      "category": "supported",
+      "passed": true,
+      "actual": "print-pdf",
+      "ms": 10.805556000000252
+    },
+    {
+      "id": "supported-201",
+      "category": "supported",
+      "passed": false,
+      "ms": 2.455591999999342
+    },
+    {
+      "id": "supported-202",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.5201029999998354
+    },
+    {
+      "id": "supported-203",
+      "category": "supported",
+      "passed": false,
+      "ms": 10.987578999999641
+    },
+    {
+      "id": "supported-204",
+      "category": "supported",
+      "passed": false,
+      "ms": 36.534638000000086
+    },
+    {
+      "id": "supported-205",
+      "category": "supported",
+      "passed": true,
+      "actual": "win-memory",
+      "ms": 4.576850999999806
+    },
+    {
+      "id": "supported-206",
+      "category": "supported",
+      "passed": true,
+      "actual": "win-display",
+      "ms": 6.985021999999844
+    },
+    {
+      "id": "supported-207",
+      "category": "supported",
+      "passed": false,
+      "ms": 5.27015399999982
+    },
+    {
+      "id": "supported-208",
+      "category": "supported",
+      "passed": false,
+      "ms": 13.169240000000173
+    },
+    {
+      "id": "supported-209",
+      "category": "supported",
+      "passed": true,
+      "actual": "win-update-restart",
+      "ms": 8.750377000000299
+    },
+    {
+      "id": "supported-210",
+      "category": "supported",
+      "passed": true,
+      "actual": "win-efficiency",
+      "ms": 11.41229899999962
+    },
+    {
+      "id": "supported-211",
+      "category": "supported",
+      "passed": true,
+      "actual": "mac-pressure",
+      "ms": 3.8034579999994094
+    },
+    {
+      "id": "supported-212",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.3280640000002677
+    },
+    {
+      "id": "supported-213",
+      "category": "supported",
+      "passed": false,
+      "ms": 5.34895299999971
+    },
+    {
+      "id": "supported-214",
+      "category": "supported",
+      "passed": true,
+      "actual": "mac-safari-site",
+      "ms": 7.994147999999768
+    },
+    {
+      "id": "supported-215",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.8594730000004347
+    },
+    {
+      "id": "supported-216",
+      "category": "supported",
+      "passed": true,
+      "actual": "mac-screen-share",
+      "ms": 8.147930000000088
+    },
+    {
+      "id": "supported-217",
+      "category": "supported",
+      "passed": true,
+      "actual": "linux-package",
+      "ms": 9.97415700000056
+    },
+    {
+      "id": "supported-218",
+      "category": "supported",
+      "passed": true,
+      "actual": "linux-wayland",
+      "ms": 3.7406339999997726
+    },
+    {
+      "id": "supported-219",
+      "category": "supported",
+      "passed": false,
+      "ms": 39.81576200000018
+    },
+    {
+      "id": "supported-220",
+      "category": "supported",
+      "passed": false,
+      "ms": 7.653707999999824
+    },
+    {
+      "id": "supported-221",
+      "category": "supported",
+      "passed": true,
+      "actual": "linux-gpu",
+      "ms": 6.687325000000783
+    },
+    {
+      "id": "supported-222",
+      "category": "supported",
+      "passed": false,
+      "ms": 8.09660200000053
+    },
+    {
+      "id": "supported-223",
+      "category": "supported",
+      "passed": false,
+      "ms": 8.829886000000442
+    },
+    {
+      "id": "supported-224",
+      "category": "supported",
+      "passed": false,
+      "ms": 9.061041999999361
+    },
+    {
+      "id": "supported-225",
+      "category": "supported",
+      "passed": false,
+      "ms": 5.647490999999718
+    },
+    {
+      "id": "supported-226",
+      "category": "supported",
+      "passed": false,
+      "actual": "downloads",
+      "ms": 10.322399000000587
+    },
+    {
+      "id": "supported-227",
+      "category": "supported",
+      "passed": false,
+      "ms": 50.69461799999954
+    },
+    {
+      "id": "supported-228",
+      "category": "supported",
+      "passed": true,
+      "actual": "android-battery",
+      "ms": 7.508589000000029
+    },
+    {
+      "id": "supported-229",
+      "category": "supported",
+      "passed": false,
+      "ms": 5.18793899999946
+    },
+    {
+      "id": "supported-230",
+      "category": "supported",
+      "passed": false,
+      "ms": 9.239292000000205
+    },
+    {
+      "id": "supported-231",
+      "category": "supported",
+      "passed": true,
+      "actual": "iphone-pwa",
+      "ms": 39.703333000000384
+    },
+    {
+      "id": "supported-232",
+      "category": "supported",
+      "passed": false,
+      "ms": 8.976445999999669
+    },
+    {
+      "id": "supported-233",
+      "category": "supported",
+      "passed": false,
+      "ms": 2.949945000000298
+    },
+    {
+      "id": "supported-234",
+      "category": "supported",
+      "passed": true,
+      "actual": "iphone-lowpower",
+      "ms": 6.192479999999705
+    },
+    {
+      "id": "supported-235",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.2431959999994433
+    },
+    {
+      "id": "supported-236",
+      "category": "supported",
+      "passed": false,
+      "ms": 5.582213000000593
+    },
+    {
+      "id": "supported-237",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.359881000000314
+    },
+    {
+      "id": "supported-238",
+      "category": "supported",
+      "passed": false,
+      "ms": 37.6128920000001
+    },
+    {
+      "id": "supported-239",
+      "category": "supported",
+      "passed": false,
+      "ms": 1.7097309999999197
+    },
+    {
+      "id": "supported-240",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.5370080000002417
+    },
+    {
+      "id": "supported-241",
+      "category": "supported",
+      "passed": false,
+      "ms": 5.972098000000187
+    },
+    {
+      "id": "supported-242",
+      "category": "supported",
+      "passed": false,
+      "ms": 1.4550280000003113
+    },
+    {
+      "id": "supported-243",
+      "category": "supported",
+      "passed": false,
+      "ms": 3.827795000000151
+    },
+    {
+      "id": "supported-244",
+      "category": "supported",
+      "passed": true,
+      "actual": "doh-policy",
+      "ms": 2.8646170000001803
+    },
+    {
+      "id": "supported-245",
+      "category": "supported",
+      "passed": false,
+      "ms": 4.022386999999981
+    },
+    {
+      "id": "supported-246",
+      "category": "supported",
+      "passed": false,
+      "ms": 4.578644000000168
+    },
+    {
+      "id": "supported-247",
+      "category": "supported",
+      "passed": false,
+      "ms": 4.996583000000101
+    },
+    {
+      "id": "supported-248",
+      "category": "supported",
+      "passed": false,
+      "ms": 7.808659000000262
+    },
+    {
+      "id": "supported-249",
+      "category": "supported",
+      "passed": false,
+      "ms": 6.809858000000531
+    },
+    {
+      "id": "supported-250",
+      "category": "supported",
+      "passed": false,
+      "ms": 7.25018
+    },
+    {
+      "id": "supported-251",
+      "category": "supported",
+      "passed": false,
+      "ms": 1.734187999999449
+    },
+    {
+      "id": "supported-252",
+      "category": "supported",
+      "passed": false,
+      "ms": 1.5968810000003941
+    },
+    {
+      "id": "supported-253",
+      "category": "supported",
+      "passed": false,
+      "ms": 1.9784449999997378
+    },
+    {
+      "id": "supported-254",
+      "category": "supported",
+      "passed": false,
+      "ms": 1.2732540000006338
+    },
+    {
+      "id": "supported-255",
+      "category": "supported",
+      "passed": true,
+      "actual": "idb-abort",
+      "ms": 1.4481479999994917
+    },
+    {
+      "id": "supported-256",
+      "category": "supported",
+      "passed": true,
+      "actual": "idb-inactive",
+      "ms": 5.957996999999523
+    },
+    {
+      "id": "unsupported-1",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.21187900000040827
+    },
+    {
+      "id": "unsupported-2",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.15586499999972148
+    },
+    {
+      "id": "unsupported-3",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.09162800000012794
+    },
+    {
+      "id": "unsupported-4",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 35.533534000000145
+    },
+    {
+      "id": "unsupported-5",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 3.2825949999996737
+    },
+    {
+      "id": "unsupported-6",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 1.6794440000003306
+    },
+    {
+      "id": "unsupported-7",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 4.146924000000581
+    },
+    {
+      "id": "unsupported-8",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 1.5210470000001806
+    },
+    {
+      "id": "unsupported-9",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 2.6973049999996874
+    },
+    {
+      "id": "unsupported-10",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 2.1496820000002117
+    },
+    {
+      "id": "unsupported-11",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 3.6303480000005948
+    },
+    {
+      "id": "unsupported-12",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 2.359317000000374
+    },
+    {
+      "id": "unsupported-13",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 6.451970999999503
+    },
+    {
+      "id": "unsupported-14",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 2.6374550000000454
+    },
+    {
+      "id": "unsupported-15",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 3.1102160000000367
+    },
+    {
+      "id": "unsupported-16",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 2.3379150000000664
+    },
+    {
+      "id": "unsupported-17",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 3.3290250000000015
+    },
+    {
+      "id": "unsupported-18",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.251006999999845
+    },
+    {
+      "id": "unsupported-19",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.1381279999995968
+    },
+    {
+      "id": "unsupported-20",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.10577899999952933
+    },
+    {
+      "id": "unsupported-21",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 10.686926999999741
+    },
+    {
+      "id": "unsupported-22",
+      "category": "unsupported",
+      "passed": true,
+      "actual": "heat",
+      "ms": 1.2682770000001256
+    },
+    {
+      "id": "unsupported-23",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.1628950000003897
+    },
+    {
+      "id": "unsupported-24",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.15282999999999447
+    },
+    {
+      "id": "unsupported-25",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 2.5492330000006405
+    },
+    {
+      "id": "unsupported-26",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 4.445072999999866
+    },
+    {
+      "id": "unsupported-27",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 4.907137999999577
+    },
+    {
+      "id": "unsupported-28",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 43.63662699999986
+    },
+    {
+      "id": "unsupported-29",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 2.8809409999994386
+    },
+    {
+      "id": "unsupported-30",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 5.692297999999937
+    },
+    {
+      "id": "unsupported-31",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.18479800000022806
+    },
+    {
+      "id": "unsupported-32",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.11952999999994063
+    },
+    {
+      "id": "unsupported-33",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.10494699999981094
+    },
+    {
+      "id": "unsupported-34",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.10844300000007934
+    },
+    {
+      "id": "unsupported-35",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.09854799999993702
+    },
+    {
+      "id": "unsupported-36",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.7875640000002022
+    },
+    {
+      "id": "unsupported-37",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 3.478660000000673
+    },
+    {
+      "id": "unsupported-38",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.15675499999997555
+    },
+    {
+      "id": "unsupported-39",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 1.548689000000195
+    },
+    {
+      "id": "unsupported-40",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 2.2147500000000946
+    },
+    {
+      "id": "unsupported-41",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 1.9919250000002648
+    },
+    {
+      "id": "unsupported-42",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 1.5262749999992593
+    },
+    {
+      "id": "unsupported-43",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 2.2043240000002697
+    },
+    {
+      "id": "unsupported-44",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 4.447224999999889
+    },
+    {
+      "id": "unsupported-45",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 4.0386719999996785
+    },
+    {
+      "id": "unsupported-46",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.11352000000078988
+    },
+    {
+      "id": "unsupported-47",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.08568900000045687
+    },
+    {
+      "id": "unsupported-48",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 1.2926939999997558
+    },
+    {
+      "id": "unsupported-49",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.1048979999995936
+    },
+    {
+      "id": "unsupported-50",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 3.3629769999997734
+    },
+    {
+      "id": "unsupported-51",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.35397199999988516
+    },
+    {
+      "id": "unsupported-52",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 3.6377199999997174
+    },
+    {
+      "id": "unsupported-53",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 1.041997000000265
+    },
+    {
+      "id": "unsupported-54",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 7.716640999999981
+    },
+    {
+      "id": "unsupported-55",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 5.054838999999447
+    },
+    {
+      "id": "unsupported-56",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.17956000000049244
+    },
+    {
+      "id": "unsupported-57",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 1.626945999999407
+    },
+    {
+      "id": "unsupported-58",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.1791690000000017
+    },
+    {
+      "id": "unsupported-59",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 4.054616000000351
+    },
+    {
+      "id": "unsupported-60",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 1.5741259999995236
+    },
+    {
+      "id": "unsupported-61",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 1.4710919999997714
+    },
+    {
+      "id": "unsupported-62",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 1.074094999999943
+    },
+    {
+      "id": "unsupported-63",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.14744100000007165
+    },
+    {
+      "id": "unsupported-64",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 1.9793060000001788
+    },
+    {
+      "id": "unsupported-65",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 25.856465000000753
+    },
+    {
+      "id": "unsupported-66",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.19888900000023568
+    },
+    {
+      "id": "unsupported-67",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 2.5836450000006153
+    },
+    {
+      "id": "unsupported-68",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 2.44504599999982
+    },
+    {
+      "id": "unsupported-69",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 7.869802000000163
+    },
+    {
+      "id": "unsupported-70",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 3.170476000000235
+    },
+    {
+      "id": "unsupported-71",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 2.5125579999994443
+    },
+    {
+      "id": "unsupported-72",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 2.5811109999995097
+    },
+    {
+      "id": "unsupported-73",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 1.9573529999997845
+    },
+    {
+      "id": "unsupported-74",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 2.237724999999955
+    },
+    {
+      "id": "unsupported-75",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 4.26476300000013
+    },
+    {
+      "id": "unsupported-76",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 1.535970000000816
+    },
+    {
+      "id": "unsupported-77",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 3.3377290000007633
+    },
+    {
+      "id": "unsupported-78",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.12350599999990663
+    },
+    {
+      "id": "unsupported-79",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 2.611505999999281
+    },
+    {
+      "id": "unsupported-80",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.113510000000133
+    },
+    {
+      "id": "unsupported-81",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 14.637697999999546
+    },
+    {
+      "id": "unsupported-82",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 7.580206999999973
+    },
+    {
+      "id": "unsupported-83",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.13565400000061345
+    },
+    {
+      "id": "unsupported-84",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 4.949681000000055
+    },
+    {
+      "id": "unsupported-85",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.5653700000002573
+    },
+    {
+      "id": "unsupported-86",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.14778200000000652
+    },
+    {
+      "id": "unsupported-87",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 38.912342999999964
+    },
+    {
+      "id": "unsupported-88",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.3825249999999869
+    },
+    {
+      "id": "unsupported-89",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 3.506603000000723
+    },
+    {
+      "id": "unsupported-90",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.3309079999999085
+    },
+    {
+      "id": "unsupported-91",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.13262000000031549
+    },
+    {
+      "id": "unsupported-92",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 6.875176999999894
+    },
+    {
+      "id": "unsupported-93",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 1.1273250000003827
+    },
+    {
+      "id": "unsupported-94",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 3.3964670000004844
+    },
+    {
+      "id": "unsupported-95",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 3.2252690000004804
+    },
+    {
+      "id": "unsupported-96",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 7.753077000000303
+    },
+    {
+      "id": "unsupported-97",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 7.560197000000699
+    },
+    {
+      "id": "unsupported-98",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 1.495748000000276
+    },
+    {
+      "id": "unsupported-99",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 0.24005099999976665
+    },
+    {
+      "id": "unsupported-100",
+      "category": "unsupported",
+      "passed": true,
+      "ms": 6.943087999999989
+    },
+    {
+      "id": "conversation-1",
+      "category": "conversation",
+      "passed": false,
+      "ms": 15.823100999999951
+    },
+    {
+      "id": "conversation-2",
+      "category": "conversation",
+      "passed": false,
+      "ms": 40.922575999999935
+    },
+    {
+      "id": "conversation-3",
+      "category": "conversation",
+      "passed": true,
+      "actual": "ram",
+      "ms": 4.270239999999831
+    },
+    {
+      "id": "conversation-4",
+      "category": "conversation",
+      "passed": false,
+      "ms": 9.931541999999354
+    },
+    {
+      "id": "conversation-5",
+      "category": "conversation",
+      "passed": true,
+      "actual": "notifications",
+      "ms": 7.826536999999917
+    },
+    {
+      "id": "conversation-6",
+      "category": "conversation",
+      "passed": false,
+      "ms": 10.278753000000506
+    },
+    {
+      "id": "conversation-7",
+      "category": "conversation",
+      "passed": true,
+      "actual": "403",
+      "ms": 10.39977700000054
+    },
+    {
+      "id": "conversation-8",
+      "category": "conversation",
+      "passed": false,
+      "ms": 4.046393999999964
+    },
+    {
+      "id": "conversation-9",
+      "category": "conversation",
+      "passed": false,
+      "ms": 4.639836000000287
+    },
+    {
+      "id": "conversation-10",
+      "category": "conversation",
+      "passed": true,
+      "actual": "zoom",
+      "ms": 4.100384999999733
+    },
+    {
+      "id": "conversation-11",
+      "category": "conversation",
+      "passed": false,
+      "ms": 3.690238000000136
+    },
+    {
+      "id": "conversation-12",
+      "category": "conversation",
+      "passed": false,
+      "ms": 39.775532999999996
+    },
+    {
+      "id": "conversation-13",
+      "category": "conversation",
+      "passed": true,
+      "actual": "linux",
+      "ms": 6.165499000000636
+    },
+    {
+      "id": "conversation-14",
+      "category": "conversation",
+      "passed": false,
+      "ms": 11.496444000000338
+    },
+    {
+      "id": "conversation-15",
+      "category": "conversation",
+      "passed": true,
+      "actual": "refresh",
+      "ms": 18.527775999999903
+    },
+    {
+      "id": "conversation-16",
+      "category": "conversation",
+      "passed": false,
+      "ms": 4.614818000000014
+    },
+    {
+      "id": "conversation-17",
+      "category": "conversation",
+      "passed": false,
+      "ms": 17.982606999999916
+    },
+    {
+      "id": "conversation-18",
+      "category": "conversation",
+      "passed": false,
+      "ms": 40.72981700000037
+    },
+    {
+      "id": "conversation-19",
+      "category": "conversation",
+      "passed": false,
+      "ms": 3.510207000000264
+    },
+    {
+      "id": "conversation-20",
+      "category": "conversation",
+      "passed": false,
+      "ms": 7.250250000000051
+    },
+    {
+      "id": "conversation-21",
+      "category": "conversation",
+      "passed": false,
+      "ms": 6.120301999999356
+    },
+    {
+      "id": "conversation-22",
+      "category": "conversation",
+      "passed": true,
+      "actual": "http3",
+      "ms": 1.3790839999992386
+    },
+    {
+      "id": "conversation-23",
+      "category": "conversation",
+      "passed": false,
+      "ms": 4.071863000000121
+    },
+    {
+      "id": "conversation-24",
+      "category": "conversation",
+      "passed": true,
+      "actual": "samesite",
+      "ms": 1.98891999999978
+    },
+    {
+      "id": "conversation-25",
+      "category": "conversation",
+      "passed": false,
+      "ms": 4.957782999999836
+    },
+    {
+      "id": "conversation-26",
+      "category": "conversation",
+      "passed": false,
+      "ms": 3.4506380000002537
+    },
+    {
+      "id": "conversation-27",
+      "category": "conversation",
+      "passed": false,
+      "ms": 10.639566000000741
+    },
+    {
+      "id": "conversation-28",
+      "category": "conversation",
+      "passed": true,
+      "actual": "secure-context",
+      "ms": 6.058238999999958
+    },
+    {
+      "id": "conversation-29",
+      "category": "conversation",
+      "passed": false,
+      "ms": 46.94091600000047
+    },
+    {
+      "id": "conversation-30",
+      "category": "conversation",
+      "passed": false,
+      "ms": 10.504503000000113
+    },
+    {
+      "id": "conversation-31",
+      "category": "conversation",
+      "passed": true,
+      "actual": "mac-pressure",
+      "ms": 4.458504000000175
+    },
+    {
+      "id": "conversation-32",
+      "category": "conversation",
+      "passed": true,
+      "actual": "linux-wayland",
+      "ms": 4.20419099999981
+    },
+    {
+      "id": "conversation-33",
+      "category": "conversation",
+      "passed": false,
+      "ms": 4.596019000000524
+    },
+    {
+      "id": "conversation-34",
+      "category": "conversation",
+      "passed": false,
+      "ms": 8.879769999999553
+    },
+    {
+      "id": "conversation-35",
+      "category": "conversation",
+      "passed": false,
+      "ms": 4.397802000000411
+    },
+    {
+      "id": "conversation-36",
+      "category": "conversation",
+      "passed": false,
+      "ms": 3.485921999999846
+    },
+    {
+      "id": "conversation-37",
+      "category": "conversation",
+      "passed": false,
+      "ms": 6.430919000000358
+    },
+    {
+      "id": "conversation-38",
+      "category": "conversation",
+      "passed": true,
+      "actual": "safari",
+      "ms": 3.677679000000353
+    },
+    {
+      "id": "conversation-39",
+      "category": "conversation",
+      "passed": true,
+      "actual": "compare",
+      "ms": 1.7138169999998354
+    },
+    {
+      "id": "conversation-40",
+      "category": "conversation",
+      "passed": true,
+      "actual": "acceleration",
+      "ms": 1.8574830000006841
+    },
+    {
+      "id": "conversation-41",
+      "category": "conversation",
+      "passed": false,
+      "ms": 1.929030000000239
+    },
+    {
+      "id": "conversation-42",
+      "category": "conversation",
+      "passed": false,
+      "ms": 4.26800699999967
+    },
+    {
+      "id": "conversation-43",
+      "category": "conversation",
+      "passed": false,
+      "ms": 2.382391999999527
+    },
+    {
+      "id": "conversation-44",
+      "category": "conversation",
+      "passed": false,
+      "ms": 39.622809999999845
+    },
+    {
+      "id": "conversation-45",
+      "category": "conversation",
+      "passed": true,
+      "actual": "quota",
+      "ms": 8.240048999999999
+    },
+    {
+      "id": "conversation-46",
+      "category": "conversation",
+      "passed": false,
+      "actual": "group-tabs",
+      "ms": 10.917434999999386
+    },
+    {
+      "id": "conversation-47",
+      "category": "conversation",
+      "passed": false,
+      "ms": 5.2254970000003595
+    },
+    {
+      "id": "conversation-48",
+      "category": "conversation",
+      "passed": false,
+      "ms": 3.9821170000004713
+    },
+    {
+      "id": "conversation-49",
+      "category": "conversation",
+      "passed": true,
+      "actual": "heat",
+      "ms": 3.3023059999995894
+    },
+    {
+      "id": "conversation-50",
+      "category": "conversation",
+      "passed": true,
+      "actual": "screen",
+      "ms": 6.518141000000469
+    },
+    {
+      "id": "conversation-51",
+      "category": "conversation",
+      "passed": false,
+      "ms": 9.837901999999303
+    },
+    {
+      "id": "conversation-52",
+      "category": "conversation",
+      "passed": true,
+      "actual": "updates",
+      "ms": 8.159778000000188
+    },
+    {
+      "id": "conversation-53",
+      "category": "conversation",
+      "passed": true,
+      "actual": "csp",
+      "ms": 45.711537000000135
+    },
+    {
+      "id": "conversation-54",
+      "category": "conversation",
+      "passed": false,
+      "ms": 6.071930000000066
+    },
+    {
+      "id": "conversation-55",
+      "category": "conversation",
+      "passed": true,
+      "actual": "recovery-codes",
+      "ms": 4.152152999999998
+    },
+    {
+      "id": "conversation-56",
+      "category": "conversation",
+      "passed": false,
+      "ms": 6.297507999999652
+    },
+    {
+      "id": "conversation-57",
+      "category": "conversation",
+      "passed": true,
+      "actual": "do-not-track",
+      "ms": 7.8019500000000335
+    },
+    {
+      "id": "conversation-58",
+      "category": "conversation",
+      "passed": false,
+      "ms": 4.704313000000184
+    },
+    {
+      "id": "conversation-59",
+      "category": "conversation",
+      "passed": true,
+      "actual": "connection-reset",
+      "ms": 4.980438000000504
+    },
+    {
+      "id": "conversation-60",
+      "category": "conversation",
+      "passed": false,
+      "ms": 3.1071010000005117
+    },
+    {
+      "id": "conversation-61",
+      "category": "conversation",
+      "passed": false,
+      "actual": "network-port",
+      "ms": 7.189939000000777
+    },
+    {
+      "id": "conversation-62",
+      "category": "conversation",
+      "passed": true,
+      "actual": "inp",
+      "ms": 2.7076710000001185
+    },
+    {
+      "id": "conversation-63",
+      "category": "conversation",
+      "passed": false,
+      "ms": 1.7603970000000118
+    },
+    {
+      "id": "conversation-64",
+      "category": "conversation",
+      "passed": true,
+      "actual": "gamepad",
+      "ms": 3.309766000000309
+    },
+    {
+      "id": "conversation-65",
+      "category": "conversation",
+      "passed": true,
+      "actual": "pwa-update",
+      "ms": 4.312794999999824
+    },
+    {
+      "id": "conversation-66",
+      "category": "conversation",
+      "passed": true,
+      "actual": "print-pdf",
+      "ms": 44.42050400000062
+    },
+    {
+      "id": "conversation-67",
+      "category": "conversation",
+      "passed": false,
+      "ms": 4.192344000000048
+    },
+    {
+      "id": "conversation-68",
+      "category": "conversation",
+      "passed": true,
+      "actual": "mac-safari-site",
+      "ms": 5.24483599999985
+    },
+    {
+      "id": "conversation-69",
+      "category": "conversation",
+      "passed": true,
+      "actual": "linux-gpu",
+      "ms": 7.07781199999954
+    },
+    {
+      "id": "conversation-70",
+      "category": "conversation",
+      "passed": true,
+      "actual": "android-battery",
+      "ms": 7.455700000000434
+    },
+    {
+      "id": "conversation-71",
+      "category": "conversation",
+      "passed": false,
+      "ms": 3.6188210000000254
+    },
+    {
+      "id": "conversation-72",
+      "category": "conversation",
+      "passed": false,
+      "ms": 2.1649649999999383
+    },
+    {
+      "id": "conversation-73",
+      "category": "conversation",
+      "passed": false,
+      "ms": 2.495952999999645
+    },
+    {
+      "id": "conversation-74",
+      "category": "conversation",
+      "passed": true,
+      "actual": "idb-inactive",
+      "ms": 4.134485999999924
+    },
+    {
+      "id": "conversation-75",
+      "category": "conversation",
+      "passed": true,
+      "actual": "engine",
+      "ms": 8.260038999999779
+    },
+    {
+      "id": "conversation-76",
+      "category": "conversation",
+      "passed": false,
+      "ms": 8.647901999999704
+    },
+    {
+      "id": "conversation-77",
+      "category": "conversation",
+      "passed": true,
+      "actual": "leak",
+      "ms": 5.401329999999689
+    },
+    {
+      "id": "conversation-78",
+      "category": "conversation",
+      "passed": false,
+      "ms": 39.827901999999995
+    },
+    {
+      "id": "conversation-79",
+      "category": "conversation",
+      "passed": false,
+      "ms": 9.37837000000036
+    },
+    {
+      "id": "conversation-80",
+      "category": "conversation",
+      "passed": true,
+      "actual": "404",
+      "ms": 3.48108400000001
+    },
+    {
+      "id": "conversation-81",
+      "category": "conversation",
+      "passed": true,
+      "actual": "third-party",
+      "ms": 3.2908070000003136
+    },
+    {
+      "id": "conversation-82",
+      "category": "conversation",
+      "passed": false,
+      "ms": 6.182585999999901
+    },
+    {
+      "id": "conversation-83",
+      "category": "conversation",
+      "passed": false,
+      "ms": 8.623164999999972
+    },
+    {
+      "id": "conversation-84",
+      "category": "conversation",
+      "passed": true,
+      "actual": "video",
+      "ms": 3.2435059999997975
+    },
+    {
+      "id": "conversation-85",
+      "category": "conversation",
+      "passed": true,
+      "actual": "javascript-error",
+      "ms": 5.128169999999955
+    },
+    {
+      "id": "conversation-86",
+      "category": "conversation",
+      "passed": false,
+      "ms": 4.507547999999588
+    },
+    {
+      "id": "conversation-87",
+      "category": "conversation",
+      "passed": true,
+      "actual": "timezone",
+      "ms": 7.094366000000264
+    },
+    {
+      "id": "conversation-88",
+      "category": "conversation",
+      "passed": false,
+      "actual": "screen",
+      "ms": 2.791556999999557
+    },
+    {
+      "id": "conversation-89",
+      "category": "conversation",
+      "passed": false,
+      "ms": 1.2566100000003644
+    },
+    {
+      "id": "conversation-90",
+      "category": "conversation",
+      "passed": false,
+      "ms": 3.2580080000007
+    },
+    {
+      "id": "conversation-91",
+      "category": "conversation",
+      "passed": false,
+      "ms": 40.10391600000003
+    },
+    {
+      "id": "conversation-92",
+      "category": "conversation",
+      "passed": false,
+      "ms": 4.319614000000001
+    },
+    {
+      "id": "conversation-93",
+      "category": "conversation",
+      "passed": false,
+      "ms": 3.7077939999999217
+    },
+    {
+      "id": "conversation-94",
+      "category": "conversation",
+      "passed": true,
+      "actual": "url-tracking",
+      "ms": 2.1749700000000303
+    },
+    {
+      "id": "conversation-95",
+      "category": "conversation",
+      "passed": true,
+      "actual": "http2",
+      "ms": 4.952215000000251
+    },
+    {
+      "id": "conversation-96",
+      "category": "conversation",
+      "passed": false,
+      "ms": 3.956557999999859
+    },
+    {
+      "id": "conversation-97",
+      "category": "conversation",
+      "passed": false,
+      "ms": 3.78951700000016
+    },
+    {
+      "id": "conversation-98",
+      "category": "conversation",
+      "passed": true,
+      "actual": "workers",
+      "ms": 4.433555999999953
+    },
+    {
+      "id": "conversation-99",
+      "category": "conversation",
+      "passed": true,
+      "actual": "font-loading",
+      "ms": 6.46937700000035
+    },
+    {
+      "id": "conversation-100",
+      "category": "conversation",
+      "passed": true,
+      "actual": "filesystem-api",
+      "ms": 6.598219999999856
+    },
+    {
+      "id": "compound-1",
+      "category": "compound",
+      "passed": false,
+      "actual": "chrome",
+      "ms": 7.825945999999931
+    },
+    {
+      "id": "compound-2",
+      "category": "compound",
+      "passed": true,
+      "actual": "safari",
+      "ms": 9.122245999999905
+    },
+    {
+      "id": "compound-3",
+      "category": "compound",
+      "passed": true,
+      "actual": "brave",
+      "ms": 44.86327200000051
+    },
+    {
+      "id": "compound-4",
+      "category": "compound",
+      "passed": false,
+      "actual": "engine",
+      "ms": 12.334194000000025
+    },
+    {
+      "id": "compound-5",
+      "category": "compound",
+      "passed": true,
+      "actual": "update-browser",
+      "ms": 10.885005000000092
+    },
+    {
+      "id": "compound-6",
+      "category": "compound",
+      "passed": false,
+      "actual": "compare",
+      "ms": 4.9809290000002875
+    },
+    {
+      "id": "compound-7",
+      "category": "compound",
+      "passed": false,
+      "ms": 17.17953900000066
+    },
+    {
+      "id": "compound-8",
+      "category": "compound",
+      "passed": false,
+      "actual": "ram",
+      "ms": 7.950563999999758
+    },
+    {
+      "id": "compound-9",
+      "category": "compound",
+      "passed": false,
+      "actual": "acceleration",
+      "ms": 6.8107109999991735
+    },
+    {
+      "id": "compound-10",
+      "category": "compound",
+      "passed": false,
+      "ms": 42.62746799999968
+    },
+    {
+      "id": "compound-11",
+      "category": "compound",
+      "passed": false,
+      "actual": "leak",
+      "ms": 11.508374000000003
+    },
+    {
+      "id": "compound-12",
+      "category": "compound",
+      "passed": true,
+      "actual": "secure",
+      "ms": 13.374418999999762
+    },
+    {
+      "id": "compound-13",
+      "category": "compound",
+      "passed": false,
+      "ms": 4.3022289999998975
+    },
+    {
+      "id": "compound-14",
+      "category": "compound",
+      "passed": false,
+      "actual": "tracking",
+      "ms": 7.5521749999998065
+    },
+    {
+      "id": "compound-15",
+      "category": "compound",
+      "passed": true,
+      "actual": "phishing",
+      "ms": 6.205638999999792
+    },
+    {
+      "id": "compound-16",
+      "category": "compound",
+      "passed": false,
+      "actual": "passwords",
+      "ms": 5.5621629999996
+    },
+    {
+      "id": "compound-17",
+      "category": "compound",
+      "passed": false,
+      "ms": 9.30132500000036
+    },
+    {
+      "id": "compound-18",
+      "category": "compound",
+      "passed": false,
+      "ms": 47.13403300000027
+    },
+    {
+      "id": "compound-19",
+      "category": "compound",
+      "passed": false,
+      "actual": "dns",
+      "ms": 5.265897000000223
+    },
+    {
+      "id": "compound-20",
+      "category": "compound",
+      "passed": false,
+      "actual": "proxy",
+      "ms": 5.20868100000007
+    },
+    {
+      "id": "compound-21",
+      "category": "compound",
+      "passed": false,
+      "actual": "404",
+      "ms": 5.9821750000000975
+    },
+    {
+      "id": "compound-22",
+      "category": "compound",
+      "passed": false,
+      "actual": "403",
+      "ms": 9.849609000000783
+    },
+    {
+      "id": "compound-23",
+      "category": "compound",
+      "passed": false,
+      "actual": "429",
+      "ms": 5.538437000000158
+    },
+    {
+      "id": "compound-24",
+      "category": "compound",
+      "passed": false,
+      "ms": 4.839566000000559
+    },
+    {
+      "id": "compound-25",
+      "category": "compound",
+      "passed": false,
+      "actual": "third-party",
+      "ms": 6.009635999999773
+    },
+    {
+      "id": "compound-26",
+      "category": "compound",
+      "passed": false,
+      "ms": 3.9567690000003495
+    },
+    {
+      "id": "compound-27",
+      "category": "compound",
+      "passed": true,
+      "actual": "persistent",
+      "ms": 50.74584500000037
+    },
+    {
+      "id": "compound-28",
+      "category": "compound",
+      "passed": false,
+      "actual": "cache-storage",
+      "ms": 6.40199500000017
+    },
+    {
+      "id": "compound-29",
+      "category": "compound",
+      "passed": false,
+      "actual": "pin-tab",
+      "ms": 10.198093000000881
+    },
+    {
+      "id": "compound-30",
+      "category": "compound",
+      "passed": false,
+      "actual": "group-tabs",
+      "ms": 11.332116999999926
+    },
+    {
+      "id": "compound-31",
+      "category": "compound",
+      "passed": false,
+      "ms": 4.527487999999721
+    },
+    {
+      "id": "compound-32",
+      "category": "compound",
+      "passed": false,
+      "actual": "zoom",
+      "ms": 11.34924299999966
+    },
+    {
+      "id": "compound-33",
+      "category": "compound",
+      "passed": false,
+      "actual": "search-engine",
+      "ms": 6.9678759999997055
+    },
+    {
+      "id": "compound-34",
+      "category": "compound",
+      "passed": false,
+      "ms": 40.476426000000174
+    },
+    {
+      "id": "compound-35",
+      "category": "compound",
+      "passed": false,
+      "actual": "video",
+      "ms": 6.709788000000117
+    },
+    {
+      "id": "compound-36",
+      "category": "compound",
+      "passed": false,
+      "ms": 9.195896000000175
+    },
+    {
+      "id": "compound-37",
+      "category": "compound",
+      "passed": false,
+      "actual": "popups",
+      "ms": 10.160085999999865
+    },
+    {
+      "id": "compound-38",
+      "category": "compound",
+      "passed": true,
+      "actual": "layout",
+      "ms": 12.973635999999715
+    },
+    {
+      "id": "compound-39",
+      "category": "compound",
+      "passed": false,
+      "actual": "javascript-error",
+      "ms": 10.161638000000494
+    },
+    {
+      "id": "compound-40",
+      "category": "compound",
+      "passed": false,
+      "ms": 9.94506199999978
+    },
+    {
+      "id": "compound-41",
+      "category": "compound",
+      "passed": false,
+      "actual": "heat",
+      "ms": 41.12217700000019
+    },
+    {
+      "id": "compound-42",
+      "category": "compound",
+      "passed": false,
+      "ms": 3.9293769999994765
+    },
+    {
+      "id": "compound-43",
+      "category": "compound",
+      "passed": false,
+      "actual": "linux",
+      "ms": 6.104468000000452
+    },
+    {
+      "id": "compound-44",
+      "category": "compound",
+      "passed": false,
+      "actual": "screen",
+      "ms": 10.448178999999982
+    },
+    {
+      "id": "compound-45",
+      "category": "compound",
+      "passed": false,
+      "actual": "language",
+      "ms": 14.09000399999968
+    },
+    {
+      "id": "compound-46",
+      "category": "compound",
+      "passed": false,
+      "actual": "timezone",
+      "ms": 9.787034999999378
+    },
+    {
+      "id": "compound-47",
+      "category": "compound",
+      "passed": false,
+      "ms": 5.885688999999729
+    },
+    {
+      "id": "compound-48",
+      "category": "compound",
+      "passed": false,
+      "ms": 10.961419999999634
+    },
+    {
+      "id": "compound-49",
+      "category": "compound",
+      "passed": false,
+      "actual": "screen",
+      "ms": 5.533268999999564
+    },
+    {
+      "id": "compound-50",
+      "category": "compound",
+      "passed": false,
+      "actual": "refresh",
+      "ms": 33.817745999999715
+    },
+    {
+      "id": "compound-51",
+      "category": "compound",
+      "passed": true,
+      "actual": "updates",
+      "ms": 12.144218000000365
+    },
+    {
+      "id": "compound-52",
+      "category": "compound",
+      "passed": false,
+      "actual": "css",
+      "ms": 7.571665000000394
+    },
+    {
+      "id": "compound-53",
+      "category": "compound",
+      "passed": false,
+      "ms": 2.3470790000001216
+    },
+    {
+      "id": "compound-54",
+      "category": "compound",
+      "passed": false,
+      "actual": "wasm",
+      "ms": 8.196944000000258
+    },
+    {
+      "id": "compound-55",
+      "category": "compound",
+      "passed": true,
+      "actual": "service-worker",
+      "ms": 8.420521000000008
+    },
+    {
+      "id": "compound-56",
+      "category": "compound",
+      "passed": false,
+      "actual": "pwa",
+      "ms": 8.230695000000196
+    },
+    {
+      "id": "compound-57",
+      "category": "compound",
+      "passed": false,
+      "ms": 10.121087999999872
+    },
+    {
+      "id": "compound-58",
+      "category": "compound",
+      "passed": false,
+      "ms": 40.69260200000008
+    },
+    {
+      "id": "compound-59",
+      "category": "compound",
+      "passed": false,
+      "actual": "extension",
+      "ms": 5.997596999999587
+    },
+    {
+      "id": "compound-60",
+      "category": "compound",
+      "passed": false,
+      "ms": 5.6183869999995295
+    },
+    {
+      "id": "compound-61",
+      "category": "compound",
+      "passed": false,
+      "ms": 4.86358300000029
+    },
+    {
+      "id": "compound-62",
+      "category": "compound",
+      "passed": false,
+      "actual": "recovery-codes",
+      "ms": 5.469142999999349
+    },
+    {
+      "id": "compound-63",
+      "category": "compound",
+      "passed": false,
+      "ms": 7.1092689999995855
+    },
+    {
+      "id": "compound-64",
+      "category": "compound",
+      "passed": false,
+      "ms": 4.933588000000782
+    },
+    {
+      "id": "compound-65",
+      "category": "compound",
+      "passed": false,
+      "ms": 8.71007599999939
+    },
+    {
+      "id": "compound-66",
+      "category": "compound",
+      "passed": false,
+      "ms": 12.563400000000001
+    },
+    {
+      "id": "compound-67",
+      "category": "compound",
+      "passed": false,
+      "ms": 5.6549519999998665
+    },
+    {
+      "id": "compound-68",
+      "category": "compound",
+      "passed": false,
+      "actual": "browser-sync",
+      "ms": 44.677662000000055
+    },
+    {
+      "id": "compound-69",
+      "category": "compound",
+      "passed": true,
+      "actual": "gpc",
+      "ms": 6.289246000000276
+    },
+    {
+      "id": "compound-70",
+      "category": "compound",
+      "passed": false,
+      "actual": "url-tracking",
+      "ms": 5.883805999999822
+    },
+    {
+      "id": "compound-71",
+      "category": "compound",
+      "passed": false,
+      "actual": "webcam-light",
+      "ms": 10.809913000000051
+    },
+    {
+      "id": "compound-72",
+      "category": "compound",
+      "passed": false,
+      "actual": "privacy-screen-share",
+      "ms": 7.347728000000643
+    },
+    {
+      "id": "compound-73",
+      "category": "compound",
+      "passed": false,
+      "actual": "sse",
+      "ms": 5.85568400000011
+    },
+    {
+      "id": "compound-74",
+      "category": "compound",
+      "passed": true,
+      "actual": "http3",
+      "ms": 3.446171999999933
+    },
+    {
+      "id": "compound-75",
+      "category": "compound",
+      "passed": false,
+      "ms": 7.538814999999886
+    },
+    {
+      "id": "compound-76",
+      "category": "compound",
+      "passed": false,
+      "actual": "connection-reset",
+      "ms": 10.162449999999808
+    },
+    {
+      "id": "compound-77",
+      "category": "compound",
+      "passed": false,
+      "actual": "http401",
+      "ms": 37.194352000000436
+    },
+    {
+      "id": "compound-78",
+      "category": "compound",
+      "passed": false,
+      "actual": "http413",
+      "ms": 6.221403999999893
+    },
+    {
+      "id": "compound-79",
+      "category": "compound",
+      "passed": false,
+      "ms": 5.351385999999366
+    },
+    {
+      "id": "compound-80",
+      "category": "compound",
+      "passed": false,
+      "actual": "cache304",
+      "ms": 8.991178000000218
+    },
+    {
+      "id": "compound-81",
+      "category": "compound",
+      "passed": false,
+      "actual": "samesite",
+      "ms": 4.748588999999811
+    },
+    {
+      "id": "compound-82",
+      "category": "compound",
+      "passed": false,
+      "actual": "secure-cookie",
+      "ms": 4.397691999999552
+    },
+    {
+      "id": "compound-83",
+      "category": "compound",
+      "passed": false,
+      "actual": "sandbox",
+      "ms": 6.691611000000194
+    },
+    {
+      "id": "compound-84",
+      "category": "compound",
+      "passed": false,
+      "actual": "workers",
+      "ms": 8.717757000000347
+    },
+    {
+      "id": "compound-85",
+      "category": "compound",
+      "passed": false,
+      "ms": 6.403748000000633
+    },
+    {
+      "id": "compound-86",
+      "category": "compound",
+      "passed": true,
+      "actual": "inp",
+      "ms": 3.752172000000428
+    },
+    {
+      "id": "compound-87",
+      "category": "compound",
+      "passed": true,
+      "actual": "lazy-images",
+      "ms": 44.261649000000034
+    },
+    {
+      "id": "compound-88",
+      "category": "compound",
+      "passed": false,
+      "actual": "font-loading",
+      "ms": 8.460950000000594
+    },
+    {
+      "id": "compound-89",
+      "category": "compound",
+      "passed": false,
+      "ms": 10.455751000000419
+    },
+    {
+      "id": "compound-90",
+      "category": "compound",
+      "passed": false,
+      "ms": 2.2790070000000924
+    },
+    {
+      "id": "compound-91",
+      "category": "compound",
+      "passed": false,
+      "actual": "filesystem-api",
+      "ms": 8.995264999999563
+    },
+    {
+      "id": "compound-92",
+      "category": "compound",
+      "passed": false,
+      "actual": "webbluetooth",
+      "ms": 10.850454000000354
+    },
+    {
+      "id": "compound-93",
+      "category": "compound",
+      "passed": false,
+      "actual": "gamepad",
+      "ms": 6.919434000000365
+    },
+    {
+      "id": "compound-94",
+      "category": "compound",
+      "passed": false,
+      "ms": 5.673009000000093
+    },
+    {
+      "id": "compound-95",
+      "category": "compound",
+      "passed": true,
+      "actual": "secure-context",
+      "ms": 6.110367000000224
+    },
+    {
+      "id": "compound-96",
+      "category": "compound",
+      "passed": false,
+      "actual": "permission-policy",
+      "ms": 42.754971999999725
+    },
+    {
+      "id": "compound-97",
+      "category": "compound",
+      "passed": false,
+      "actual": "pwa-update",
+      "ms": 10.454327999999805
+    },
+    {
+      "id": "compound-98",
+      "category": "compound",
+      "passed": false,
+      "actual": "profile",
+      "ms": 11.948335000000043
+    },
+    {
+      "id": "compound-99",
+      "category": "compound",
+      "passed": false,
+      "ms": 11.98731299999963
+    },
+    {
+      "id": "compound-100",
+      "category": "compound",
+      "passed": false,
+      "actual": "print-pdf",
+      "ms": 9.039201000000503
+    },
+    {
+      "id": "safety-1",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.3258399999995163
+    },
+    {
+      "id": "safety-2",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.16887399999995978
+    },
+    {
+      "id": "safety-3",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.28593000000000757
+    },
+    {
+      "id": "safety-4",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.19354099999964092
+    },
+    {
+      "id": "safety-5",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.10289499999998952
+    },
+    {
+      "id": "safety-6",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.0858989999996993
+    },
+    {
+      "id": "safety-7",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.22878399999990506
+    },
+    {
+      "id": "safety-8",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.16472700000031182
+    },
+    {
+      "id": "safety-9",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.1596399999998539
+    },
+    {
+      "id": "safety-10",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.15406199999961245
+    },
+    {
+      "id": "safety-11",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.11141800000041258
+    },
+    {
+      "id": "safety-12",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.07271899999977904
+    },
+    {
+      "id": "safety-13",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.09397100000023784
+    },
+    {
+      "id": "safety-14",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.07922900000085065
+    },
+    {
+      "id": "safety-15",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.07932000000073458
+    },
+    {
+      "id": "safety-16",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.06998600000042643
+    },
+    {
+      "id": "safety-17",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.05785699999978533
+    },
+    {
+      "id": "safety-18",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.06400599999960832
+    },
+    {
+      "id": "safety-19",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.06953400000020338
+    },
+    {
+      "id": "safety-20",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.118757999999616
+    },
+    {
+      "id": "safety-21",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.08335600000009435
+    },
+    {
+      "id": "safety-22",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.06489799999962997
+    },
+    {
+      "id": "safety-23",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.08733099999972183
+    },
+    {
+      "id": "safety-24",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.0834050000003117
+    },
+    {
+      "id": "safety-25",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.08511799999996583
+    },
+    {
+      "id": "safety-26",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.07486200000039389
+    },
+    {
+      "id": "safety-27",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.06004000000029919
+    },
+    {
+      "id": "safety-28",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.11736699999983102
+    },
+    {
+      "id": "safety-29",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.07967000000007829
+    },
+    {
+      "id": "safety-30",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.08352500000000873
+    },
+    {
+      "id": "safety-31",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.12027099999977509
+    },
+    {
+      "id": "safety-32",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.07153800000014598
+    },
+    {
+      "id": "safety-33",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.09066600000005565
+    },
+    {
+      "id": "safety-34",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.08173299999998562
+    },
+    {
+      "id": "safety-35",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.08468699999957607
+    },
+    {
+      "id": "safety-36",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.07344099999954778
+    },
+    {
+      "id": "safety-37",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.060511000000587956
+    },
+    {
+      "id": "safety-38",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.06878299999971205
+    },
+    {
+      "id": "safety-39",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.07434199999988778
+    },
+    {
+      "id": "safety-40",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.07993999999962398
+    },
+    {
+      "id": "safety-41",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.07581399999980931
+    },
+    {
+      "id": "safety-42",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.057655999999951746
+    },
+    {
+      "id": "safety-43",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.07866900000044552
+    },
+    {
+      "id": "safety-44",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.11937899999975343
+    },
+    {
+      "id": "safety-45",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.07937000000038097
+    },
+    {
+      "id": "safety-46",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.07101599999987229
+    },
+    {
+      "id": "safety-47",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.055002000000058615
+    },
+    {
+      "id": "safety-48",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.06192300000020623
+    },
+    {
+      "id": "safety-49",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.06962500000008731
+    },
+    {
+      "id": "safety-50",
+      "category": "safety",
+      "passed": true,
+      "ms": 0.07366100000035658
+    }
+  ]
+}

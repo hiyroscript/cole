@@ -18,8 +18,12 @@ import { plan, continuePlan, evidenceAnswer } from "./reasoning";
 import { observe } from "./observations";
 import { mergeFacts } from "./case-state";
 import { restorePacks } from "./packs";
-import { compareKnowledge } from "./compare";
+import { compareKnowledge, comparisonInput, comparisonPair } from "./compare";
+import { taskReference } from "./task-reference";
 import { analyzeRequest } from "./request";
+import { resolveTaskInput } from "./task-input";
+import type { NumericValue } from "./calculator";
+import { followupFrame } from "./followup";
 import { runCapability } from "./capabilities";
 import { retrieveCandidates } from "./hybrid";
 import { clarificationChoice, freshContext, resolveReference } from "./context";
@@ -88,6 +92,7 @@ async function respondSingle(
   input: string,
   previous: Context,
   options: EngineOptions,
+  calculationInput?: NumericValue,
 ): Promise<Response> {
   options.signal?.throwIfAborted();
   const c = freshContext(previous);
@@ -142,7 +147,10 @@ async function respondSingle(
   const natural = naturalTool(input);
   if (natural) {
     options.stage?.(`Running local ${natural.name}`);
-    return (await executeTrustedTool(natural.name, natural.input, c, options))!;
+    return (await executeTrustedTool(natural.name, natural.input, c, {
+      ...options,
+      calculationInput,
+    }))!;
   }
   const documentQuery = documentRequest(input);
   if (documentQuery !== undefined) {
@@ -378,18 +386,26 @@ async function respondSingle(
     return answer(
       `The most recent recommendation was: ${c.lastAction}\n\nIt is a reversible comparison intended to narrow possible causes, not proof of a diagnosis.`,
     );
-  if (/compare|difference between/.test(n)) {
-    if (/cache/.test(n) && /cookies/.test(n)) {
+  const compared =
+    n === "compare cache cookies"
+      ? "cache and cookies"
+      : n === "compare chrome firefox"
+        ? "chrome and firefox"
+        : comparisonInput(input);
+  if (compared) {
+    if (comparisonPair(compared, "cache", "cookies")) {
       c.topic = "compare cache cookies";
       c.comparison = ["cache", "cookies"];
+      c.authoredSources = ["cache", "cookies"];
       return answer(
         "Cache stores reusable resources such as images and scripts. Cookies store small values sent with matching requests, often for sign-in or preferences. Clearing cache can force downloads; clearing cookies can sign you out. Neither action should be used as a universal fix.",
       );
     }
-    if (/firefox/.test(n) && /chrome/.test(n)) {
+    if (comparisonPair(compared, "chrome", "firefox")) {
       c.intent = "compare";
       c.topic = "compare chrome firefox";
       c.comparison = ["chrome", "firefox"];
+      c.authoredSources = ["compare"];
       return answer(compose("compare", c));
     }
   }
@@ -402,8 +418,11 @@ async function respondSingle(
     options.signal?.throwIfAborted();
     return answer(health(evidence), { evidence });
   }
-  if (/^compare\s/i.test(input))
-    return answer(compareKnowledge(input.replace(/^compare\s+/i, ""), c));
+  if (compared) return answer(compareKnowledge(compared, c));
+  if (taskReference(input)?.kind === "group" && c.comparison?.length)
+    return answer(
+      "I don’t have a supported answer for that comparison detail. Name the subjects and the specific property you want to compare; the existing evidence does not establish every requested detail.",
+    );
   const groups = diagnosticGroups(n);
   const featureRequest =
     /support|available|can.*(?:install|query|use)|check/.test(n) &&
@@ -505,36 +524,24 @@ async function respondSingle(
   }
   const frame = questionFrame(input);
   if (frame?.style === "brief") c.depth = "brief";
-  const followup = n.replace(
-    /^(?:please\s+)?(?:(?:can|could|would) you\s+)?/,
-    "",
-  );
-  const depth =
-    /^(?:(?:make (?:it|that) )?(?:shorter|brief)|summarize (?:it|that))$/.test(
-      followup,
-    )
-      ? "brief"
-      : /^(?:(?:give|show) me (?:the )?(?:steps|instructions)|step by step|what should i try first|how do i fix (?:that|it))$/.test(
-            followup,
-          )
-        ? "steps"
-        : /^(?:more detail|explain (?:that|it) more(?: simply)?|what does that mean|tell me more about (?:it|that))$/.test(
-              followup,
-            )
-          ? "detailed"
-          : undefined;
+  const followup = followupFrame(input);
+  const depth = followup?.kind === "depth" ? followup.depth : undefined;
   if (depth) {
     c.depth = depth;
-    if (c.intent && get(c.intent))
+    if (c.intent && get(c.intent)) {
+      c.authoredSources = [c.intent];
       return answer(compose(c.intent, c), {
         followups: get(c.intent)!.followups,
       });
+    }
     return answer(
       "What would you like me to explain? Name the browser feature or problem first.",
     );
   }
-  if (/^(repeat|say that again|repeat that)$/.test(followup) && c.intent)
+  if (followup?.kind === "repeat" && c.intent) {
+    c.authoredSources = [c.intent];
     return answer(compose(c.intent, c));
+  }
   if (/quick check|check my (browser|device)|device information/.test(n)) {
     options.stage?.("Checking available browser information");
     return answer(
@@ -767,36 +774,23 @@ export async function respond(
     evidence: Evidence[] = [];
   for (const task of request.tasks) {
     options.signal?.throwIfAborted();
-    let text = task.text;
-    if (task.reference && task.dependsOn.length) {
-      const prior = request.tasks[task.dependsOn[0]];
-      const priorResult = results.find((r) => r.id === prior.id);
-      const subject =
-        priorResult?.status === "answered"
-          ? (prior.entities.find(
-              (e) => e.kind === "api" || e.kind === "browser",
-            )?.value ?? prior.subjects[0])
-          : undefined;
-      const plural = /^(?:each|them|they)$/i.test(task.reference);
-      const group =
-        plural &&
-        priorResult?.status === "answered" &&
-        (priorResult.sources.length ?? 0) >= 2;
-      if ((!plural && !subject) || (plural && !group)) {
-        results.push({
-          id: task.id,
-          intent: task.intent,
-          status: "needs-information",
-          sources: [],
-        });
-        parts.push(
-          `### ${task.id + 1}. Clarification needed\nWhich subject does “${task.reference}” refer to? Please name it for this part of the request.`,
-        );
-        continue;
-      }
-      if (group) context.comparison = priorResult!.sources;
-      else text = text.replace(/\b(?:it|that)\b/i, subject!);
+    const resolved = resolveTaskInput(task, results);
+    if (!resolved.ready) {
+      results.push({
+        id: task.id,
+        intent: task.intent,
+        status: "needs-information",
+        sources: [],
+        dependsOn: task.dependsOn,
+      });
+      parts.push(
+        `### ${task.id + 1}. Clarification needed\n${resolved.detail}`,
+      );
+      continue;
     }
+    const text = resolved.text;
+    if (resolved.comparison) context.comparison = resolved.comparison;
+    if (resolved.subject) context.intent = resolved.subject;
     // A compound request cannot grant permissions, issue commands, or send
     // a fragment of private material to a provider. Ask for a separate action.
     if (/^(?:run\s+)?\/|^(?:search|look up|lookup)\b/i.test(text.trim())) {
@@ -819,6 +813,7 @@ export async function respond(
       text,
       { ...context, authoredSources: undefined },
       { ...options, webSources: false },
+      resolved.calculationInput,
     );
     if (response.effect) {
       results.push({
@@ -835,11 +830,22 @@ export async function respond(
     context = response.context;
     const sources = context.authoredSources ?? [];
     const verifiedTool = response.operation?.status === "completed";
+    // Evidence and referents are different: the authored Chrome/Firefox
+    // comparison is one source but discusses two independently named subjects.
+    const subjects =
+      sources.length &&
+      (comparisonInput(text) || task.reference?.kind === "group") &&
+      context.comparison?.length
+        ? context.comparison
+        : sources;
     results.push({
       id: task.id,
       intent: task.intent,
       status: sources.length || verifiedTool ? "answered" : "needs-information",
       sources,
+      subjects: [...subjects],
+      dependsOn: task.dependsOn,
+      value: verifiedTool ? response.operation?.value : undefined,
     });
     for (const id of context.authoredSources ?? []) authoredSources.add(id);
     parts.push(

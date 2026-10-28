@@ -1,3 +1,4 @@
+import { arithmeticReferences } from "./task-reference";
 // Only user request frames reach this router. Payloads never re-enter dispatch.
 export type LocalToolRequest = {
   name: "calculate" | "analyze" | "stats" | "csv" | "text" | "diff" | "logic";
@@ -27,7 +28,33 @@ export function naturalTool(input: string): LocalToolRequest | undefined {
     /^(?:calculate|compute|work out|convert)\s+([\s\S]+)$/i,
   );
   if (explicit)
-    return { name: "calculate", input: explicit[1].replace(/[?]$/, "") };
+    return {
+      name: "calculate",
+      input: arithmeticReferences(explicit[1].replace(/[?.!]$/, "")),
+    };
+  const arithmetic = text
+    .replace(/[?.!]$/, "")
+    .match(/^(add|subtract|multiply|divide)\s+(.+?)\s+(to|from|by)\s+(.+)$/i);
+  if (arithmetic) {
+    const [, operation, left, preposition, right] = arithmetic;
+    const op = operation.toLowerCase();
+    const expected = {
+      add: "to",
+      subtract: "from",
+      multiply: "by",
+      divide: "by",
+    }[op];
+    if (preposition.toLowerCase() === expected) {
+      const [a, b] = op === "subtract" ? [right, left] : [left, right];
+      const symbol = { add: "+", subtract: "-", multiply: "*", divide: "/" }[
+        op
+      ];
+      return {
+        name: "calculate",
+        input: arithmeticReferences(`(${a}) ${symbol} (${b})`),
+      };
+    }
+  }
   const question = text.match(
     /^(?:what is|what's|how much is)\s+([\s\S]+?)[?]?$/i,
   );

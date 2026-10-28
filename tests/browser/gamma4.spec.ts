@@ -8,6 +8,82 @@ async function ask(page: Page, text: string) {
     page.getByRole("button", { name: "Stop response", exact: true }),
   ).toHaveCount(0);
 }
+test("dependent arithmetic uses actual results and preserves units offline", async ({
+  page,
+  context,
+}) => {
+  await page.goto("./");
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready;
+  });
+  await page.reload();
+  await context.setOffline(true);
+  await ask(page, "Calculate 18% of 475, then multiply the result by 2.");
+  await expect(page.locator("article").last()).toContainText("85.5");
+  await expect(page.locator("article").last()).toContainText("171");
+  await ask(
+    page,
+    "Calculate 2 hours to minutes, then convert the result to s.",
+  );
+  await expect(page.locator("article").last()).toContainText("120 minutes");
+  await expect(page.locator("article").last()).toContainText("7200 s");
+});
+
+test("coordinated subjects and complete noun phrases survive dependent comparisons", async ({
+  page,
+}) => {
+  await page.goto("./");
+  await ask(page, "Explain CPU cache, then compare it with SSD storage.");
+  await expect(page.locator("article").last()).toContainText(
+    "Small fast copies near processor cores",
+  );
+  await expect(page.locator("article").last()).toContainText(
+    "Persistent file storage",
+  );
+  await ask(page, "Explain WebGPU and WebGL, then compare them.");
+  await expect(page.locator("article").last()).toContainText("Part 3 of 3");
+  await expect(page.locator("article").last()).toContainText(
+    "Functional comparison",
+  );
+});
+
+test("an independent relative clause does not inherit the previous subject", async ({
+  page,
+}) => {
+  await page.goto("./");
+  await ask(
+    page,
+    "Explain WebGL. Also how can I recognize a login page that is phishing for credentials?",
+  );
+  await expect(page.locator("article").last()).toContainText("Phishing");
+  await expect(page.locator("article").last()).not.toContainText(
+    "Clarification needed",
+  );
+  await expect(page.locator("article").last()).not.toContainText(
+    "reliable answer",
+  );
+});
+
+test("failed calculation dependencies and unsupported comparison details remain incomplete", async ({
+  page,
+}) => {
+  await page.goto("./");
+  await ask(page, "Calculate 1 / 0, then multiply the result by 2.");
+  await expect(page.locator("article").last()).toContainText(
+    "division by zero",
+  );
+  await expect(page.locator("article").last()).toContainText(
+    "Clarification needed",
+  );
+  await ask(
+    page,
+    "Compare WebGPU with WebGL, then explain how each cures cancer using AI.",
+  );
+  await expect(page.locator("article").last()).toContainText(
+    "existing evidence does not establish",
+  );
+});
+
 test("educational frames change topics and punctuated follow-ups keep the selected topic", async ({
   page,
 }) => {

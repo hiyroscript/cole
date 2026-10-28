@@ -1,8 +1,28 @@
 import { comparisonMatrix } from "./comparison";
 import type { Context } from "../types";
 import { rank, confidence } from "./retrieval";
+import { assessAnswerability } from "./answerability";
+export function comparisonInput(input: string): string | undefined {
+  return input
+    .trim()
+    .replace(/^(?:please\s+)?(?:(?:can|could|would) you\s+)?/i, "")
+    .match(
+      /^(?:compare|(?:what (?:is|are) (?:the )?)?differences? between)\s+(.+)$/i,
+    )?.[1];
+}
+
+export function comparisonPair(input: string, a: string, b: string): boolean {
+  const subjects = input
+    .trim()
+    .replace(/[.!?]$/, "")
+    .replace(/\s+for ordinary browsing$/i, "")
+    .toLowerCase()
+    .split(/\s+(?:with|versus|vs\.?|to|and)\s+/);
+  return subjects.length === 2 && subjects.includes(a) && subjects.includes(b);
+}
 // Structured juxtaposition, not generated conclusions or inferred causation.
 export function compareKnowledge(input: string, context: Context): string {
+  context.authoredSources = undefined;
   const table = /\btable\b/i.test(input);
   input = input.replace(/\s+(?:in|as) (?:a )?table[.!?]*$/i, "");
   const subjects = input
@@ -21,7 +41,14 @@ export function compareKnowledge(input: string, context: Context): string {
   );
   if (
     selections.some(
-      (results) => !["high", "moderate"].includes(confidence(results)),
+      (results, i) =>
+        !["high", "moderate"].includes(confidence(results)) ||
+        assessAnswerability(
+          /^(?:ram|memory)$/i.test(subjects[i].trim())
+            ? "RAM versus storage"
+            : subjects[i],
+          results[0].record,
+        ).status !== "direct",
     )
   )
     return "I need two clearly supported subjects for a sourced comparison. Try /compare WebGPU | WebGL.";

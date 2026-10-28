@@ -1,6 +1,7 @@
 import { knowledge } from "../../data/knowledge";
 import type { Context } from "../types";
 import { literal } from "./data-tools";
+import { questionFrame } from "./question";
 export const dimensions: Record<
   string,
   { role: string; execution: string; ai: string }
@@ -58,9 +59,13 @@ export function comparisonAspect(
   input: string,
   c: Context,
 ): string | undefined {
+  const question = (questionFrame(input)?.subject ?? input)
+    .trim()
+    .replace(/[.!?]$/, "");
   if (
-    !/\b(?:each|they|them)\b/i.test(input) ||
-    !/\b(?:ai|inference|machine learning)\b/i.test(input)
+    !/^(?:how )?(?:each(?: of them)?|they) (?:relates? to|(?:is|are|can be) used (?:for|in)) (?:running )?(?:ai|inference|machine learning)(?: in (?:a |the )?browser)?$/i.test(
+      question,
+    )
   )
     return;
   const ids = c.comparison;
@@ -84,7 +89,7 @@ export function comparisonFollowup(
 ): string | undefined {
   if (
     !c.comparison?.length ||
-    !/^(?:(?:which|what about|how about).*(?:privacy|faster|speed|memory|performance|support|android|ios|windows|linux|macos)|compare them[.!?]*$|and on (?:android|ios|windows|linux|macos))/i.test(
+    !/^(?:(?:which(?: one)? is (?:better for )?(?:privacy|faster|speed|memory|performance|support))|(?:what about|how about)(?: on)? (?:privacy|speed|memory|performance|support|android|ios|windows|linux|macos)|compare them|and on (?:android|ios|windows|linux|macos))[.!?]*$/i.test(
       input,
     )
   )

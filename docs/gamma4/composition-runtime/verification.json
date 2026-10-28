@@ -1,0 +1,72 @@
+{
+  "recordedAt": "2026-10-28T14:43:17.297703+00:00",
+  "sourceBase": "13fa781adc220b48bd8fac9a452e3b4941bab426",
+  "sourceFilesSha256": {
+    "src/core/gamma/calculator.ts": "f81c8f377520ef01c39d143af8125614191615a30c079d9cf991c5ccdcbdc9f7",
+    "src/core/gamma/capabilities.ts": "851e97718e9016643512b29b55b308f958a94254f39b833212ab08d05147b59c",
+    "src/core/gamma/compare.ts": "c704b1dde79de7eaf669f8285fcb2120076811845d6c7391e939bbce56adaac5",
+    "src/core/gamma/comparison.ts": "de477cb13fe7e636d3c15730c0c15d7fd0a8cb23f510a0be222d684e185c32d1",
+    "src/core/gamma/engine.ts": "b368e39066c2498f55d05619756e4b21e07e7bf009b29175675642c72823cd5b",
+    "src/core/gamma/followup.ts": "f08e08c37731d56b9938124eeabaf476536f3c4ae3debd00171e22388f4e8a0d",
+    "src/core/gamma/natural-tools.ts": "d41177445cb96479c0ea6f48cf1f7a23df66579d330aca2f794dffa666262381",
+    "src/core/gamma/request.ts": "17774d44673cca2fab0dc61b7c51649daa147f67d0733c8473322050605d3ca1",
+    "src/core/gamma/task-boundaries.ts": "5d9f0092b6a3c2eec53730c2a0d4a96dd00e8103567bf9d427897da3e194fe8b",
+    "src/core/gamma/task-input.ts": "1d0684d8ac768e4075c740107280fbb1710d3ceaba3cf14b6ef7f7d6048a266f",
+    "src/core/gamma/task-reference.ts": "47dfd7b6faae977af522710fa48d0e2b54b7d691d720b7154f69a1297d5a70ca",
+    "src/core/gamma/trusted-tools.ts": "49a5e87a1e34999967ef25d7195cbb1e2b18235d34e99858a3fac7986723efe9",
+    "src/core/types.ts": "b490cbf9b57b34dae4a62a4e0a283cd978eb9a93322b8a834b77eb8abe59760a"
+  },
+  "checks": {
+    "cleanDependencyInstall": "passed: ONNXRUNTIME_NODE_INSTALL_CUDA=skip npm ci",
+    "typecheck": "passed",
+    "branding": "passed",
+    "knowledgeValidation": "passed; docs/coverage.json unchanged",
+    "unitTests": {
+      "passed": 3665,
+      "files": 17
+    },
+    "browserTests": {
+      "passed": 104,
+      "scope": "Production Chromium, desktop and emulated mobile; includes offline operation"
+    },
+    "extensionChecks": {
+      "passed": 27,
+      "scope": "Shipping MV3 package plus existing test-only localhost permission fixture"
+    },
+    "websiteBuild": "passed",
+    "extensionBuild": "passed",
+    "payloadBudget": "passed without raising limits",
+    "capabilityEvaluation": {
+      "passed": 20,
+      "total": 20
+    },
+    "compositionContracts": {
+      "baselinePassed": 18,
+      "passed": 36,
+      "total": 36,
+      "independentHoldout": false
+    },
+    "realMiniLM": {
+      "setupAndIndexMs": 29582,
+      "records": 708,
+      "queries": 46,
+      "offlineCacheReuse": true,
+      "selectiveRemoval": true
+    },
+    "semanticReplay": {
+      "publishedMissingQueries": 0,
+      "compositionMissingQueries": 0,
+      "completionMissingQueries": 0,
+      "frameMissingQueries": 0
+    },
+    "formatting": "passed",
+    "gitDiffCheck": "passed"
+  },
+  "limitations": [
+    "Exposed regression and implementer-authored development evaluation; not independent factuality or entailment evaluation.",
+    "No physical-device or non-Chromium certification; no new GPU inference validation.",
+    "Heap snapshots are not peak process memory.",
+    "Broader max acceptance, conversation and composition goals remain unmet."
+  ],
+  "serviceWorkerSha256": "849654f5fff18a60ffacc6bbd689dae6e0bd1c382688f1d9514a22e8f1540244"
+}
